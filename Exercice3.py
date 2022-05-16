@@ -24,7 +24,7 @@ def RepEx3(l):
             print(i)
             
             
-#Manipuler les listes pour les avoir sous forme de quizz (en cours)
+#Manipuler les listes pour les avoir sous forme de quizz / vérification des réponses
 
 #Quizz : le reste à voir //code interface
 
