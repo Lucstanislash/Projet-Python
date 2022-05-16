@@ -23,7 +23,7 @@ def RepEx3(l):
     for i in l:
         if int(i) % 2 == 0:
             print(i)
-        Rep.append(i)
+            Rep.append(i)
             
             
 #Manipuler les listes pour les avoir sous forme de quizz / vérification des réponses
