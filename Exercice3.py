@@ -1,21 +1,10 @@
-import random
-
-def AleaPuissance2():
-    #Donne des nombres binaires aléatoires
-    ch = '1'
-    for i in range(random.randrange(1,32)):
-        j = random.randint(0,1)
-        if j == 0:
-            ch += '0'
-        else :
-            ch += '1'
-    return(ch)
+from random import *
 
 l = []
 def List(l):
     #Crée une liste avec des nombres binaires aléatoires
     for i in range(10):
-        l.append(AleaPuissance2())
+        l.append(AleaExAll())
 
 Rep = []
 def RepEx3(l):
