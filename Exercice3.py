@@ -1,7 +1,8 @@
 import random
 
 def AleaPuissance2():
-    ch = ''
+    #Donne des nombres binaires aléatoires
+    ch = '1'
     for i in range(random.randrange(1,32)):
         j = random.randint(0,1)
         if j == 0:
@@ -11,10 +12,16 @@ def AleaPuissance2():
     return(ch)
 
 l = []
-def List(l):
+def List():
+    #Crée une liste avec des nombres binaires aléatoires
     for i in range(10):
         l.append(AleaPuissance2())
 
+def RepEx3(l):
+    #Donne les bonnes réponses
+    for i in l:
+        if int(i) % 2 == 0:
+            print(i)
 
 #Quizz : le reste à voir //code interface
 #Manipuler les listes pour les avoir sous forme de quizz
