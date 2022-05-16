@@ -1,7 +1,7 @@
 def outils:
     from random import *
     def CtrlSyntaxe(ch,syn,min,max):
-        ##controle la syntaxe de ch en fonction de syn (ch peux être un nombre en base 2, 8, 10, 16, en SVA, C2, IEEE 32 bits, syn prendra respectivement les valeurs2, 8 ,10, 16, SVA, C2 ou IEEE pour indiquer la syntaxe que ch doit avoir.
+        ##controle la syntaxe de ch en fonction de syn (ch peux être un nombre en base 2, 8, 10, 16, piussance syn prendra respectivement les valeurs2, 8 ,10, 16, puissance pour indiquer la syntaxe que ch doit avoir.
         mot2='01'
         mot8='01234567'
         mot10='0123456789'
