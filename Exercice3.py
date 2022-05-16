@@ -12,7 +12,7 @@ def AleaPuissance2():
     return(ch)
 
 l = []
-def List():
+def List(l):
     #Crée une liste avec des nombres binaires aléatoires
     for i in range(10):
         l.append(AleaPuissance2())
