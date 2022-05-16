@@ -17,11 +17,13 @@ def List(l):
     for i in range(10):
         l.append(AleaPuissance2())
 
+Rep = []
 def RepEx3(l):
     #Donne les bonnes réponses
     for i in l:
         if int(i) % 2 == 0:
             print(i)
+        Rep.append(i)
             
             
 #Manipuler les listes pour les avoir sous forme de quizz / vérification des réponses
