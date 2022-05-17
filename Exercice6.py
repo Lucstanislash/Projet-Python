@@ -10,7 +10,6 @@ def SaisieOrdreChaine():
     elif a == '2' :
         ch2 = input("Saisissez le nombre que vous voulez convertir en base 10 => ")
         CtrlSyntaxe(ch2, 2, 1, 32)
-        ch3 = input("Saisissez combien de bit après la virgule =>")
     else :
         print('/!\ Erreur : Impossible de convertir sous \nun autre format que 10 ou 2 ')
 
