@@ -25,10 +25,10 @@ def RepExA5(entier):
 
         if signe[0]=='0' :
                 
-                rep="positif"# positif
+                rep="positif"
 
         else:
-                rep="negatif"# négatif
+                rep="negatif"
         
         return(rep)
 
