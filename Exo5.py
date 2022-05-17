@@ -1,5 +1,5 @@
 
-def AleaExA5():
+def AleaFormat5():
     
 #Ici on détemrine si on travaille en SVA ou C2
 #Si 1 --> SVA
@@ -15,7 +15,7 @@ def AleaExA5():
     
     return(formats)
 
-def ent():
+def AleaFormat5():
         ent=AleaExAll(2,8,16)
         return(ent)
 
