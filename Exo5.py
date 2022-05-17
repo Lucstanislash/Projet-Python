@@ -35,8 +35,8 @@ def RepExA5(entier):
         
 def ExoA5():
 
-        formats=AleaExA5()
-        entier=ent()
+        formats=AleaFormat5()
+        entier=AleaEnt5()
         rep=RepExA5(entier)
         
         print("Format",formats)
