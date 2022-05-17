@@ -1,13 +1,13 @@
 from random import *
-def CtrlSyntaxe(ch,syn,min,max):
-    ##controle la syntaxe de ch en fonction de syn (ch peux être un nombre en base 2, 8, 10, 16, piussance syn prendra respectivement les valeurs2, 8 ,10, 16, puissance pour indiquer la syntaxe que ch doit avoir.
+def CtrlSyntaxe(ch,syn,min,max,min10=0,max10=0):
+    ##controle la syntaxe de ch en fonction de syn (ch peux) être un nombre en base 2, 8, 10, 16, piussance syn prendra respectivement les valeurs2, 8 ,10, 16, puissance pour indiquer la syntaxe que ch doit avoir.
     mot2='01'
     mot8='01234567'
     mot10='0123456789'
     mot16='0123456789ABCDEF'
     a=False
+      
     if len(ch)>min and len(ch)<max:
-        a=True
         if syn == 2:
             for i in ch:
                 if i in mot2:
@@ -23,6 +23,7 @@ def CtrlSyntaxe(ch,syn,min,max):
                     a=False
                     break
         elif syn == 10:
+         if int(ch)> min10 and int(ch)<max10:
             for i in ch:
                 if i in mot10:
                     a=True
