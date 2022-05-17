@@ -13,7 +13,16 @@ def RepEx3(l):
         if int(i) % 2 == 0:
             print(i)
             Rep.append(i)
-            
+  
+#Juste pour le tester mais le code va probablement être différent vu qu'on va faire un *qcm*#
+Util = []            
+def RepUtil(l,Util):
+    #Retient les réponses de l'utilisateur
+    # # # # loop pour faire le plus d'inputs # # # #
+    repUtil = input('>>> ').lower()
+    if repUtil in l:
+        print('Votre réponse est : ', repUtil,'.')#Pour tester
+        Util.append(repUtil)
             
 #Manipuler les listes pour les avoir sous forme de quizz / vérification des réponses
 
