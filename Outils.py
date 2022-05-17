@@ -6,7 +6,7 @@ def CtrlSyntaxe(ch,syn,min,max):
     mot10='0123456789'
     mot16='0123456789ABCDEF'
     a=False
-    if len(ch)>min or len(ch)<max:
+    if len(ch)>min and len(ch)<max:
         a=True
         if syn == 2:
             for i in ch:
@@ -75,7 +75,6 @@ def VerifRep(rep,util):
             a=-1 #bloquer le bouton valider
         else:
             a=0 #reesayer
-    print(a)
     return(a)
 
 
