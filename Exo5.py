@@ -15,7 +15,7 @@ def AleaFormat5():
     
     return(formats)
 
-def AleaFormat5():
+def AleaEnt5():
         ent=AleaExAll(2,8,16)
         return(ent)
 
