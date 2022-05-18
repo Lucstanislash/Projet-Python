@@ -1,7 +1,7 @@
 
 from random import*
 import math
-import Outils
+from Outils import*
 #########################################################
 
 def Alea4 ():
@@ -51,9 +51,9 @@ def repEx4(a,alea,oper):
     ch1='0'
     while (len(a))>=int(alea):
         if oper=='*':
-            ch+=(a+(str(ch1)*alea))
+            ch+=(a+(ch1*int(alea)))
         elif oper=='/':
-            ch+=(a[:-alea])
+            ch+=(a[:-int(alea)])
         else:
             break
         return (ch)
@@ -61,19 +61,19 @@ def repEx4(a,alea,oper):
 def Exo4 ():
     verif=2
     base=[2,10]
-    man=str(input("Saisie manuel ou aléatoire"))
+    man=str(input("Saisie manuel ou aléatoire => "))
     if man=='manuel':
         a=Sais_Ex4 ()
     else:
         a=Alea4()
     rep=repEx4(a[0],a[1],a[2])
     while verif!=1:
-        util=input("Sisir la reponse du calcul :")
+        util=input("Sisir la reponse du calcul : ")
         verif=VerifRep(rep,util)
         if verif==0:
             print("Reesseyer")
         elif verif==-1:
-            print("Voici la reponse", rep)
+            print("Voici la reponse => ", rep)
             break
         else:
             print("gagné")
