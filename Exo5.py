@@ -8,7 +8,7 @@ lis=["SVA","C2"]
 
 def  AleaFormat5(Li):
         i=randrange(0,2)
-        basedep=Li[i]
+        formats=Li[i]
         return(formats)
 
 def AleaEnt5():
