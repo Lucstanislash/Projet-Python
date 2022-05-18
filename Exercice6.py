@@ -14,9 +14,9 @@ from Outils import *
 #    elif basedep == '2' :
 #        ch2 = input("Saisissez le nombre que vous voulez convertir en base 10 => ")
 #        CtrlSyntaxe(ch2, 2, 1, 32)
-#
 
-        
+
+############## Cahier de charge ... confusing à reconsulter... demain #################         
 #==================================== L'aléatoire ====================================#
 def testEx6(): #pour la taille max du nombre aléatoire en base 10 (base 10 => base 2)
 	a = AleaExAll(10, 1, 5)
