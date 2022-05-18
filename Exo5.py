@@ -79,7 +79,7 @@ def SaisieExB5():
 
 Li=["10","SVA","C2"]
 
-def  AleaFormatB25(Li):
+def  AleaFormatBi5(Li):
         i=randrange(0,3)
         basedep=Li[i]
         return(basedep)
@@ -92,30 +92,35 @@ def AleaFormatBis5(basedep):
         basearriv=Libis[i]
         return (basearriv)
 
-def AleaExB5():
+def AleaExB5(basedep):
 
-        basedep=AleaFormatB25(Li)
-        bits=randint(1,16)
-         
+        bits=randint(4,16)    
                 
         min= 1-2**(bits-1)
         max= 2**(bits-1)-1
-
-        basearriv=AleaFormatBis5(basedep)
+        print(min,max)
         
         if basedep=="SVA" :
                 ent=AleaExAll(2,8,16)
                 
         elif basedep=="C2":
-                ent=AleaExAll(2,8,16)                
+                ent=AleaExAll(2,8,16)
+                
         else:
                  ent=AleaExAll(10,min,max)
                  
-        return(ent,basedep,basearriv)
+                 
+        return(ent)
                 
+        
+def RepExB5():
+        basedep=AleaFormatBi5(Li)
+        ent=AleaExB5(basedep)
+        basearriv=AleaFormatBis5(basedep)
 
-
-
+        print("Voici l'entier",ent)
+        print("Voici la base de départ",basedep)
+        print("Voci la base d'arrivée",basearriv)
 
 
 
