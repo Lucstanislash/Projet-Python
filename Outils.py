@@ -1,43 +1,28 @@
 from random import *
 def CtrlSyntaxe(ch,syn,min,max,min10=0,max10=0):
-    ##controle la syntaxe de ch en fonction de syn (ch peux) être un nombre en base 2, 8, 10, 16, piussance syn prendra respectivement les valeurs2, 8 ,10, 16, puissance pour indiquer la syntaxe que ch doit avoir.
+    ##controle la syntaxe de ch en fonction de syn (ch peux être un nombre en base 2, 8, 10, 16, piussance syn prendra respectivement les valeurs2, 8 ,10, 16, puissance pour indiquer la syntaxe que ch doit avoir.
     mot2='01'
     mot8='01234567'
     mot10='0123456789'
     mot16='0123456789ABCDEF'
-    a=False
-      
-    if len(ch)>min and len(ch)<max:
-        if syn == 2:
-            for i in ch:
-                if i in mot2:
-                    a=True
-                else:
-                    a=False
-                    break
-        elif syn == 8:
-            for i in ch:
-                if i in mot8:
-                    a=True
-                else:
-                    a=False
-                    break
-        elif syn == 10:
-         if int(ch)> min10 and int(ch)<max10:
-            for i in ch:
-                if i in mot10:
-                    a=True
-                else:
-                    a=False
-                    break
-        elif syn == 16:
-            for i in ch:
-                if i in mot16:
-                    a=True
-                else:
-                    a=False
-                    break
-    return(a)
+    dico={}
+    dico[2]=mot2
+    dico[8]=mot8
+    dico[10]=mot10
+    dico[16]=mot16
+    ok=True
+    if min<=len(ch)<=max:
+        mot=dico[syn]
+        for i in ch:
+            if not i in mot:
+                ok=False
+                break
+        if ok and syn==10:
+            if not int(ch) in range(min10,max10+1):
+                ok=False
+    else:
+        ok=False
+    return(ok)
 
 def AleaExAll(syn,min,max):
     mot16='0123456789ABCDEF'
@@ -52,7 +37,9 @@ def AleaExAll(syn,min,max):
             a=randint(0,7)
             ch+=str(a)
     elif syn == 10:
-        ch=randint(min,max)
+        for i in range(alea):
+            a=randint(0,9)
+            ch+=str(a)
     elif syn == 16:
         for i in range(alea):
             a=randint(0,15)
