@@ -1,6 +1,7 @@
 from random import *
 from Outils import *
 
+#===================================Saisie à voir=====================================#
 #Utilisateur choisit l’ordre de conversion // code interaction avec l'interface à voir ... après que l'interface exo 6 soit complète
 def SaisieOrdreChaine():
     basedep = input("Saisissez la base de départ => ")
