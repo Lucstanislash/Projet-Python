@@ -4,21 +4,12 @@ from random import *
 from outils import*
 
 
-def AleaFormat5():
-    
-#Ici on détemrine si on travaille en SVA ou C2
-#Si 1 --> SVA
-#Si 0 -->C2
-    
-    for i in range(1):
-        s=randint(0,1)        
-    
-    if s==1:
-        formats="SVA"
-    else:
-        formats="C2"  
-    
-    return(formats)
+lis=["SVA","C2"]
+
+def  AleaFormat5(Li):
+        i=randrange(0,2)
+        basedep=Li[i]
+        return(formats)
 
 def AleaEnt5():
         ent=AleaExAll(2,8,16)
