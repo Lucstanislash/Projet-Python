@@ -2,7 +2,9 @@ from random import *
 from Outils import *
 
 #===================================Saisie à voir=====================================#
-#Utilisateur choisit l’ordre de conversion // code interaction avec l'interface à voir ... après que l'interface exo 6 soit complète
+#Utilisateur choisit l’ordre de conversion // code d'interaction avec l'interface à voir ... 
+#après que l'interface exo 6 soit complète // un scroll pour les choix de base dep/arriv 
+#au lieu de les saisir manuellement sera mieux 
 def SaisieOrdreChaine():
     basedep = input("Saisissez la base de départ => ")
     if basedep == '10' :
