@@ -27,7 +27,8 @@ def testEx6(): #pour la taille max du nombre aléatoire en base 10 (base 10 => b
 ## => Ce qui Permet de créer un nombre binaire décimal (base 2 => base 10)
 def NumDecimal():
     l=[]
-    b = AleaExAll(2, 1, 27)#32 - 5 = 27 max (Nombre avant la virgule
+    b = AleaExAll(2, 1, 27) 
+	#32 - 5 = 27 max (Nombre avant la virgule car si je mets 32 ... j'aurai plus de 32 bits en faisant le join)
     l.append(b)
     a = AleaExAll(2, 1, 5)
     if '1' in a :
