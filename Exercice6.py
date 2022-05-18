@@ -9,7 +9,7 @@ def SaisieOrdreChaine():
     basedep = input("Saisissez la base de départ => ")
     if basedep == '10' :
         ch1 = input("Saisissez le nombre que vous voulez convertir en base 2 => ")
-        CtrlSyntaxe(ch1, 10, 0, 10000)
+        CtrlSyntaxe(ch1, 10, 1, 5)
         ch3 = input("Saisissez combien de bit après la virgule => ")
     elif basedep == '2' :
         ch2 = input("Saisissez le nombre que vous voulez convertir en base 10 => ")
