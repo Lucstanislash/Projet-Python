@@ -37,9 +37,7 @@ def AleaExAll(syn,min,max):
             a=randint(0,7)
             ch+=str(a)
     elif syn == 10:
-        for i in range(alea):
-            a=randint(0,9)
-            ch+=str(a)
+        ch=randint(min,max)
     elif syn == 16:
         for i in range(alea):
             a=randint(0,15)
