@@ -1,24 +1,23 @@
 from random import *
 from Outils import *
 
-#===================================Saisie à voir=====================================#
+#============================= Saisie / Menu déroulant ================================#
 #Utilisateur choisit l’ordre de conversion // code d'interaction avec l'interface à voir ... 
 #après que l'interface exo 6 soit complète // un scroll pour les choix de base dep/arriv 
 #au lieu de les saisir manuellement sera mieux 
-def SaisieOrdreChaine():
-    basedep = input("Saisissez la base de départ => ")
-    if basedep == '10' :
-        ch1 = input("Saisissez le nombre que vous voulez convertir en base 2 => ")
-        CtrlSyntaxe(ch1, 10, 1, 5)#####################ne doit pas dépasser 10000 à voir*
-        ch3 = input("Saisissez combien de bit après la virgule => ")
-    elif basedep == '2' :
-        ch2 = input("Saisissez le nombre que vous voulez convertir en base 10 => ")
-        CtrlSyntaxe(ch2, 2, 1, 32)
-    else :
-        print('/!\ Erreur : Impossible de convertir sous \nun autre format que 10 ou 2 ')
+#def SaisieOrdreChaine():
+#    basedep = input("Saisissez la base de départ => ")
+#    if basedep == '10' :
+#        ch1 = input("Saisissez le nombre que vous voulez convertir en base 2 => ")
+#        CtrlSyntaxe(ch1, 10, 1, 5)#####################ne doit pas dépasser 10000 à voir*
+#        ch3 = input("Saisissez combien de bit après la virgule => ")
+#    elif basedep == '2' :
+#        ch2 = input("Saisissez le nombre que vous voulez convertir en base 10 => ")
+#        CtrlSyntaxe(ch2, 2, 1, 32)
+#
 
         
-#=====================================L'aléatoire=====================================#
+#==================================== L'aléatoire ====================================#
 def testEx6(): #pour la taille max du nombre aléatoire en base 10 (base 10 => base 2)
 	a = AleaExAll(10, 1, 5)
 	if int(a) <= 10000:
