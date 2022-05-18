@@ -1,6 +1,7 @@
 from random import *
+from Outils import *
 
-#Utilisateur choisit l’ordre de conversion
+#Utilisateur choisit l’ordre de conversion // code interaction avec l'interface à voir ... après que l'interface exo 6 soit complète
 def SaisieOrdreChaine():
     basedep = input("Saisissez la base de départ => ")
     if basedep == '10' :
@@ -14,15 +15,39 @@ def SaisieOrdreChaine():
         print('/!\ Erreur : Impossible de convertir sous \nun autre format que 10 ou 2 ')
 
         
-def AleaOrdre():
+#=====================================L'aléatoire=====================================#
+def testEx6(): #pour la taille max du nombre aléatoire en base 10 (base 10 => base 2)
+	a = AleaExAll(10, 1, 5)
+	if int(a) <= 10000:
+		print(a)
+	else :
+		return(testEx6())
+
+## Fusionner deux listes vec des randomizers
+## => Ce qui Permet de créer un nombre binaire décimal (base 2 => base 10)
+def NumDecimal():
+    l=[]
+    b = AleaExAll(2, 1, 27)#32 - 5 = 27 max (Nombre avant la virgule
+    l.append(b)
+    a = AleaExAll(2, 1, 5)
+    if '1' in a :
+        l.append(a)
+    else:
+        NumDecimal()
+    ch = ','.join(l) #ajoute une virgule 
+    print(ch)
+
+    
+def AleaOrdreEx6():
     l = [ 'choix1','choix2']
     c = choice(l)
     if c == 'choix1' :
         basedep = 10
         basearriv = 2
-        return(basedep, basearriv)
+        print(basedep, basearriv)
+        testEx6()
     else :
         basedep = 2
         basearriv = 10
-        return(basedep, basearriv)
-
+        print(basedep, basearriv)
+        NumDecimal()
