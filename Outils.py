@@ -61,19 +61,18 @@ def VerifRep(rep,util):
             a=0 #reesayer
     return(a)
 
-def Conv(donne):
+def Conv(basedep,basearr,entier):
     dico={}
     dico[2]='b'
     dico[8]='o'
     dico[16]='x'
-    if donne[0] == 10:
-        print(dico[donne[1]])
-        rep=format(int(donne[2]),dico[donne[1]])
-    elif donne[1] == 10:
-        rep=int(donne[2],donne[0])
+    if basedep == 10:
+        rep=format(int(entier),dico[basearr])
+    elif basearr == 10:
+        rep=int(entier,basedep)
     else:
-        rep=int(donne[2],donne[0])
-        rep=format(rep,dico[donne[1]])
+        rep=int(entier,basedep)
+        rep=format(rep,dico[basearr])
     return(rep)
         
 
