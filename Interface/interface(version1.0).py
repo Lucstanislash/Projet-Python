@@ -43,15 +43,17 @@ def PageChoix(NomExercice): #======== Fenêtre de demande aléatoire ou manuel =
         button33.destroy()
         Chap1() #Retour à la page précédente: fenetre des exercices(2eme)
             # Création des buttons de la 3eme fenetre répondant à la QUESTION (saisie manuel ou aléatoire)
+    largeur = 25
+    hauteur = 2
     NomExo = Label(cadre1, text= NomExercice, font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
     NomExo.pack(expand=YES)
     txt3=Label(cadre2, text= "Souhaitez vous une saisie \n Manuel ou Aléatoire", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
     txt3.pack(pady=20)
             
-    button31=Button(cadre3, text="Manuel", font=("courier", 18, "italic"), fg='white', bg='#103985')
+    button31=Button(cadre3, text="Manuel", font=("courier", 18, "italic"), fg='white', bg='#103985', width= largeur, height= hauteur)
     button31.pack(fill=X, padx=10, ipadx= 25, ipady= 25, side='left')
 
-    button32=Button(cadre3, text="Aléatoire", font=("courier", 18, "italic"), fg='white', bg='#103985')
+    button32=Button(cadre3, text="Aléatoire", font=("courier", 18, "italic"), fg='white', bg='#103985', width= largeur, height= hauteur)
     button32.pack(fill=X, padx=16, ipadx= 25, ipady= 25, side='right')
 
     button33=Button(cadre4, text="Retour", font=("courier", 18, "italic"), fg='white', bg='#103985', command=back)
@@ -131,7 +133,7 @@ def Menu():
         Bexo8=Button(cadre2, text="Les Tableaux", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= partial(PageChoix,"Les Tableaux"))
         Bexo8.grid(ipady=25, ipadx=25, pady=10,padx= 25, row=3, column=1)
 
-        Retour=Button(cadre4, text= "Retour", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= back)
+        Retour=Button(cadre4, text= "Retour", font=("courier", 18, "italic"), fg='white', bg='#103985',command= back)
         Retour.pack(fill=X, pady=10)
 
     #============================================================================
@@ -213,21 +215,23 @@ def Menu():
 
         
     #============Création des chapitres de la 1ere fenetre    
+    largeur = 35
+    hauteur= 2
     tMenu=Label(cadre1, text= "Bienvenue sur l'application d'entrainement", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
     tMenu.pack(pady=25)
     stMenu=Label(cadre1, text= "Séléctionner le module que vous souhaitez travailler", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
     stMenu.pack(pady=20)
     
-    Bchap1=Button(cadre2, text="Codage de l'information", font=("courier", 18, "italic"), fg='white', bg='#103985', command = Chap1)
+    Bchap1=Button(cadre2, text="Codage de l'information", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur, command = Chap1)
     Bchap1.pack(pady=25, fill=X, padx=100)
 
-    Bchap2=Button(cadre2, text="Ordonnancement", font=("courier", 18, "italic"), fg='white', bg='#103985', command= Chap2)#command= Chap2
+    Bchap2=Button(cadre2, text="Ordonnancement", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur, command= Chap2)#command= Chap2
     Bchap2.pack(pady=25, fill=X, padx=100)
 
-    Bchap3=Button(cadre2, text="Gestion de la mémoire", font=("courier", 18, "italic"), fg='white', bg='#103985', command= Chap3)#command= Chap3
+    Bchap3=Button(cadre2, text="Gestion de la mémoire", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur, command= Chap3)#command= Chap3
     Bchap3.pack(pady=25, fill=X, padx=100)
 
-    Bchap4=Button(cadre2, text="Gestion de fichier", font=("courier", 18, "italic"), fg='white', bg='#103985', command= Chap4) #command= Chap4
+    Bchap4=Button(cadre2, text="Gestion de fichier", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur, command= Chap4) #command= Chap4
     Bchap4.pack(pady=25, fill=X, padx=100)
     
     Quitter=Button(cadre4, text= "Quitter", font=("courier", 18, "italic"), fg='white', bg='#103985', command= fenetre.destroy)
