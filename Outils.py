@@ -51,14 +51,14 @@ cpt = 0
 def VerifRep(rep,util):
     #Compare la réponse à l’exercice (rep) avec la réponse de l’utilisateur (util)
     if rep == util:
-        a=1 #bloquer le bouton valider
+        a=1 #bloquer le bouton valider ==> Gagner
     else:
         global cpt
         cpt = cpt + 1
         if cpt>2:
-            a=-1 #bloquer le bouton valider
+            a=-1 #bloquer le bouton valider ==> Perdu
         else:
-            a=0 #reesayer
+            a=0 #reesayer ==> nouvelle chance
     return(a)
 
 def Conv(basedep,basearr,entier):
