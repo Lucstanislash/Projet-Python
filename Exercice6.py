@@ -16,7 +16,7 @@ from Outils import *
 #        CtrlSyntaxe(ch2, 2, 1, 32)
 
 
-############## Cahier de charge ... confusing à reconsulter... demain #################         
+     
 #==================================== L'aléatoire ====================================#
 def testEx6(): #pour la taille max du nombre aléatoire en base 10 (base 10 => base 2)
 	a = AleaExAll(10, 1, 5)
@@ -24,6 +24,20 @@ def testEx6(): #pour la taille max du nombre aléatoire en base 10 (base 10 => b
 		print(a)
 	else :
 		return(testEx6())
+
+## Fusionner deux listes vec des randomizers
+## => Ce qui Permet de créer un nombre binaire
+def NumBinVirgule():
+    l=[]
+    b = AleaExAll(2, 1, 27)#32 - 5 = 27 max (Nombre avant la virgule
+    l.append(b)
+    a = AleaExAll(2, 1, 5)
+    if '1' in a :
+        l.append(a)
+    else:
+        NumBinVirgule()
+    ch = ','.join(l) #ajoute une virgule 
+    return(ch)	
 
 #==============================================================================================
 
@@ -40,4 +54,4 @@ def AleaOrdreEx6():
         basedep = 2
         basearriv = 10
         print(basedep, basearriv)
-        AleaExAll(2, 1, 32)
+        NumBinVirgule()
