@@ -3,7 +3,7 @@ from Outils import *
 
 #============================= Saisie / Menu déroulant ================================#
 #Utilisateur choisit l’ordre de conversion // code d'interaction avec l'interface à voir ... 
-#après que l'interface exo 6 soit complète // un scroll pour les choix de base dep/arriv 
+#après que l'interface exo 6 soit complète // menu déroulant pour les choix de base dep/arriv 
 #au lieu de les saisir manuellement sera mieux 
 #def SaisieOrdreChaine():
 #    basedep = input("Saisissez la base de départ => ")
