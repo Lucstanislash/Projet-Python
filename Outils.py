@@ -1,3 +1,6 @@
+#================== Version 1.0 =================================
+
+
 from random import *
 def CtrlSyntaxe(ch,syn,min,max,min10=0,max10=0):
     ##controle la syntaxe de ch en fonction de syn (ch peux être un nombre en base 2, 8, 10, 16, piussance syn prendra respectivement les valeurs2, 8 ,10, 16, puissance pour indiquer la syntaxe que ch doit avoir.
