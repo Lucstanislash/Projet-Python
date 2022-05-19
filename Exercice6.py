@@ -39,9 +39,7 @@ def NumBinVirgule():
     ch = ','.join(l) #ajoute une virgule 
     return(ch)	
 
-#==============================================================================================
-
-    
+#==============================================================================================    
 def AleaOrdreEx6():
     l = [ 'choix1','choix2']
     c = choice(l)
@@ -49,9 +47,9 @@ def AleaOrdreEx6():
         basedep = 10
         basearriv = 2
         print(basedep, basearriv)
-        testEx6()
+        return(testEx6())
     else :
         basedep = 2
         basearriv = 10
         print(basedep, basearriv)
-        NumBinVirgule()
+        return(NumBinVirgule())
