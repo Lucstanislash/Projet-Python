@@ -93,35 +93,67 @@ def AleaFormatBis5(basedep):
         return (basearriv)
 
 def AleaExB5(basedep):
-
+        """cree un entier aleatoire dans la bse basedep"""
+        
         bits=randint(4,16)    
                 
         min= 1-2**(bits-1)
         max= 2**(bits-1)-1
+        
         print(min,max)
         
         if basedep=="SVA" :
                 ent=AleaExAll(2,8,16)
-                
         elif basedep=="C2":
                 ent=AleaExAll(2,8,16)
                 
         else:
-                 ent=AleaExAll(10,min,max)
-                 
+                ent=AleaExAll(10,min,max)               
                  
         return(ent)
-                
-        
-def RepExB5():
-        basedep=AleaFormatBi5(Li)
-        ent=AleaExB5(basedep)
-        basearriv=AleaFormatBis5(basedep)
 
-        print("Voici l'entier",ent)
+
+
+def bin_ent(C):
+        
+    """Conversion chaîne binaire signée en nombre entier signé"""
+
+    if C[0]=="0":       
+        return int(C,2)
+    else:
+        return int(C,2)-(1<<len(C))
+
+
+basedep=AleaFormatBi5(Li)
+entier=AleaExB5(basedep)
+basearriv=AleaFormatBis5(basedep)
+
+def RepExB5(basedep,entier,basearriv):
+               
+        print("Voici l'entier",entier)
         print("Voici la base de départ",basedep)
         print("Voci la base d'arrivée",basearriv)
 
+        if basedep=="10":
+                if basearriv=="C2":
+                     print("pas encore")
+                else:
+                      print("pas encore")
+                
+                
+        if basedep=="C2":
+                if basearriv=="10":
+                      rep=bin_ent(entier)
+                      print(rep)
+                else:
+                      print("pas encore")
 
-
-
+                      
+        if basedep=="SVA":
+                if basearriv=="10":
+                      print("pas encore")
+                else:
+                      print("pas encore")
+               
+##        return(rep)
+        
