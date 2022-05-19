@@ -31,3 +31,22 @@ def dec2bins(d,nb=0):
         # on renvoie la chaîne signée, complétée par des "1" à gauche et par le bit de signe "1"
         b='1' + dec2bin((1<<(nb-1))+d,(nb-1))
     return b
+
+    def EntierC2():
+    li=''
+    entier=int(input("Saisir entier"))
+    binaire=format(entier,'b')
+    print(binaire)
+    for i in binaire:
+        if i == '1':
+            li+='0'
+        else:
+            li+='1'
+    print(li)
+    rep=(bin(int(str(li), 2) + int(str(1), 2)).replace("0b",""))
+    if entier>0:
+        rep='0'+rep
+    return(rep)
+
+    
+        int(rep)='-'+str(rep)
