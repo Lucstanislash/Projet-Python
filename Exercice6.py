@@ -26,7 +26,7 @@ def testEx6(): #pour la taille max du nombre aléatoire en base 10 (base 10 => b
 		return(testEx6())
 
 ## Fusionner deux listes vec des randomizers
-## => Ce qui Permet de créer un nombre binaire
+## => Ce qui Permet de créer un nombre binaire vec virgule
 def NumBinVirgule():
     l=[]
     b = AleaExAll(2, 1, 27)#32 - 5 = 27 max (Nombre avant la virgule
@@ -40,16 +40,14 @@ def NumBinVirgule():
     return(ch)	
 
 #==============================================================================================    
-def AleaOrdreEx6():
+def AleaOrdreEx6():#pour tester
     l = [ 'choix1','choix2']
     c = choice(l)
     if c == 'choix1' :
         basedep = 10
         basearriv = 2
-        print(basedep, basearriv)
-        return(testEx6())
+        return(basedep, basearriv, testEx6())
     else :
         basedep = 2
         basearriv = 10
-        print(basedep, basearriv)
-        return(NumBinVirgule())
+        return(basedep, basearriv, NumBinVirgule())
