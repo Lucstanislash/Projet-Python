@@ -25,19 +25,7 @@ def testEx6(): #pour la taille max du nombre aléatoire en base 10 (base 10 => b
 	else :
 		return(testEx6())
 
-## Fusionner deux listes vec des randomizers
-## => Ce qui Permet de créer un nombre binaire (base 2 => base 10)
-def NumDecimal():
-    l=[]
-    b = AleaExAll(10, 1, 5) 
-    l.append(b)
-    a = AleaExAll(2, 1, 5)
-    if '1' in a :
-        l.append(a)
-    else:
-        NumDecimal()
-    ch = ','.join(l) #ajoute une virgule 
-    print(ch)
+#==============================================================================================
 
     
 def AleaOrdreEx6():
@@ -52,4 +40,4 @@ def AleaOrdreEx6():
         basedep = 2
         basearriv = 10
         print(basedep, basearriv)
-        NumDecimal()
+        AleaExAll(2, 1, 32)
