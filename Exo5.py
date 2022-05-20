@@ -114,7 +114,7 @@ def AleaExB5(basedep):
 
 
 
-def bin_ent(C):
+def C2_ent(C):
         
     """Conversion chaîne binaire signée en nombre entier signé"""
 
@@ -128,6 +128,59 @@ basedep=AleaFormatBi5(Li)
 entier=AleaExB5(basedep)
 basearriv=AleaFormatBis5(basedep)
 
+def EntierC2(entier):
+    switch=''
+    binaire=format(int(entier),'b')
+    
+    for i in binaire:
+        if i == '1':
+            switch+='0'
+        else:
+            switch+='1'
+    
+    rep=(bin(int(str(switch), 2) + int(str(1), 2)).replace("0b",""))
+    if int(entier)>0:
+        rep='0'+rep
+    return(rep)
+
+def C2_SVA(basedep,entier):
+
+        if basedep=="C2":
+                
+                entier=C2_ent(entier)
+                rep=Ent_SVA(entier)
+                                
+        else:
+                rep=SVA_Ent(entier)
+                rep=EntierC2(rep)
+                
+        return(rep)
+
+
+                
+def Ent_SVA(entier):
+        
+     rep=format(int(entier),'b')
+        
+     if int(entier)<0:
+        rep=rep.replace("-","1")
+
+     else:
+        rep='0'+rep
+        
+     return(rep)
+
+def SVA_Ent(entier):
+                    
+      rep=int(entier[1:],2)
+      
+      if entier[0]=="1":
+        rep='-'+str(rep)
+
+      return(rep) 
+
+
+                
 def RepExB5(basedep,entier,basearriv):
                
         print("Voici l'entier",entier)
@@ -136,24 +189,26 @@ def RepExB5(basedep,entier,basearriv):
 
         if basedep=="10":
                 if basearriv=="C2":
-                     print("pas encore")
+                     rep=EntierC2(entier)
                 else:
-                      print("pas encore")
+                     rep=Ent_SVA(entier)
+                        
+                                               
                 
-                
-        if basedep=="C2":
+        elif basedep=="C2":
                 if basearriv=="10":
-                      rep=bin_ent(entier)
-                      print(rep)
-                else:
-                      print("pas encore")
-
+                      rep=C2_ent(entier)
                       
-        if basedep=="SVA":
-                if basearriv=="10":
-                      print("pas encore")
                 else:
-                      print("pas encore")
+                      rep=C2_SVA(basedep,entier)
+                      
+                      
+        else:
+                if basearriv=="10":                     
+                      rep=SVA_Ent(entier)
+                                             
+                else:
+                      rep=C2_SVA(basedep,entier)
                
-##        return(rep)
         
+        return(rep)
