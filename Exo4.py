@@ -2,7 +2,7 @@
 from random import*
 import math
 from Outils import*
-#########################################################
+#-------------------ALEATOIRE#----------------------------#
 
 def Alea4 ():
     a=AleaExAll(2,1,16)
@@ -39,11 +39,13 @@ def VerifRep(rep,util):
 
 def Sais_Ex4():   
     ch1=input("saisir votre nombre en base de 2 =>")
-    CtrlSyntaxe(ch1,2,1,16)
+    c=CtrlSyntaxe(ch1,2,1,16)
     ch2=input("Saisir votre puissance de 2 => ")
-    CtrlSyntaxe(ch2,10,1,8)
+    c1=CtrlSyntaxe(ch2,10,1,8)
     #depend de l'interface
     oper=input(" Saisir '*' si vous voulez mulitiplier '/' si vous voulez divisez")
+    if c==True and c1==True:
+        oper=input(" Saisir '*' si vous voulez mulitiplier '/' si vous voulez divisez")
     return(ch1,ch2,oper)
             
 def repEx4(a,alea,oper):
