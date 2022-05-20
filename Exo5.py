@@ -44,9 +44,11 @@ def ExoA5():
 
         util=input("positif ou négatif \n")
 
-        VerifRep(rep,util)
+        verif=VerifRep(rep,util)
+        return(verif)
 
 
+"""""""""""""""""""""""""""DEUXIEME PARTIE DE L EXERCICE 5"""""""""""""""""""""""""""""""""
 
 Li=["10","SVA","C2"]
 
@@ -149,14 +151,9 @@ def SVA_Ent(entier):
 
       return(rep) 
 
-
                 
 def RepExB5(basedep,entier,basearriv):
         """exercice global avec choix aléatoire de la base + valeur de la réponse"""
-        
-        print("Voici l'entier",entier)
-        print("Voici la base de départ",basedep)
-        print("Voci la base d'arrivée",basearriv)
 
         if basedep=="10":
                 if basearriv=="C2":
@@ -184,6 +181,26 @@ def RepExB5(basedep,entier,basearriv):
         
         return(rep)
 
+def Principal():
+
+        man=input("manuel ou aléatoire")
+
+        if man=="manuel":
+                saisie=SaisieExB5()
+                rep=RepExB5(saisie[0],saisie[1],saisie[2])
+                print(rep)
+                util=input("Saisir la réponse")
+                verif=VerifRep(rep,util)
+                
+        elif man=="aléatoire":
+                saisie=SaisieAll()
+                rep=RepExB5(saisie[0],saisie[1],saisie[2])
+                rint(rep)
+                util=input("Saisir la réponse")
+                verif=VerifRep(rep,util)
+
+        return(verif)
+
 def SaisieAll():
         """Saisie aléatoire des bases"""        
         basedep=AleaFormatBi5(Li)
@@ -199,19 +216,20 @@ def SaisieExB5():
 
         """Saisie manuel des bases et verif"""
         
-        BaseD=input("Saisir la base de départ")
-        BaseA=input("Saisir la base d'arivée")
+        basedep=input("Saisir la base de départ")
+        basearriv=input("Saisir la base d'arivée")
         Bits=int(input("Saisir les bits"))
         
         min= 1-2**(Bits-1)
         max= 2**(Bits-1)-1
-
+        print(min)
+        print(max)
         
-        if BaseD=="SVA" or BaseD=="C2":
+        if basedep=="SVA" or basedep=="C2":
                 entier=input("Saisir la valeur à convertir")
                 ctrl=CtrlSyntaxe(ch,2,0,16)
 
-        elif BaseD=="10":
+        elif basedep=="10":
                 entier=input("Saisir la valeur à convertir")
                 ctrl=CtrlSyntaxe(entier,10,0,4,min,max)
         else:
@@ -219,4 +237,4 @@ def SaisieExB5():
 
         if ctrl== True :
 
-                return(entier,BaseD,BaseA)
+                return(basedep,entier,basearriv)
