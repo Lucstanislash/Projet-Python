@@ -31,7 +31,7 @@ def RepExA5(entier):
         return(rep)
 
         
-def ExoA5():
+def PrincipalA5():
         """génère l'entier, puis l'utilisateur saisie la réponse puis verif avec la rep"""
         formats=AleaFormat5()
         entier=AleaEnt5()
@@ -181,23 +181,25 @@ def RepExB5(basedep,entier,basearriv):
         
         return(rep)
 
-def Principal():
+def PrincipalB5():
 
         man=input("manuel ou aléatoire")
 
         if man=="manuel":
                 saisie=SaisieExB5()
                 rep=RepExB5(saisie[0],saisie[1],saisie[2])
-                print(rep)
+                
                 util=input("Saisir la réponse")
                 verif=VerifRep(rep,util)
                 
         elif man=="aléatoire":
                 saisie=SaisieAll()
                 rep=RepExB5(saisie[0],saisie[1],saisie[2])
-                rint(rep)
+                
                 util=input("Saisir la réponse")
                 verif=VerifRep(rep,util)
+        else:
+                print("erreur")
 
         return(verif)
 
@@ -227,7 +229,7 @@ def SaisieExB5():
         
         if basedep=="SVA" or basedep=="C2":
                 entier=input("Saisir la valeur à convertir")
-                ctrl=CtrlSyntaxe(ch,2,0,16)
+                ctrl=CtrlSyntaxe(entier,2,0,16)
 
         elif basedep=="10":
                 entier=input("Saisir la valeur à convertir")
