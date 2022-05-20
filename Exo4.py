@@ -43,12 +43,13 @@ def Sais_Ex4():
     c=False
     while c==False:
         ch1=input("saisir votre nombre en base de 2 =>")
-        ctrl==CtrlSyntaxe(ch1,2,1,16)
         ch2=input("Saisir votre puissance de 2 => ")
-        ctrl=CtrlSyntaxe(ch2,10,1,20,1,8)
         #depend de l'interface
         if (len(ch1)<int(ch2)):
-            c=False      
+            c=False
+        else:
+            c=CtrlSyntaxe(ch1,2,1,16)
+            c=CtrlSyntaxe(ch1,2,1,16)
         oper=input(" Saisir '*' si vous voulez mulitiplier '/' si vous voulez divisez")        
         oper1=['*','/']
         if oper not in oper1:
