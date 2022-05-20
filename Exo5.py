@@ -1,7 +1,7 @@
 # _*_ coding:Utf-8 _*_
 
 from random import *
-from outils import*
+from Outils import*
 
 
 lis=["SVA","C2"]
