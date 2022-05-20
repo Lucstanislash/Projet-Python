@@ -238,3 +238,5 @@ def SaisieExB5():
         if ctrl== True :
 
                 return(basedep,entier,basearriv)
+        else:
+                print("Erreur de saisie")
