@@ -9,7 +9,7 @@ def List(l):
 
 Rep = []
 def RepEx3(l):
-    #Donne les bonnes réponses
+    #Donne les bonnes réponses#======>>> *** à corriger
     for i in l:
         if int(i) % 2 == 0:
             print(i)
@@ -18,7 +18,7 @@ def RepEx3(l):
 #Juste pour le tester mais le code va probablement être différent vu qu'on va faire un *qcm*#
 Util = []            
 def RepUtil(l,Util):
-    #Retient les réponses de l'utilisateur
+    #Retient les réponses de l'utilisateur 
     # # # # loop pour faire le plus d'inputs # # # #
     repUtil = input('>>> ').lower()
     if repUtil in l:
