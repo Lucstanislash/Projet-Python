@@ -6,10 +6,10 @@ from Outils import*
 
 lis=["SVA","C2"]
 
-def  AleaFormat5(Li):
+def  AleaFormat5(lis):
         """Sort aléatoirement une valeur entre 1 et 2 pour choisir la base dans la liste li"""
         i=randrange(0,2)
-        formats=Li[i]
+        formats=lis[i]
         return(formats)
 
 def AleaEnt5():
@@ -33,7 +33,7 @@ def RepExA5(entier):
         
 def PrincipalA5():
         """génère l'entier, puis l'utilisateur saisie la réponse puis verif avec la rep"""
-        formats=AleaFormat5()
+        formats=AleaFormat5(lis)
         entier=AleaEnt5()
         rep=RepExA5(entier)
         
@@ -188,14 +188,17 @@ def PrincipalB5():
         if man=="manuel":
                 saisie=SaisieExB5()
                 rep=RepExB5(saisie[0],saisie[1],saisie[2])
-                
+                print(rep)
                 util=input("Saisir la réponse")
                 verif=VerifRep(rep,util)
                 
-        elif man=="aléatoire":
+        elif man=="aleatoire":
                 saisie=SaisieAll()
+                print("Base de départ",saisie[0])
+                print("Entier",saisie[1])
+                print("Base d'arrivé",saisie[2])
                 rep=RepExB5(saisie[0],saisie[1],saisie[2])
-                
+                print(rep)
                 util=input("Saisir la réponse")
                 verif=VerifRep(rep,util)
         else:
@@ -221,24 +224,27 @@ def SaisieExB5():
         basedep=input("Saisir la base de départ")
         basearriv=input("Saisir la base d'arivée")
         Bits=int(input("Saisir les bits"))
-        
-        min= 1-2**(Bits-1)
-        max= 2**(Bits-1)-1
-        print(min)
-        print(max)
-        
-        if basedep=="SVA" or basedep=="C2":
-                entier=input("Saisir la valeur à convertir")
-                ctrl=CtrlSyntaxe(entier,2,0,16)
+        ct=CtrlSyntaxe(str(Bits),10,0,4,1,16)
+        if ct==True:
+                min= 1-2**(Bits-1)
+                max= 2**(Bits-1)-1
+                print(min)
+                print(max)
+                
+                if basedep=="SVA" or basedep=="C2":
+                        entier=input("Saisir la valeur à convertir")
+                        ctrl=CtrlSyntaxe(entier,2,0,16)
 
-        elif basedep=="10":
-                entier=input("Saisir la valeur à convertir")
-                ctrl=CtrlSyntaxe(entier,10,0,4,min,max)
+                elif basedep=="10":
+                        entier=input("Saisir la valeur à convertir")
+                        ctrl=CtrlSyntaxe(entier,10,0,4,min,max)
+                else:
+                        ctrl= "Mauvaise base de départ"
+
+                if ctrl== True :
+
+                        return(basedep,entier,basearriv)
+                else:
+                        print("Erreur de saisie")
         else:
-                ctrl= "Mauvaise base de départ"
-
-        if ctrl== True :
-
-                return(basedep,entier,basearriv)
-        else:
-                print("Erreur de saisie")
+                print("erreur nombre de bits trop élevé")
