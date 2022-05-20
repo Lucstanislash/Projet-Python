@@ -4,7 +4,7 @@ l = []
 def List(l):
     #Crée une liste avec des nombres binaires aléatoires
     for i in range(10):
-        l.append(AleaExAll())
+        l.append(AleaExAll(2, 1, 32))
 
 Rep = []
 def RepEx3(l):
