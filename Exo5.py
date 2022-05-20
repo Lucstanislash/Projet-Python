@@ -7,16 +7,18 @@ from outils import*
 lis=["SVA","C2"]
 
 def  AleaFormat5(Li):
+        """Sort aléatoirement une valeur entre 1 et 2 pour choisir la base dans la liste li"""
         i=randrange(0,2)
         formats=Li[i]
         return(formats)
 
 def AleaEnt5():
+        """Génère aléatoirement un entier en base 2, entre 8 et 16 bits"""
         ent=AleaExAll(2,8,16)
         return(ent)
 
 def RepExA5(entier):
-        
+        """permet de généré la réponse , signe positif ou négatif"""
         signe=list(entier)
 
         if signe[0]=='0' :
@@ -30,7 +32,7 @@ def RepExA5(entier):
 
         
 def ExoA5():
-
+        """génère l'entier, puis l'utilisateur saisie la réponse puis verif avec la rep"""
         formats=AleaFormat5()
         entier=AleaEnt5()
         rep=RepExA5(entier)
@@ -45,47 +47,17 @@ def ExoA5():
         VerifRep(rep,util)
 
 
-def SaisieExB5():       
-
-#Une fois dans l'interface remplacer la saisie manuel des bases
-#par un menu déroulant, actuellment impossible car pas interface
-
-        
-        BaseD=input("Saisir la base de départ")
-        BaseA=input("Saisir la base d'arivée")
-        Bits=int(input("Saisir les bits"))
-        
-        min= 1-2**(Bits-1)
-        max= 2**(Bits-1)-1
-        
-        print (min)
-        print(max)
-
-        
-        if BaseD=="SVA" or BaseD=="C2":
-                ch=input("Saisir la valeur à convertir")
-                ctrl=CtrlSyntaxe(ch,2,0,16)
-
-        elif BaseD=="10":
-                ch=input("Saisir la valeur à convertir")
-                ctrl=CtrlSyntaxe(ch,10,0,4,min,max)
-        else:
-                ctrl= "Mauvaise base de départ"
-
-        if ctrl== True :
-
-                return(ch,BaseD,BaseA)
-
 
 Li=["10","SVA","C2"]
 
 def  AleaFormatBi5(Li):
+        """Sort aléatoirement une valeur entre 0 et 3 pour choisir la base dans la liste li"""
         i=randrange(0,3)
         basedep=Li[i]
         return(basedep)
         
 def AleaFormatBis5(basedep):
-
+        """on a retiré la base choisi aléatoirement puis on retire aléatoirement la base d'arrivé"""
         Libis=Li.copy()
         Libis.remove(basedep)
         i=randrange(0,2)
@@ -99,8 +71,7 @@ def AleaExB5(basedep):
                 
         min= 1-2**(bits-1)
         max= 2**(bits-1)-1
-        
-        print(min,max)
+
         
         if basedep=="SVA" :
                 ent=AleaExAll(2,8,16)
@@ -116,7 +87,7 @@ def AleaExB5(basedep):
 
 def C2_ent(C):
         
-    """Conversion chaîne binaire signée en nombre entier signé"""
+    """Conversion  C2 vers entier"""
 
     if C[0]=="0":       
         return int(C,2)
@@ -124,11 +95,9 @@ def C2_ent(C):
         return int(C,2)-(1<<len(C))
 
 
-basedep=AleaFormatBi5(Li)
-entier=AleaExB5(basedep)
-basearriv=AleaFormatBis5(basedep)
 
 def EntierC2(entier):
+    """Conversion entier vers C2"""    
     switch=''
     binaire=format(int(entier),'b')
     
@@ -144,7 +113,8 @@ def EntierC2(entier):
     return(rep)
 
 def C2_SVA(basedep,entier):
-
+        
+        """Conversion C2 vers SVA"""  
         if basedep=="C2":
                 
                 entier=C2_ent(entier)
@@ -159,7 +129,7 @@ def C2_SVA(basedep,entier):
 
                 
 def Ent_SVA(entier):
-        
+     """Conversion entier vers SVA"""     
      rep=format(int(entier),'b')
         
      if int(entier)<0:
@@ -171,7 +141,7 @@ def Ent_SVA(entier):
      return(rep)
 
 def SVA_Ent(entier):
-                    
+      """Conversion SVA vers entier"""                
       rep=int(entier[1:],2)
       
       if entier[0]=="1":
@@ -182,7 +152,8 @@ def SVA_Ent(entier):
 
                 
 def RepExB5(basedep,entier,basearriv):
-               
+        """exercice global avec choix aléatoire de la base + valeur de la réponse"""
+        
         print("Voici l'entier",entier)
         print("Voici la base de départ",basedep)
         print("Voci la base d'arrivée",basearriv)
@@ -212,3 +183,40 @@ def RepExB5(basedep,entier,basearriv):
                
         
         return(rep)
+
+def SaisieAll():
+        """Saisie aléatoire des bases"""        
+        basedep=AleaFormatBi5(Li)
+        entier=AleaExB5(basedep)
+        basearriv=AleaFormatBis5(basedep)
+
+        return(basedep,entier,basearriv)
+
+def SaisieExB5():       
+
+#Une fois dans l'interface remplacer la saisie manuel des bases
+#par un menu déroulant, actuellment impossible car pas interface
+
+        """Saisie manuel des bases et verif"""
+        
+        BaseD=input("Saisir la base de départ")
+        BaseA=input("Saisir la base d'arivée")
+        Bits=int(input("Saisir les bits"))
+        
+        min= 1-2**(Bits-1)
+        max= 2**(Bits-1)-1
+
+        
+        if BaseD=="SVA" or BaseD=="C2":
+                entier=input("Saisir la valeur à convertir")
+                ctrl=CtrlSyntaxe(ch,2,0,16)
+
+        elif BaseD=="10":
+                entier=input("Saisir la valeur à convertir")
+                ctrl=CtrlSyntaxe(entier,10,0,4,min,max)
+        else:
+                ctrl= "Mauvaise base de départ"
+
+        if ctrl== True :
+
+                return(entier,BaseD,BaseA)
