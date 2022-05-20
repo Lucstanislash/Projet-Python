@@ -21,6 +21,7 @@ def Alea4 ():
             oper="/"
         print("Vous devez =>",oper)
         return (a,alea,oper)
+    return (a,alea,oper)
     
 ##################################
 a=0
