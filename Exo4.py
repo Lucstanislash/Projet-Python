@@ -11,7 +11,7 @@ def Alea4 ():
     ch1='0'
     print("Votre nombre en base de 10 => ", a)
     print("Votre puissance de 2 => ", alea)
-    while (len(a)>=alea):
+    while (len(a)>alea):
         nb=randint(0,1)
         if (nb==1):
                 oper="*"    
@@ -37,19 +37,17 @@ def VerifRep(rep,util):
             a=0 #reesayer
     return(a)
 
-def Sais_Ex4():   
-    ch1=input("saisir votre nombre en base de 2 =>")
-    c=CtrlSyntaxe(ch1,2,1,16)
-    ch2=input("Saisir votre puissance de 2 => ")
-    c1=CtrlSyntaxe(ch2,10,1,8)
-    #depend de l'interface
-    oper=input(" Saisir '*' si vous voulez mulitiplier '/' si vous voulez divisez")
-    while c==True and c1==True:
-        if (len(ch1)>=int(ch2)):
-            oper=input(" Saisir '*' si vous voulez mulitiplier '/' si vous voulez divisez")
-        else:
-            print("longueur trop courte")
-            break
+def Sais_Ex4():
+    c=False
+    while c==False:
+        ch1=input("saisir votre nombre en base de 2 =>")
+        c=CtrlSyntaxe(ch1,2,1,16)
+        ch2=input("Saisir votre puissance de 2 => ")
+        c=CtrlSyntaxe(ch2,10,1,20,1,8)
+        #depend de l'interface
+        if (len(ch1)<int(ch2)):
+            c=False   
+    oper=input(" Saisir '*' si vous voulez mulitiplier '/' si vous voulez divisez")        
     return(ch1,ch2,oper)
             
 def repEx4(a,alea,oper):
