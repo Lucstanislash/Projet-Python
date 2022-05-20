@@ -1,4 +1,5 @@
 from random import *
+from Outils import *
 
 l = []
 def List(l):
