@@ -1,4 +1,3 @@
-
 from random import*
 import math
 from Outils import*
@@ -11,12 +10,15 @@ def Alea4 ():
     ch1='0'
     print("Votre nombre en base de 10 => ", a)
     print("Votre puissance de 2 => ", alea)
-    while (len(a)>alea):
+    c=False
+    while c==False:
+        if (len(a)<alea):
+            c=False
         nb=randint(0,1)
         if (nb==1):
-                oper="*"    
+            oper="*"    
         else:
-                oper="/"
+            oper="/"
         print("Vous devez =>",oper)
         return (a,alea,oper)
     
@@ -41,15 +43,18 @@ def Sais_Ex4():
     c=False
     while c==False:
         ch1=input("saisir votre nombre en base de 2 =>")
-        c=CtrlSyntaxe(ch1,2,1,16)
+        ctrl==CtrlSyntaxe(ch1,2,1,16)
         ch2=input("Saisir votre puissance de 2 => ")
-        c=CtrlSyntaxe(ch2,10,1,20,1,8)
+        ctrl=CtrlSyntaxe(ch2,10,1,20,1,8)
         #depend de l'interface
         if (len(ch1)<int(ch2)):
-            c=False   
-    oper=input(" Saisir '*' si vous voulez mulitiplier '/' si vous voulez divisez")        
+            c=False      
+        oper=input(" Saisir '*' si vous voulez mulitiplier '/' si vous voulez divisez")        
+        oper1=['*','/']
+        if oper not in oper1:
+            c=False
     return(ch1,ch2,oper)
-            
+           
 def repEx4(a,alea,oper):
     ch=''
     ch1='0'
@@ -82,4 +87,3 @@ def Exo4 ():
         else:
             print("gagné")
     
-
