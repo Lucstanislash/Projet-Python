@@ -44,8 +44,12 @@ def Sais_Ex4():
     c1=CtrlSyntaxe(ch2,10,1,8)
     #depend de l'interface
     oper=input(" Saisir '*' si vous voulez mulitiplier '/' si vous voulez divisez")
-    if c==True and c1==True:
-        oper=input(" Saisir '*' si vous voulez mulitiplier '/' si vous voulez divisez")
+    while c==True and c1==True:
+        if (len(ch1)>=int(ch2)):
+            oper=input(" Saisir '*' si vous voulez mulitiplier '/' si vous voulez divisez")
+        else:
+            print("longueur trop courte")
+            break
     return(ch1,ch2,oper)
             
 def repEx4(a,alea,oper):
