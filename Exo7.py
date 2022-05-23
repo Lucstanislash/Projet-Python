@@ -5,7 +5,7 @@ floatt=-14.21
 def Ent_IEEE(floatt):
     """fonction qui transforme un entier en IEEE"""
 ##conversion float vers entier##
-    entier=int(floatt)
+    entier=int(float(floatt))
 ## conversion entier vers binaire##
     
     binaire= format(entier,'b')
@@ -26,7 +26,7 @@ def Ent_IEEE(floatt):
 
 #transforme la partie décimal d'un float en binaire avec pour longueur FMantisse
     ch_dec=""
-    dec=str(floatt).replace(str(int(floatt)),'0')
+    dec=str(float(floatt)).replace(str(int(float(floatt))),'0')
 
     for i in range(FMantisse):
         dec=float(dec)*2
@@ -80,6 +80,14 @@ def IEE_Ent(Hexa):
     
     rep=str(dec).replace("0",entier)  
     return(rep)
+
+lis=["IEEE","entier"]
+
+def  AleaFormat5(lis):
+        """Sort aléatoirement une valeur entre 1 et 2 pour choisir la base dans la liste li"""
+        i=randrange(0,2)
+        formats=lis[i]
+        return(formats)
     
 def AleaEx7Ent():
 
@@ -90,17 +98,60 @@ def AleaEx7IEEE():
 
     Hexa=AleaExAll(16,8,8)
     return(Hexa)
-     
+
+def SaisieAllEx7():
+    formats=AleaFormat5(lis)
+    if formats=="entier":
+            valeur=AleaEx7IEEE()
+            
+    else:     
+            valeur=AleaEx7Ent()
+            
+    return(valeur,formats)
+
 def SaisieEx7():
     ok=False
     while ok==False:
-        formats=str(input("Saisir format dans lequel convertir (Hexa ou Float)"))
-        if formats=="Hexa":
+        formats=str(input("Saisir le format de conversion ( IEEE ou entier)"))
+        if formats=="entier":
             nb=str(input("Saisir un Hexa de 8 symbole"))
-            ok=CtrlSyntaxe(nb,2,8,8)
-        elif formats=="Float":
+            ok=CtrlSyntaxe(nb,16,8,8)
+        elif formats=="IEEE":
             nb=str(input("Saisir un float de -10000 à 10000"))
             ok=CtrlSyntaxe(nb,10,0,20,-10000,10000)
         else:
             ok=False
     return(nb,formats)
+
+def PrincipalEx7():
+
+    man=input("manuel ou aléatoire \n")
+   
+    if man=="manuel":
+        saisie=SaisieEx7()
+        
+    elif man=="aleatoire":
+        saisie=SaisieAllEx7()
+        
+    else:
+        print("erreur de syntaxe")
+        
+    formats=saisie[1]
+    valeur=saisie[0]    
+    print("Formats de conversion",formats)
+    print("voici la valeur à convertir",valeur)
+    
+    if formats=="IEEE":       
+        rep=Ent_IEEE(valeur)
+        print("voici la réponse ",rep)
+        
+    else:
+        rep=IEE_Ent(valeur)
+        print("voici la réponse ",rep)
+        
+    util=input("Saisir la réponse")
+    verif=VerifRep(rep,util)
+    
+    return(verif)
+
+    
