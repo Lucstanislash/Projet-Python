@@ -41,7 +41,7 @@ def TestTest(n):
 
 
 
-puissance = AleaExAll('puissanceExp',1,16)
+puissance = AleaExAll('puissanceExp',1,20)
 
 #liste qui contient les bonnes réponses
 l = []
