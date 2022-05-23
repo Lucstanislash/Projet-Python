@@ -81,4 +81,7 @@ def Conv(basedep,basearr,entier):
         rep=format(rep,dico[basearr])
     return(rep)
 
+def Raccourcir(ch):
+    ch=ch.replace(" ","")
+    
 
