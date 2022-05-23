@@ -57,9 +57,9 @@ def List(l):
 #====================== Liste des Réponses correctes ====================#
 
 #Liste des réponses correctes
-Rep = []
+RepEx3 = []
 
-def RepEx3(l,Rep):
+def RepEx3(l,RepEx3):
     
     #Donne les bonnes réponses
 
@@ -67,16 +67,17 @@ def RepEx3(l,Rep):
 
         if int(i,2)% power == 0: 
 
-            Rep.append(i)
+            RepEx3.append(i)
 
 
 
 #====================== Liste des Réponses correctes ====================#
             
-#Liste des réponses de l'utilisateur        
-Util = []         
+#Liste des réponses de l'utilisateur
+UtilEx3 = []
 
-def RepUtil(l,Util):
+#Pour tester
+def RepUtil(l,UtilEx3):
 
     #Retient les réponses de l'utilisateur
 
@@ -84,16 +85,14 @@ def RepUtil(l,Util):
 
     if repUtil in l:
 
-        print('Votre réponse est : ', repUtil,'.')#Pour tester
+        print('Votre réponse est : ', repUtil,'.')#Pour tester voir laquelle des valeurs j'ai ajouté
 
-        Util.append(repUtil)
+        UtilEx3.append(repUtil)
         
 
 #====================== Vérification des réponses ========================#
 
+VerifRep(RepEx3, UtilEx3)
 
-   
-
-
-            
-        
+#Du coup ça marche, si les réponses sont les bonnes = 1
+#sinon = 0
