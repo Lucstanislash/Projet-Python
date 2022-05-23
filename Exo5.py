@@ -187,23 +187,21 @@ def PrincipalB5():
 
         if man=="manuel":
                 saisie=SaisieExB5()
-                rep=RepExB5(saisie[0],saisie[1],saisie[2])
-                print(rep)
-                util=input("Saisir la réponse")
-                verif=VerifRep(rep,util)
-                
+                       
         elif man=="aleatoire":
                 saisie=SaisieAll()
                 print("Base de départ",saisie[0])
                 print("Entier",saisie[1])
                 print("Base d'arrivé",saisie[2])
-                rep=RepExB5(saisie[0],saisie[1],saisie[2])
-                print(rep)
-                util=input("Saisir la réponse")
-                verif=VerifRep(rep,util)
+                
         else:
                 print("erreur")
 
+        rep=RepExB5(saisie[0],saisie[1],saisie[2])
+        print(rep)
+        util=input("Saisir la réponse")
+        verif=VerifRep(rep,util)
+        
         return(verif)
 
 def SaisieAll():
