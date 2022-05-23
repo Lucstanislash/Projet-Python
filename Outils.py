@@ -6,7 +6,7 @@ def CtrlSyntaxe(ch,syn,min,max,min10=0,max10=0):
     ##controle la syntaxe de ch en fonction de syn (ch peux être un nombre en base 2, 8, 10, 16, piussance syn prendra respectivement les valeurs2, 8 ,10, 16, puissance pour indiquer la syntaxe que ch doit avoir.
     mot2='01'
     mot8='01234567'
-    mot10='0123456789'
+    mot10='-.0123456789'
     mot16='0123456789ABCDEF'
     dico={}
     dico[2]=mot2
@@ -51,7 +51,7 @@ def AleaExAll(syn,min,max):
         ch=alea
         #####alea=AleaExAll('puissanceExp',1, 20)
         #####ch='2**'+str(alea)
-     return(ch)
+    return(ch)
 a=0
 cpt = 0
 def VerifRep(rep,util):
@@ -75,9 +75,10 @@ def Conv(basedep,basearr,entier):
     if basedep == 10:
         rep=format(int(entier),dico[basearr])
     elif basearr == 10:
-        rep=int(entier,basedep)
+        rep=int(str(entier),basedep)
     else:
-        rep=int(entier,basedep)
+        rep=int(str(entier),basedep)
         rep=format(rep,dico[basearr])
     return(rep)
-        
+
+def 
