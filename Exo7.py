@@ -12,6 +12,16 @@ def decimal(floateur,FMantisse):
         else:
             ch_dec+='0'
     return(ch_dec)
+
+def reversedec(finIEEE):
+    cpt=0
+    dec=0
+    for i in finIEEE:
+        cpt-=1
+        if i=='1':
+            dec+=2**cpt
+    return(round(dec,2))
+    
             
         
         
