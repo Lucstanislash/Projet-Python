@@ -94,10 +94,10 @@ def AleaEx7IEEE():
 def SaisieEx7():
     ok=False
     while ok==False:
-        formats=str(input("Saisir format dans lequel convertir (IEEE ou Binaire)"))
-        if formats=="IEEE":
-            nb=str(input("Saisir un IEEE de 32 bits"))
-            ok=CtrlSyntaxe(nb,2,32,32)
+        formats=str(input("Saisir format dans lequel convertir (Hexa ou Float)"))
+        if formats=="Hexa":
+            nb=str(input("Saisir un Hexa de 8 symbole"))
+            ok=CtrlSyntaxe(nb,2,8,8)
         elif formats=="Float":
             nb=str(input("Saisir un float de -10000 à 10000"))
             ok=CtrlSyntaxe(nb,10,0,20,-10000,10000)
