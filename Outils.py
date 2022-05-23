@@ -45,10 +45,13 @@ def AleaExAll(syn,min,max):
         for i in range(alea):
             a=randint(0,15)
             ch=ch+mot16[a]
-    elif syn == 'puissance':
+    elif syn == 'puissance': #il affiche directement la valeur de la puissance sous formed'un chiffre
         ch=2**alea
-    return(ch)
-
+    elif syn == 'puissanceExp': # il affiche la puissance sous forme de 2**(chiffre)
+        ch=alea
+        #####alea=AleaExAll('puissanceExp',1, 20)
+        #####ch='2**'+str(alea)
+     return(ch)
 a=0
 cpt = 0
 def VerifRep(rep,util):
