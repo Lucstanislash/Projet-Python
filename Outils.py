@@ -21,7 +21,7 @@ def CtrlSyntaxe(ch,syn,min,max,min10=0,max10=0):
                 ok=False
                 break
         if ok and syn==10:
-            if not int(ch) in range(min10,max10+1):
+            if not int(float(ch)) in range(min10,max10+1):
                 ok=False
     else:
         ok=False
@@ -81,4 +81,4 @@ def Conv(basedep,basearr,entier):
         rep=format(rep,dico[basearr])
     return(rep)
 
-def 
+
