@@ -40,14 +40,15 @@ def NumBinVirgule():
     return(ch)	
 
 #==============================================================================================    
-def AleaOrdreEx6():#pour tester
+def AleaOrdreEx6():
     l = [ 'choix1','choix2']
     c = choice(l)
     if c == 'choix1' :
-        basedep = 10
-        basearriv = 2
-        return(basedep, basearriv, testEx6())
+        a = Conv(10, 2, testEx6())
+        RepEx6Alea.append(a)
+        return(a)
+
     else :
-        basedep = 2
-        basearriv = 10
-        return(basedep, basearriv, NumBinVirgule())
+        b = Conv(10, 2, NumBinVirgule())
+        RepEx6Alea.append(b)
+        return(b)
