@@ -10,9 +10,9 @@ def Alea4 ():
     else:
         oper="/"
     print("L'operation effectuer ==>",oper)
-    p=randint(1,8) #choix de la puissance
-    print(p)
-    taille =randrange(1,17-p)
+    puis=randint(1,8) #choix de la puissance
+    print(puis)
+    taille =randrange(1,17-puis)
     ch='1'
     if oper=='/':
         for i in range (taille-1):
@@ -21,7 +21,7 @@ def Alea4 ():
                 ch+='1'
             else:
                 ch+='0'
-        ch+='0'*p
+        ch+='0'*puis
     else:
         taille =randrange(1,17)
         for g in range (taille):
@@ -31,7 +31,7 @@ def Alea4 ():
             else:
                 ch+='0'
     print("nombre binaire",ch)
-    return ([ch, p, oper])
+    return ([ch, puis, oper])
     
 ##################################
 
@@ -39,33 +39,30 @@ def Alea4 ():
 def Sais_Ex4():
     c=False
     while c==False:
-        ch1=input("saisir votre nombre en base de 2 =>")
-        ch2=input("Saisir votre puissance de 2 => ")
+        ch=input("saisir votre nombre en base de 2 =>")
+        puis=input("Saisir votre puissance de 2 => ")
         #depend de l'interface
-        if (len(ch1)<int(ch2)):
+        if (len(ch)<int(puis)):
             c=False
         else:
-            c=CtrlSyntaxe(ch1,2,1,16)
-            c=CtrlSyntaxe(ch1,2,1,16)
+            c=CtrlSyntaxe(ch,2,1,16)
+            c=CtrlSyntaxe(ch,2,1,16)
         oper=input(" Saisir '*' si vous voulez mulitiplier '/' si vous voulez divisez")        
         oper1=['*','/']
         if oper not in oper1:
             c=False
-    return(ch1,ch2,oper)
+    return(ch,puis,oper)
            
 def repEx4(ch,puis,oper):
-
-   
+  
     if oper=='*':
-        rep=ch+'0'*puis
+        rep=ch+('0'*int(puis))
+        
     elif oper=='/':
         rep=ch[:-puis]
     return (rep)
 
-for i in range(5):
-    donnees=Alea4()
-    print("les données : ", donnees)
-    print("reponse ", repEx4(donnees[0], donnees[1], donnees[2]))
+
                   
 def Exo4 ():
     verif=2
@@ -77,7 +74,7 @@ def Exo4 ():
         a=Alea4()
     rep=repEx4(a[0],a[1],a[2])
     while verif!=1:
-        util=input("Sisir la reponse du calcul : ")
+        util=input("Saisir la reponse du calcul : ")
         verif=VerifRep(rep,util)
         if verif==0:
             print("Reesseyer")
