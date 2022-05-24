@@ -83,5 +83,5 @@ def Conv(basedep,basearr,entier):
 
 def Raccourcir(ch):
     ch=ch.replace(" ","")
-    
+    return(ch)
 
