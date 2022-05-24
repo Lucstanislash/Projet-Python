@@ -4,41 +4,37 @@ from Outils import*
 #-------------------ALEATOIRE#----------------------------#
 
 def Alea4 ():
-    a=AleaExAll(2,1,16)
-    alea=randint(1,8)
-    ch=""
-    ch1='0'
-    print("Votre nombre en base de 10 => ", a)
-    print("Votre puissance de 2 => ", alea)
-    c=False
-    while c==False:
-        if (len(a)<alea):
-            c=False
-        nb=randint(0,1)
-        if (nb==1):
-            oper="*"    
-        else:
-            oper="/"
-        print("Vous devez =>",oper)
-        return (a,alea,oper)
-    return (a,alea,oper)
+    nb=randint(0,1)     #choix de l'opération
+    if (nb==1):
+        oper="*"    
+    else:
+        oper="/"
+    print("L'operation effectuer ==>",oper)
+    p=randint(1,8) #choix de la puissance
+    print(p)
+    taille =randrange(1,17-p)
+    ch='1'
+    if oper=='/':
+        for i in range (taille-1):
+            c=randrange(0,2)
+            if c==1:
+                ch+='1'
+            else:
+                ch+='0'
+        ch+='0'*p
+    else:
+        taille =randrange(1,17)
+        for g in range (taille):
+            c=randrange(0,2)
+            if c==1:
+                ch+='1'
+            else:
+                ch+='0'
+    print("nombre binaire",ch)
+    return ([ch, p, oper])
     
 ##################################
-a=0
-cpt = 0
 
-def VerifRep(rep,util):
-    #Compare la réponse à l’exercice (rep) avec la réponse de l’utilisateur (util)
-    if rep == util:
-        a=1 #bloquer le bouton valider
-    else:
-        global cpt
-        cpt = cpt + 1
-        if cpt>2:
-            a=-1 #bloquer le bouton valider
-        else:
-            a=0 #reesayer
-    return(a)
 
 def Sais_Ex4():
     c=False
@@ -57,17 +53,19 @@ def Sais_Ex4():
             c=False
     return(ch1,ch2,oper)
            
-def repEx4(a,alea,oper):
-    ch=''
-    ch1='0'
-    while (len(a))>=int(alea):
-        if oper=='*':
-            ch+=(a+(ch1*int(alea)))
-        elif oper=='/':
-            ch+=(a[:-int(alea)])
-        else:
-            break
-        return (ch)
+def repEx4(ch,puis,oper):
+
+   
+    if oper=='*':
+        rep=ch+'0'*puis
+    elif oper=='/':
+        rep=ch[:-puis]
+    return (rep)
+
+for i in range(5):
+    donnees=Alea4()
+    print("les données : ", donnees)
+    print("reponse ", repEx4(donnees[0], donnees[1], donnees[2]))
                   
 def Exo4 ():
     verif=2
