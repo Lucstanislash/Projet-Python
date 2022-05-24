@@ -21,28 +21,21 @@ def AleaEx3(min,max):
             ch+=str(a)
 
     return(ch)
-        
-#================== Liste des valeurs binaires aléatoires ===============#
-
-#Exposant
 
 
-def TestTest(n):
-    
-    a = AleaEx3(1,32)
-    
-    if a [-n:] == '0'*n :
-        
-        return(a)
-    
-    else :
-        
-        return(TestTest(n))
+
+#*Erreurs de proba 
+#def TestTest(n):  
+#    a = AleaEx3(1,32)
+#        if a [-n:] == '0'*n :       
+#        return(a)   
+#    else :
+#        return(TestTest(n))
 
 
 
 puissance = AleaExAll('puissanceExp',1,20)
-
+#================== Liste des valeurs binaires aléatoires ===============#
 #liste qui contient les bonnes réponses
 l = []
 
