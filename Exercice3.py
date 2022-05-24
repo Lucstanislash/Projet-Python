@@ -24,7 +24,7 @@ def AleaEx3(min,max):
 
 
 
-#*Erreurs de proba 
+#*Erreurs de proba ################## ch[-n:]+=('0'*n) ################# à Tester
 #def TestTest(n):  
 #    a = AleaEx3(1,32)
 #        if a [-n:] == '0'*n :       
