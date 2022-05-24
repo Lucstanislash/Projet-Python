@@ -3,7 +3,7 @@
 
 from random import *
 def CtrlSyntaxe(ch,syn,min,max,min10=0,max10=0):
-    ##controle la syntaxe de ch en fonction de syn (ch peux être un nombre en base 2, 8, 10, 16, piussance syn prendra respectivement les valeurs2, 8 ,10, 16, puissance pour indiquer la syntaxe que ch doit avoir.
+    "controle la syntaxe de ch en fonction de syn (ch peux être un nombre en base 2, 8, 10, 16, piussance syn prendra respectivement les valeurs2, 8 ,10, 16, puissance pour indiquer la syntaxe que ch doit avoir."
     mot2='01'
     mot8='01234567'
     mot10='-.0123456789'
@@ -28,6 +28,7 @@ def CtrlSyntaxe(ch,syn,min,max,min10=0,max10=0):
     return(ok)
 
 def AleaExAll(syn,min,max):
+    "crer une chaine aléatoire en base 2, 8, 10 ou 16 en fonction de la valeur de syn et permet d'en gérer la taille"
     mot16='0123456789ABCDEF'
     ch=""
     alea=randint(min,max)
@@ -55,7 +56,7 @@ def AleaExAll(syn,min,max):
 a=0
 cpt = 0
 def VerifRep(rep,util):
-    #Compare la réponse à l’exercice (rep) avec la réponse de l’utilisateur (util)
+    "Compare la réponse à l’exercice (rep) avec la réponse de l’utilisateur (util)"
     if rep == util:
         a=1 #bloquer le bouton valider ==> Gagner
     else:
@@ -68,6 +69,7 @@ def VerifRep(rep,util):
     return(a)
 
 def Conv(basedep,basearr,entier):
+    "Convertie de la base basedep à la base basearr un entier coder en basedep"
     dico={}
     dico[2]='b'
     dico[8]='o'
@@ -82,6 +84,7 @@ def Conv(basedep,basearr,entier):
     return(rep)
 
 def Raccourcir(ch):
+    "Enleve les espaces d'une chaine ch"
     ch=ch.replace(" ","")
     return(ch)
 
