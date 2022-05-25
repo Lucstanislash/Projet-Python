@@ -1,6 +1,6 @@
 from tkinter import *
-import tkinter as tk
-from tkinter import ttk
+import tkinter as tk   #pour le menu déroulant
+from tkinter import ttk  #pour le menu déroulant
 
 
 fenetre=Tk()
