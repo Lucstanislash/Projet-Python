@@ -6,7 +6,7 @@ fenetre=Tk()
 fenetre.title("Application Python")
 #fenetre.geometry("1500x700")
 fenetre.minsize(500,600 )
-#fenetre.iconbitmap("logo.ico")
+fenetre.iconbitmap("logo.ico")
 fenetre.config(background='lightskyblue1')
 
 fenetre.rowconfigure(1, weight=0)
@@ -17,6 +17,7 @@ fenetre.rowconfigure(5, weight=1)
 fenetre.rowconfigure(6, weight=1)
 fenetre.rowconfigure(7, weight=1)
 
+fenetre.columnconfigure(0, weight=1)
 fenetre.columnconfigure(1, weight=1)
 fenetre.columnconfigure(2, weight=1)
 fenetre.columnconfigure(3, weight=1)
@@ -96,19 +97,21 @@ def PageChoix(NomExercice): #======== Fenêtre de demande aléatoire ou manuel =
                 Chapitre1.Exo8.Exercice8(2)
     
         #===== en cours
+
     NomExo = Label(fenetre, text= NomExercice, font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
-    NomExo.grid(row=1, column=2)
+    NomExo.grid(row=1, column=1, columnspan=5)
     txt3=Label(fenetre, text= "Souhaitez vous une saisie Manuelle ou Aléatoire", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-    txt3.grid(row=1, column=2)
+    txt3.grid(row=3, column=1, columnspan=5,sticky='s')
             
     bManuelle=Button(fenetre, text="Manuel", font=("courier", 18, "italic"), fg='white', bg='#103985', command=partial(CommandExo,'Manuel'))
-    bManuelle.grid(row=2, column=1)
+    bManuelle.grid(row=5, column=2, ipady=30, ipadx=140,sticky='e')
 
     bAléa=Button(fenetre, text="Aléatoire", font=("courier", 18, "italic"), fg='white', bg='#103985',command=partial(CommandExo,'Aléa'))
-    bAléa.grid(row=2, column=2)
+    bAléa.grid(row=5, column=4, ipady=30,ipadx=140,sticky='w')
 
     bRetour=Button(fenetre, text="Retour", font=("courier", 18, "italic"), fg='white', bg='#103985', command=partial(back,2))
-    bRetour.grid(row=3, column=2)
+    bRetour.grid(row=7, column=3,ipady= 15,ipadx=70)
+
 
 
 #==================================================================================
@@ -160,35 +163,35 @@ def Menu():
       
 
         tExoChap1 = Label(fenetre, text= "Codage de l'information", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
-        tExoChap1.grid(row=1, column=1,columnspan=4)
+        tExoChap1.grid(row=1, column=2,columnspan=4,ipady=40)
         
                     
         Bexo1=Button(fenetre, text="Entiers non signées", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= partial(PageChoix,"Entiers non signées")) #, command= PageChoix("Entiers non signées")
-        Bexo1.grid(ipady=25, ipadx=25, row=2, column=1,columnspan=2)
+        Bexo1.grid(ipady=25, row=2, column=1,columnspan=3,ipadx=50)
 
         Bexo2=Button(fenetre, text="Opérations en binaire", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= partial(PageChoix,"Opérations en binaire"))
-        Bexo2.grid(ipady=25, ipadx=25, row=3, column=1,columnspan=2)
+        Bexo2.grid(ipady=25,  row=3, column=1,columnspan=3,ipadx=50)
 
         Bexo3=Button(fenetre, text="Multiplications en binaire", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= partial(PageChoix,"Multiplications en binaire"))
-        Bexo3.grid(ipady=25, ipadx=25, row=4, column=1,columnspan=2)
+        Bexo3.grid(ipady=25,  row=4, column=1,columnspan=3,ipadx=50)
 
         Bexo4=Button(fenetre, text="Opérations sans calcul", font=("courier", 18, "italic"), fg='white', bg='#103985',width=largeur, height=hauteur , command= partial(PageChoix,"Opérations sans calcul"))#command=affich3)
-        Bexo4.grid(ipady=25, ipadx=25, row=5, column=1,columnspan=2)
+        Bexo4.grid(ipady=25,row=5, column=1,columnspan=3,ipadx=50)
 
         Bexo5=Button(fenetre, text="Entiers signées", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= partial(PageChoix,"Entiers signées"))
-        Bexo5.grid(ipady=25, ipadx=25,  row=2, column=3,columnspan=4)
+        Bexo5.grid(ipady=25,  row=2, column=3,columnspan=6,ipadx=50)
 
         Bexo6=Button(fenetre, text="Les Réels", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= partial(PageChoix,"Les Réels"))
-        Bexo6.grid(ipady=25, ipadx=25,  row=3, column=3,columnspan=4)
+        Bexo6.grid(ipady=25,   row=3, column=3,columnspan=5,ipadx=50)
 
         Bexo7=Button(fenetre, text="Les Décimaux", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= partial(PageChoix,"Les Décimaux"))#command=affich3)
-        Bexo7.grid(ipady=25, ipadx=25, row=4, column=3,columnspan=4)
+        Bexo7.grid(ipady=25,  row=4, column=3,columnspan=5,ipadx=50)
 
         Bexo8=Button(fenetre, text="Les Tableaux", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= partial(PageChoix,"Les Tableaux"))
-        Bexo8.grid(ipady=25, ipadx=25,row=5, column=3,columnspan=4)
+        Bexo8.grid(ipady=25,row=5, column=3,columnspan=5,ipadx=50)
 
         Retour=Button(fenetre, text= "Retour", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= back)
-        Retour.grid(row=6,column=2,columnspan=3)
+        Retour.grid(row=7, column=3,columnspan=4,ipadx=10,sticky='w')
 
     #============================================================================
     #===================== Chapitre 2 ===========================================
@@ -270,21 +273,21 @@ def Menu():
         
     #============Création des chapitres de la 1ere fenetre    
     tMenu=Label(fenetre, text= "Bienvenue sur l'application d'entrainement", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
-    tMenu.grid(row=1, column=2, columnspan=3)
+    tMenu.grid(row=1, column=2, columnspan=3,ipady=40)
     stMenu=Label(fenetre, text= "Séléctionner le module que vous souhaitez travailler", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-    stMenu.grid(row=2, column=2, columnspan=3)
+    stMenu.grid(row=2, column=2, columnspan=3,ipady=40)
     
     Bchap1=Button(fenetre, text="Codage de l'information", font=("courier", 18, "italic"), fg='white', bg='#103985', command = Chap1)
-    Bchap1.grid(row=3, column=2, columnspan=4)
+    Bchap1.grid(row=3, column=3,sticky='ew',ipady=10)
 
     Bchap2=Button(fenetre, text="Ordonnancement", font=("courier", 18, "italic"), fg='white', bg='#103985', command= Chap2)#command= Chap2
-    Bchap2.grid(row=4, column=2, columnspan=4)
+    Bchap2.grid(row=4, column=3,sticky='ew',ipady=10)
 
     Bchap3=Button(fenetre, text="Gestion de la mémoire", font=("courier", 18, "italic"), fg='white', bg='#103985', command= Chap3)#command= Chap3
-    Bchap3.grid(row=5, column=2, columnspan=4)
+    Bchap3.grid(row=5, column=3, sticky='ew',ipady=10)
 
     Bchap4=Button(fenetre, text="Gestion de fichier", font=("courier", 18, "italic"), fg='white', bg='#103985', command= Chap4) #command= Chap4
-    Bchap4.grid(row=6, column=2, columnspan=4)
+    Bchap4.grid(row=6, column=3,sticky='ew',ipady=10)
     
     Quitter=Button(fenetre, text= "Quitter", font=("courier", 18, "italic"), fg='white', bg='#103985', command= fenetre.destroy)
     Quitter.grid(row=7, column=3)
