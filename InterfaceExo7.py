@@ -22,7 +22,6 @@ fenetre.columnconfigure(2, weight=1)
 fenetre.columnconfigure(3, weight=1)
 fenetre.columnconfigure(4, weight=1)
 fenetre.columnconfigure(5, weight=1)
-
 man=1
 formats=""
 if man ==1 :
@@ -31,7 +30,6 @@ if man ==1 :
     valeur=alea[0]
     
 def get(formats):
-
     if man==2:
         entier = saisieVal.get()
         util = Resultats.get()
@@ -55,6 +53,7 @@ def get(formats):
         resu=Label(fenetre, text="Bonne Réponse, Bravo !! ", font=("courier", 25, "italic"), fg='green', bg='lightskyblue1') #width=largeur, height=hauteur ,command= partial(PageChoix,"Entiers non signées")) #, command= PageChoix("Entiers non signées")
     elif Verif == -1:
         B3['state']='disable' #bloquer le bouton valider ==> Perdu
+        B2['state']='normal'  #débloquer le bouton nouveau ==> recommencer
         resu=Label(fenetre, text="Vous avez perdu ! Le résultat est :", font=("courier", 25, "italic"), fg='red', bg='lightskyblue1')
     elif Verif == 0:
         resu=Label(fenetre, text="Mauvaise réponse, réessayer ! ", font=("courier", 25, "italic"), fg='red', bg='lightskyblue1') #width=largeur, height=hauteur ,command= partial(PageChoix,"Entiers non signées")) #, command= PageChoix("Entiers non signées")
@@ -97,16 +96,18 @@ Resultats=Entry(fenetre) #width= largeur, height= hauteur) # Création de la zon
 
 
 def nouveau():
-    
+    B3['state']='normal'
+    B2['state']='disabled'
     if man ==1 :
         alea=SaisieAllEx7()
         formats=alea[1]
         valeur=alea[0]
-       
-
+        saisieVal.config(text=valeur)
+        w1.config(text=formats)
+        
 B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2)
 
-B2=Button(fenetre, text="Nouveau", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=nouveau())
+B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:nouveau())
  
 B3=Button(fenetre, text="Valider", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:get(formats))
  
