@@ -95,6 +95,8 @@ txt3=Label(fenetre, text="Résultat", font=("courier", 25, "italic"), fg='black'
 Resultats=Entry(fenetre) #width= largeur, height= hauteur) # Création de la zone de résultats
 
 
+        
+
 def create():
     rappel = Toplevel(fenetre)
     rappel.config(background="lightskyblue1")
@@ -142,7 +144,7 @@ def nouveau():
         saisieVal.config(text=valeur)
         w1.config(text=formats)
         
-B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2)
+B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2,command=lambda:create())
 
 B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:nouveau())
  
