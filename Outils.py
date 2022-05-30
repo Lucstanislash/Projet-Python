@@ -54,18 +54,22 @@ def AleaExAll(syn,min,max):
         #####ch='2**'+str(alea)
     return(ch)
 a=0
-cpt = 0
+cpt=0
 def VerifRep(rep,util):
+    a=0
+    global cpt
     "Compare la réponse à l’exercice (rep) avec la réponse de l’utilisateur (util)"
     if rep == util:
         a=1 #bloquer le bouton valider ==> Gagner
+        cpt = 0
     else:
-        global cpt
         cpt = cpt + 1
         if cpt>2:
             a=-1 #bloquer le bouton valider ==> Perdu
+            cpt=0
         else:
             a=0 #reesayer ==> nouvelle chance
+    print(cpt)
     return(a)
 
 def Conv(basedep,basearr,entier):
