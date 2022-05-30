@@ -4,7 +4,8 @@ from tkinter import ttk
 from Outils import*
 from Exo7 import*
 
-fenetre=Tk()
+
+fenetre=tk.Tk()
 fenetre.config(background="lightskyblue1")
 
 
@@ -22,10 +23,22 @@ fenetre.columnconfigure(3, weight=1)
 fenetre.columnconfigure(4, weight=1)
 fenetre.columnconfigure(5, weight=1)
 
-def get():
-    entier = saisieVal.get()
-    util = Resultats.get()
-    formats = fenetre.option_var.get()
+man=1
+formats=""
+if man ==1 :
+    alea=SaisieAllEx7()
+    formats=alea[1]
+    valeur=alea[0]
+    
+def get(formats):
+
+    if man==2:
+        entier = saisieVal.get()
+        util = Resultats.get()
+        formats = fenetre.option_var.get()
+    else:
+        entier=valeur
+        util = Resultats.get()
     print(entier)
     print(util)
     print(formats)
@@ -34,7 +47,7 @@ def get():
 
     else:
         rep=IEE_Ent(entier)
-
+    
     Verif=VerifRep(rep,util)
     
     if Verif == 1:
@@ -58,26 +71,44 @@ soustitre=Label(fenetre, text="Quelques Indications: ", font=("courier", 25), fg
 
 
 txt1=Label(fenetre, text="Réel à convertir", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-saisieVal=Entry(fenetre) 
-val=StringVar(fenetre) # variable qui récupérera la valeur de la case à cocher
+if man==2:
+    
+    saisieVal=Entry(fenetre) 
+    val=StringVar(fenetre) # variable qui récupérera la valeur de la case à cocher
+
+else:
+    saisieVal=Label(fenetre, text=valeur, font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
+
 
 
 txt2=Label(fenetre, text="Convertir au format", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-fenetre.option_var = tk.StringVar(fenetre)
-val.set(OptionsExo1[0]) # default value
-w1 = ttk.OptionMenu(fenetre,fenetre.option_var,OptionsExo1[0], *OptionsExo1)
+if man==2:
+   
+    fenetre.option_var= tk.StringVar(fenetre)
+    w1 = ttk.OptionMenu(fenetre,fenetre.option_var,OptionsExo1[0], *OptionsExo1)
+else:
+    w1=Label(fenetre, text=formats, font=("courier", 15, "italic"), fg='black', bg='white',width=4, height=1)
+
+
 
 txt3=Label(fenetre, text="Résultat", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
 
 Resultats=Entry(fenetre) #width= largeur, height= hauteur) # Création de la zone de résultats
 
 
+def nouveau():
+    
+    if man ==1 :
+        alea=SaisieAllEx7()
+        formats=alea[1]
+        valeur=alea[0]
+       
 
 B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2)
 
-B2=Button(fenetre, text="Nouveau", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2)
+B2=Button(fenetre, text="Nouveau", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=nouveau())
  
-B3=Button(fenetre, text="Valider", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:get())
+B3=Button(fenetre, text="Valider", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:get(formats))
  
 B4=Button(fenetre, text="Score", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2)
  
