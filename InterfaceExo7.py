@@ -49,10 +49,10 @@ def get(formats):
     Verif=VerifRep(rep,util)
     
     if Verif == 1:
-        B3['state']='disable' #bloquer le bouton valider ==> Gagner
+        B3['state']='disabled' #bloquer le bouton valider ==> Gagner
         resu=Label(fenetre, text="Bonne Réponse, Bravo !! ", font=("courier", 25, "italic"), fg='green', bg='lightskyblue1') #width=largeur, height=hauteur ,command= partial(PageChoix,"Entiers non signées")) #, command= PageChoix("Entiers non signées")
     elif Verif == -1:
-        B3['state']='disable' #bloquer le bouton valider ==> Perdu
+        B3['state']='disabled' #bloquer le bouton valider ==> Perdu
         B2['state']='normal'  #débloquer le bouton nouveau ==> recommencer
         resu=Label(fenetre, text="Vous avez perdu ! Le résultat est :", font=("courier", 25, "italic"), fg='red', bg='lightskyblue1')
     elif Verif == 0:
