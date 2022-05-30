@@ -95,6 +95,43 @@ txt3=Label(fenetre, text="Résultat", font=("courier", 25, "italic"), fg='black'
 Resultats=Entry(fenetre) #width= largeur, height= hauteur) # Création de la zone de résultats
 
 
+def create():
+    rappel = Toplevel(fenetre)
+    rappel.config(background="lightskyblue1")
+    titre=Label(rappel,text="Rappel", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
+    titre.grid(row=1, column=2,columnspan=3,sticky='s')
+
+    txt1=Label(rappel, text="1 bit de signe", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
+    txt2=Label(rappel, text="8 bits d’exposant biaisé (biaisé de 127)", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
+    txt3=Label(rappel, text="23 bits de mantisse", font=("courier", 25, "italic"), fg='black', bg= 'lightskyblue1',width=40, height=2)
+    txt4=Label(rappel, text="Ne pas oublier le bit implicite", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
+
+    txt1.grid(row=2, column=3)
+    txt2.grid(row=3, column=3)
+    txt3.grid(row=4, column=3)
+    txt4.grid(row=5, column=3)
+
+    rappel.rowconfigure(1, weight=1)
+    rappel.rowconfigure(2, weight=1)
+    rappel.rowconfigure(3, weight=1)
+    rappel.rowconfigure(4, weight=1)
+    rappel.rowconfigure(5, weight=1)
+    rappel.rowconfigure(6, weight=1)
+
+    rappel.columnconfigure(1, weight=0)
+    rappel.columnconfigure(2, weight=1)
+    rappel.columnconfigure(3, weight=1)
+    rappel.columnconfigure(4, weight=1)
+    rappel.columnconfigure(5, weight=0)    
+
+    def exit_btn():
+
+        rappel.destroy()
+        rappel.update()
+
+    btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='white', bg='#103985', width=15, height=2)
+    btn.grid(row=6, column=2,columnspan=3,sticky='n')
+
 def nouveau():
     B3['state']='normal'
     B2['state']='disabled'
