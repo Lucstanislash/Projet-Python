@@ -1,4 +1,5 @@
 from Outils import*
+import random
 
 floatt=-14.21
 
@@ -90,8 +91,10 @@ def  AleaFormat5(lis):
         return(formats)
     
 def AleaEx7Ent():
-
-    entier=AleaExAll(10,-10000,10000)
+##
+##    entier=AleaExAll(10,-10000,10000)
+    entier=random.uniform(-1000,10000)
+    entier=round(entier,2)
     return(entier)
    
 def AleaEx7IEEE():   
