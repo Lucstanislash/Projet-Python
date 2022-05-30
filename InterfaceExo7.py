@@ -134,16 +134,21 @@ def Exo7():
         btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='white', bg='#103985', width=15, height=2)
         btn.grid(row=6, column=2,columnspan=3,sticky='n')
 
-    def nouveau():
-        B3['state']='normal'
-        B2['state']='disabled'
-        if man ==1 :
-            alea=SaisieAllEx7()
-            formats=alea[1]
-            valeur=alea[0]
-            saisieVal.config(text=valeur)
-            w1.config(text=formats)
-            
+  def nouveau():
+    B3['state']='normal'
+    B2['state']='disabled'
+    if man ==1 :
+        alea=SaisieAllEx7()
+        formats=alea[1]
+        valeur=alea[0]
+        saisieVal.config(text=valeur)
+        w1.config(text=formats)
+        Resultats.delete(0,END)
+    else:
+        
+       saisieVal.delete(0,END)
+       Resultats.delete(0,END)
+        
     B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2,command=lambda:create())
 
     B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:nouveau())
