@@ -147,14 +147,14 @@ def get(formats):
         util = Resultats.get()
 
     if formats=="IEEE":
-        ok=CtrlSyntaxe(entier,10,1,20,-10000,10000)
+        ok=CtrlSyntaxe(str(entier),10,1,20,-10000,10000)
         ok2=CtrlSyntaxe(util,16,1,8)
         if ok==False or ok2==False:
             messagebox.showerror("showerror", "Mauvaise saisie")
             return(1)
     else:
         ok=CtrlSyntaxe(entier,16,1,8)
-        ok2=CtrlSyntaxe(entier,10,1,20,-10000,10000)
+        ok2=CtrlSyntaxe(util,10,1,20,-10000,10000)
         if ok==False or ok2==False:
             messagebox.showerror("showerror", "Mauvaise saisie")
             return(1)
@@ -184,11 +184,11 @@ def get(formats):
 OptionsExo1 = ("IEEE","entier")
 
 
-titre=Label(fenetre, text="Les réels", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')  # Placement de l'invite
+titre=Label(fenetre, text="Les réels", font=("Courier", 40, "italic"), fg='black', bg='lightskyblue1')  # Placement de l'invite
 
-soustitre=Label(fenetre, text="Quelques Indications: ", font=("courier", 25), fg='darkblue', bg='lightskyblue1') 
-
-
+soustitre=Label(fenetre, text="Quelques Indications: Les valeurs en base 10 sont compris entre -10 000 et 10 000 ", font=("courier", 20), fg='darkblue', bg='lightskyblue1') 
+##
+##indication=Label(fenetre,text="Les valeurs en base 10 sont compris entre -10 000 et 10 000 ", font=("courier", 10), fg='darkblue', bg='lightskyblue1') 
 
 txt1=Label(fenetre, text="Réel à convertir", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
 if man==2:
@@ -255,7 +255,7 @@ def create():
     btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='white', bg='#103985', width=15, height=2)
     btn.grid(row=6, column=2,columnspan=3,sticky='n')
 
- def nouveau():
+def nouveau():
     B3['state']='normal'
     B2['state']='disabled'
     if man ==1 :
@@ -276,12 +276,12 @@ B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "itali
  
 B3=Button(fenetre, text="Valider", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:get(formats))
  
-B4=Button(fenetre, text="Score", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2)
+B4=Button(fenetre, text="Score", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,state='disabled')
  
 B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='grey', width=15, height=2,command=fenetre.destroy)
 
 titre.grid(row=1, column=2,columnspan=3)
-soustitre.grid(row=2, column=1,columnspan=3,sticky='w',ipady=40)
+soustitre.grid(row=2, column=1,columnspan=5,sticky='w',ipady=40)
 txt1.grid(row=3, column=1,columnspan=2,sticky='w',ipady=40)
 saisieVal.grid(row=3, column=2,ipadx=200,columnspan=4,ipady=10)
 
