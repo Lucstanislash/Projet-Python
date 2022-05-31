@@ -4,6 +4,7 @@ from tkinter import ttk
 from Outils import*
 import random
 from tkinter import messagebox
+from Exo8 import *
 
 fenetre=tk.Tk()
 fenetre.config(background="lightskyblue1")
@@ -26,7 +27,54 @@ fenetre.columnconfigure(4, weight=1)
 fenetre.columnconfigure(5, weight=1)
 
 man=2
+donne=""
+util=[]
+if man ==1 :
+    TailleTab=AleaExAll(10,30,300)
+    TailleCase=AleaExAll(10,1,30)
+    AdTab=AleaExAll(10,1,1000)
+    donne2=AleaExAll(10,1,donne[1])
+    donne=(TailleTab,TailleCase,Ad1mot)
 
+def control():
+    TailleTab = TailleTab.get()
+    TailleCase = TailleCase.get()
+    AdPMTab = AdPMTab.get()
+    if TailleTab*TailleCase<950:
+        a=CtrlSyntaxe(str(TailleTab),10,1,10,30,300)
+        if ok==False:
+            return(1)
+    else:
+        return(1)
+    return(TailleTab,TailleCase,Ad1mot)
+
+def get(donne):
+    if man==2:
+        donne=control()
+        if donne==1:
+            return(1)
+    util.append = NbCTab.get()
+    util.append = NumPTab.get()
+    util.append = NumDTab.get()
+
+    rep=RepEx8(donne)
+    rep2=donne[2]+(donne2-1)*donne[1]
+    Verif=VerifRep(rep,util)
+    
+    if Verif == 1:
+        B3['state']='disabled' #bloquer le bouton valider ==> Gagner
+        B2['state']='normal'
+        messagebox.showinfo(title="Information",
+                            message="Bonne Réponse, Bravo !! ")
+    elif Verif == -1:
+        B3['state']='disabled' #bloquer le bouton valider ==> Perdu
+        B2['state']='normal'  #débloquer le bouton nouveau ==> recommencer
+        messagebox.showinfo(title="Information",
+                            message=" Mauvaise réponse, vous avez perdu !\n \n Le résultat est: \n" +("".join(rep)))
+    elif Verif == 0:
+       messagebox.showinfo(title="Information",
+                            message="Mauvaise réponse, réessayer !")
+       
 ## INTERFACE ##########################
 
        
@@ -35,10 +83,10 @@ titre=Label(fenetre, text="Les Tableaux", font=("Courier", 40, "italic"), fg='bl
 soustitre=Label(fenetre, text="Quelques Indications:  ", font=("courier", 20), fg='darkblue', bg='lightskyblue1') 
 
 txt1=Label(fenetre, text="Taille du tableau", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1')
-txt1a=Label(fenetre, text="(en nombre de case)", font=("courier", 15, "italic"), fg='black', bg='lightskyblue1')
+txt1a=Label(fenetre, text="(en nombre de case)", font=("courier", 12, "italic"), fg='black', bg='lightskyblue1')
 
 txt2=Label(fenetre, text="Taille d'une case", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1')
-txt2a=Label(fenetre, text="(en nombre de mot)", font=("courier", 15, "italic"), fg='black', bg='lightskyblue1')
+txt2a=Label(fenetre, text="(en nombre de mot)", font=("courier", 12, "italic"), fg='black', bg='lightskyblue1')
 
 txt3=Label(fenetre, text="Adresse 1 mot ", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1')
 txt4=Label(fenetre, text="Numéro de case", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1')
