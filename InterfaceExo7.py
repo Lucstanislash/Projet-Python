@@ -278,7 +278,7 @@ B3=Button(fenetre, text="Valider", font=("courier", 18, "italic"), fg='white', b
  
 B4=Button(fenetre, text="Score", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2)
  
-B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='grey', width=15, height=2)
+B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='grey', width=15, height=2,command=fenetre.destroy)
 
 titre.grid(row=1, column=2,columnspan=3)
 soustitre.grid(row=2, column=1,columnspan=3,sticky='w',ipady=40)
