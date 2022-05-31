@@ -169,6 +169,7 @@ def get(formats):
     
     if Verif == 1:
         B3['state']='disabled' #bloquer le bouton valider ==> Gagner
+        B2['state']='normal'
         messagebox.showinfo(title="Information",
                             message="Bonne Réponse, Bravo !! ")
     elif Verif == -1:
