@@ -9,11 +9,14 @@ fenetre=tk.Tk()
 fenetre.config(background="lightskyblue1")
 
 fenetre.rowconfigure(1, weight=0)
-fenetre.rowconfigure(2, weight=0)
+fenetre.rowconfigure(2, weight=2)
 fenetre.rowconfigure(3, weight=1)
 fenetre.rowconfigure(4, weight=1)
 fenetre.rowconfigure(5, weight=1)
 fenetre.rowconfigure(6, weight=1)
+fenetre.rowconfigure(7, weight=1)
+fenetre.rowconfigure(8, weight=1)
+fenetre.rowconfigure(9, weight=1)
 
 fenetre.columnconfigure(0, weight=1)
 fenetre.columnconfigure(1, weight=1)
@@ -21,105 +24,63 @@ fenetre.columnconfigure(2, weight=1)
 fenetre.columnconfigure(3, weight=1)
 fenetre.columnconfigure(4, weight=1)
 fenetre.columnconfigure(5, weight=1)
+
 man=2
-formats=""
-if man ==1 :
-    alea=SaisieAllEx7()
-    formats=alea[1]
-    valeur=alea[0]
+
+## INTERFACE ##########################
+
+       
+titre=Label(fenetre, text="Les Tableaux", font=("Courier", 40, "italic"), fg='black', bg='lightskyblue1')  # Placement de l'invite
+
+soustitre=Label(fenetre, text="Quelques Indications:  ", font=("courier", 20), fg='darkblue', bg='lightskyblue1') 
+
+txt1=Label(fenetre, text="Taille du tableau", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1')
+txt1a=Label(fenetre, text="(en nombre de case)", font=("courier", 15, "italic"), fg='black', bg='lightskyblue1')
+
+txt2=Label(fenetre, text="Taille d'une case", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1')
+txt2a=Label(fenetre, text="(en nombre de mot)", font=("courier", 15, "italic"), fg='black', bg='lightskyblue1')
+
+txt3=Label(fenetre, text="Adresse 1 mot ", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1')
+txt4=Label(fenetre, text="Numéro de case", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1')
+
+txtQ10=Label(fenetre, text="Nombre de mots", font=("courier", 20), fg='black', bg='lightskyblue1')
+txtQu1=Label(fenetre, text="Question 1 :", font=("courier", 20, "bold"), fg='black', bg='lightskyblue1')
+txtQ11=Label(fenetre, text="Numéro du premier mot", font=("courier", 20), fg='black', bg='lightskyblue1')
+txtQ12=Label(fenetre, text="Numéro du dernier mot", font=("courier", 20), fg='black', bg='lightskyblue1')
+
+txtQ2=Label(fenetre, text="Mot contenus dans la case", font=("courier", 20), fg='black', bg='lightskyblue1')
+txtQu2=Label(fenetre, text="Question 2 :", font=("courier", 20, "bold"), fg='black', bg='lightskyblue1')
+
     
-def get(formats):
-    if man==2:
-        entier = saisieVal.get()
-        util = Resultats.get()
-        formats = fenetre.option_var.get()
-    else:
-        entier=valeur
-        util = Resultats.get()
+TailleTab=Entry(fenetre,justify='center',borderwidth=3)
 
-    if formats=="IEEE":
-        ok=CtrlSyntaxe(str(entier),10,1,20,-10000,10000)
-        ok2=CtrlSyntaxe(util,16,1,8)
-        if ok==False or ok2==False:
-            messagebox.showerror("showerror", "Mauvaise saisie")
-            return(1)
-    else:
-        ok=CtrlSyntaxe(entier,16,1,8)
-        ok2=CtrlSyntaxe(util,10,1,20,-10000,10000)
-        if ok==False or ok2==False:
-            messagebox.showerror("showerror", "Mauvaise saisie")
-            return(1)
-    
-    if formats=="IEEE":
-        rep=Ent_IEEE(entier)
+TailleCase=Entry(fenetre,justify='center',borderwidth=3)
 
-    else:
-        rep=IEE_Ent(entier)
-    
-    Verif=VerifRep(rep,util)
-    
-    if Verif == 1:
-        B3['state']='disabled' #bloquer le bouton valider ==> Gagner
-        B2['state']='normal'
-        messagebox.showinfo(title="Information",
-                            message="Bonne Réponse, Bravo !! ")
-    elif Verif == -1:
-        B3['state']='disabled' #bloquer le bouton valider ==> Perdu
-        B2['state']='normal'  #débloquer le bouton nouveau ==> recommencer
-        messagebox.showinfo(title="Information",
-                            message=" Mauvaise réponse, vous avez perdu !\n \n Le résultat est: \n" +("".join(rep)))
-    elif Verif == 0:
-       messagebox.showinfo(title="Information",
-                            message="Mauvaise réponse, réessayer !")
+AdPMTab=Entry(fenetre,justify='center',borderwidth=3)
 
 
-OptionsExo1 = ("IEEE","entier")
-
-
-titre=Label(fenetre, text="Les réels", font=("Courier", 40, "italic"), fg='black', bg='lightskyblue1')  # Placement de l'invite
-
-soustitre=Label(fenetre, text="Quelques Indications: Les valeurs en base 10 sont compris entre -10 000 et 10 000 ", font=("courier", 20), fg='darkblue', bg='lightskyblue1') 
-##
-##indication=Label(fenetre,text="Les valeurs en base 10 sont compris entre -10 000 et 10 000 ", font=("courier", 10), fg='darkblue', bg='lightskyblue1') 
-
-txt1=Label(fenetre, text="Réel à convertir", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-if man==2:
-    
-    saisieVal=Entry(fenetre) 
-    val=StringVar(fenetre) # variable qui récupérera la valeur de la case à cocher
-
-else:
-    saisieVal=Label(fenetre, text=valeur, font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
+NumCase=Entry(fenetre,justify='center',borderwidth=3)
 
 
 
-txt2=Label(fenetre, text="Convertir au format", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-if man==2:
-   
-    fenetre.option_var= tk.StringVar(fenetre)
-    w1 = ttk.OptionMenu(fenetre,fenetre.option_var,OptionsExo1[0], *OptionsExo1)
-else:
-    w1=Label(fenetre, text=formats, font=("courier", 15, "italic"), fg='black', bg='white',width=4, height=1)
+NbCTab=Entry(fenetre,justify='center')
 
+NumPTab=Entry(fenetre,justify='center') 
+NumDTab=Entry(fenetre,justify='center')
 
+MotCase=Entry(fenetre,justify='center') 
 
-txt3=Label(fenetre, text="Résultat", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-
-Resultats=Entry(fenetre) #width= largeur, height= hauteur) # Création de la zone de résultats
-
-
-        
 
 def create():
     rappel = Toplevel(fenetre)
     rappel.config(background="lightskyblue1")
-    titre=Label(rappel,text="Rappel", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
+    titre=Label(rappel,text="Rappel", font=("Courier", 40, "italic"), fg='darkblue', bg='lightskyblue1')
     titre.grid(row=1, column=2,columnspan=3,sticky='s')
 
-    txt1=Label(rappel, text="1 bit de signe", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
-    txt2=Label(rappel, text="8 bits d’exposant biaisé (biaisé de 127)", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
-    txt3=Label(rappel, text="23 bits de mantisse", font=("courier", 25, "italic"), fg='black', bg= 'lightskyblue1',width=40, height=2)
-    txt4=Label(rappel, text="Ne pas oublier le bit implicite", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
+    txt1=Label(rappel, text="1 bit de signe", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
+    txt2=Label(rappel, text="8 bits d’exposant biaisé (biaisé de 127)", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
+    txt3=Label(rappel, text="23 bits de mantisse", font=("courier", 20, "italic"), fg='black', bg= 'lightskyblue1',width=40, height=2)
+    txt4=Label(rappel, text="Ne pas oublier le bit implicite", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
 
     txt1.grid(row=2, column=3)
     txt2.grid(row=3, column=3)
@@ -147,24 +108,11 @@ def create():
     btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='white', bg='#103985', width=15, height=2)
     btn.grid(row=6, column=2,columnspan=3,sticky='n')
 
-def nouveau():
-    B3['state']='normal'
-    B2['state']='disabled'
-    if man ==1 :
-        alea=SaisieAllEx7()
-        formats=alea[1]
-        valeur=alea[0]
-        saisieVal.config(text=valeur)
-        w1.config(text=formats)
-        Resultats.delete(0,END)
-    else:
-        
-       saisieVal.delete(0,END)
-       Resultats.delete(0,END)
+
         
 B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2,command=lambda:create())
 
-B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:nouveau())
+B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2)
  
 B3=Button(fenetre, text="Valider", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:get(formats))
  
@@ -172,23 +120,53 @@ B4=Button(fenetre, text="Score", font=("courier", 18, "italic"), fg='white', bg=
  
 B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='grey', width=15, height=2,command=fenetre.destroy)
 
-titre.grid(row=1, column=2,columnspan=3)
-soustitre.grid(row=2, column=1,columnspan=5,sticky='w',ipady=40)
-txt1.grid(row=3, column=1,columnspan=2,sticky='w',ipady=40)
-saisieVal.grid(row=3, column=2,ipadx=200,columnspan=4,ipady=10)
+B6=Button(fenetre, text="Go!", font=("calibri", 18, "bold"), fg='white', bg='#103985', width=16, height=0)
 
-txt2.grid(row=4, column=1,columnspan=2,sticky='w')
-txt3.grid(row=5, column=1,columnspan=2,sticky='w',ipady=40)
-w1.grid(row=4, column=2,ipadx=235,columnspan=4,ipady=10)
-Resultats.grid(row=5, column=2,ipadx=200,columnspan=4,ipady=10)
+titre.grid(row=1, column=2,columnspan=3)
+soustitre.grid(row=2, column=1,columnspan=5,sticky='w')
+
+txt1.grid(row=3, column=1,columnspan=2,sticky='w')
+TailleTab.grid(row=3, column=2,ipady=10)
+
+txt1a.grid(row=3, column=1,sticky='s')
+
+txt2.grid(row=3, column=3,columnspan=4,sticky='w')
+TailleCase.grid(row=3,column=4,ipady=10)
+
+txt2a.grid(row=3, column=3,sticky='s')
+
+B6.grid(row=4, column=5,sticky='nw')
+
+txt3.grid(row=4, column=1,columnspan=2,sticky='w',ipady=30)
+AdPMTab.grid(row=4, column=2,ipady=10)
+
+txt4.grid(row=4,column=3,columnspan=4,sticky='w',ipady=30)
+NumCase.grid(row=4, column=4,ipady=10)
+
+txtQ10.grid(row=5, column=2,columnspan=3,sticky='w')
+NbCTab.grid(row=5, column=4,columnspan=5,ipadx=100,ipady=10,sticky='w')
+
+txtQu1.grid(row=5, column=1,sticky='w')
+
+txtQ11.grid(row=6, column=2,columnspan=3,sticky='w')
+NumPTab.grid(row=6, column=4,columnspan=5,ipadx=100,ipady=10,sticky='w')
+
+txtQ12.grid(row=7, column=2,columnspan=3,sticky='w')
+NumDTab.grid(row=7, column=4,columnspan=5,ipadx=100,ipady=10,sticky='w')
+
+
+txtQ2.grid(row=8, column=2,columnspan=3,sticky='w')
+MotCase.grid(row=8,column=4,columnspan=5,ipadx=100,ipady=10,sticky='w')
+
+txtQu2.grid(row=8, column=1,sticky='w')
 
 
 
 #bouton#
-B1.grid(row=6, column=1)
-B2.grid(row=6, column=2)
-B3.grid(row=6, column=3)
-B4.grid(row=6, column=4)
-B5.grid(row=6, column=5)
+B1.grid(row=9, column=1)
+B2.grid(row=9, column=2)
+B3.grid(row=9, column=3)
+B4.grid(row=9, column=4)
+B5.grid(row=9, column=5)
 
 fenetre.mainloop()
