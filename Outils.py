@@ -3,6 +3,7 @@
 
 from random import *
 def CtrlSyntaxe(ch,syn,min,max,min10=0,max10=0):
+    comptep=0
     "controle la syntaxe de ch en fonction de syn (ch peux être un nombre en base 2, 8, 10, 16, piussance syn prendra respectivement les valeurs2, 8 ,10, 16, puissance pour indiquer la syntaxe que ch doit avoir."
     mot2='01'
     mot8='01234567'
@@ -20,9 +21,25 @@ def CtrlSyntaxe(ch,syn,min,max,min10=0,max10=0):
             if not i in mot:
                 ok=False
                 break
-        if ok and syn==10:
-            if not int(float(ch)) in range(min10,max10+1):
+        if ok and syn==10:            
+            for f in range(len(ch)):
+                if ch[f]=='-' and f>=1:
+                    ok=False
+                if ch[0]=='-':
+                    if ch[f]=='.':
+                        comptep+=1
+                        if f<2:
+                            ok=False
+                else:
+                    if ch[f]=='.':
+                        comptep+=1
+                        if f<1:
+                            ok=False
+            if comptep>1:
                 ok=False
+            if ok==True:
+                if not int(float(ch)) in range(min10,max10+1):
+                    ok=False
     else:
         ok=False
     return(ok)
