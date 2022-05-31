@@ -169,15 +169,16 @@ def get(formats):
     
     if Verif == 1:
         B3['state']='disabled' #bloquer le bouton valider ==> Gagner
-        B2['state']='normal'
-        resu=Label(fenetre, text="Bonne Réponse, Bravo !! ", font=("courier", 25, "italic"), fg='green', bg='lightskyblue1') #width=largeur, height=hauteur ,command= partial(PageChoix,"Entiers non signées")) #, command= PageChoix("Entiers non signées")
+        messagebox.showinfo(title="Information",
+                            message="Bonne Réponse, Bravo !! ")
     elif Verif == -1:
         B3['state']='disabled' #bloquer le bouton valider ==> Perdu
         B2['state']='normal'  #débloquer le bouton nouveau ==> recommencer
-        resu=Label(fenetre, text="Vous avez perdu ! Le résultat est :", font=("courier", 25, "italic"), fg='red', bg='lightskyblue1')
+        messagebox.showinfo(title="Information",
+                            message=" Mauvaise réponse, vous avez perdu !\n \n Le résultat est: \n" +("".join(rep)))
     elif Verif == 0:
-        resu=Label(fenetre, text="Mauvaise réponse, réessayer ! ", font=("courier", 25, "italic"), fg='red', bg='lightskyblue1') #width=largeur, height=hauteur ,command= partial(PageChoix,"Entiers non signées")) #, command= PageChoix("Entiers non signées")
-    resu.grid(row=5,column=1,columnspan=4,sticky='s')
+       messagebox.showinfo(title="Information",
+                            message="Mauvaise réponse, réessayer !")
 
 
 OptionsExo1 = ("IEEE","entier")
