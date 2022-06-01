@@ -22,7 +22,7 @@ fenetre.columnconfigure(3, weight=1)
 fenetre.columnconfigure(4, weight=1)
 fenetre.columnconfigure(5, weight=1)
 
-man=1
+man=2
 #========================Calcul de la réponse selon les données==============================
 def repEx4(ch,puis,oper):
     if oper=='*':
@@ -127,25 +127,15 @@ if man==2:
     #====================================cadre1=================x 
     
     txt1=Label(fenetre, text="Type d'opération", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-    txt1.grid(row=3, column=1,columnspan=2,sticky='w',ipady=10)
     oper=Label(fenetre, text=donnee[2], font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
-    oper.grid(row=3,column=2,ipadx=100,columnspan=4,ipady=10) # Placement de la zone de saisie
-
 
     txt2=Label(fenetre, text="Nombre Binaire ", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-    txt2.grid(row=4, column=1,columnspan=2,sticky='w')
     nbbin=Label(fenetre, text=donnee[0], font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
-    nbbin.grid(row=4, column=2,ipadx=100,columnspan=4,ipady=10)
 
     txt3=Label(fenetre, text="Puissance en base de 2 ", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-    txt3.grid(row=5, column=1,columnspan=2,sticky='w',ipady=10)
     puis=Label(fenetre, text=donnee[1], font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
-    puis.grid(row=5, column=2,ipadx=100,columnspan=4,ipady=10)
-
     txt4=Label(fenetre, text="Résultat", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-    txt4.grid(row=6,column=1,columnspan=2,sticky='w',ipady=10)
     res=Entry(fenetre) 
-    res.grid(row=6, column=2,ipadx=100,columnspan=4,ipady=10)
 
 #==============================================================================================================
 #=====================================Manuel===================================================================
@@ -213,25 +203,16 @@ else:
     #===================================cadre2
     #puissance
     txt1=Label(fenetre, text="Type d'opération", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-    txt1.grid(row=3, column=1,columnspan=2,sticky='w',ipady=10)
     oper=Entry(fenetre) 
-    oper.grid(row=3,column=2,ipadx=100,columnspan=4,ipady=10) # Placement de la zone de saisie
-
 
     txt2=Label(fenetre, text="Nombre Binaire ", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-    txt2.grid(row=4, column=1,columnspan=2,sticky='w')
     nbbin=Entry(fenetre) 
-    nbbin.grid(row=4, column=2,ipadx=100,columnspan=4,ipady=10)
 
     txt3=Label(fenetre, text="Puissance en base de 2 ", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-    txt3.grid(row=5, column=1,columnspan=2,sticky='w',ipady=10)
     puis=Entry(fenetre) 
-    puis.grid(row=5, column=2,ipadx=100,columnspan=4,ipady=10)
 
     txt4=Label(fenetre, text="Résultat", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-    txt4.grid(row=6,column=1,columnspan=2,sticky='w',ipady=10)
     res=Entry(fenetre) 
-    res.grid(row=6, column=2,ipadx=100,columnspan=4,ipady=10)
 #===========================================================
 #========= Rappel fenetre ==================================
 #===========================================================
@@ -283,7 +264,18 @@ l4 = Label(fenetre,
                width = 15
                )
 l4.grid(row=2, column=3,columnspan=4,sticky='w',ipady=10)
-indic=
+
+
+txt1.grid(row=3, column=1,columnspan=2,sticky='w',ipady=10)
+oper.grid(row=3,column=2,ipadx=100,columnspan=4,ipady=10) # Placement de la zone de saisie
+txt2.grid(row=4, column=1,columnspan=2,sticky='w')
+nbbin.grid(row=4, column=2,ipadx=100,columnspan=4,ipady=10)
+txt3.grid(row=5, column=1,columnspan=2,sticky='w',ipady=10)
+puis.grid(row=5, column=2,ipadx=100,columnspan=4,ipady=10)
+txt4.grid(row=6,column=1,columnspan=2,sticky='w',ipady=10)
+res.grid(row=6, column=2,ipadx=100,columnspan=4,ipady=10)
+
+    
 B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2,command=lambda:create())
 B2=Button(fenetre, text="Nouveau",font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:Nouveau())
 B3=Button(fenetre, text="Valider",command=partial(Exo4, l4), font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2)
