@@ -64,15 +64,11 @@ if man==2:
                     ch+='0'
         print("nombre binaire",ch)
         return ([ch, p, oper])
-    #===========================================================
-    #========= Contrôl =========================================
-    #===========================================================
-    def control(res):
-        ok=True
-        if not CtrlSyntaxe(nbbin,2,1,16):
+    def control2(ch):
+        if not CtrlSyntaxe(ch,2,1,35):
             ok=False
-            messagebox.showerror("showerror", "Mauvaise saisie du nombre binaire")
-    
+            messagebox.showerror("ATTENTION !", "Vérifier la saisie de votre résultat.")
+
     #========================================================================
     donnee=Alea4()
     op=donnee[2]
@@ -86,7 +82,7 @@ if man==2:
         base=[2,10]
         rep=repEx4(ch,p,op)
         util=res.get()
-        #control(util)
+        control2(util)
         verif=VerifRep(rep,util)
         if verif==0:
             res1="Réessayer"
@@ -142,21 +138,6 @@ if man==2:
 #==============================================================================================================
 
 else:
-    #===========================================================
-    #========= Contrôl =========================================
-    #===========================================================
-    def control(oper,nbbin,puis):
-        ok=True
-        op=['*','/']
-        if oper not in op:
-            ok=False
-            messagebox.showerror("showerror", "Operation : Mettre '*' ou '/'")
-        if not CtrlSyntaxe(nbbin,2,1,16):
-            ok=False
-            messagebox.showerror("showerror", "Mauvaise saisie du nombre binaire")
-        if not CtrlSyntaxe(puis,10,1,10,1,8):
-            ok=False
-            messagebox.showerror("showerror", "Mauvaise saisie de l'exposant")
     #=====================================================================
     #========================Saisie Manuelle==============================
     #=====================================================================
@@ -213,6 +194,22 @@ else:
 
     txt4=Label(fenetre, text="Résultat", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
     res=Entry(fenetre) 
+#===========================================================
+#========= Contrôl =========================================
+#===========================================================
+def control(oper,nbbin,puis):
+    ok=True
+    op=['*','/']
+    if oper not in op:
+        ok=False
+        messagebox.showerror("ATTENTION !", "Operation : Mettre '*' ou '/'")
+    if not CtrlSyntaxe(nbbin,2,1,16):
+        ok=False
+        messagebox.showerror("ATTENTION !", "Mauvaise saisie du nombre binaire")
+    if not CtrlSyntaxe(puis,10,1,10,1,8):
+        ok=False
+        messagebox.showerror("ATTENTION !", "Mauvaise saisie de l'exposant")
+
 #===========================================================
 #========= Rappel fenetre ==================================
 #===========================================================
