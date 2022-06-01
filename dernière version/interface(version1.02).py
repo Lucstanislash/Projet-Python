@@ -78,7 +78,7 @@ def PageChoix(NomExercice): #======== Fenêtre de demande aléatoire ou manuel =
 ##                    Chap1()
             if NomExercice == "Opérations sans calcul":
                 back(1)
-                Chapitre1.Exo4.Exercice4(fenetre)
+                Chapitre1.Exo4.Exo4(fenetre, 2)
             if NomExercice == "Les Décimaux":
                 Chapitre1.Exo6.Exercice6(1)
             if NomExercice == "Les Réels":
@@ -98,7 +98,7 @@ def PageChoix(NomExercice): #======== Fenêtre de demande aléatoire ou manuel =
 ##                    Chap1()
             if NomExercice == "Opérations sans calcul":
                 back(1)
-                Chapitre1.Exo4.Exercice4(fenetre)
+                Chapitre1.Exo4.Exo4(fenetre, 1)
             if NomExercice == "Les Décimaux":
                 Chapitre1.Exo6.Exercice6(2)
             if NomExercice == "Les Réels":
