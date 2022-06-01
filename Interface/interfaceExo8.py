@@ -28,7 +28,7 @@ fenetre.columnconfigure(4, weight=1)
 fenetre.columnconfigure(5, weight=1)
 
 Raiponce={}
-man=2
+man=2 
 donne=""
 donne2="Attente des valeurs"
 
