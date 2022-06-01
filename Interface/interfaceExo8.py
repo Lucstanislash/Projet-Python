@@ -26,41 +26,67 @@ fenetre.columnconfigure(3, weight=1)
 fenetre.columnconfigure(4, weight=1)
 fenetre.columnconfigure(5, weight=1)
 
+Raiponce={}
 man=2
 donne=""
-util=[]
+donne2="Attente des valeurs"
+
+def VerifRaip(rep,util):
+    a=0
+    "Compare la réponse à l’exercice (rep) avec la réponse de l’utilisateur (util)"
+    if rep == util:
+        a=1
+    else:
+        a=0
+    return(a)
+
 if man ==1 :
-    TailleTab=AleaExAll(10,30,300)
-    TailleCase=AleaExAll(10,1,30)
-    AdTab=AleaExAll(10,1,1000)
-    donne2=AleaExAll(10,1,donne[1])
-    donne=(TailleTab,TailleCase,Ad1mot)
+    taille=AleaExAll(10,30,300)
+    TailleC=AleaExAll(10,1,30)
+    Adresse=AleaExAll(10,1,1000)
+    donne=(taille,TailleC,Adresse)
 
 def control():
-    TailleTab = TailleTab.get()
-    TailleCase = TailleCase.get()
-    AdPMTab = AdPMTab.get()
-    if TailleTab*TailleCase<950:
-        a=CtrlSyntaxe(str(TailleTab),10,1,10,30,300)
-        if ok==False:
+    if man==2:
+        taille = TailleTab.get()
+        TailleC = TailleCase.get()
+        Adresse = AdPMTab.get()
+        if int(taille)*int(TailleC)<950:
+            ok=CtrlSyntaxe(str(taille),10,1,10,30,300)
+            if ok==False:
+                return(1)
+        else:
             return(1)
-    else:
-        return(1)
-    return(TailleTab,TailleCase,Ad1mot)
-
+    return(taille,TailleC,Adresse)
+    
 def get(donne):
+    util=[]
     if man==2:
         donne=control()
         if donne==1:
+            print('cpt')
             return(1)
-    util.append = NbCTab.get()
-    util.append = NumPTab.get()
-    util.append = NumDTab.get()
-
+        donne2=AleaExAll(10,1,int(donne[1]))
+    util+= NbCTab.get()
+    util+= NumPTab.get()
+    util+= NumDTab.get()
+    print(util)
     rep=RepEx8(donne)
-    rep2=donne[2]+(donne2-1)*donne[1]
-    Verif=VerifRep(rep,util)
-    
+    rep2=int(donne[2])+(int(donne2)-1)*int(donne[1])
+    util2=MotCase.get()
+    rep+=str(rep2)
+    util+=str(util2)
+    for i in range(4):
+        Verif=VerifRaip(rep[i],util[i])
+        Raiponce[rep[i]]=Verif
+    print(Raiponce)
+    print(util)
+    print(rep)
+    for i in Raiponce:
+        print('ta mere')
+        #parcourir le dico pour savoir si tout est juste ou tout faut puis renvoyer une valeur en mode je suis verif rep
+        #pas oublier message derreur pour chaque rep
+        
     if Verif == 1:
         B3['state']='disabled' #bloquer le bouton valider ==> Gagner
         B2['state']='normal'
@@ -162,13 +188,13 @@ B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg=
 
 B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2)
  
-B3=Button(fenetre, text="Valider", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:get(formats))
+B3=Button(fenetre, text="Valider", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:get(donne))
  
 B4=Button(fenetre, text="Score", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,state='disabled')
  
 B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='grey', width=15, height=2,command=fenetre.destroy)
 
-B6=Button(fenetre, text="Go!", font=("calibri", 18, "bold"), fg='white', bg='#103985', width=16, height=0)
+B6=Button(fenetre, text="Go!", font=("calibri", 18, "bold"), fg='white', bg='#103985', width=16, height=0,command=lambda:control())
 
 titre.grid(row=1, column=2,columnspan=3)
 soustitre.grid(row=2, column=1,columnspan=5,sticky='w')
