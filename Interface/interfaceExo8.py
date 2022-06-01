@@ -8,6 +8,7 @@ from Exo8 import *
 
 fenetre=tk.Tk()
 fenetre.config(background="lightskyblue1")
+fenetre.attributes('-fullscreen', True)
 
 fenetre.rowconfigure(1, weight=0)
 fenetre.rowconfigure(2, weight=2)
@@ -104,9 +105,10 @@ def get(donne):
 ## INTERFACE ##########################
 
        
+       
 titre=Label(fenetre, text="Les Tableaux", font=("Courier", 40, "italic"), fg='black', bg='lightskyblue1')  # Placement de l'invite
 
-soustitre=Label(fenetre, text="Quelques Indications:  ", font=("courier", 20), fg='darkblue', bg='lightskyblue1') 
+soustitre=Label(fenetre, text="Quelques Indications: La taille du tableau est comprise entre 30 et 300 cases \n                     Taille mot * taille case ne doit pas dépasser 950 mots ",font=("courier", 20), fg='darkblue', bg='lightskyblue1') 
 
 txt1=Label(fenetre, text="Taille du tableau", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1')
 txt1a=Label(fenetre, text="(en nombre de case)", font=("courier", 12, "italic"), fg='black', bg='lightskyblue1')
@@ -125,16 +127,21 @@ txtQ12=Label(fenetre, text="Numéro du dernier mot", font=("courier", 20), fg='b
 txtQ2=Label(fenetre, text="Mot contenus dans la case", font=("courier", 20), fg='black', bg='lightskyblue1')
 txtQu2=Label(fenetre, text="Question 2 :", font=("courier", 20, "bold"), fg='black', bg='lightskyblue1')
 
+if man ==2:
     
-TailleTab=Entry(fenetre,justify='center',borderwidth=3)
+    TailleTab=Entry(fenetre,justify='center',borderwidth=3)
 
-TailleCase=Entry(fenetre,justify='center',borderwidth=3)
+    TailleCase=Entry(fenetre,justify='center',borderwidth=3)
 
-AdPMTab=Entry(fenetre,justify='center',borderwidth=3)
+    AdPMTab=Entry(fenetre,justify='center',borderwidth=3)
 
+else:
+    TailleTab=Label(fenetre, text=taille , font=("courier", 14, "italic"), fg='black', bg='white',borderwidth=3, relief="sunken",width=10)
+    TailleCase=Label(fenetre, text=TailleC , font=("courier", 14, "italic"), fg='black', bg='white',borderwidth=3, relief="sunken",width=10)
+    AdPMTab=Label(fenetre, text=Adresse , font=("courier", 14, "italic"), fg='black', bg='white',borderwidth=3, relief="sunken",width=10)
 
-NumCase=Entry(fenetre,justify='center',borderwidth=3)
-
+    
+NumCase=Label(fenetre, text=donne2 , font=("courier", 15, "italic"), fg='black', bg='white',borderwidth=3, relief="sunken")
 
 
 NbCTab=Entry(fenetre,justify='center')
@@ -143,6 +150,7 @@ NumPTab=Entry(fenetre,justify='center')
 NumDTab=Entry(fenetre,justify='center')
 
 MotCase=Entry(fenetre,justify='center') 
+
 
 
 def create():
@@ -182,11 +190,40 @@ def create():
     btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='white', bg='#103985', width=15, height=2)
     btn.grid(row=6, column=2,columnspan=3,sticky='n')
 
+def nouveau():
+    B3['state']='normal'
+    B2['state']='disabled'
+    donne2="appuyer sur Go"
+    
+    if man ==1 : 
 
+       taille=AleaExAll(10,30,300)
+       TailleC=AleaExAll(10,1,30)
+       Adresse=AleaExAll(10,1,1000)
+
+       TailleTab.config(text=taille)
+       TailleCase.config(text=TailleC)
+       AdPMTab.config(text=Adresse)
+       NbCTab.delete(0,END)
+       NumPTab.delete(0,END) 
+       NumDTab.delete(0,END)
+       MotCase.delete(0,END)
+       
+    else:
+        
+       TailleTab.delete(0,END)
+       TailleCase.delete(0,END)
+       AdPMTab.delete(0,END)
+
+       
+       NbCTab.delete(0,END)
+       NumPTab.delete(0,END) 
+       NumDTab.delete(0,END)
+       MotCase.delete(0,END)
         
 B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2,command=lambda:create())
 
-B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2)
+B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:nouveau())
  
 B3=Button(fenetre, text="Valider", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:get(donne))
  
