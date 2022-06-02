@@ -103,7 +103,7 @@ def RepUtil():
             B2['state']='normal'
             messagebox.showinfo(title="Information",
                             message="Bonne Réponse, Bravo !! ")
-        elif Verif == 0:
+        elif Verif == 0 or Verif ==-1 :
             B3['state']='disabled' #bloquer le bouton valider ==> Perdu
             B2['state']='normal'  #débloquer le bouton nouveau ==> recommencer
             messagebox.showinfo(title="Information",
