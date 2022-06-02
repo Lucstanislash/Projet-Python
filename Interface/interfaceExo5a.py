@@ -57,7 +57,7 @@ entier=AleaEnt5()
 
 titre=Label(fenetre, text="Déterminer le signe d'un entier", font=("Courier", 30, "italic"), fg='black', bg='lightskyblue1')  # Placement de l'invite
 
-soustitre=Label(fenetre, text="Quelques Indications:  ", font=("courier", 20), fg='darkblue', bg='lightskyblue1') 
+soustitre=Label(fenetre, text="Quelques Indications: voir Rappel ", font=("courier", 20), fg='darkblue', bg='lightskyblue1') 
 
 txt1=Label(fenetre, text="Formats", font=("courier", 30, "italic"), fg='black', bg='lightskyblue1')
 
