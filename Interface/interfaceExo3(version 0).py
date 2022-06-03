@@ -84,13 +84,14 @@ def Valid():
             
     #a=" Mauvaise réponse, vous avez perdu !\n Le résultat est: \n"      
     if vérif == 1:
-        B3.destroy() #bloquer le bouton valider ==> Gagner
+        B3['state']='disabled' #bloquer le bouton valider ==> Gagner
+        B2['state']='normal'
         messagebox.showinfo(title="Information",
                             message="Bonne Réponse, Bravo !! ")
         #resu=Label(cadre1, text="Bonne Réponse, Bravo !! ", font=("courier", 25, "italic"), fg='green', bg='lightskyblue1')
         #resu.pack(pady= 5, side=TOP)
     elif vérif == -1:
-        B3.destroy() #bloquer le bouton valider ==> Perdu
+        B3['state']='disabled' #bloquer le bouton valider ==> Perdu
         messagebox.showinfo(title="Information",
                             message=" Mauvaise réponse, vous avez perdu !\n Le résultat est: \n" +("\n".join(ReponseEx3(lprop, alea)))) 
     elif vérif == 0:
@@ -106,16 +107,12 @@ def create():
     titre=Label(rappel,text="Rappel", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
     titre.grid(row=1, column=2,columnspan=3,sticky='s')
 
-    txt1=Label(rappel, text="Multiplication :", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
-    txt2=Label(rappel, text="Ajouter des 0 à la fin \n du nombre en base 2 donné", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
-    txt3=Label(rappel, text="Division : ", font=("courier", 25, "italic"), fg='black', bg= 'lightskyblue1',width=40, height=2)
-    txt4=Label(rappel, text="Supprimer des 0 à la fin \n du nombre en base 2  donné", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
-
+    txt1=Label(rappel, text="Si un entier \n est multiple d'une puissance (n) de 2 :", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
+    txt2=Label(rappel, text="Il doit se terminer \n par (n) 0.", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
+    
     txt1.grid(row=2, column=3)
     txt2.grid(row=3, column=3)
-    txt3.grid(row=4, column=3)
-    txt4.grid(row=5, column=3)
-
+    
     rappel.rowconfigure(1, weight=1)
     rappel.rowconfigure(2, weight=1)
     rappel.rowconfigure(3, weight=1)
@@ -150,7 +147,7 @@ txt1=Label(fenetre, text="QUESTION: Cochez la bonne réponse...", font=("courier
 txt1.grid(row=2, column=3,columnspan=4,sticky='w',ipady=10)
 #choix aleatoire de la puissance de 2
 txt2=Label(fenetre, text="Puissance de 2", font=("courier", 20), fg='black', bg='lightskyblue1')
-txt2.grid(row=3,column=1,columnspan=2,sticky='w',ipady=10) # Placement de la zone de saisie
+txt2.grid(row=3,column=1,columnspan=2,ipady=10) # Placement de la zone de saisie
 t2 = Text(fenetre,  font=("courier", 15), height = 1, width = 25)
 t2.grid(row=3, column=3,ipadx=100,columnspan=4,ipady=10)
 ch=""
@@ -161,7 +158,7 @@ t2.insert(END, ch)
 
 #choix aleatoire d'entiers binaire
 txt3=Label(fenetre, text="Entiers en binaire", font=("courier", 20), fg='black', bg='lightskyblue1')
-txt3.grid(row=4, column=1,columnspan=2,sticky='w')
+txt3.grid(row=4, column=1,columnspan=2)
 
 my_listbox=Listbox(fenetre,font=("courier", 15), width=25, selectmode = MULTIPLE) #(yscrollcommand = my_scrollbar.set, )
 #my_scrollbar.config(command = my_listbox.yview) 
@@ -201,6 +198,7 @@ def Nouveau ():
     t2.insert(END,ch)
     ### Gestion liste box
     my_listbox.delete(0,END)
+    global lprop
     lprop=List(alea)
     global my_list
     my_list=lprop
