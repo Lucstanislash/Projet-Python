@@ -38,7 +38,7 @@ def dec_bin(decimal,Apres):
         dec *= 2
         if dec < 1 :
             resultat += '0'
-        elif dec > 1 :
+        else :
             resultat += '1'
             dec -= 1
     return resultat
