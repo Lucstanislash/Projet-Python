@@ -8,7 +8,7 @@ from Exo8 import *
 
 fenetre=tk.Tk()
 fenetre.config(background="lightskyblue1")
-fenetre.attributes('-fullscreen', True)
+#fenetre.attributes('-fullscreen', True)
 
 fenetre.rowconfigure(1, weight=0)
 fenetre.rowconfigure(2, weight=2)
@@ -28,10 +28,13 @@ fenetre.columnconfigure(4, weight=1)
 fenetre.columnconfigure(5, weight=1)
 
 Raiponce={}
-man=2 
-donne=""
-donne2="Attente des valeurs"
-
+man=2
+donne=()
+donne2="Appuyer sur Go!"
+ko=1
+taille=""
+TailleC=""
+Adresse=""
 def VerifRaip(rep,util):
     a=0
     "Compare la réponse à l’exercice (rep) avec la réponse de l’utilisateur (util)"
@@ -42,65 +45,128 @@ def VerifRaip(rep,util):
     return(a)
 
 if man ==1 :
-    taille=AleaExAll(10,30,300)
-    TailleC=AleaExAll(10,1,30)
+    taille=AleaExAll(10,30,190)
+    taille=Raccourcir(str(taille))
+    TailleC=AleaExAll(10,1,5)
+    TailleC=Raccourcir(str(TailleC))
     Adresse=AleaExAll(10,1,1000)
+    Adresse=Raccourcir(str(Adresse))
     donne=(taille,TailleC,Adresse)
 
-def control():
+def control(donne,ko,taille,TailleC,Adresse):
+    global donne2
+    B6['state']='disabled'
     if man==2:
         taille = TailleTab.get()
+        taille=Raccourcir(taille)
         TailleC = TailleCase.get()
+        TailleC=Raccourcir(TailleC)
         Adresse = AdPMTab.get()
-        if int(taille)*int(TailleC)<950:
-            ok=CtrlSyntaxe(str(taille),10,1,10,30,300)
-            if ok==False:
-                return(1)
-        else:
+        Adresse=Raccourcir(Adresse)
+        ok=CtrlSyntaxe(str(taille),10,1,10,30,300)
+        ok2=CtrlSyntaxe(str(TailleC),10,1,10,1,300)
+        ok3=CtrlSyntaxe(str(Adresse),10,1,100,1,1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000)
+        if ok==False or ok2==False or ok3==False:
+            B6['state']='normal'
             return(1)
-    return(taille,TailleC,Adresse)
+        elif int(taille)*int(TailleC)>950:
+            B6['state']='normal'
+            return(1)
+    if ko==1:
+        donne2=AleaExAll(10,1,int(taille))
+    donne3=donne2
+    donne=(taille,TailleC,Adresse,str(donne3))
+    NumCase.config(text=donne2)
+    return(donne)
+
+def RepEx8(donne):
+    nbmot=int(donne[0])*int(donne[1])
+    numdermot=(nbmot+int(donne[2]))-1
+    numpremot=donne[2]
+    return([str(nbmot),str(numpremot),str(numdermot)])
     
 def get(donne):
+    ko=0
     util=[]
     if man==2:
-        donne=control()
+        donne=control(donne,ko,taille,TailleC,Adresse)
         if donne==1:
-            print('cpt')
+            messagebox.showerror(title="Information",
+                            message="Mauvaise saisie")
+            B6['state']='normal'
             return(1)
-        donne2=AleaExAll(10,1,int(donne[1]))
-    util+= NbCTab.get()
-    util+= NumPTab.get()
-    util+= NumDTab.get()
-    print(util)
+    else:
+        donne=list(donne)+list(str(donne2))
+    util0=Raccourcir(NbCTab.get())
+    util1=Raccourcir(NumPTab.get())
+    util2=Raccourcir(NumDTab.get())
+    util3=Raccourcir(MotCase.get())
+    util3=util3.replace(",","")
+    util=(util0,util1,util2,util3)
     rep=RepEx8(donne)
-    rep2=int(donne[2])+(int(donne2)-1)*int(donne[1])
-    util2=MotCase.get()
-    rep+=str(rep2)
-    util+=str(util2)
+    if man==1:
+        if type(donne[3])==str:
+            return(1)
+    rep2=(str(int(donne[2])+(int(donne[3])-1)*int(donne[1])))
+    rep4=rep2
+    for i in range(int(donne[1])-1):
+        rep3=int(rep2)+i+1
+        rep4+=","+str(rep3)
+    rep5=rep4.replace(",","")
+    rep.append(rep5)
+    for i in util:
+        if man==1:
+            if type(i)==str:
+                ok=False
+        else:
+            ok=CtrlSyntaxe(i,10,0,200,0,100000000000000000000000000)
+        if ok==False:
+            messagebox.showerror(title="Information",
+                            message="Mauvaise saisie")
+            return(1)
+    Raiponce={}
     for i in range(4):
-        Verif=VerifRaip(rep[i],util[i])
-        Raiponce[rep[i]]=Verif
-    print(Raiponce)
-    print(util)
-    print(rep)
-    for i in Raiponce:
-        print('ta mere')
-        #parcourir le dico pour savoir si tout est juste ou tout faut puis renvoyer une valeur en mode je suis verif rep
-        #pas oublier message derreur pour chaque rep
-        
+        verif=VerifRaip(rep[i],util[i])
+        Raiponce[rep[i]]=verif
+    dico={1:txtQ10,2:txtQ11,3:txtQ12,4:txtQ2}
+    nb=0
+    Verif=VerifRep(rep,list(util))
     if Verif == 1:
         B3['state']='disabled' #bloquer le bouton valider ==> Gagner
         B2['state']='normal'
         messagebox.showinfo(title="Information",
-                            message="Bonne Réponse, Bravo !! ")
+                                message="Bonne Réponse, Bravo !! ")
+        
     elif Verif == -1:
         B3['state']='disabled' #bloquer le bouton valider ==> Perdu
         B2['state']='normal'  #débloquer le bouton nouveau ==> recommencer
         messagebox.showinfo(title="Information",
-                            message=" Mauvaise réponse, vous avez perdu !\n \n Le résultat est: \n" +("".join(rep)))
+                            message=" Mauvaise réponse, vous avez perdu !\n \n Le résultat est: \n"
+                            +"Nombres de mots:"
+                            + ("".join(rep[0]))
+                            + "\n"
+                            +"Numéro du premier mot: "
+                            + ("".join(rep[1]))
+                            + "\n"
+                            +"Numéro du dernier mot: "
+                            + ("".join(rep[2]))
+                            + "\n"
+                            +"Mot contenu dans la case: "
+                            + ("".join(str(donne[3])))
+                            +" :"
+                            +("".join(rep4)))
     elif Verif == 0:
-       messagebox.showinfo(title="Information",
+        for i in Raiponce:
+            if Raiponce[i]==0:
+                nb+=1
+                dico[nb].config(fg='red')
+            else:
+                nb+=1
+                dico[nb].config(fg='black')
+        messagebox.showinfo(title="Information",
                             message="Mauvaise réponse, réessayer !")
+
+    
        
 ## INTERFACE ##########################
 
@@ -159,10 +225,10 @@ def create():
     titre=Label(rappel,text="Rappel", font=("Courier", 40, "italic"), fg='darkblue', bg='lightskyblue1')
     titre.grid(row=1, column=2,columnspan=3,sticky='s')
 
-    txt1=Label(rappel, text="1 bit de signe", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
-    txt2=Label(rappel, text="8 bits d’exposant biaisé (biaisé de 127)", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
-    txt3=Label(rappel, text="23 bits de mantisse", font=("courier", 20, "italic"), fg='black', bg= 'lightskyblue1',width=40, height=2)
-    txt4=Label(rappel, text="Ne pas oublier le bit implicite", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
+    txt1=Label(rappel, text="Si a est le premier mot du tableau,", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
+    txt2=Label(rappel, text=" et si une case contient n mots,", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
+    txt3=Label(rappel, text=" le premier mot de la case n°k", font=("courier", 20, "italic"), fg='black', bg= 'lightskyblue1',width=40, height=2)
+    txt4=Label(rappel, text=" est le mot a+(k-1)*n", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
 
     txt1.grid(row=2, column=3)
     txt2.grid(row=3, column=3)
@@ -191,10 +257,15 @@ def create():
     btn.grid(row=6, column=2,columnspan=3,sticky='n')
 
 def nouveau():
+    txtQ10.config(fg='black')
+    txtQ11.config(fg='black')
+    txtQ12.config(fg='black')
+    txtQ2.config(fg='black')
     B3['state']='normal'
     B2['state']='disabled'
     donne2="appuyer sur Go"
-    
+    NumCase.config(text=donne2)
+    B6['state']='normal'
     if man ==1 : 
 
        taille=AleaExAll(10,30,300)
@@ -231,7 +302,7 @@ B4=Button(fenetre, text="Score", font=("courier", 18, "italic"), fg='white', bg=
  
 B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='grey', width=15, height=2,command=fenetre.destroy)
 
-B6=Button(fenetre, text="Go!", font=("calibri", 18, "bold"), fg='white', bg='#103985', width=16, height=0,command=lambda:control())
+B6=Button(fenetre, text="Go!", font=("calibri", 18, "bold"), fg='white', bg='#103985', width=16, height=0,command=lambda:control(donne,ko,taille,TailleC,Adresse))
 
 titre.grid(row=1, column=2,columnspan=3)
 soustitre.grid(row=2, column=1,columnspan=5,sticky='w')
