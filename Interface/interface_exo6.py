@@ -26,7 +26,7 @@ def NumVirgule(base):
  
 #==========================================================================#
 #Fonction qui permet de convertir les entiers décimaux en binaire décimaux
-def dec_bin(decimal,Apres = 5):
+def dec_bin(decimal,Apres):
     entier, dec = str(decimal).split('.')
     entier = int(entier)
     dec = '0.' + dec
@@ -46,7 +46,7 @@ def dec_bin(decimal,Apres = 5):
 
 #=========================================================================#
 #Fonction qui permet de convertir les binaires décimaux en entier décimaux      
-def bin_dec(binaire,Apres = 5):
+def bin_dec(binaire,Apres):
     #on sépare l'entier et le décimal en deux variables distinctes
     entier, dec = str(binaire).split('.')
     entier = int(entier,2)
@@ -82,6 +82,11 @@ def AleaEx6():
     return(valeur,ordre)
 
 
+def count_decimaux(nombre):
+    n = nombre[::-1].find('.')
+    return(n)
+    
+#==========================================================================================#
 fenetre=Tk()
 fenetre.config(background="lightskyblue1")
 
@@ -117,6 +122,7 @@ def get(ordre):
     else:
         entier = valeur
         apresvirgule = ''
+        nb_apres = count_decimaux(entier)
         util = Resultats.get()
 
     if apresvirgule > '5' :
@@ -142,9 +148,9 @@ def get(ordre):
             rep = dec_bin(entier,apresvirgule)
     else :
         if ordre == "10":
-            rep = bin_dec(entier)
+            rep = bin_dec(entier,nb_apres)
         else:
-            rep = dec_bin(entier)
+            rep = dec_bin(entier,nb_apres)
     
     Verif = VerifRep(rep,util)
     
