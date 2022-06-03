@@ -104,7 +104,9 @@ def get(donne):
     util=(util0,util1,util2,util3)
     rep=RepEx8(donne)
     if man==1:
-        if type(donne[3])==str:
+        if donne[3]=='':
+            print(donne[3])
+            print("Miaou")
             return(1)
     rep2=(str(int(donne[2])+(int(donne[3])-1)*int(donne[1])))
     rep4=rep2
@@ -114,8 +116,8 @@ def get(donne):
     rep5=rep4.replace(",","")
     rep.append(rep5)
     for i in util:
-        if man==1:
-            if type(i)==str:
+        if i=='':
+            if man==1:
                 ok=False
         else:
             ok=CtrlSyntaxe(i,10,0,200,0,100000000000000000000000000)
