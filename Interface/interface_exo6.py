@@ -202,7 +202,7 @@ else:
 txt3=Label(fenetre, text="Nombres après la virgule", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
 if man == 2 :
     val = IntVar(fenetre)
-    saisieVirg=Entry(fenetre) #ERREUR - faut que ça le lise en tant que integer
+    saisieVirg=Entry(fenetre)
 else:
     saisieVirg = Label(fenetre, text='-', font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
 
