@@ -32,6 +32,7 @@ def dec_bin(decimal,Apres = 5):
     dec = '0.' + dec
     dec = float(dec)
     resultat = str(bin(entier).lstrip("0b")+'.')
+    Apres = int(Apres)
 	# Nombre après la virgule
     for i in range(Apres):
         dec *= 2
@@ -52,6 +53,7 @@ def bin_dec(binaire,Apres = 5):
     resultat = entier
     val = 0.0
     puis = 0.5
+    Apres = int(Apres)
     for i in dec: 
         if i =='1':
             val += puis
@@ -61,7 +63,7 @@ def bin_dec(binaire,Apres = 5):
     return str(resultat)
     
 
-#=========================================================================#
+#========================================================================================#
 lischoix = [ '10','2']
 
 def  AleaEx6_Ordre(lischoix):
@@ -76,6 +78,7 @@ def AleaEx6():
             valeur=NumVirgule(10)
     else:     
             valeur=NumVirgule(2)
+            
     return(valeur,ordre)
 
 
@@ -98,12 +101,12 @@ fenetre.columnconfigure(3, weight=1)
 fenetre.columnconfigure(4, weight=1)
 fenetre.columnconfigure(5, weight=1)
 
-man = 2
+man = 1
 ordre = ""
 if man == 1 :
     alea=AleaEx6()
-    ordre=alea[1]
-    valeur=alea[0]
+    ordre = alea[1]
+    valeur = alea[0]
     
 def get(ordre):
     if man == 2:
@@ -113,10 +116,11 @@ def get(ordre):
         ordre = fenetre.option_var.get()
     else:
         entier = valeur
+        apresvirgule = ''
         util = Resultats.get()
 
     if apresvirgule > '5' :
-        messagebox.showerror("showerror", "Mauvaise saisie")
+        messagebox.showerror("showerror", "Il ne faut pas excéder 5 nombres après la virgule")
         return(1)
 
     if ordre == "10":
@@ -152,7 +156,8 @@ def get(ordre):
     elif Verif == 0:
        messagebox.showinfo(title="Information",
                             message="Mauvaise réponse, réessayer !")
-#----------------------------------------------------------------------------------------------
+       
+#------------------------------------------------------------------------------------------------------------#
 
 OptionsExo6 = ("Base 2","Base 10")
 
@@ -168,13 +173,14 @@ if man==2:
     saisieVal=Entry(fenetre) 
     val=StringVar(fenetre) # variable qui récupérera la valeur de la case à cocher
 else:
-    saisieVal=Label(fenetre, text="-", font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
+    saisieVal=Label(fenetre, text=valeur, font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
 
 
 txt2=Label(fenetre, text="Convertir au format", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
 
 ##val.set(OptionsExo6[0]) # default value
 ##w1 = ttk.OptionMenu(fenetre,fenetre.option_var,OptionsExo6[0], *OptionsExo6)
+
 if man==2:
     fenetre.option_var= tk.StringVar(fenetre)
     w1 = ttk.OptionMenu(fenetre,fenetre.option_var,OptionsExo6[0], *OptionsExo6)
@@ -184,19 +190,16 @@ else:
 
 txt3=Label(fenetre, text="Nombres après la virgule", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
 if man == 2 :
-    saisieVirg=Entry(fenetre) #ERREUR - faut que ça le lise en tant que integer
     val = IntVar(fenetre)
+    saisieVirg=Entry(fenetre) #ERREUR - faut que ça le lise en tant que integer
 else:
-    saisieVirg = Label(fenetre, text=valeur, font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
+    saisieVirg = Label(fenetre, text='-', font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
 
 
 txt4=Label(fenetre, text="Résultat", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
 Resultats=Entry(fenetre) #width= largeur, height= hauteur) # Création de la zone de résultats
 
-
-#========================================================================#
-
-
+#======================================================================================================================#
 
 
 B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2,command=lambda:create())
