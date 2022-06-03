@@ -168,7 +168,7 @@ if man==2:
     saisieVal=Entry(fenetre) 
     val=StringVar(fenetre) # variable qui récupérera la valeur de la case à cocher
 else:
-    saisieVal=Label(fenetre, text=valeur, font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
+    saisieVal=Label(fenetre, text="-", font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
 
 
 txt2=Label(fenetre, text="Convertir au format", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
