@@ -135,11 +135,16 @@ def get(ordre):
         if ok == False or ok2 == False:
             messagebox.showerror("showerror", "Mauvaise saisie")
             return(1)
-    
-    if ordre == "10":
-        rep = bin_dec(entier,apresvirgule)
-    else:
-        rep = dec_bin(entier,apresvirgule)
+    if man == 2:
+        if ordre == "10":
+            rep = bin_dec(entier,apresvirgule)
+        else:
+            rep = dec_bin(entier,apresvirgule)
+    else :
+        if ordre == "10":
+            rep = bin_dec(entier)
+        else:
+            rep = dec_bin(entier)
     
     Verif = VerifRep(rep,util)
     
