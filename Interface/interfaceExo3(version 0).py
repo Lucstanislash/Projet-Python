@@ -194,10 +194,20 @@ def Nouveau ():
     global ch
     B3['state']='normal'
     B2['state']='disabled'
-    titre.destroy()
+    ####Gestion Puissance de 2
+    t2.delete('1.0',END)
+    alea=AleaExAll('puissanceExp',1, 20)
+    ch='2**'+str(alea)
+    t2.insert(END,ch)
+    ### Gestion liste box
+    my_listbox.delete(0,END)
+    lprop=List(alea)
+    global my_list
+    my_list=lprop
+    for i in my_list:
+        my_listbox.insert(END, i)
     
     
-
 #======================Cadre 3
 B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2,command=lambda:create())
 B2=Button(fenetre, text="Nouveau",font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:Nouveau())
