@@ -4,7 +4,6 @@ from tkinter import ttk
 from Outils import*
 import random
 from tkinter import messagebox
-from Exo8 import *
 
 fenetre=tk.Tk()
 fenetre.config(background="lightskyblue1")
