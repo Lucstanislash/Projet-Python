@@ -72,11 +72,10 @@ def  AleaEx6_Ordre(lischoix):
 
 def AleaEx6():
     ordre=AleaEx6_Ordre(lischoix)
-    if ordre=='10':
+    if ordre=='2':
             valeur=NumVirgule(10)
     else:     
             valeur=NumVirgule(2)
-            
     return(valeur,ordre)
 
 
@@ -101,7 +100,7 @@ fenetre.columnconfigure(5, weight=1)
 
 man = 2
 ordre = ""
-if man ==1 :
+if man == 1 :
     alea=AleaEx6()
     ordre=alea[1]
     valeur=alea[0]
