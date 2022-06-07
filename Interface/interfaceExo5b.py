@@ -34,15 +34,14 @@ def AleaExB5(basedep):
         print(max)
         
         if basedep=="SVA" :
-                ent=AleaExAll(2,8,16)
+                ent=AleaExAll(2,bit,bit)
         elif basedep=="C2":
-                ent=AleaExAll(2,8,16)
+                ent=AleaExAll(2,bit,bit)
                 
         else:
                 ent=AleaExAll(10,min,max)
-                
-        bits=len(str(ent))           
-        return(ent,bits,bit)
+                           
+        return(ent,bit)
 
 
 
@@ -162,30 +161,38 @@ fenetre.columnconfigure(3, weight=1)
 fenetre.columnconfigure(4, weight=1)
 fenetre.columnconfigure(5, weight=1)
 
-man=2
+man=1
 
 if man==1:
         based=AleaFormatBi5(Li)
-        donne=AleaExB5(based)
-        val=donne[0]
-        bits=donne[1]
-        bit=donne[2]
         basea=AleaFormatBis5(based)        
-       
 
+        
 def Validation():
 
         ok=True
         saisie=control()
+        
         if not saisie==1 :
+
+                Bits=saisie[4]
+                entier=saisie[0]
                 
+                if not Bits=='Appuyer sur Go':
+                        rep=RepExB5(saisie[0],saisie[1],saisie[2])
+                        
+                        for i in range (int(Bits)-len(str(rep))):
+        
+                                rep="0"+rep
+                               
+                else:
+                        rep=RepExB5(saisie[0],saisie[1],saisie[2])
 
-                rep=RepExB5(saisie[0],saisie[1],saisie[2])
-
+                print("voici la rep",rep)
                 util=saisie[3]
-                Verif=VerifRep(rep,util)
+                
+                Verif=VerifRep(str(rep),util)
 
-               
                 if ok==True:
                         
                         if Verif == 1:
@@ -197,7 +204,7 @@ def Validation():
                                 B3['state']='disabled' #bloquer le bouton valider ==> Perdu
                                 B2['state']='normal'  #débloquer le bouton nouveau ==> recommencer
                                 messagebox.showinfo(title="Information",
-                                            message=" Mauvaise réponse, vous avez perdu !\n \n Le résultat est: \n" +("".join(rep)))
+                                            message=" Mauvaise réponse, vous avez perdu !\n \n Le résultat est: \n" +("".join(str(rep))))
                         elif Verif == 0:
                                messagebox.showinfo(title="Information",
                                             message="Mauvaise réponse, réessayer !")
@@ -212,132 +219,155 @@ def control():
                 Bits=Nb.get()
                 util=Resultats.get()
 
-                ok=True
+        else :
                 
+                basedep=menuD.get()
+                entier=Val.get()
+                basearriv=menuA.get()
+                Bits='Appuyer sur Go'
+                util=Resultats.get()
+                bit=Nb.get()
+
+           
+        print("ici la base de départ",basedep)
+        print("voici la base arrive",basearriv)
+        
+        if basedep=="SVA" or basedep=="C2":
                 
-                if basedep=="SVA" or basedep=="C2":
-                        
-                        if entier=='' or  util=='' or Bits=='':
-                                messagebox.showerror("showerror", "Toutes les valeurs ne sont pas saisie")
-                                return(1)
-                        else:
-                                ctrl=CtrlSyntaxe(entier,2,1,16)
+                if entier=='' or  util=='' :
+                        messagebox.showerror("showerror", "Toutes les valeurs ne sont pas saisie")
+                        return(1)
+                else:
+                        ctrl=CtrlSyntaxe(entier,2,2,16)
 
-                                if ctrl==True: 
-                                        if basearriv=="10":
-                                                
-                                                
-                                                ctrlR=CtrlSyntaxe(util,10,0,5,0,99999)
-
-                                                if not ctrlR==True:
-                                                        
-                                                        messagebox.showerror("showerror", "erreur de syntaxe dans la réponse")
-                                                        return(1)
-                                        else:
+                        if ctrl==True: 
+                                if basearriv=="10":
                                         
-                                                ct=CtrlSyntaxe(str(Bits),10,0,4,1,16)
+                                        Bits='0'
+                                        ctrlR=CtrlSyntaxe(util,10,0,5,-99999,99999)
 
-                                                if ct == True:
+                                        if not ctrlR==True:
                                                 
-                                                        ctrlR=CtrlSyntaxe(util,2,int(Bits), int(Bits))
-                                                        if ctrlR==True:
-                                                                
-                                                                if not len(str(entier))==len(str(util)):
-                                                                   
-                                                                        messagebox.showerror("showerror", "Les deux chaines non pas la même longueur")
-                                                                        return(1)
-                                                        else:
-                                                                
-                                                                messagebox.showerror("showerror", "erreur de syntaxe dans la réponse,ou ne correspond pas au nombre de bit")
+                                                messagebox.showerror("showerror", "erreur de syntaxe dans la réponse")
+                                                return(1)
+                                else:
+                                
+                                        if man==2:
+                                                ct=CtrlSyntaxe(str(Bits),10,1,10,4,16)
+                                        else:
+                                                Bits=bit
+                                                ct=CtrlSyntaxe(str(Bits),10,1,10,4,16)
+
+                                        if ct == True:
+                                        
+                                                ctrlR=CtrlSyntaxe(util,2,int(Bits), int(Bits))
+                                                if ctrlR==True:
+                                                        
+                                                        if not len(str(entier))==len(str(util)):
+                                                           
+                                                                messagebox.showerror("showerror", "Les deux chaines non pas la même longueur")
                                                                 return(1)
                                                 else:
-                                                        messagebox.showerror("showerror", "Les bits ne sont pas dans la bonne intervalle")
+                                                        
+                                                        messagebox.showerror("showerror", "erreur de syntaxe dans la réponse,ou ne correspond pas au nombre de bit")
                                                         return(1)
-
-                                else:                   
-                                        
-                                        messagebox.showerror("showerror", "erreur de syntaxe sur l'entier de départ")
-                                        return(1)
-
-
-                                        
-                elif basedep=="10":
-                        
-                        if entier=='' or Bits==''  or  util=='':
-                                messagebox.showerror("showerror", "Toutes les valeurs ne sont pas saisie")
-                                return(1)
-                        else:
-                                
-                                ct=CtrlSyntaxe(str(Bits),10,1,4,4,16)
-                
-                                if ct==True:
-                                        min= 1-2**(int(Bits)-1)
-                                        max= 2**(int(Bits)-1)-1
-                                        print(min)
-                                        print(max
-                                              )
-                                        ctrl=CtrlSyntaxe(entier,10,0,4,min,max)
-
-                                        if ctrl==True:
-                                                ctrlR=CtrlSyntaxe(util,2,int(Bits), int(Bits))
-
-                                                if not ctrlR==True:
-                                                         messagebox.showerror("showerror", "erreur de syntaxe dans la réponse")
-                                                         return(1)
-                                                
                                         else:
-                                                messagebox.showerror("showerror", "erreur de syntaxe dans l'entier de départ")
+                                                messagebox.showerror("showerror", "Les bits ne sont pas dans la bonne intervalle")
                                                 return(1)
-                                                
 
+                        else:                   
+                                
+                                messagebox.showerror("showerror", "erreur de syntaxe sur l'entier de départ")
+                                return(1)
+
+
+                                
+        elif basedep=="10":
+                
+                if entier=='' or Bits==''  or  util=='':
+                        messagebox.showerror("showerror", "Toutes les valeurs ne sont pas saisie")
+                        return(1)
+                else:
+
+
+                        if man==2:
+                                ct=CtrlSyntaxe(str(Bits),10,1,4,4,16)
+                        else:
+                                Bits=bit
+                                print(Bits)
+                                ct=CtrlSyntaxe(str(Bits),10,1,4,4,16)
+        
+                        if ct==True:
+                                min= 1-2**(int(Bits)-1)
+                                max= 2**(int(Bits)-1)-1
+ 
+                                ctrl=CtrlSyntaxe(str(entier),10,1,10,min,max)
+                          
+
+                                if ctrl==True:
+                                        ctrlR=CtrlSyntaxe(util,2,int(Bits),int(Bits))
+
+                                        if not ctrlR==True:
+                                                 messagebox.showerror("showerror", "erreur de syntaxe dans la réponse")
+                                                 return(1)
+                                        
                                 else:
-                                        messagebox.showerror("showerror", "Bits non compris dans l'intervalle")
-                                        return(1)                
+                                        messagebox.showerror("showerror", "erreur de syntaxe dans l'entier de départ")
+                                        return(1)
+                                        
 
-               
-                
-        elif man==1:
-                
-                basedep=based
-                entier=val
-                basearriv=basea           
-                util=Resultats.get()
-                
+                        else:
+                                messagebox.showerror("showerror", "Bits non compris dans l'intervalle")
+                                return(1)                
+            
                 
         return(basedep,entier,basearriv,util,Bits)
 
 def go(): # permet d'afficher ou non le nombre de bits et de calculer la valeur absolu
         GO['state']='disabled'
-        
-        if man==1:
+
+
+        if man==1:                
+                based=menuD.get()
+                basea=menuA.get()
+                donne=AleaExB5(based)
+                val=donne[0]
+                bit=donne[1]
+                        
+                print("go base dep",based)
+                print("go base arriv",basea)
+                print("voici l'entier",val)
                 
                 if basea=="SVA"or basea=="C2":
                         if based=="C2" or based=="SVA":
 
+                                Nb.configure(state="normal")
                                 Nb.delete(0,END)
-                                Nb2=Label(fenetre, text=bits, font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
-                        elif based=="10":
-                                Nb.delete(0,END)
-                                Nb2=Label(fenetre, text=bit, font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
+                                Nb.insert(0,bit)
                                 
+                
+                        elif based=="10":
+
+                                Nb.configure(state="normal")
+                                Nb.delete(0,END)
+                                Nb.insert(0,bit)
 
                                
                 elif basea=="10":
+                        Nb.configure(state="normal")
                         Nb.delete(0,END)
-                        Nb2=Label(fenetre, text="Donnée non utile", font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
+                        Nb.insert(0,"Donnée non utile")
+                        Nb.configure(state="disabled")
+                                
                 
-               
+                Val.configure(state="normal")
                 Val.delete(0,END)
-                Val2=Label(fenetre, text=val, font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
-                Val2.grid(row=6, column=2,ipadx=200,columnspan=4,ipady=15)        
-                Nb2.grid(row=5, column=2,ipadx=200,columnspan=4,ipady=15)
-
+                Val.insert(0, val)
                 
-
+        
         if man==2:
                
-              
-                
+                              
                 if fenetre.menud.get()==fenetre.menua.get():
                         messagebox.showerror("showerror", "La base de départ ne peut pas être identique à la base d'arrivée")
                         GO['state']='normal'
@@ -347,35 +377,68 @@ def go(): # permet d'afficher ou non le nombre de bits et de calculer la valeur 
                         Val.delete(0,END)
 
                         if fenetre.menua.get()=="10":
-
+                                
+                                Nb.configure(state="normal")
                                 Nb.delete(0,END)
-                                Nb2=Label(fenetre, text="Donnée non utile", font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
-                                Nb2.grid(row=5, column=2,ipadx=200,columnspan=4,ipady=15)
+                                Nb.insert(0,"Donnée inutile")
+                                Nb.configure(state="disabled")
+                                                       
                         else:
                                 
                                 Nb.configure(state="normal")
                                 Nb.delete(0,END)
 
                         GO['state']='disabled'
+                 
+                
 
 def nouveau():
 
     B3['state']='normal'
     B2['state']='disabled'
     GO['state']='normal'
+
     if man ==2 :
             
         Val.delete(0,END)
         Val.insert(0, "Appuyer sur Go")
         Val.configure(state="readonly")
         
-        
+        Nb.configure(state="normal")
         Nb.delete(0,END)
         Nb.insert(0, "Appuyer sur Go")
         Nb.configure(state="readonly")
-        
      
         Resultats.delete(0,END)
+        
+    elif man==1:
+       
+        based=AleaFormatBi5(Li)
+        basea=AleaFormatBis5(based)
+      
+        Resultats.delete(0,END)
+        
+        Val.delete(0,END)
+        Val.insert(0, "Appuyer sur Go")
+        Val.configure(state="readonly")
+        
+        Nb.configure(state="normal")
+        Nb.delete(0,END)
+        Nb.insert(0, "Appuyer sur Go")
+        Nb.configure(state="readonly")
+
+        menuA.configure(state="normal")
+        menuA.delete(0,END)
+        menuA.insert(0, basea)
+        menuA.configure(state="readonly")
+
+        menuD.configure(state="normal")
+        menuD.delete(0,END)
+        menuD.insert(0, based)
+        menuD.configure(state="readonly")
+
+        
+        
         
 Val=Entry(justify='center',borderwidth=3)
 Val.insert(0, "Appuyer sur Go")
@@ -391,7 +454,7 @@ Nb.grid(row=5, column=2,ipadx=200,columnspan=4,ipady=15)
                 
 titre=Label(fenetre, text="Conversion", font=("Courier", 40, "italic"), fg='black', bg='lightskyblue1')  
 
-soustitre=Label(fenetre, text="Quelques Indications: valeur 1000000000 impossible à convertir en SVA  ", font=("courier", 20), fg='darkblue', bg='lightskyblue1') 
+soustitre=Label(fenetre, text="Quelques Indications: valeur 1000000000 impossible à convertir, pas de bits avant  4 ", font=("courier", 20), fg='darkblue', bg='lightskyblue1') 
 
 txt1=Label(fenetre, text="Format de départ", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
 if man==2:
@@ -399,8 +462,9 @@ if man==2:
     fenetre.menud= tk.StringVar(fenetre)
     menuD = ttk.OptionMenu(fenetre,fenetre.menud,Li[0], *Li)
 else:
-    menuD=Label(fenetre, text=based, font=("courier", 15, "italic"), fg='black', bg='white',width=4, height=1)
-
+    menuD=Entry(fenetre,justify='center',borderwidth=3)
+    menuD.insert(0, based)
+    menuD.configure(state="readonly")
 
 
 txt2=Label(fenetre, text="Format d'arrivée", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
@@ -409,7 +473,9 @@ if man==2:
     fenetre.menua= tk.StringVar(fenetre)
     menuA = ttk.OptionMenu(fenetre,fenetre.menua,Li[0], *Li)
 else:
-    menuA=Label(fenetre, text=basea, font=("courier", 15, "italic"), fg='black', bg='white',width=4, height=1)
+    menuA=Entry(fenetre,justify='center',borderwidth=3)
+    menuA.insert(0, basea)
+    menuA.configure(state="readonly")
 
 
 
@@ -476,6 +542,7 @@ B4=Button(fenetre, text="Score", font=("courier", 18, "italic"), fg='white', bg=
  
 B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='grey', width=15, height=2,command=fenetre.destroy)
 
+
 GO=Button(fenetre, text="Go!", font=("calibri", 18, "bold"), fg='white', bg='#103985', width=10, height=0,command=lambda:go())        
 GO.grid(row=4, column=5,sticky='n')
 
@@ -483,10 +550,11 @@ titre.grid(row=1, column=2,columnspan=3)
 soustitre.grid(row=2, column=1,columnspan=5,sticky='w',ipady=40)
 
 txt1.grid(row=3, column=1,columnspan=2,sticky='w')
-menuD.grid(row=3, column=2,ipadx=240,columnspan=4,ipady=15)
+menuD.grid(row=3, column=2,ipadx=200,columnspan=4,ipady=15)
 
 txt2.grid(row=4, column=1,columnspan=2,sticky='w')
-menuA.grid(row=4, column=2,ipadx=240,columnspan=4,ipady=15)
+menuA.grid(row=4, column=2,ipadx=200,columnspan=4,ipady=15)
+
 
 txt3.grid(row=5, column=1,columnspan=2,sticky='w')
 
