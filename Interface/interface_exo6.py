@@ -4,7 +4,7 @@ from tkinter import ttk
 from Outils import*
 from random import*
 from tkinter import messagebox
-
+    
     
 ###===================================== L'aléatoire =====================================#
 def NumVirgule(base):
@@ -26,15 +26,15 @@ def NumVirgule(base):
  
 #==========================================================================#
 #Fonction qui permet de convertir les entiers décimaux en binaire décimaux
-def dec_bin(decimal,Apres):
+def dec_bin(decimal,ApresVirg):
     entier, dec = str(decimal).split('.')
     entier = int(entier)
     dec = '0.' + dec
     dec = float(dec)
     resultat = str(bin(entier).lstrip("0b")+'.')
-    Apres = int(Apres)
+    ApresVirg = int(ApresVirg)
 	# Nombre après la virgule
-    for i in range(Apres):
+    for i in range(ApresVirg):
         dec *= 2
         if dec < 1 :
             resultat += '0'
@@ -46,20 +46,20 @@ def dec_bin(decimal,Apres):
 
 #=========================================================================#
 #Fonction qui permet de convertir les binaires décimaux en entier décimaux      
-def bin_dec(binaire,Apres):
+def bin_dec(binaire,ApresVirg):
     #on sépare l'entier et le décimal en deux variables distinctes
     entier, dec = str(binaire).split('.')
     entier = int(entier,2)
     resultat = entier
     val = 0.0
     puis = 0.5
-    Apres = int(Apres)
+    ApresVirg = int(ApresVirg)
     for i in dec: 
         if i =='1':
             val += puis
         puis /= 2
     resultat += (val)
-    resultat = '%.*f' % (Apres, resultat)
+    resultat = '%.*f' % (ApresVirg, resultat)
     return str(resultat)
     
 
@@ -82,9 +82,13 @@ def AleaEx6():
     return(valeur,ordre)
 
 
-def count_decimaux(nombre):
+def count_decimaux(nombre, choix):
     n = nombre[::-1].find('.')
-    return(n)
+    if choix == 'resultat':
+        return(n)
+    elif choix == 'ctrlsynth':
+        if n > 5 :
+            return(True)
     
 #==========================================================================================#
 fenetre=Tk()
@@ -122,7 +126,7 @@ def get(ordre):
     else:
         entier = valeur
         apresvirgule = ''
-        nb_apres = count_decimaux(entier)
+        nb_apres = count_decimaux(entier, 'resultat')
         util = Resultats.get()
 
     if apresvirgule > '5' :
@@ -132,15 +136,24 @@ def get(ordre):
     if ordre == "10":
         ok = CtrlSyntaxe(str(entier),2,1,32)
         ok2 = CtrlSyntaxe(util,10,1,20,0,10000)
+        ok3 = count_decimaux(entier, 'ctrlsynth')
         if ok == False or ok2 == False:
             messagebox.showerror("showerror", "Mauvaise saisie")
+            return(1)
+        elif ok3 == True:
+            messagebox.showerror("showerror", "Maximum de bits après la virgule est : 5")
             return(1)
     else:
         ok = CtrlSyntaxe(entier,10,1,20,0,10000)
         ok2 = CtrlSyntaxe(util,2,1,32)
+        ok3 = count_decimaux(entier, 'ctrlsynth')
         if ok == False or ok2 == False:
             messagebox.showerror("showerror", "Mauvaise saisie")
             return(1)
+        elif ok3 == True:
+            messagebox.showerror("showerror", "Maximum de nombres après la virgule est : 5")
+            return(1)
+        
     if man == 2:
         if ordre == "10":
             rep = bin_dec(entier,apresvirgule)
