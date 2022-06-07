@@ -59,6 +59,7 @@ def Valid():
         for i in lprop:
             if i[-n:]==seq:         #Remplace le calcul(if int(i,2)% (2**n) == 0:)
                 RepEx3.append(i)
+        print(RepEx3)
             #print(" Mauvaise réponse, vous avez perdu !\n Le résultat est:" + [RepEx3])
         return(RepEx3)
 
@@ -69,8 +70,11 @@ def Valid():
         item= my_listbox.curselection() #tous les reponses selectionnées
         for i in item:
             selected_item = my_listbox.get(i) #pour les récuperer
-            UtilEx3.append(selected_item)     #pour les ajouter à la liste des reponses d'utilisateurs
+            UtilEx3.append(selected_item)
+        print(UtilEx3)
+        #pour les ajouter à la liste des reponses d'utilisateurs
         return(UtilEx3)
+    
         #selected_item.set(UtilEx3)
         #on affecte la valeur de l'item à la variable
         #cela affiche les valeur selectionné sur l'unterface
@@ -88,10 +92,10 @@ def Valid():
         B2['state']='normal'
         messagebox.showinfo(title="Information",
                             message="Bonne Réponse, Bravo !! ")
-        #resu=Label(cadre1, text="Bonne Réponse, Bravo !! ", font=("courier", 25, "italic"), fg='green', bg='lightskyblue1')
-        #resu.pack(pady= 5, side=TOP)
+       
     elif vérif == -1:
         B3['state']='disabled' #bloquer le bouton valider ==> Perdu
+        B2['state']='normal'
         messagebox.showinfo(title="Information",
                             message=" Mauvaise réponse, vous avez perdu !\n Le résultat est: \n" +("\n".join(ReponseEx3(lprop, alea)))) 
     elif vérif == 0:
@@ -183,8 +187,7 @@ def delet():
     for i in range (10):
         my_listbox.select_clear(i)
 
-delet= Button(fenetre, text="supprimer", width=5, height=1, command =
-delet)
+delet= Button(fenetre, text="supprimer", width=5, height=1, command =delet)
 delet.grid(row=5, column=4,ipadx=100,columnspan=4,ipady=10)
 
 def Nouveau ():
@@ -208,7 +211,7 @@ def Nouveau ():
     
 #======================Cadre 3
 B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2,command=lambda:create())
-B2=Button(fenetre, text="Nouveau",font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:Nouveau())
+B2=Button(fenetre, text="Nouveau",state="disabled",font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:Nouveau())
 B3=Button(fenetre, text="Valider",command=Valid, font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2)
 B4=Button(fenetre, text="Score", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2, relief="solid")
 B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='red', bg='grey', width=15, height=2)
