@@ -73,36 +73,47 @@ def Valid():
             UtilEx3.append(selected_item)
         print(UtilEx3)
         #pour les ajouter à la liste des reponses d'utilisateurs
-        return(UtilEx3)
+        
     
         #selected_item.set(UtilEx3)
         #on affecte la valeur de l'item à la variable
         #cela affiche les valeur selectionné sur l'unterface
 
     #===============================Vérification de la Réponse d'utilisateur
+        if UtilEx3==[]:
+           
+            return(1)
 
-    vérif = VerifRep(ReponseEx3(lprop, alea),Recup())
-    
-    #================================Validation Rep
-    global resu
+        else:
             
-    #a=" Mauvaise réponse, vous avez perdu !\n Le résultat est: \n"      
-    if vérif == 1:
-        B3['state']='disabled' #bloquer le bouton valider ==> Gagner
-        B2['state']='normal'
+             return(UtilEx3)
+    
+    if not Recup()==1:
+        vérif = VerifRep(ReponseEx3(lprop, alea),Recup())
+   
+    #================================Validation Rep
+        global resu
+                
+        #a=" Mauvaise réponse, vous avez perdu !\n Le résultat est: \n"      
+        if vérif == 1:
+            B3['state']='disabled' #bloquer le bouton valider ==> Gagner
+            B2['state']='normal'
+            messagebox.showinfo(title="Information",
+                                message="Bonne Réponse, Bravo !! ")
+           
+        elif vérif == -1:
+            B3['state']='disabled' #bloquer le bouton valider ==> Perdu
+            B2['state']='normal'
+            messagebox.showinfo(title="Information",
+                                message=" Mauvaise réponse, vous avez perdu !\n Le résultat est: \n" +("\n".join(ReponseEx3(lprop, alea)))) 
+        elif vérif == 0:
+            messagebox.showinfo(title="Information",
+                                message="Mauvaise réponse!")#resu=Label(cadre1, text="Mauvaise réponse, réessayer ! ", font=("courier", 25, "italic"), fg='red', bg='lightskyblue1') #width=largeur, height=hauteur ,command= partial(PageChoix,"Entiers non signées")) #, command= PageChoix("Entiers non signées")
+            #resu.pack(pady= 5, side=TOP)
+    else:
         messagebox.showinfo(title="Information",
-                            message="Bonne Réponse, Bravo !! ")
-       
-    elif vérif == -1:
-        B3['state']='disabled' #bloquer le bouton valider ==> Perdu
-        B2['state']='normal'
-        messagebox.showinfo(title="Information",
-                            message=" Mauvaise réponse, vous avez perdu !\n Le résultat est: \n" +("\n".join(ReponseEx3(lprop, alea)))) 
-    elif vérif == 0:
-        messagebox.showinfo(title="Information",
-                            message="Mauvaise réponse, réessayer en cliquant sur NOUVEAU !")#resu=Label(cadre1, text="Mauvaise réponse, réessayer ! ", font=("courier", 25, "italic"), fg='red', bg='lightskyblue1') #width=largeur, height=hauteur ,command= partial(PageChoix,"Entiers non signées")) #, command= PageChoix("Entiers non signées")
-        #resu.pack(pady= 5, side=TOP)
-
+                                message="Veuillez sélectionnez au moins 3 réponses ")
+    
 #========= Rappel fenetre ==================================
 #===========================================================
 def create():
