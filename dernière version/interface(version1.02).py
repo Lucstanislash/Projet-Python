@@ -1,8 +1,14 @@
 from tkinter import*
 from functools import partial
 import Chapitre1.Exo2
+import Chapitre1.Exo3
 import Chapitre1.Exo4
+import Chapitre1.Exo5a
+import Chapitre1.Exo6
 import Chapitre1.Exo7
+import Chapitre1.Exo8
+
+
 
 fenetre=Tk()
 fenetre.title("Application Python")
@@ -36,6 +42,54 @@ fenetre.columnconfigure(6, weight=1)
             #décimaux
             #les réels
             #les tableaux
+
+def ChapChoix():
+    global titre
+    global soustitre
+    global signe
+    global conversion
+    global RetourM
+    
+    
+    def back(t):#Retour
+        if t== 1:
+            titre.destroy()
+            RetourM.destroy()
+            soustitre.destroy()
+            signe.destroy()
+            conversion.destroy()
+            PageChoix("Entiers signées")
+        elif t==2:
+            titre.destroy()
+            RetourM.destroy()
+            soustitre.destroy()
+            signe.destroy()
+            conversion.destroy()
+
+    def CommandExo(t):
+        
+        if t == 'Signe':
+            back(2)
+            Chapitre1.Exo5a.Exercice5a(fenetre)
+            
+        elif t == 'Conversion':
+            back(2)
+            Chapitre1.Exo5.Exercice5B() # j'ai pas trop compris pourquoi on écris 2 fois exo 
+        
+    titre = Label(fenetre, text= "Entiers signés", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
+    titre.grid(row=1, column=1, columnspan=5)
+
+    soustitre=Label(fenetre, text= "Choisissez votre exercice", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+    soustitre.grid(row=3, column=1, columnspan=5,sticky='s')
+            
+    signe=Button(fenetre, text="Déterminer \n le signe", font=("courier", 18, "italic"), fg='white', bg='#103985',command=partial(CommandExo,'Signe'))
+    signe.grid(row=5, column=2, ipady=30, ipadx=140,sticky='e')
+
+    conversion=Button(fenetre, text="Conversion", font=("courier", 18, "italic"), fg='white', bg='#103985',command=partial(CommandExo,'Conversion'))
+    conversion.grid(row=5, column=4, ipady=30,ipadx=140,sticky='w')
+
+    RetourM=Button(fenetre, text="Retour", font=("courier", 18, "italic"), fg='white', bg='#103985', command=lambda:back(1))
+    RetourM.grid(row=7, column=3,ipady= 15,ipadx=70)
 
 # Command est la fonction produite en cliquant sur chaque exercice
 def PageChoix(NomExercice): #======== Fenêtre de demande aléatoire ou manuel ===========
@@ -74,18 +128,21 @@ def PageChoix(NomExercice): #======== Fenêtre de demande aléatoire ou manuel =
                 back(1)
                 Chapitre1.Exo2.Exercice2(1, fenetre)
                 
-##                if Chapitre1.Exo2.Exercice2(1, fenetre)==True:
-##                    Chap1()
             if NomExercice == "Opérations sans calcul":
                 back(1)
-                Chapitre1.Exo4.Exo4(fenetre, 2)
+                Chapitre1.Exo4.Exercice4(fenetre, 2)
+            if NomExercice == "Entiers signées":
+                back(1)
+                ChapChoix()
             if NomExercice == "Les Décimaux":
-                Chapitre1.Exo6.Exercice6(1)
+                back(1)
+                Chapitre1.Exo6.Exercice6(fenetre, 1)
             if NomExercice == "Les Réels":
                 back(1)
                 Chapitre1.Exo7.Exo7(fenetre, 1)
             if NomExercice == "Les Tableaux":
-                Chapitre1.Exo8.Exercice8(1)
+                back(1)
+                Chapitre1.Exo8.Exercice8(fenetre,1)
             
         elif t == 'Manuel':
             if NomExercice == "Entiers non signées":
@@ -98,14 +155,19 @@ def PageChoix(NomExercice): #======== Fenêtre de demande aléatoire ou manuel =
 ##                    Chap1()
             if NomExercice == "Opérations sans calcul":
                 back(1)
-                Chapitre1.Exo4.Exo4(fenetre, 1)
+                Chapitre1.Exo4.Exercice4(fenetre, 1)
+            if NomExercice == "Entiers signées":
+                back(1)
+                ChapChoix()
             if NomExercice == "Les Décimaux":
-                Chapitre1.Exo6.Exercice6(2)
+                back(1)
+                Chapitre1.Exo6.Exercice6(fenetre, 2)
             if NomExercice == "Les Réels":
                 back(1)
                 Chapitre1.Exo7.Exo7(fenetre, 2)
             if NomExercice == "Les Tableaux":
-                Chapitre1.Exo8.Exercice8(2)
+                back(1)
+                Chapitre1.Exo8.Exercice8(fenetre,2)
     
         #===== en cours
     NomExo = Label(fenetre, text= NomExercice, font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
@@ -121,6 +183,20 @@ def PageChoix(NomExercice): #======== Fenêtre de demande aléatoire ou manuel =
 
     bRetour=Button(fenetre, text="Retour", font=("courier", 18, "italic"), fg='white', bg='#103985', command=partial(back,2))
     bRetour.grid(row=7, column=3,ipady= 15,ipadx=70)
+
+def ChoixExo():
+    tExoChap1.destroy() # pour détruire les buttons de la fenetre2= contient la liste des exos du Chap "Codage de l'information"
+    Bexo1.destroy()
+    Bexo2.destroy()
+    Bexo3.destroy()
+    Bexo4.destroy()
+    Bexo5.destroy()
+    Bexo6.destroy()
+    Bexo7.destroy()
+    Bexo8.destroy()
+    Retour.destroy()
+
+    Chapitre1.Exo3.Exercice3(fenetre)
 
 #==================================================================================
 #==============Menu c'est la fenetre principale contenant les 4 chapitres==========
@@ -180,7 +256,7 @@ def Menu():
         Bexo2=Button(fenetre, text="Opérations en binaire", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= partial(PageChoix,"Opérations en binaire"))
         Bexo2.grid(ipady=25,  row=3, column=1,columnspan=3,ipadx=50)
 
-        Bexo3=Button(fenetre, text="Multiplications en binaire", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= partial(PageChoix,"Multiplications en binaire"))
+        Bexo3=Button(fenetre, text="Multiplications en binaire", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= ChoixExo)
         Bexo3.grid(ipady=25,  row=4, column=1,columnspan=3,ipadx=50)
 
         Bexo4=Button(fenetre, text="Opérations sans calcul", font=("courier", 18, "italic"), fg='white', bg='#103985',width=largeur, height=hauteur , command= partial(PageChoix,"Opérations sans calcul"))#command=affich3)
