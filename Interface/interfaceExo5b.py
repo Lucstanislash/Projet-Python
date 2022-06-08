@@ -161,7 +161,7 @@ fenetre.columnconfigure(3, weight=1)
 fenetre.columnconfigure(4, weight=1)
 fenetre.columnconfigure(5, weight=1)
 
-man=1
+man=2
 
 if man==1:
         based=AleaFormatBi5(Li)
@@ -454,7 +454,7 @@ Nb.grid(row=5, column=2,ipadx=200,columnspan=4,ipady=15)
                 
 titre=Label(fenetre, text="Conversion", font=("Courier", 40, "italic"), fg='black', bg='lightskyblue1')  
 
-soustitre=Label(fenetre, text="Quelques Indications: valeur 1000000000 impossible à convertir, pas de bits avant  4 ", font=("courier", 20), fg='darkblue', bg='lightskyblue1') 
+soustitre=Label(fenetre, text="Quelques Indications: valeur 1000000000 impossible à convertir, pas de bits avant 4\n pour les valeurs pas de , mais un .", font=("courier", 20), fg='darkblue', bg='lightskyblue1') 
 
 txt1=Label(fenetre, text="Format de départ", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
 if man==2:
@@ -498,15 +498,15 @@ def create():
     titre=Label(rappel,text="Rappel", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
     titre.grid(row=1, column=2,columnspan=3,sticky='s')
 
-    txt1=Label(rappel, text="1 bit de signe", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
-    txt2=Label(rappel, text="8 bits d’exposant biaisé (biaisé de 127)", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
-    txt3=Label(rappel, text="23 bits de mantisse", font=("courier", 25, "italic"), fg='black', bg= 'lightskyblue1',width=40, height=2)
-    txt4=Label(rappel, text="Ne pas oublier le bit implicite", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
+    txt1=Label(rappel, text="Si l’entier codé en SVA/C2 commence par 1 : \n son signe est négatif.", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
+    txt2=Label(rappel, text="Si l’entier codé en SVA/C2 commence par 0 : \n son signe est positif.", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
+    txt3=Label(rappel, text="Pour convertir un nombre négatif de C2 vers \n SVA: on soustrait 1,puis on inverse les bits\nen faisant attention au signe.", font=("courier", 25, "italic"), fg='black', bg= 'lightskyblue1',width=40, height=2)
+    txt4=Label(rappel, text="Pour coder un entier négatif en C2 :on part \nde la valeur absolue,on inverse les bits puis\n on ajoute 1", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
 
-    txt1.grid(row=2, column=3)
-    txt2.grid(row=3, column=3)
-    txt3.grid(row=4, column=3)
-    txt4.grid(row=5, column=3)
+    txt1.grid(row=2, column=3,ipadx=50,ipady=40)
+    txt2.grid(row=3, column=3,ipadx=50,ipady=40)
+    txt3.grid(row=4, column=3,ipadx=50,ipady=40)
+    txt4.grid(row=5, column=3,ipadx=50,ipady=40)
 
     rappel.rowconfigure(1, weight=1)
     rappel.rowconfigure(2, weight=1)
