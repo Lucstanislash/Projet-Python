@@ -42,18 +42,22 @@ def getEntryM():
     return(Entier1, Entier2, oper, util)
 
 def Binaire_saisEx2(e1, e2, ope):
-    op = ope
+    if ope == '+' or ope == '-' or ope == 'x':
+        op = ope
+    else:
+        messagebox.showerror("showerror", "Mauvaise saisie du signe d'opération")
+    
     ent1=CtrlSyntaxe(e1,16,1,16)
     if ent1 == True:
         a = e1
     else:
-        messagebox.showerror("showerror", "Mauvaise saisie")
+        messagebox.showerror("showerror", "Mauvaise saisie du Nombre binaire 1")
 
     ent2=CtrlSyntaxe(e2,16,1,16)
     if ent2 == True:
         b = e2
     else:
-        messagebox.showerror("showerror", "Mauvaise saisie")
+        messagebox.showerror("showerror", "Mauvaise saisie du Nombre binaire 2")
     return(a,b,op)
 
 #============================================================================================

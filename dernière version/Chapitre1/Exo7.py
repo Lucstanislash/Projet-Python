@@ -150,14 +150,20 @@ def Exo7(f, select):
         if formats=="IEEE":
             ok=CtrlSyntaxe(str(entier),10,1,20,-10000,10000)
             ok2=CtrlSyntaxe(util,16,1,8)
-            if ok==False or ok2==False:
-                messagebox.showerror("showerror", "Mauvaise saisie")
+            if ok==False: 
+                messagebox.showerror("showerror", "Erreur de saisie du réel")
+                return(1)
+            elif ok2==False:
+                messagebox.showerror("showerror", "Erreur de saisie du résultat")
                 return(1)
         else:
             ok=CtrlSyntaxe(entier,16,1,8)
             ok2=CtrlSyntaxe(util,10,1,20,-10000,10000)
-            if ok==False or ok2==False:
-                messagebox.showerror("showerror", "Mauvaise saisie")
+            if ok==False: 
+                messagebox.showerror("showerror", "Erreur de saisie du réel")
+                return(1)
+            elif ok2==False:
+                messagebox.showerror("showerror", "Erreur de saisie du résultat")
                 return(1)
         
         if formats=="IEEE":
@@ -188,7 +194,7 @@ def Exo7(f, select):
 
     titre=Label(fenetre, text="Les réels", font=("Courier", 40, "italic"), fg='black', bg='lightskyblue1')  # Placement de l'invite
 
-    soustitre=Label(fenetre, text="Quelques Indications: Les valeurs en base 10 sont compris entre -10 000 et 10 000 ", font=("courier", 20, "italic"), fg='darkblue', bg='lightskyblue1') 
+    soustitre=Label(fenetre, text="Quelques Indications: Les valeurs en base 10 sont compris entre -10 000 et 10 000 \n Attention mettre un . et non , pour les réels à virgule ", font=("courier", 20, "italic"), fg='darkblue', bg='lightskyblue1') 
     ##
     ##indication=Label(fenetre,text="Les valeurs en base 10 sont compris entre -10 000 et 10 000 ", font=("courier", 10), fg='darkblue', bg='lightskyblue1') 
 
