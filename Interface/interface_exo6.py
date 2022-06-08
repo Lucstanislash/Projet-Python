@@ -4,8 +4,13 @@ from tkinter import ttk
 from Outils import*
 from random import*
 from tkinter import messagebox
-    
-    
+##from PIL import Image, ImageTk
+##    
+##
+##
+ # this line need to prevent gc
+##label.pack()
+
 ###===================================== L'aléatoire =====================================#
 def NumVirgule(base):
     liste = []
@@ -224,7 +229,70 @@ txt4=Label(fenetre, text="Résultat", font=("courier", 25, "italic"), fg='black'
 Resultats=Entry(fenetre) #width= largeur, height= hauteur) # Création de la zone de résultats
 
 #======================================================================================================================#
+def create():
+    rappel = Toplevel(fenetre)
+    rappel.config(background="lightskyblue1")
+    titre=Label(rappel,text="Rappel", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
+    titre.grid(row=1, column=2,columnspan=3,sticky='s')
+    imgEx6 = PhotoImage(file="img_ex6.gif")
+    
 
+    txt1=Label(rappel, text="Binaire en Base 10 :", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
+    txt2=Label(rappel, text="Les bits avant la virgule correspondent à des puissance positifs de la base,\n alors que les bits après la virgule correspondent à des puissances négatives de la base  :", font=("courier", 17, "italic"), fg='black', bg='lightskyblue1', height=2)
+    txt3=Label(rappel, text="10.101(2) = 2**1 + 2**(-1) + 2**(-3) \n= 2 + 0.5 + 0.125 = 2.625", font=("courier", 15, "italic"), fg='black', bg= 'lightskyblue1',width=40, height=2)
+    txt4=Label(rappel, text="Base 10 en Binaire :", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
+    txt5=Label(rappel, text="Pour convertir en binaire on utilise la méthode de la multiplication de manière\nà ce que l'on multiplie par 2 le nombre après la virgule tel que:", font=("courier", 15, "italic"), fg='black', bg= 'lightskyblue1', height=2)
+    bt= Label(rappel, image = imgEx6)
+
+    txt1.grid(row=2, column=3)
+    txt2.grid(row=3, column=3)
+    txt3.grid(row=4, column=3)
+    txt4.grid(row=5, column=3)
+    txt5.grid(row=6, column=3)
+    bt.grid(row=7, column=3)
+    
+
+
+    rappel.rowconfigure(1, weight=1)
+    rappel.rowconfigure(2, weight=1)
+    rappel.rowconfigure(3, weight=1)
+    rappel.rowconfigure(4, weight=1)
+    rappel.rowconfigure(5, weight=1)
+    rappel.rowconfigure(6, weight=1)
+    rappel.rowconfigure(7, weight=1)
+    rappel.rowconfigure(8, weight=1)
+
+    rappel.columnconfigure(1, weight=0)
+    rappel.columnconfigure(2, weight=1)
+    rappel.columnconfigure(3, weight=1)
+    rappel.columnconfigure(4, weight=1)
+    rappel.columnconfigure(5, weight=1)
+    rappel.columnconfigure(6, weight=1)
+    rappel.columnconfigure(7, weight=1)
+    rappel.columnconfigure(8, weight=0)
+
+    def exit_btn():
+
+        rappel.destroy()
+        rappel.update()
+
+    btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='white', bg='#103985', width=15, height=2)
+    btn.grid(row=8, column=3,columnspan=3,sticky='n')
+
+def nouveau():
+    B3['state']='normal'
+    B2['state']='disabled'
+    if man ==1 :
+        alea=AleaEx6()
+        ordre=alea[1]
+        valeur=alea[0]
+        saisieVal.config(text=valeur)
+        w1.config(text=ordre)
+        Resultats.delete(0,END)
+    else:
+        
+       saisieVal.delete(0,END)
+       Resultats.delete(0,END)
 
 B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2,command=lambda:create())
 
