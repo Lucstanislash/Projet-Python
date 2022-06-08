@@ -1,7 +1,7 @@
 from tkinter import*
 from functools import partial
 import Chapitre1.Exo2_version1
-import interfaceExo7
+import InterfaceExo7
 
 fenetre=Tk()
 fenetre.title("Application Python")
@@ -60,7 +60,7 @@ def ChapChoix():
         soustitre.destroy()
         signe.destroy()
         conversion.destroy()
-        PageChoix("Entiers signées")
+        PageChoix("Entiers signées\n\n Uniquement manuel pour \n l'exercice déterminer le signe")
 
     def CommandExo(t):
         
@@ -69,7 +69,7 @@ def ChapChoix():
                 Chapitre1.Exo5.Exercice5A()
             
         elif t == 'Conversion':
-                Chapitre1.Exo5.Exercice5B()# j'ai pas trop compris pourquoi on écris 2 fois exo 
+                Chapitre1.Exo5.Exercice5B()
         
     titre = Label(fenetre, text= "Entiers signés", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
     titre.grid(row=1, column=1, columnspan=5)
@@ -132,7 +132,7 @@ def PageChoix(NomExercice): #======== Fenêtre de demande aléatoire ou manuel =
                 back(1)
             if NomExercice == "Opérations sans calcul":
                 Chapitre1.Exo4.Exercice4(1)
-            if NomExercice == "Entiers signées":
+            if NomExercice == "Entiers signées\n\n Uniquement manuel pour \n l'exercice déterminer le signe":
                 ChapChoix()
 
             if NomExercice == "Les Décimaux":
@@ -150,7 +150,7 @@ def PageChoix(NomExercice): #======== Fenêtre de demande aléatoire ou manuel =
             if NomExercice == "Opérations sans calcul":
                 Chapitre1.Exo4.Exercice4(2)
                 
-            if NomExercice == "Entiers signées":
+            if NomExercice == "Entiers signées\n\n Uniquement manuel pour \n l'exercice déterminer le signe":
                 ChapChoix()
             if NomExercice == "Les Décimaux":
                 Chapitre1.Exo6.Exercice6(2)
@@ -243,7 +243,7 @@ def Menu():
         Bexo4=Button(fenetre, text="Opérations sans calcul", font=("courier", 18, "italic"), fg='white', bg='#103985',width=largeur, height=hauteur , command= partial(PageChoix,"Opérations sans calcul"))#command=affich3)
         Bexo4.grid(ipady=25,row=5, column=1,columnspan=3,ipadx=50)
 
-        Bexo5=Button(fenetre, text="Entiers signées", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= partial(PageChoix,"Entiers signées"))
+        Bexo5=Button(fenetre, text="Entiers signées ", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= partial(PageChoix,"Entiers signées\n\n Uniquement manuel pour \n l'exercice déterminer le signe"))
         Bexo5.grid(ipady=25,  row=2, column=3,columnspan=6,ipadx=50)
 
         Bexo6=Button(fenetre, text="Les Réels", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= partial(PageChoix,"Les Réels"))
