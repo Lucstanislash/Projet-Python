@@ -232,8 +232,8 @@ def nouveau(man):
     alea(man)
     
     
-img1=PhotoImage(file="img1.gif")
-imag=PhotoImage(file="imag.gif")
+##img1=PhotoImage(file="img1.gif")
+##imag=PhotoImage(file="imag.gif")
 
 def create():
     rappel = Toplevel(fen, background="white")
@@ -241,7 +241,7 @@ def create():
     Label(rappel,text="Rappel", font=("Courier", 40, "italic"), fg='blue4', bg='white').grid(row=1, column=1, columnspan=3)
 
     Label(rappel, text="Dans un système en base X, il faut X symboles différents pour représenter les chiffres de 0 à X-1", font=("Courier", 14), fg='blue4', bg='white').grid(row=2, column=1,columnspan=3)
-    Label(rappel, image= img1).grid(row=3, column=1,columnspan=3)
+    ##Label(rappel, image= img1).grid(row=3, column=1,columnspan=3)
 ##    
     i="╠═══════{Conversion du nombre N exprimé en base 10 vers une base X}═══════╣\n"
     a="Diviser le nombre N par la base X jusqu’à obtenir un quotient égal à 0. La conversion est donc\n"
@@ -273,7 +273,7 @@ def create():
 
     Label(rappel, text=l, bg='white', fg='darkslateblue', font=('Courier',14)).grid(row=10, column=1)               
     Label(rappel, text=o+p, bg='white', fg='firebrick3', font=('Segoe Print',10)).grid(row=11, column=1)
-    Label(rappel, image= imag).grid(row=4, column=2, rowspan=8) 
+    ##Label(rappel, image= imag).grid(row=4, column=2, rowspan=8) 
 
     def exit_btn():
 
