@@ -4,12 +4,7 @@ from tkinter import ttk
 from Outils import*
 from random import*
 from tkinter import messagebox
-##from PIL import Image, ImageTk
-##    
-##
-##
- # this line need to prevent gc
-##label.pack()
+
 
 ###===================================== L'aléatoire =====================================#
 def NumVirgule(base):
@@ -72,10 +67,13 @@ def bin_dec(binaire,ApresVirg):
 lischoix = [ '10','2']
 
 def  AleaEx6_Ordre(lischoix):
-        #aléatoire de l'ordre
-        choix = choice(lischoix)
-        return(choix)
+    #aléatoire de l'ordre
+    choix = choice(lischoix)
+    return(choix)
 
+def AleaApresVirg():
+    ApresVirg = randint(1,6)
+    return str(ApresVirg)
 
 def AleaEx6():
     ordre=AleaEx6_Ordre(lischoix)
@@ -119,6 +117,7 @@ man = 1
 ordre = ""
 if man == 1 :
     alea=AleaEx6()
+    aleavirg = AleaApresVirg()
     ordre = alea[1]
     valeur = alea[0]
     
@@ -130,7 +129,7 @@ def get(ordre):
         ordre = fenetre.option_var.get()
     else:
         entier = valeur
-        apresvirgule = ''
+        apresvirgule = aleavirg
         nb_apres = count_decimaux(entier, 'resultat')
         util = Resultats.get()
 
@@ -166,9 +165,9 @@ def get(ordre):
             rep = dec_bin(entier,apresvirgule)
     else :
         if ordre == "10":
-            rep = bin_dec(entier,nb_apres)
+            rep = bin_dec(entier,aleavirg)
         else:
-            rep = dec_bin(entier,nb_apres)
+            rep = dec_bin(entier,aleavirg)
     
     Verif = VerifRep(rep,util)
     
@@ -207,9 +206,6 @@ else:
 
 txt2=Label(fenetre, text="Convertir au format", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
 
-##val.set(OptionsExo6[0]) # default value
-##w1 = ttk.OptionMenu(fenetre,fenetre.option_var,OptionsExo6[0], *OptionsExo6)
-
 if man==2:
     fenetre.option_var= tk.StringVar(fenetre)
     w1 = ttk.OptionMenu(fenetre,fenetre.option_var,OptionsExo6[0], *OptionsExo6)
@@ -220,21 +216,23 @@ else:
 txt3=Label(fenetre, text="Nombres après la virgule", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
 if man == 2 :
     val = IntVar(fenetre)
-    saisieVirg=Entry(fenetre) #ERREUR - faut que ça le lise en tant que integer
+    saisieVirg=Entry(fenetre)
 else:
-    saisieVirg = Label(fenetre, text='-', font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
+    saisieVirg = Label(fenetre, text=aleavirg, font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
 
 
 txt4=Label(fenetre, text="Résultat", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
 Resultats=Entry(fenetre) #width= largeur, height= hauteur) # Création de la zone de résultats
 
+
+imgEx6 = PhotoImage(file="img_ex6.gif")
+    
 #======================================================================================================================#
-def create():
+def create(imgEx6):
     rappel = Toplevel(fenetre)
     rappel.config(background="lightskyblue1")
     titre=Label(rappel,text="Rappel", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
     titre.grid(row=1, column=2,columnspan=3,sticky='s')
-    imgEx6 = PhotoImage(file="img_ex6.gif")
     
 
     txt1=Label(rappel, text="Binaire en Base 10 :", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
@@ -285,6 +283,7 @@ def nouveau():
     if man ==1 :
         alea=AleaEx6()
         ordre=alea[1]
+        aleavirg = AleaApresVirg()
         valeur=alea[0]
         saisieVal.config(text=valeur)
         w1.config(text=ordre)
@@ -294,7 +293,7 @@ def nouveau():
        saisieVal.delete(0,END)
        Resultats.delete(0,END)
 
-B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2,command=lambda:create())
+B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2,command=lambda:create(imgEx6))
 
 B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:nouveau())
  
