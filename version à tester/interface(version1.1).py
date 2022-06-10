@@ -855,36 +855,37 @@ def Menu():
    
         largeur = 25
         hauteur = 2
-        
+
         tExo2 = Label(f, text= "Opérations en binaire", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
         tExo2.grid(row=1, column = 2, columnspan=3)
                         
-        st=Label(f, text="Quelques Indications: Les entrées des données ne peuvent pas excéder 16 bits", font=("courier", 20, "italic"), fg='darkblue', bg='lightskyblue1') #width=largeur, height=hauteur ,command= partial(PageChoix,"Entiers non signées")) #, command= PageChoix("Entiers non signées")
-        st.grid(row=2, column = 1, columnspan=3, sticky='w', ipady=20)
+        st=Label(f, text="Quelques Indications: Les entrées des données ne peuvent pas\n excéder 16 bits ", font=("courier", 20, "italic"), fg='darkblue', bg='lightskyblue1') #width=largeur, height=hauteur ,command= partial(PageChoix,"Entiers non signées")) #, command= PageChoix("Entiers non signées")
+        st.grid(row=2, column=1,columnspan=4,ipady=10,ipadx=50)
             
-        txt1=Label(f, text="Nombre Binaire 1 : ", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-        txt1.grid(row=3, column = 1, columnspan=2, sticky='w')
+        txt1=Label(f, text="Nombre Binaire 1 : ", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
+        txt1.grid(row=3,column=1,columnspan=2,sticky='nsew',ipady=10)
 
         saisieB1=Entry(f)
-        saisieB1.grid(row=3, column = 3, columnspan=4, ipadx=200, ipady=10)
+        saisieB1.grid(row=3, column=3,ipadx=200,columnspan=4,ipady=10)
         
-        txt2=Label(f, text="Choix d'opération (+,- ou x) :", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-        txt2.grid(row=4, column = 1, columnspan=2, sticky='w')
+        
+        txt2=Label(f, text="Choix d'opération : \n(+,- ou x) ", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
+        txt2.grid(row=4, column=1,columnspan=2,sticky='nsew',ipady=10)
 
         saisieOper=Entry(f)
-        saisieOper.grid(row=4, column = 3, columnspan=4, ipadx=200, ipady=10)
+        saisieOper.grid(row=4, column=3,ipadx=200,columnspan=4,ipady=10)
 
-        txt3=Label(f, text="Nombre binaire 2 : ", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-        txt3.grid(row=5, column = 1, columnspan=2, sticky='w')
+        txt3=Label(f, text="Nombre binaire 2 : ", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
+        txt3.grid(row=5, column=1,columnspan=2,sticky='nsew',ipady=10)
         
         saisieB2=Entry(f)
-        saisieB2.grid(row=5, column = 3, columnspan=4, ipadx=200, ipady=10)
+        saisieB2.grid(row=5, column=3,ipadx=200,columnspan=4,ipady=10)
 
-        txt4=Label(f, text="Résultat", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-        txt4.grid(row=6, column = 1, columnspan=2, sticky='w')
+        txt4=Label(f, text="Résultat:          ", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
+        txt4.grid(row=6,column=1,columnspan=2,sticky='nsew',ipady=10)
         
         saisieRep=Entry(f)
-        saisieRep.grid(row=6, column = 3, columnspan=4, ipadx=200, ipady=10)
+        saisieRep.grid(row=6, column=3,ipadx=200,columnspan=4,ipady=10)
         
 
         if saisie == 1:
@@ -897,16 +898,17 @@ def Menu():
         y=3
         x=10
 
-        B1=Button(f, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='white', bg='grey', width=w, height=h, command=lambda:create(f))
-        B1.grid(row=7, column=1, pady=y, padx=x)
-        B2=Button(f, text="Nouveau", state='disabled', font=("bold", 18, "italic"), fg='white', bg='#103985', width=w, height=h, command=lambda:Nouveau(saisie,fenetre))
-        B2.grid(row=7, column=2, pady=y, padx=x)
-        B3=Button(f, text="Valider", font=("courier", 18, "bold"), fg='white', bg='#103985', width=w, height=h, command=lambda:Valide(saisie, sa))
-        B3.grid(row=7, column=3, pady=y, padx=x)
-        B4=Button(f, text="Menu", font=("courier", 18, "bold"), fg='white', bg='#103985', width=w, height=h, command=back2)
-        B4.grid(row=7, column=4, pady=y, padx=x)
-        B5=Button(f, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='grey', width=w, height=h, command=back)
-        B5.grid(row=7, column=5, pady=y, padx=x)
+        B1=Button(f, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2, command=lambda:create(f))
+        B1.grid(row=7, column=1)
+        B2=Button(f, text="Nouveau", state='disabled', font=("bold", 18, "italic"), fg='white', bg='#103985',width=15, height=2, command=lambda:Nouveau(saisie,fenetre))
+        B2.grid(row=7, column=2)
+        B3=Button(f, text="Valider", font=("courier", 18, "bold"), fg='white', bg='#103985',width=15, height=2, command=lambda:Valide(saisie, sa))
+        B3.grid(row=7, column=3)
+        B5=Button(f, text="Menu", font=("courier", 18, "bold"), fg='white', bg='grey',width=15, height=2, command=back2)
+        B4=Button(f, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='#103985',  width=15, height=2, command=back)
+        B4.grid(row=7, column=4)
+        B5.grid(row=7, column=5)
+
 
 
     #===========================================================
@@ -957,7 +959,7 @@ def Menu():
             rappel.destroy()
             rappel.update()
 
-        btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='white', bg='grey', width=15, height=2)
+        btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='white', bg='#103985', width=15, height=2)
         btn.grid(row=6, column=2,columnspan=3,sticky='n')
 
     
