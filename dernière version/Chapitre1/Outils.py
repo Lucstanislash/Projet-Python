@@ -5,7 +5,7 @@ from random import *
 def CtrlSyntaxe(ch,syn,min,max,min10=0,max10=0):
     comptep=0
     "controle la syntaxe de ch en fonction de syn (ch peux être un nombre en base 2, 8, 10, 16, piussance syn prendra respectivement les valeurs2, 8 ,10, 16, puissance pour indiquer la syntaxe que ch doit avoir."
-    mot2='01'
+    mot2='01.'
     mot8='01234567'
     mot10='-.0123456789'
     mot16='0123456789ABCDEF'
@@ -86,7 +86,6 @@ def VerifRep(rep,util):
             cpt=0
         else:
             a=0 #reesayer ==> nouvelle chance
-    print(cpt)
     return(a)
 
 def Conv(basedep,basearr,entier):
@@ -108,3 +107,4 @@ def Raccourcir(ch):
     "Enleve les espaces d'une chaine ch"
     ch=ch.replace(" ","")
     return(ch)
+
