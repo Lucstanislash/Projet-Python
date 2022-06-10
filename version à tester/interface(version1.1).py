@@ -1644,11 +1644,11 @@ def Menu():
 
         val=Label(fenetre, text=entier, font=("courier", 20, "italic"), fg='black', bg='white',width=4, height=1)
 
-        choix=StringVar()
+        choix=IntVar()
 
         signe=Label(fenetre, text="Signe de\nl'entier", font=("courier", 30, "italic"), fg='black', bg='lightskyblue1')
-        positif=Radiobutton(fenetre, text="Positif",font=("courier", 25), variable=choix, value="positif",fg='black', bg='lightskyblue1',activebackground="lightskyblue1",width=30,)
-        negatif=Radiobutton(fenetre, text="Négatif", font=("courier",25),variable=choix, value="negatif",fg='black', bg='lightskyblue1',activebackground="lightskyblue1")
+        positif=tk.Radiobutton(fenetre, text="Positif",font=("courier", 25), variable=choix, value=1,fg='black', bg='lightskyblue1',activebackground="lightskyblue1",width=30,)
+        negatif=tk.Radiobutton(fenetre, text="Négatif", font=("courier",25),variable=choix, value=2,fg='black', bg='lightskyblue1',activebackground="lightskyblue1")
 
         def nouveau():
             
@@ -1660,30 +1660,36 @@ def Menu():
             val.config(text=entier)
          
         def RepUtil():
-            
                 ch=choix.get() # on récupère la valeur de val, donc de la case sélectionnée
-                if ch=="positif":
-                    util="positif"
-                elif ch=="negatif":
-                    util="negatif"
+                print(ch)
+                if ch==0:
+                        messagebox.showinfo(title="Information",
+                                        message="Veuillez cocher une case ")
+                        return(1)
+                else:
+                    
+                    if ch==1:
+                        util="positif"
+                    elif ch==2:
+                        util="negatif"
 
-                
-                rep=RepExA5(val["text"])
-                
-                Verif=VerifRep(rep,util)
-                
-                B3['state']='disabled'
-                B2['state']='normal'
-                if Verif == 1:
-                    B3['state']='disabled' #bloquer le bouton valider ==> Gagner
+                    
+                    rep=RepExA5(val["text"])
+                    
+                    Verif=VerifRep(rep,util)
+                    
+                    B3['state']='disabled'
                     B2['state']='normal'
-                    messagebox.showinfo(title="Information",
-                                    message="Bonne Réponse, Bravo !! ")
-                elif Verif == 0 or Verif ==-1 :
-                    B3['state']='disabled' #bloquer le bouton valider ==> Perdu
-                    B2['state']='normal'  #débloquer le bouton nouveau ==> recommencer
-                    messagebox.showinfo(title="Information",
-                                    message=" Mauvaise réponse, vous avez perdu !\n \n Le résultat est: \n" +("".join(rep)))
+                    if Verif == 1:
+                        B3['state']='disabled' #bloquer le bouton valider ==> Gagner
+                        B2['state']='normal'
+                        messagebox.showinfo(title="Information",
+                                        message="Bonne Réponse, Bravo !! ")
+                    elif Verif == 0 or Verif ==-1 :
+                        B3['state']='disabled' #bloquer le bouton valider ==> Perdu
+                        B2['state']='normal'  #débloquer le bouton nouveau ==> recommencer
+                        messagebox.showinfo(title="Information",
+                                        message=" Mauvaise réponse, vous avez perdu !\n \n Le résultat est: \n" +("".join(rep)))
 
         def create():
             rappel = Toplevel(fenetre)
