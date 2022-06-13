@@ -1453,18 +1453,42 @@ def Menu():
         #===========================================================
         #========= Contrôle =========================================
         #===========================================================
-        def control(oper,nbbin,puis):
+        def control(oper,nbbin,puis,util):
             ok=True
             op=['*','/']
+
+            if man==2:
+                
+                if oper=='' or nbbin==''or puis==''or util=='':
+                    messagebox.showerror("Veuillez saisir toute les valeurs")
+                    return(1)
+            elif man==1:
+                if util=='':
+                    messagebox.showerror("Veuillez saisir un résultat")
+                    return(1)
+                
             if oper not in op:
                 ok=False
                 messagebox.showerror("ATTENTION !", "Operation : Mettre '*' ou '/'")
-            if not CtrlSyntaxe(nbbin,2,1,16):
-                ok=False
-                messagebox.showerror("ATTENTION !", "Mauvaise saisie du nombre binaire")
-            if not CtrlSyntaxe(puis,10,1,10,1,8):
-                ok=False
-                messagebox.showerror("ATTENTION !", "Mauvaise saisie de l'exposant")
+                return(1)
+            else:
+                if not CtrlSyntaxe(nbbin,2,1,16):
+                    ok=False
+                    messagebox.showerror("ATTENTION !", "Mauvaise saisie du nombre binaire")
+                    return(1)
+                else:
+                    if not CtrlSyntaxe(puis,10,1,10,1,8):
+                        ok=False
+                        messagebox.showerror("ATTENTION !", "Mauvaise saisie de l'exposant")
+                        return(1)
+                    else:
+
+                        if not CtrlSyntaxe(util,2,1,16):
+                            ok=False
+                            messagebox.showerror("ATTENTION !", "Mauvaise saisie du résultats")
+                            return(1)
+                            
+
 
         #===========================================================
         #========= Rappel fenetre ==================================
