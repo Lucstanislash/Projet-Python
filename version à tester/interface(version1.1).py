@@ -674,8 +674,8 @@ def Menu():
     #========================Données Aléatoires==============================
     #========================================================================
     def Binaire_aleaEx2():
-        a = AleaExAll(2,1,16)
-        b = AleaExAll(2,1,16)
+        a = AleaExAll(2,2,16)
+        b = AleaExAll(2,2,16)
         signe = randint(1,3) # pour les 3 opérateurs différents, le +, - et *
         if signe == 1:
             oper = '+'
