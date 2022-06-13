@@ -155,7 +155,7 @@ def PageChoix(NomExercice): #======== Fenêtre de demande aléatoire ou manuel =
                 Exercice4(fenetre, 1)
             if NomExercice == "Entiers signées":
                 back(1)
-                ChapChoix()
+                 Exercice5b(fenetre)
             if NomExercice == "Les Décimaux":
                 back(1)
                 Exercice6(fenetre, 2)
