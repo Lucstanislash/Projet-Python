@@ -438,18 +438,20 @@ def Menu():
             donnee=(basedep,basearr,entier)
             ok=CtrlSyntaxe(entier,basedep,1,Lmax[basedep])
             ok2=CtrlSyntaxe(util,basearr,1,Lmax[basearr])
-            if ok==True and ok2==True:
-                if basedep!=basearr:
-                    rep=RepEx1(donnee)
-                else:
-                    messagebox.showerror(title="Information",
-                                    message="Erreur : Problème dans la sélection des bases.")
-                    return(1)
-            else:
-                #except (NameError, ValueError, SyntaxError, TypeError):                        #Permet d'exclure une/plusieurs erreur(s) et d'effectuer alors des instructions    
+            if ok==False:
+               messagebox.showerror(title="Information",
+                        message="Erreur : La syntaxe de l'entier de départ est fausse.")
+               return 1
+            elif ok2==False:
+               messagebox.showerror(title="Information",
+                        message="Erreur : La syntaxe de la réponse est fausse.")
+               return 1
+            elif basedep==basearr:
                 messagebox.showerror(title="Information",
-                                        message='Erreur : Vous avez fait une erreur de syntaxe')
-                return(1)
+                        message="Erreur : Problème dans la sélection des bases.")
+                return 1
+            else:
+                rep=RepEx1(donnee)
             
             Verif=VerifRep(rep,util)
             if Verif == 1:
@@ -582,8 +584,16 @@ def Menu():
             B3['state']='normal'
             if man==2:
                 Esaisie.delete(0,END)
+                A1.deselect()
+                A2.deselect()
+                A3.deselect()
+                A4.deselect()
+                A5.deselect()
+                A6.deselect()
+                A7.deselect()
+                A8.deselect()
             Résultats.delete(0,END)
-            alea(man)
+            alea(man,1)
             
             
         ##img1=PhotoImage(file="img1.gif")
