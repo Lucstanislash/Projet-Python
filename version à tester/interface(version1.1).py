@@ -743,9 +743,9 @@ def Menu():
     def AleaValeur():
         global reponse
         sa= Binaire_aleaEx2()
-        saisieB1.insert(END,sa[0])
-        saisieOper.insert(END,sa[2])
-        saisieB2.insert(END,sa[1])
+        saisieB1.config(text=sa[0])
+        saisieOper.config(text=sa[2])
+        saisieB2.config(text=sa[1])
         return(sa)
         
     def Valide(saisie, sa):
@@ -865,20 +865,33 @@ def Menu():
         txt1=Label(f, text="Nombre Binaire 1 : ", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
         txt1.grid(row=3,column=1,columnspan=2,sticky='nsew',ipady=10)
 
-        saisieB1=Entry(f)
+        if saisie==2:
+            
+            saisieB1=Entry(f)
+        else:
+            saisieB1=Label(f, text="", font=("courier",15, "italic"), fg='black', bg='white',width=10, height=1)
+            
         saisieB1.grid(row=3, column=3,ipadx=200,columnspan=4,ipady=10)
-        
-        
+
         txt2=Label(f, text="Choix d'opération : \n(+,- ou x) ", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
         txt2.grid(row=4, column=1,columnspan=2,sticky='nsew',ipady=10)
 
-        saisieOper=Entry(f)
+        if saisie==2:
+            
+            saisieOper=Entry(f)
+        else:
+            saisieOper=Label(f, text="", font=("courier",15, "italic"), fg='black', bg='white',width=10, height=1)
+
         saisieOper.grid(row=4, column=3,ipadx=200,columnspan=4,ipady=10)
 
         txt3=Label(f, text="Nombre binaire 2 : ", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
         txt3.grid(row=5, column=1,columnspan=2,sticky='nsew',ipady=10)
         
-        saisieB2=Entry(f)
+        if saisie==2:
+            saisieB2=Entry(f)
+        else:
+            saisieB2=Label(f, text="", font=("courier",15, "italic"), fg='black', bg='white',width=10, height=1)
+
         saisieB2.grid(row=5, column=3,ipadx=200,columnspan=4,ipady=10)
 
         txt4=Label(f, text="Résultat:          ", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
@@ -918,11 +931,23 @@ def Menu():
     def Nouveau(saisie,fenetre):
         B3['state']='normal'
         B2['state']='disabled'
-        tExo2.destroy()
-        st.destroy()
-        Exercice2(saisie,fenetre )
-        #effacer ce qui a été entré
 
+        if saisie==2:
+            saisieB1.delete(0,END)
+            saisieOper.delete(0,END)
+            saisieB2.delete(0,END)
+            saisieRep.delete(0,END)
+               #effacer ce qui a été entré
+        else:
+            
+            saisieRep.delete(0,END)
+            
+            sa= Binaire_aleaEx2()
+            saisieB1.config(text=sa[0])
+            saisieOper.config(text=sa[2])
+            saisieB2.config(text=sa[1])
+        
+     
     #=========================================================================
     #================= Page rappel exo2 ===========================================
     #=========================================================================
