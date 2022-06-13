@@ -1338,27 +1338,27 @@ def Menu():
                 
                 verif=2
                 base=[2,10]
-                rep=repEx4(ch,p,op)
                 util=res.get()
-                control2(util)
-                verif=VerifRep(rep,util)
-                if verif==0:
-                    #res1="Réessayer"
-                    messagebox.showerror("showerror", "Mauvaise réponse, veuillez réessayer")
-                    res.delete(0, END)
-                elif verif==-1:
-                    B3['state']='disabled' #bloquer le bouton valider ==> Perdu
-                    #res1="Réponse : \n" + rep
-                    messagebox.showinfo(title="Information",
-                                        message=" Mauvaise réponse!\n Le résultat est: \n"+rep)
-                    B2['state']='normal'
-                else:
-                    #res1 = "Bravo !"
-                    messagebox.showinfo(title="Bravo", message="Bravo! Vous pouvez continuer.")
-                    B2['state']='normal'
-                    B3['state']='disabled'
-                #l4.config(text=res1)
-
+                ctl=control(op,ch,p,util)
+                
+                if not ctl==1:
+                    rep=repEx4(ch,p,op)
+                    verif=VerifRep(rep,util)
+                    if verif==0:
+                        #res1="Réessayer"
+                        messagebox.showerror("showerror", "Mauvaise réponse, veuillez réessayer")
+                        
+                    elif verif==-1:
+                        B3['state']='disabled' #bloquer le bouton valider ==> Perdu
+                        #res1="Réponse : \n" + rep
+                        messagebox.showinfo(title="Information",
+                                            message=" Mauvaise réponse!\n Le résultat est: \n"+rep)
+                        B2['state']='normal'
+                    else:
+                        #res1 = "Bravo !"
+                        messagebox.showinfo(title="Bravo", message="Bravo! Vous pouvez continuer.")
+                        B2['state']='normal'
+                        B3['state']='disabled'
             
             #========= Reset de l'exo ==================================
             
@@ -1403,28 +1403,31 @@ def Menu():
                 ch=nbbin.get()
                 Raccourcir(ch)
                 p=(puis.get())
-                control(op,ch,p)
-                p=int(puis.get())
                 verif=2
                 base=[2,10]
-                rep=repEx4(ch,p,op)
                 util=res.get()
-                verif=VerifRep(rep,util)
-                if verif==0:
-                    messagebox.showerror("showerror", "Mauvaise réponse, veuillez réessayer")
-                    res.delete(0, END)
-                elif verif==-1:
-                    B3['state']='disabled' #bloquer le bouton valider ==> Perdu
-                    #res1="Réponse : \n" + rep
-                    messagebox.showinfo(title="Information",
-                                        message=" Mauvaise réponse!\n Le résultat est: \n"+rep)
-                    B2['state']='normal'
-                else:
-                    #res1 = "Bravo !"
-                    messagebox.showinfo(title="Bravo", message="Bravo! Vous pouvez continuer.")
-                    B3['state']='disabled'
-                    B2['state']='normal'
-                #l4.config(text=res1)
+
+                ctl=control(op,ch,p,util)
+                
+                
+                if not ctl==1:
+                    p=int(puis.get())
+                    rep=repEx4(ch,p,op)
+                    verif=VerifRep(rep,util)
+                    if verif==0:
+                        messagebox.showerror("showerror", "Mauvaise réponse, veuillez réessayer")
+
+                    elif verif==-1:
+                        B3['state']='disabled' #bloquer le bouton valider ==> Perdu
+                        #res1="Réponse : \n" + rep
+                        messagebox.showinfo(title="Information",
+                                            message=" Mauvaise réponse!\n Le résultat est: \n"+rep)
+                        B2['state']='normal'
+                    else:
+                        #res1 = "Bravo !"
+                        messagebox.showinfo(title="Bravo", message="Bravo! Vous pouvez continuer.")
+                        B3['state']='disabled'
+                        B2['state']='normal'
             
             #========= Reset de l'exo ==================================
 
@@ -1452,42 +1455,48 @@ def Menu():
         #===========================================================
         #========= Contrôle =========================================
         #===========================================================
-        def control(oper,nbbin,puis,util):
+       def control(oper,nbbin,puis,util):
             ok=True
             op=['*','/']
 
-            if man==2:
+            if man==1:
                 
                 if oper=='' or nbbin==''or puis==''or util=='':
-                    messagebox.showerror("Veuillez saisir toute les valeurs")
-                    return(1)
-            elif man==1:
-                if util=='':
-                    messagebox.showerror("Veuillez saisir un résultat")
-                    return(1)
-                
-            if oper not in op:
-                ok=False
-                messagebox.showerror("ATTENTION !", "Operation : Mettre '*' ou '/'")
-                return(1)
-            else:
-                if not CtrlSyntaxe(nbbin,2,1,16):
                     ok=False
-                    messagebox.showerror("ATTENTION !", "Mauvaise saisie du nombre binaire")
+                    messagebox.showerror("ATTENTION!","Veuillez saisir toute les valeurs")
                     return(1)
                 else:
-                    if not CtrlSyntaxe(puis,10,1,10,1,8):
+        
+                    if oper not in op:
                         ok=False
-                        messagebox.showerror("ATTENTION !", "Mauvaise saisie de l'exposant")
+                        messagebox.showerror("ATTENTION !", "Operation : Mettre '*' ou '/'")
                         return(1)
                     else:
-
-                        if not CtrlSyntaxe(util,2,1,16):
+                        if not CtrlSyntaxe(nbbin,2,1,16):
                             ok=False
-                            messagebox.showerror("ATTENTION !", "Mauvaise saisie du résultats")
+                            messagebox.showerror("ATTENTION !", "Mauvaise saisie du nombre binaire")
                             return(1)
-                            
-
+                        else:
+                            if not CtrlSyntaxe(puis,10,1,10,1,8):
+                                ok=False
+                                messagebox.showerror("ATTENTION !", "Mauvaise saisie de l'exposant")
+                                return(1)
+                            else:                
+                                if not CtrlSyntaxe(util,2,1,35):
+                                    ok=False
+                                    messagebox.showerror("ATTENTION !", "Vérifier la syntaxe de votre résultat.")
+                                    return(1)
+                                
+            elif man==2:
+                if util=='':
+                    ok=False
+                    messagebox.showerror("ATTENTION!","Veuillez saisir un résultat")
+                    return(1)
+                else:
+                     ctrlR=CtrlSyntaxe(util,2,1,35)
+                     if ctrlR==False:
+                         messagebox.showerror("ATTENTION !", "Vérifier la syntaxe de votre résultat.")
+                         return(1)
 
         #===========================================================
         #========= Rappel fenetre ==================================
