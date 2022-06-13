@@ -288,23 +288,6 @@ def Menu():
 #===================== Chapitre 1 - Exercice 1 ===========================================
         
     def Exercice1(f, select):
-        #======================================================================================== Saisie Manuelle ==================================
-        def SaisiEx1():
-            base=[10,2,8,16]
-            for i in base:
-                basedep=base[i]
-                basearr=base[i]
-                entier=""
-                if basedep!=basearr:
-                    if base[i]==8:
-                        ok=CtrlSyntaxe(entier,8,1,10)
-                    elif base[i]==16:
-                        ok=CtrlSyntaxe(entier,16,1,8)
-                    elif base[i]==2:
-                        ok=CtrlSyntaxe(entier,2,1,32)
-                    elif base[i]==10:
-                        ok=CtrlSyntaxe(entier,10,1,10,1,10000)
-            return(basedep,entier,basearr) 
         #========================================================================================       
         fen=f
         fen.config(background="lightskyblue1")
@@ -334,10 +317,11 @@ def Menu():
 
         #======================Aléatoire=================================
         man=select
-        entier=0
-        basedep=0
-        basearr=0
-        def alea(man):
+        entier=''
+        basedep=''
+        basearr=''
+        ko=0
+        def alea(man,ko):
             global basedep
             global basearr
             global entier
@@ -364,12 +348,22 @@ def Menu():
                 dicoNb[8]='disabled','disabled','disabled','normal','Gainsboro','Gainsboro','Gainsboro','salmon'
                 dicoNb[10]='normal','disabled','disabled','disabled','salmon','Gainsboro','Gainsboro','Gainsboro'
                 dicoNb[16]='disabled','disabled','normal','disabled','Gainsboro','Gainsboro','salmon','Gainsboro'
+                
+                if ko==1:
+                    A1.destroy()
+                    A2.destroy()
+                    A3.destroy()
+                    A4.destroy()
+                    A5.destroy()
+                    A6.destroy()
+                    A7.destroy()
+                    A8.destroy()
+                        
                 A1=Radiobutton(fen,text="Décimal",selectcolor=dicoNb[basedep][4],state=dicoNb[basedep][0], fg='#103985', bg='Gainsboro',indicatoron=0,width=26, height=2, cursor='hand2')
                 A2=Radiobutton(fen,text="Binaire",selectcolor=dicoNb[basedep][5],state=dicoNb[basedep][1], fg='#103985', bg='Gainsboro',indicatoron=0,width=26, height=2, cursor='hand2')
                 A3=Radiobutton(fen,text="Hexadécimal",selectcolor=dicoNb[basedep][6],state=dicoNb[basedep][2], fg='#103985', bg='Gainsboro',indicatoron=0,width=26, height=2, cursor='hand2')
                 A4=Radiobutton(fen,text="Octal",selectcolor=dicoNb[basedep][7],state=dicoNb[basedep][3], fg='#103985', bg='Gainsboro',indicatoron=0,width=26, height=2, cursor='hand2')
                 
-                A1['state']='normal'
                 A5=Radiobutton(fen,text="Décimal",selectcolor=dicoNb[basearr][4],state=dicoNb[basearr][0], fg='#103985', bg='Gainsboro',indicatoron=0,width=26, height=2, cursor='hand2')
                 A6=Radiobutton(fen,text="Binaire",selectcolor=dicoNb[basearr][5],state=dicoNb[basearr][1], fg='#103985', bg='Gainsboro',indicatoron=0,width=26, height=2, cursor='hand2')
                 A7=Radiobutton(fen,text="Hexadécimal",selectcolor=dicoNb[basearr][6],state=dicoNb[basearr][2], fg='#103985', bg='Gainsboro',indicatoron=0,width=26, height=2, cursor='hand2')
@@ -390,13 +384,20 @@ def Menu():
                 if basedep==8:
                     entier=AleaExAll(8,1,10)
                 if basedep==10:
-                    entier=AleaExAll(10,1,5)
+                    entier=AleaExAll(10,1,5,1,10000)
                 if basedep==16:
                     entier=AleaExAll(16,1,8)
+                if ko==1:
+                    Esaisie.destroy()
                 Esaisie=Label(fen, text=entier , font=("courier", 14, "italic"), fg='black', bg='white',borderwidth=3, relief="sunken",width=10)
                 Esaisie.grid(row=3, column=2,columnspan=3, rowspan=2, ipadx=200,ipady=10)
-
-        alea(man)
+                return(basedep,basearr,entier)
+            else:
+                return(0,0,'')
+       donne=alea(man,0)
+       basedep=donne[0]
+       basearr=donne[1]
+       entier=donne[2]
         def RepEx1(donne):
             dico={}
             dico[2]='b'
@@ -408,7 +409,6 @@ def Menu():
                 rep=rep.upper()
             elif donne[1] == 10:
                 rep=str(int(donne[2],donne[0]))
-                print(donne[1])
             else:
                 rep=int(donne[2],donne[0])
                 rep=format(rep,dico[donne[1]])
@@ -419,14 +419,13 @@ def Menu():
         def get(basedep,basearr,entier,man):
             util = Résultats.get()
             util=util.upper()
+            util=Raccourcir(util)
             if man==2:
                 entier = Esaisie.get()
+                entier = Raccourcir(entier)
                 basedep=basedepart.get()
                 basearr=basearrivee.get()
-                print(entier)
-                print(basedep)
-                print(basearr)
-            if entier=='' or basearr==0 or basedep == 0:
+            if entier=='' or basearr==0 or basedep == 0 or util='':
                 messagebox.showerror(title="Information",
                             message="Erreur : Veuillez saisir toutes les valeurs")
                 return 1
