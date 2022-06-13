@@ -605,43 +605,38 @@ def Menu():
         ##imag=PhotoImage(file="imag.gif")
 
         def create():
-            rappel = Toplevel(fen, background="white")
+            rappel = Toplevel(fen, background="lightskyblue1")
             #rappel.config(background="lightskyblue1")
-            Label(rappel,text="Rappel", font=("Courier", 40, "italic"), fg='blue4', bg='white').grid(row=1, column=1, columnspan=3)
+            Label(rappel,text="Rappel", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1').grid(row=1, column=1, columnspan=3)
 
-            Label(rappel, text="Dans un système en base X, il faut X symboles différents pour représenter les chiffres de 0 à X-1", font=("Courier", 14), fg='blue4', bg='white').grid(row=2, column=1,columnspan=3)
+            Label(rappel, text="Dans un système en base X, il faut X symboles différents pour représenter les chiffres de 0 à X-1", font=("Courier", 16), fg='blue4', bg='lightskyblue1').grid(row=2, column=1,columnspan=3,ipady=40)
             ##Label(rappel, image= img1).grid(row=3, column=1,columnspan=3)
         ##    
-            i="╠═══════{Conversion du nombre N exprimé en base 10 vers une base X}═══════╣\n"
-            a="Diviser le nombre N par la base X jusqu’à obtenir un quotient égal à 0. La conversion est donc\n"
-            b="obtenue en notant les restes de chacune des divisions effectuées depuis la dernière division."
-            Label(rappel, text=i, bg='white', fg='darkslateblue', font=('Courier',14)).grid(row=4, column=1)                   
-            Label(rappel, text=a+b, bg='white', fg='firebrick3', font=('Segoe Print',10)).grid(row=5, column=1)
+            i="De base 10 à base 2 :\n"
+            a="méthode de la division ou méthode de la soustraction\n"
+    
+            Label(rappel, text=i, bg='lightskyblue1', fg='darkslateblue', font=('Courier',20,'bold')).grid(row=4, column=1, columnspan=3)                   
+            Label(rappel, text=a, bg='lightskyblue1', fg='darkslateblue', font=('Courier',16)).grid(row=5, column=1, columnspan=3)
             #Label(rappel, image= img2).grid(row=4, column=2, columnspan=2) 
         ##    
-            j="╠═══════{Conversion du nombre N exprimé en base X vers la base 10}═══════╣\n"
-            c="Multiplier chaque digit par la base Xn, puis Additionner.\n"
-            d="100111 = 1x2^5 + 0x2^4 + 0x2^3 + 1x2^2 + 1x2^1 + 1x2^0\n"
-            e="100111 =  32   +   0   +   0   +   4   +   2   +   1 = 39\n"                      
+            j="De base 2 à base 8 ou 16 :\n"
+            c="méthode de la compression\n"                      
                                 
-            Label(rappel, text=j, bg='white', fg='darkslateblue', font=('Courier',14)).grid(row=6, column=1)                  
-            Label(rappel, text=c+d+e, bg='white', fg='firebrick3', font=('Segoe Print',10)).grid(row=7, column=1)
-            
+            Label(rappel, text=j, bg='lightskyblue1', fg='darkslateblue', font=('Courier',20,'bold')).grid(row=6, column=1, columnspan=3)                  
+            Label(rappel, text=c, bg='lightskyblue1', fg='darkslateblue', font=('Courier',16)).grid(row=7, column=1, columnspan=3)
         ##    
-            k="╠═══════{Conversion du nombre N exprimé dans la base 8 vers la base 2}═══════╣\n"
-            m=" - Convertir un nombre N en base 8 vers la base 2 s’effectue en remplaçant chacun des chiffres du nombre par leur équivalent binaire sur 3 bits.\n"
-            n="- Convertir un nombre N en base 2 vers base 8 s’effectue en découpant la chaîne binaire N en paquet de 3 bits depuis le bit de poids faible.\n"
+            k="De base 8 ou 16 à base 2 :\n"
+            m="méthode de l’expansion\n"
 
-            Label(rappel, text=k, bg='white', fg='darkslateblue', font=('Courier',14)).grid(row=8, column=1)               
-            Label(rappel, text=m+n, bg='white', fg='firebrick3', font=('Segoe Print',10)).grid(row=9, column=1)
+            Label(rappel, text=k, bg='lightskyblue1', fg='darkslateblue', font=('Courier',20,'bold')).grid(row=8, column=1, columnspan=3)               
+            Label(rappel, text=m, bg='lightskyblue1', fg='darkslateblue', font=('Courier',16)).grid(row=9, column=1, columnspan=3)
             #Label(rappel, image= img4).grid(row=7, column=2) 
         ##
-            l="╠═══════{Conversion du nombre N exprimé dans la base 16 vers la base 2}═══════╣\n"
-            o=" - Convertir un nombre N en base 16 vers la base 2 s’effectue en remplaçant chacun des chiffres du nombre par leur équivalent binaire sur 4 bits. \n"
-            p="– Convertir un nombre N en base 2 vers la base 16 s’effectue en découpant la chaîne binaire N en paquet de 4 bits depuis le bit de poids faible.\n"
+            l="De base 8 à base 16 ou réciproquement :\n"
+            o="passer par la base 2 en intermédiaire.\n"
 
-            Label(rappel, text=l, bg='white', fg='darkslateblue', font=('Courier',14)).grid(row=10, column=1)               
-            Label(rappel, text=o+p, bg='white', fg='firebrick3', font=('Segoe Print',10)).grid(row=11, column=1)
+            Label(rappel, text=l, bg='lightskyblue1', fg='darkslateblue', font=('Courier',20,'bold')).grid(row=10, column=1, columnspan=3)               
+            Label(rappel, text=o, bg='lightskyblue1', fg='darkslateblue', font=('Courier',16)).grid(row=11, column=1, columnspan=3)
             ##Label(rappel, image= imag).grid(row=4, column=2, rowspan=8) 
 
             def exit_btn():
