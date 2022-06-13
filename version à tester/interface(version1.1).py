@@ -384,7 +384,7 @@ def Menu():
                 if basedep==8:
                     entier=AleaExAll(8,1,10)
                 if basedep==10:
-                    entier=AleaExAll(10,1,5,1,10000)
+                    entier=AleaExAll(10,1,10000)
                 if basedep==16:
                     entier=AleaExAll(16,1,8)
                 if ko==1:
