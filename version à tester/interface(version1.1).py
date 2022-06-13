@@ -394,10 +394,10 @@ def Menu():
                 return(basedep,basearr,entier)
             else:
                 return(0,0,'')
-       donne=alea(man,0)
-       basedep=donne[0]
-       basearr=donne[1]
-       entier=donne[2]
+        donne=alea(man,0)
+        basedep=donne[0]
+        basearr=donne[1]
+        entier=donne[2]
         def RepEx1(donne):
             dico={}
             dico[2]='b'
@@ -425,7 +425,7 @@ def Menu():
                 entier = Raccourcir(entier)
                 basedep=basedepart.get()
                 basearr=basearrivee.get()
-            if entier=='' or basearr==0 or basedep == 0 or util='':
+            if entier=='' or basearr==0 or basedep == 0 or util=='':
                 messagebox.showerror(title="Information",
                             message="Erreur : Veuillez saisir toutes les valeurs")
                 return 1
@@ -1465,7 +1465,7 @@ def Menu():
         #===========================================================
         #========= Contrôle =========================================
         #===========================================================
-       def control(oper,nbbin,puis,util):
+        def control(oper,nbbin,puis,util):
             ok=True
             op=['*','/']
 
