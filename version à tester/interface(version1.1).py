@@ -5,6 +5,7 @@ from tkinter import messagebox
 from functools import partial
 from Outils import *
 from random import*
+import random
 import math
 
 
