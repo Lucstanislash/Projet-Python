@@ -2706,10 +2706,8 @@ def Menu():
 
                             ok2 = CtrlSyntaxe(util,10,1,20,1,10000)
                             print(ok2)
-                            print("miamiaou")
-
-                        else:
-                            print("miaou bitch")
+                          
+                        
                     
                         if ok2==True:
                             if ok3==False:  
