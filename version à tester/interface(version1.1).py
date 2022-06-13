@@ -3318,25 +3318,25 @@ def Menu():
             nb=0
             Verif=VerifRep(rep,list(util))
             if Verif == 1:
-                B3['state']='disabled' #bloquer le bouton valider ==> Gagner
-                B2['state']='normal'
-                messagebox.showinfo(title="Information",
+               B3['state']='disabled' #bloquer le bouton valider ==> Gagner
+               B2['state']='normal'
+               messagebox.showinfo(title="Information",
                                         message="Bonne Réponse, Bravo !! ")
                 
             elif Verif == -1:
                 B3['state']='disabled' #bloquer le bouton valider ==> Perdu
                 B2['state']='normal'  #débloquer le bouton nouveau ==> recommencer
                 messagebox.showinfo(title="Information",
-                                    message=" Mauvaise réponse, vous avez perdu !\n \n Le résultat est: \n"
+                                    message=" Mauvaise réponse, vous avez perdu !\n \n Le résultat est: \n\n"
                                     +"Nombres de mots:"
                                     + ("".join(rep[0]))
-                                    + "\n"
+                                    + "\n\n"
                                     +"Numéro du premier mot: "
                                     + ("".join(rep[1]))
-                                    + "\n"
+                                    + "\n\n"
                                     +"Numéro du dernier mot: "
                                     + ("".join(rep[2]))
-                                    + "\n"
+                                    + "\n\n"
                                     +"Mot contenu dans la case: "
                                     + ("".join(str(donne[3])))
                                     +" :"
@@ -3352,6 +3352,8 @@ def Menu():
                 messagebox.showinfo(title="Information",
                                     message="Mauvaise réponse, réessayer !")
 
+            
+          
             
                
         ## INTERFACE ##########################
