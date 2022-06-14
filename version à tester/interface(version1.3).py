@@ -392,13 +392,13 @@ def Menu():
                 if basedep==8:
                     entier=AleaExAll(8,1,10)
                 if basedep==10:
-                    entier=AleaExAll(10,1,5,1,10000)
+                    entier=AleaExAll(10,1,10000)
                 if basedep==16:
                     entier=AleaExAll(16,1,8)
                 if ko==1:
                     Esaisie.destroy()
                 Esaisie=Label(fen, text=entier , font=("courier", 14, "italic"), fg='black', bg='white',borderwidth=3, relief="sunken",width=10)
-                Esaisie.grid(row=3, column=2,columnspan=3, rowspan=2, ipadx=200,ipady=10)
+                Esaisie.grid(row=3, column=2,columnspan=3, rowspan=2, ipadx=200,ipady=10,sticky='s')
                 return(basedep,basearr,entier)
             else:
                 return(0,0,'')
@@ -1907,9 +1907,9 @@ def Menu():
          
         B3=Button(fenetre, text="Valider", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda : RepUtil())
          
-        B4=Button(fenetre, text="Menu", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=back2)
+        B4=Button(fenetre, text="Menu", font=("courier", 18, "italic"), fg='white', bg='grey', width=15, height=2,command=back2)
          
-        B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='grey', width=15, height=2,command=back)
+        B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='#103985', width=15, height=2,command=back)
 
         titre.grid(row=1, column=2,columnspan=3,ipady=40)
         soustitre.grid(row=2, column=1,columnspan=5,sticky='w',ipady=40)
@@ -3821,9 +3821,9 @@ def Menu():
          
         B3=Button(fenetre, text="Valider", state='disabled',font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:get(donne))
          
-        B4=Button(fenetre, text="Menu", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=back2)
+        B4=Button(fenetre, text="Menu", font=("courier", 18, "italic"), fg='white', bg='grey', width=15, height=2,command=back2)
          
-        B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='grey', width=15, height=2,command=back)
+        B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='#103985', width=15, height=2,command=back)
 
         B6=Button(fenetre, text="Go!", font=("calibri", 18, "bold"), fg='white', bg='#103985', width=16, height=0,command=lambda:control(donne,ko,taille,TailleC,Adresse))
 
@@ -3840,7 +3840,7 @@ def Menu():
 
         txt2a.grid(row=3, column=3,sticky='s')
 
-        B6.grid(row=4, column=5,sticky='nw')
+    
 
         txt3.grid(row=4, column=1,columnspan=2,sticky='w',ipady=30)
         AdPMTab.grid(row=4, column=2,ipady=10)
@@ -3871,8 +3871,9 @@ def Menu():
         B1.grid(row=9, column=1)
         B2.grid(row=9, column=2)
         B3.grid(row=9, column=3)
-        B4.grid(row=9, column=4)
-        B5.grid(row=9, column=5)
+        B4.grid(row=9, column=5)
+        B5.grid(row=9, column=4)
+        B6.grid(row=4, column=5,sticky='nw')
     #============================================================================
     #===================== Chapitre 2 ===========================================
     #============================================================================
