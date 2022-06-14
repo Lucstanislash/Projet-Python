@@ -174,6 +174,7 @@ def PageChoix(NomExercice): #======== Fenêtre de demande aléatoire ou manuel =
                 Exercice8(fenetre,2)
     
         #===== en cours
+
     NomExo = Label(fenetre, text= NomExercice, font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
     NomExo.grid(row=1, column=1, columnspan=5)
     txt3=Label(fenetre, text= "Souhaitez vous une saisie Manuelle ou Aléatoire", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
@@ -529,13 +530,13 @@ def Menu():
             Menu()
             
         titre=Label(fen, text="Entiers non signées", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1') # 
-        titre.grid(row=1, column=2,columnspan=3)
-        soustitre=Label(fen, text="Quelques Indications: ", font=("courier", 25), fg='red', bg='lightskyblue1') 
-        soustitre.grid(row=2, column=1,columnspan=3,sticky='w') 
+        titre.grid(row=1, column=2,columnspan=3,ipady=30)
+        soustitre=Label(fen, text="Quelques indications: Base 2 : maximum 32 bits Base 8 : maximum 10 symboles\n                    Base 10 : de 1 à 10000 Base 16 : maximum 8 symboles", font=("courier", 15), fg='blue4', bg='lightskyblue1') 
+        soustitre.grid(row=2, column=1,columnspan=4,sticky='w') 
 
         #Création de menu déroulant d'entrée
         lab1=Label(fen,text="Valeur à convertir", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-        lab1.grid(row=2, column=2,columnspan=3, rowspan=2)   #Créé du texte Label(text=''), spécifie la fenêtre concernée, donne une couleur de fond (bg='') et le place dans la fenêtre avec .pack()
+        lab1.grid(row=2, column=2,columnspan=3, rowspan=2, sticky='s')   #Créé du texte Label(text=''), spécifie la fenêtre concernée, donne une couleur de fond (bg='') et le place dans la fenêtre avec .pack()
         if man==2:
             global Esaisie
             global A1
@@ -548,7 +549,7 @@ def Menu():
             global A8
             #Définit une variable utilisable dans tout le programme
             Esaisie=Entry(fen)                              #Créé une entrée que l'utilisateur pourra remplir de texte et spécifie la fenêtre concernée
-            Esaisie.grid(row=3, column=2,columnspan=3, rowspan=2, ipadx=200,ipady=10)                        #.pack() permet de placer le widget dans la fenêtre ou la Frame sélectionnée
+            Esaisie.grid(row=3, column=2,columnspan=3, rowspan=2, ipadx=200,ipady=10,sticky='s')                        #.pack() permet de placer le widget dans la fenêtre ou la Frame sélectionnée
             Esaisie.focus()                                 #focus() permet ici de placer directement le curseur à l'intérieur de la zone de texte
             #Esaisie.insert(INSERT, 'Mettez la valeur à convertir en respectant les contraintes')      #Insert dans la saisie le texte entre guillemets
             Esaisie.selection_range(0, END)                 #Sélectionne le contenu entier de la saisie
@@ -612,43 +613,38 @@ def Menu():
         ##imag=PhotoImage(file="imag.gif")
 
         def create():
-            rappel = Toplevel(fen, background="white")
+            rappel = Toplevel(fen, background="lightskyblue1")
             #rappel.config(background="lightskyblue1")
-            Label(rappel,text="Rappel", font=("Courier", 40, "italic"), fg='blue4', bg='white').grid(row=1, column=1, columnspan=3)
+            Label(rappel,text="Rappel", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1').grid(row=1, column=1, columnspan=3)
 
-            Label(rappel, text="Dans un système en base X, il faut X symboles différents pour représenter les chiffres de 0 à X-1", font=("Courier", 14), fg='blue4', bg='white').grid(row=2, column=1,columnspan=3)
+            Label(rappel, text="Dans un système en base X, il faut X symboles différents pour représenter les chiffres de 0 à X-1", font=("Courier", 16), fg='blue4', bg='lightskyblue1').grid(row=2, column=1,columnspan=3,ipady=40)
             ##Label(rappel, image= img1).grid(row=3, column=1,columnspan=3)
         ##    
-            i="╠═══════{Conversion du nombre N exprimé en base 10 vers une base X}═══════╣\n"
-            a="Diviser le nombre N par la base X jusqu’à obtenir un quotient égal à 0. La conversion est donc\n"
-            b="obtenue en notant les restes de chacune des divisions effectuées depuis la dernière division."
-            Label(rappel, text=i, bg='white', fg='darkslateblue', font=('Courier',14)).grid(row=4, column=1)                   
-            Label(rappel, text=a+b, bg='white', fg='firebrick3', font=('Segoe Print',10)).grid(row=5, column=1)
+            i="De base 10 à base 2 :\n"
+            a="méthode de la division ou méthode de la soustraction\n"
+    
+            Label(rappel, text=i, bg='lightskyblue1', fg='darkslateblue', font=('Courier',20,'bold')).grid(row=4, column=1, columnspan=3)                   
+            Label(rappel, text=a, bg='lightskyblue1', fg='darkslateblue', font=('Courier',16)).grid(row=5, column=1, columnspan=3)
             #Label(rappel, image= img2).grid(row=4, column=2, columnspan=2) 
         ##    
-            j="╠═══════{Conversion du nombre N exprimé en base X vers la base 10}═══════╣\n"
-            c="Multiplier chaque digit par la base Xn, puis Additionner.\n"
-            d="100111 = 1x2^5 + 0x2^4 + 0x2^3 + 1x2^2 + 1x2^1 + 1x2^0\n"
-            e="100111 =  32   +   0   +   0   +   4   +   2   +   1 = 39\n"                      
+            j="De base 2 à base 8 ou 16 :\n"
+            c="méthode de la compression\n"                      
                                 
-            Label(rappel, text=j, bg='white', fg='darkslateblue', font=('Courier',14)).grid(row=6, column=1)                  
-            Label(rappel, text=c+d+e, bg='white', fg='firebrick3', font=('Segoe Print',10)).grid(row=7, column=1)
-            
+            Label(rappel, text=j, bg='lightskyblue1', fg='darkslateblue', font=('Courier',20,'bold')).grid(row=6, column=1, columnspan=3)                  
+            Label(rappel, text=c, bg='lightskyblue1', fg='darkslateblue', font=('Courier',16)).grid(row=7, column=1, columnspan=3)
         ##    
-            k="╠═══════{Conversion du nombre N exprimé dans la base 8 vers la base 2}═══════╣\n"
-            m=" - Convertir un nombre N en base 8 vers la base 2 s’effectue en remplaçant chacun des chiffres du nombre par leur équivalent binaire sur 3 bits.\n"
-            n="- Convertir un nombre N en base 2 vers base 8 s’effectue en découpant la chaîne binaire N en paquet de 3 bits depuis le bit de poids faible.\n"
+            k="De base 8 ou 16 à base 2 :\n"
+            m="méthode de l’expansion\n"
 
-            Label(rappel, text=k, bg='white', fg='darkslateblue', font=('Courier',14)).grid(row=8, column=1)               
-            Label(rappel, text=m+n, bg='white', fg='firebrick3', font=('Segoe Print',10)).grid(row=9, column=1)
+            Label(rappel, text=k, bg='lightskyblue1', fg='darkslateblue', font=('Courier',20,'bold')).grid(row=8, column=1, columnspan=3)               
+            Label(rappel, text=m, bg='lightskyblue1', fg='darkslateblue', font=('Courier',16)).grid(row=9, column=1, columnspan=3)
             #Label(rappel, image= img4).grid(row=7, column=2) 
         ##
-            l="╠═══════{Conversion du nombre N exprimé dans la base 16 vers la base 2}═══════╣\n"
-            o=" - Convertir un nombre N en base 16 vers la base 2 s’effectue en remplaçant chacun des chiffres du nombre par leur équivalent binaire sur 4 bits. \n"
-            p="– Convertir un nombre N en base 2 vers la base 16 s’effectue en découpant la chaîne binaire N en paquet de 4 bits depuis le bit de poids faible.\n"
+            l="De base 8 à base 16 ou réciproquement :\n"
+            o="passer par la base 2 en intermédiaire.\n"
 
-            Label(rappel, text=l, bg='white', fg='darkslateblue', font=('Courier',14)).grid(row=10, column=1)               
-            Label(rappel, text=o+p, bg='white', fg='firebrick3', font=('Segoe Print',10)).grid(row=11, column=1)
+            Label(rappel, text=l, bg='lightskyblue1', fg='darkslateblue', font=('Courier',20,'bold')).grid(row=10, column=1, columnspan=3)               
+            Label(rappel, text=o, bg='lightskyblue1', fg='darkslateblue', font=('Courier',16)).grid(row=11, column=1, columnspan=3)
             ##Label(rappel, image= imag).grid(row=4, column=2, rowspan=8) 
 
             def exit_btn():
@@ -1650,6 +1646,7 @@ def Menu():
         #======================================================================
         def back():
             titre.destroy()
+            soustitre.destroy()
             txt1.destroy()
             txt2.destroy()
             txt3.destroy()
@@ -1666,6 +1663,7 @@ def Menu():
             Chap1()
         def back2():
             titre.destroy()
+            soustitre.destroy()
             txt1.destroy()
             txt2.destroy()
             txt3.destroy()
@@ -2145,6 +2143,7 @@ def Menu():
                                 elif Verif == 0:
                                        messagebox.showinfo(title="Information",
                                                     message="Mauvaise réponse, réessayer !")
+                                       
                 
         def control():
                 
@@ -2332,6 +2331,12 @@ def Menu():
                         Val.configure(state="normal")
                         Val.delete(0,END)
                         Val.insert(0, val)
+                        Val['state']='readonly'
+                        Nb.configure(state="readonly")
+                        menuD.configure(state="readonly")
+                        menuA.configure(state="readonly")
+                       
+                        
                         
                 
                 if man==2:
@@ -2358,6 +2363,9 @@ def Menu():
                                         Nb.delete(0,END)
 
                                 GO['state']='disabled'
+                                menuD.config(state='disabled')
+                                menuA.config(state='disabled')
+                                
                          
                         
 
@@ -2379,6 +2387,9 @@ def Menu():
                 Nb.configure(state="readonly")
              
                 Resultats.delete(0,END)
+
+                menuD.config(state='normal')
+                menuA.config(state='normal')
                 
             elif man==1:
                
@@ -2387,6 +2398,7 @@ def Menu():
               
                 Resultats.delete(0,END)
                 
+                Val['state']='normal'
                 Val.delete(0,END)
                 Val.insert(0, "Appuyer sur Go")
                 Val.configure(state="readonly")
@@ -2406,7 +2418,7 @@ def Menu():
                 menuD.insert(0, based)
                 menuD.configure(state="readonly")
 
-                
+        
                 
                 
         Val=Entry(justify='center',borderwidth=3)
@@ -2430,6 +2442,7 @@ def Menu():
            
             fenetre.menud= tk.StringVar(fenetre)
             menuD = ttk.OptionMenu(fenetre,fenetre.menud,Li[0], *Li)
+            
         else:
             menuD=Entry(fenetre,justify='center',borderwidth=3)
             menuD.insert(0, based)
@@ -2846,7 +2859,7 @@ def Menu():
                     
                     print("voici la rep",rep)
                     Verif=VerifRep(str(rep),util)
-                    
+                    w1.config(state='disabled')
                     if ok==True:
                             
                             if Verif == 1:
@@ -2872,6 +2885,7 @@ def Menu():
                 saisieVal.delete(0,END)
                 saisieVirg.delete(0,END)
                 Resultats.delete(0,END)
+                w1.config(state='normal')
                 
             
             elif man==1:
@@ -3196,6 +3210,7 @@ def Menu():
                 util=Raccourcir(util)
                 formats = fenetre.option_var.get()
                 formats=Raccourcir(formats)
+                w1.config(state='disabled')
             else:
                 entier=valeur
                 util = Resultats.get()
@@ -3332,7 +3347,7 @@ def Menu():
                 w1.config(text=formats)
                 Resultats.delete(0,END)
             else:
-                
+               w1.config(state='normal')
                saisieVal.delete(0,END)
                Resultats.delete(0,END)
 
@@ -3453,6 +3468,7 @@ def Menu():
         def control(donne,ko,taille,TailleC,Adresse):
             global donne2
             B6['state']='disabled'
+            
             if man==2:
                 taille = TailleTab.get()
                 taille=Raccourcir(taille)
@@ -3486,6 +3502,7 @@ def Menu():
                             messagebox.showerror(title="Erreur",
                                         message="Erreur de saisie pour la taille du tableau")
                             return(1)
+                        
 
                         elif ok2==False:
                             B6['state']='normal'
@@ -3494,15 +3511,22 @@ def Menu():
                             return(1)
                         elif ok3==False:
                             B6['state']='normal'
+                            B3['state']='disabled'
                             messagebox.showerror(title="Erreur",
                                         message="Erreur de saisie pour l'adresse du premier mot")
                             return(1)
                         
                         elif int(taille)*int(TailleC)>950:
                             B6['state']='normal'
+                            B3['state']='disabled'
                             messagebox.showerror(title="Erreur",
                                         message="Erreur : Taille du tableau * Taille d'une case >950")
                             return(1)
+                        else:
+                            B3['state']='normal'
+                            TailleTab.configure(state="disabled")
+                            TailleCase.configure(state="disabled")
+                            AdPMTab.configure(state="disabled")
                     
             if ko==1:
                 donne2=AleaExAll(10,1,int(taille))
@@ -3522,83 +3546,79 @@ def Menu():
             ko=0
             util=[]
             donne=control(donne,ko,taille,TailleC,Adresse)
-            if donne==1:
-                messagebox.showerror(title="Information",
-                                message="Mauvaise saisie")
-                B6['state']='normal'
-                return(1)
-            else:
+            if not donne==1:
                 donne=list(donne)+list(str(donne2))
-            util0=Raccourcir(NbCTab.get())
-            util1=Raccourcir(NumPTab.get())
-            util2=Raccourcir(NumDTab.get())
-            util3=Raccourcir(MotCase.get())
-            util3=util3.replace(",","")
-            util=(util0,util1,util2,util3)
-            rep=RepEx8(donne)
-            if man==1:
-                if type(donne[3])==str:
-                    print(donne[3])
-                   
-                    return(1)
-            rep2=(str(int(donne[2])+(int(donne[3])-1)*int(donne[1])))
-            rep4=rep2
-            for i in range(int(donne[1])-1):
-                rep3=int(rep2)+i+1
-                rep4+=","+str(rep3)
-            rep5=rep4.replace(",","")
-            rep.append(rep5)
-            for i in util:
-                if i=='':
-                    if man==1:
-                        ok=False
-                else:
-                    ok=CtrlSyntaxe(i,10,0,200,0,100000000000000000000000000)
-                if ok==False:
-                    messagebox.showerror(title="Information",
-                                    message="Mauvaise saisie")
-                    return(1)
-            Raiponce={}
-            for i in range(4):
-                verif=VerifRaip(rep[i],util[i])
-                Raiponce[rep[i]]=verif
-            dico={1:txtQ10,2:txtQ11,3:txtQ12,4:txtQ2}
-            nb=0
-            Verif=VerifRep(rep,list(util))
-            if Verif == 1:
-               B3['state']='disabled' #bloquer le bouton valider ==> Gagner
-               B2['state']='normal'
-               messagebox.showinfo(title="Information",
-                                        message="Bonne Réponse, Bravo !! ")
-                
-            elif Verif == -1:
-                B3['state']='disabled' #bloquer le bouton valider ==> Perdu
-                B2['state']='normal'  #débloquer le bouton nouveau ==> recommencer
-                messagebox.showinfo(title="Information",
-                                    message=" Mauvaise réponse, vous avez perdu !\n \n Le résultat est: \n\n"
-                                    +"Nombres de mots:"
-                                    + ("".join(rep[0]))
-                                    + "\n\n"
-                                    +"Numéro du premier mot: "
-                                    + ("".join(rep[1]))
-                                    + "\n\n"
-                                    +"Numéro du dernier mot: "
-                                    + ("".join(rep[2]))
-                                    + "\n\n"
-                                    +"Mot contenu dans la case: "
-                                    + ("".join(str(donne[3])))
-                                    +" :"
-                                    +("".join(rep4)))
-            elif Verif == 0:
-                for i in Raiponce:
-                    if Raiponce[i]==0:
-                        nb+=1
-                        dico[nb].config(fg='red')
+                util0=Raccourcir(NbCTab.get())
+                util1=Raccourcir(NumPTab.get())
+                util2=Raccourcir(NumDTab.get())
+                util3=Raccourcir(MotCase.get())
+                util3=util3.replace(",","")
+                util=(util0,util1,util2,util3)
+                rep=RepEx8(donne)
+                if man==1:
+                    if type(donne[3])==str:
+                        print(donne[3])
+                       
+                        return(1)
+                rep2=(str(int(donne[2])+(int(donne[3])-1)*int(donne[1])))
+                rep4=rep2
+                for i in range(int(donne[1])-1):
+                    rep3=int(rep2)+i+1
+                    rep4+=","+str(rep3)
+                rep5=rep4.replace(",","")
+                rep.append(rep5)
+                for i in util:
+                    if i=='':
+                        messagebox.showerror(title="Information",
+                                        message="Veuillez saisir les réponses")
+                        return(1)
                     else:
-                        nb+=1
-                        dico[nb].config(fg='black')
-                messagebox.showinfo(title="Information",
-                                    message="Mauvaise réponse, réessayer !")
+                        ok=CtrlSyntaxe(i,10,0,200,0,100000000000000000000000000)
+                    if ok==False:
+                        messagebox.showerror(title="Information",
+                                        message="Erreur de syntaxe")
+                        return(1)
+                Raiponce={}
+                for i in range(4):
+                    verif=VerifRaip(rep[i],util[i])
+                    Raiponce[rep[i]]=verif
+                dico={1:txtQ10,2:txtQ11,3:txtQ12,4:txtQ2}
+                nb=0
+                Verif=VerifRep(rep,list(util))
+                if Verif == 1:
+                   B3['state']='disabled' #bloquer le bouton valider ==> Gagner
+                   B2['state']='normal'
+                   messagebox.showinfo(title="Information",
+                                            message="Bonne Réponse, Bravo !! ")
+                    
+                elif Verif == -1:
+                    B3['state']='disabled' #bloquer le bouton valider ==> Perdu
+                    B2['state']='normal'  #débloquer le bouton nouveau ==> recommencer
+                    messagebox.showinfo(title="Information",
+                                        message=" Mauvaise réponse, vous avez perdu !\n \n Le résultat est: \n\n"
+                                        +"Nombres de mots:"
+                                        + ("".join(rep[0]))
+                                        + "\n\n"
+                                        +"Numéro du premier mot: "
+                                        + ("".join(rep[1]))
+                                        + "\n\n"
+                                        +"Numéro du dernier mot: "
+                                        + ("".join(rep[2]))
+                                        + "\n\n"
+                                        +"Mot contenu dans la case: "
+                                        + ("".join(str(donne[3])))
+                                        +" :"
+                                        +("".join(rep4)))
+                elif Verif == 0:
+                    for i in Raiponce:
+                        if Raiponce[i]==0:
+                            nb+=1
+                            dico[nb].config(fg='red')
+                        else:
+                            nb+=1
+                            dico[nb].config(fg='black')
+                    messagebox.showinfo(title="Information",
+                                        message="Mauvaise réponse, réessayer !")
 
             
           
@@ -3717,7 +3737,12 @@ def Menu():
                MotCase.delete(0,END)
                
             else:
-                
+
+               B3['state']='disabled'
+               TailleTab.configure(state="normal")
+               TailleCase.configure(state="normal")
+               AdPMTab.configure(state="normal")
+                     
                TailleTab.delete(0,END)
                TailleCase.delete(0,END)
                AdPMTab.delete(0,END)
@@ -3794,7 +3819,7 @@ def Menu():
 
         B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:nouveau())
          
-        B3=Button(fenetre, text="Valider", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:get(donne))
+        B3=Button(fenetre, text="Valider", state='disabled',font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:get(donne))
          
         B4=Button(fenetre, text="Menu", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=back2)
          
