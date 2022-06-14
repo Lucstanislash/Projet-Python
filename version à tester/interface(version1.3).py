@@ -2868,7 +2868,7 @@ def Menu():
 
         titre=Label(fenetre, text="Les Décimaux", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')  # Placement de l'invite
 
-        soustitre=Label(fenetre, text="Quelques Indications: Base de départ 10 valeur --> 0 et 10 000, entre 1 et 6 bits après la virgule \n              Base de départ 2 --> max 5 bits après la virgule , valeur max 32 bits", font=("courier", 15), fg='darkblue', bg='lightskyblue1') 
+        soustitre=Label(fenetre, text="Quelques Indications: \n Base de départ 10 valeur --> 0 et 10 000, entre 1 et 6 bits après la virgule \n Base de départ 2 --> max 5 bits après la virgule , valeur max 32 bits", font=("courier", 15), fg='darkblue', bg='lightskyblue1') 
 
         if man==1:
             if ordre=='10':    
