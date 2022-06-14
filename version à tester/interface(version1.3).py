@@ -78,7 +78,7 @@ def ChapChoix():
             
         elif t == 'Conversion':
             back(2)
-            Exercice5b(fenetre) # j'ai pas trop compris pourquoi on écris 2 fois exo 
+            Exercice5b(fenetre,1) 
         
     titre = Label(fenetre, text= "Entiers signés", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
     titre.grid(row=1, column=1, columnspan=5)
@@ -160,7 +160,7 @@ def PageChoix(NomExercice): #======== Fenêtre de demande aléatoire ou manuel =
                 Exercice4(fenetre, 1)
             if NomExercice == "Entiers signées":
                 back(1)
-                Exercice5b(fenetre)
+                Exercice5b(fenetre,2)
             if NomExercice == "Les Décimaux":
                 back(1)
                 Exercice6(fenetre, 2)
@@ -441,37 +441,42 @@ def Menu():
             Lmax[16]=8
             entier=str(entier).upper()
             donnee=(basedep,basearr,entier)
-            ok=CtrlSyntaxe(entier,basedep,1,Lmax[basedep])
-            ok2=CtrlSyntaxe(util,basearr,1,Lmax[basearr])
-            if ok==False:
-               messagebox.showerror(title="Information",
-                        message="Erreur : La syntaxe de l'entier de départ est fausse.")
-               return 1
-            elif ok2==False:
-               messagebox.showerror(title="Information",
-                        message="Erreur : La syntaxe de la réponse est fausse.")
-               return 1
-            elif basedep==basearr:
-                messagebox.showerror(title="Information",
-                        message="Erreur : Problème dans la sélection des bases.")
-                return 1
+            if  "." in entier or "." in util:
+                
+                        messagebox.showerror("showerror", "Veuillez saisir un entier ")
+                        return(1)
             else:
-                rep=RepEx1(donnee)
-            
-            Verif=VerifRep(rep,util)
-            if Verif == 1:
-                B3['state']='disabled' #bloquer le bouton valider ==> Gagner
-                B2['state']='normal'
-                messagebox.showinfo(title="Information",
-                                    message="Bonne Réponse, Bravo !! ")
-            elif Verif == -1:
-                B3['state']='disabled' #bloquer le bouton valider ==> Perdu
-                B2['state']='normal'  #débloquer le bouton nouveau ==> recommencer
-                messagebox.showinfo(title="Information",
-                                    message=" Mauvaise réponse, vous avez perdu !\n \n Le résultat est: \n" +("".join(str(rep))))
-            elif Verif == 0:
-               messagebox.showinfo(title="Information",
-                                    message="Mauvaise réponse, réessayer !")
+                ok=CtrlSyntaxe(entier,basedep,1,Lmax[basedep])
+                ok2=CtrlSyntaxe(util,basearr,1,Lmax[basearr])
+                if ok==False:
+                   messagebox.showerror(title="Information",
+                            message="Erreur : La syntaxe de l'entier de départ est fausse.")
+                   return 1
+                elif ok2==False:
+                   messagebox.showerror(title="Information",
+                            message="Erreur : La syntaxe de la réponse est fausse.")
+                   return 1
+                elif basedep==basearr:
+                    messagebox.showerror(title="Information",
+                            message="Erreur : Problème dans la sélection des bases.")
+                    return 1
+                else:
+                    rep=RepEx1(donnee)
+                
+                Verif=VerifRep(rep,util)
+                if Verif == 1:
+                    B3['state']='disabled' #bloquer le bouton valider ==> Gagner
+                    B2['state']='normal'
+                    messagebox.showinfo(title="Information",
+                                        message="Bonne Réponse, Bravo !! ")
+                elif Verif == -1:
+                    B3['state']='disabled' #bloquer le bouton valider ==> Perdu
+                    B2['state']='normal'  #débloquer le bouton nouveau ==> recommencer
+                    messagebox.showinfo(title="Information",
+                                        message=" Mauvaise réponse, vous avez perdu !\n \n Le résultat est: \n" +("".join(str(rep))))
+                elif Verif == 0:
+                   messagebox.showinfo(title="Information",
+                                        message="Mauvaise réponse, réessayer !")
                
         #===========================INTERFACE===============================
         def back():   
@@ -605,38 +610,43 @@ def Menu():
         ##imag=PhotoImage(file="imag.gif")
 
         def create():
-            rappel = Toplevel(fen, background="lightskyblue1")
+            rappel = Toplevel(fen, background="white")
             #rappel.config(background="lightskyblue1")
-            Label(rappel,text="Rappel", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1').grid(row=1, column=1, columnspan=3)
+            Label(rappel,text="Rappel", font=("Courier", 40, "italic"), fg='blue4', bg='white').grid(row=1, column=1, columnspan=3)
 
-            Label(rappel, text="Dans un système en base X, il faut X symboles différents pour représenter les chiffres de 0 à X-1", font=("Courier", 16), fg='blue4', bg='lightskyblue1').grid(row=2, column=1,columnspan=3,ipady=40)
+            Label(rappel, text="Dans un système en base X, il faut X symboles différents pour représenter les chiffres de 0 à X-1", font=("Courier", 14), fg='blue4', bg='white').grid(row=2, column=1,columnspan=3)
             ##Label(rappel, image= img1).grid(row=3, column=1,columnspan=3)
         ##    
-            i="De base 10 à base 2 :\n"
-            a="méthode de la division ou méthode de la soustraction\n"
-    
-            Label(rappel, text=i, bg='lightskyblue1', fg='darkslateblue', font=('Courier',20,'bold')).grid(row=4, column=1, columnspan=3)                   
-            Label(rappel, text=a, bg='lightskyblue1', fg='darkslateblue', font=('Courier',16)).grid(row=5, column=1, columnspan=3)
+            i="╠═══════{Conversion du nombre N exprimé en base 10 vers une base X}═══════╣\n"
+            a="Diviser le nombre N par la base X jusqu’à obtenir un quotient égal à 0. La conversion est donc\n"
+            b="obtenue en notant les restes de chacune des divisions effectuées depuis la dernière division."
+            Label(rappel, text=i, bg='white', fg='darkslateblue', font=('Courier',14)).grid(row=4, column=1)                   
+            Label(rappel, text=a+b, bg='white', fg='firebrick3', font=('Segoe Print',10)).grid(row=5, column=1)
             #Label(rappel, image= img2).grid(row=4, column=2, columnspan=2) 
         ##    
-            j="De base 2 à base 8 ou 16 :\n"
-            c="méthode de la compression\n"                      
+            j="╠═══════{Conversion du nombre N exprimé en base X vers la base 10}═══════╣\n"
+            c="Multiplier chaque digit par la base Xn, puis Additionner.\n"
+            d="100111 = 1x2^5 + 0x2^4 + 0x2^3 + 1x2^2 + 1x2^1 + 1x2^0\n"
+            e="100111 =  32   +   0   +   0   +   4   +   2   +   1 = 39\n"                      
                                 
-            Label(rappel, text=j, bg='lightskyblue1', fg='darkslateblue', font=('Courier',20,'bold')).grid(row=6, column=1, columnspan=3)                  
-            Label(rappel, text=c, bg='lightskyblue1', fg='darkslateblue', font=('Courier',16)).grid(row=7, column=1, columnspan=3)
+            Label(rappel, text=j, bg='white', fg='darkslateblue', font=('Courier',14)).grid(row=6, column=1)                  
+            Label(rappel, text=c+d+e, bg='white', fg='firebrick3', font=('Segoe Print',10)).grid(row=7, column=1)
+            
         ##    
-            k="De base 8 ou 16 à base 2 :\n"
-            m="méthode de l’expansion\n"
+            k="╠═══════{Conversion du nombre N exprimé dans la base 8 vers la base 2}═══════╣\n"
+            m=" - Convertir un nombre N en base 8 vers la base 2 s’effectue en remplaçant chacun des chiffres du nombre par leur équivalent binaire sur 3 bits.\n"
+            n="- Convertir un nombre N en base 2 vers base 8 s’effectue en découpant la chaîne binaire N en paquet de 3 bits depuis le bit de poids faible.\n"
 
-            Label(rappel, text=k, bg='lightskyblue1', fg='darkslateblue', font=('Courier',20,'bold')).grid(row=8, column=1, columnspan=3)               
-            Label(rappel, text=m, bg='lightskyblue1', fg='darkslateblue', font=('Courier',16)).grid(row=9, column=1, columnspan=3)
+            Label(rappel, text=k, bg='white', fg='darkslateblue', font=('Courier',14)).grid(row=8, column=1)               
+            Label(rappel, text=m+n, bg='white', fg='firebrick3', font=('Segoe Print',10)).grid(row=9, column=1)
             #Label(rappel, image= img4).grid(row=7, column=2) 
         ##
-            l="De base 8 à base 16 ou réciproquement :\n"
-            o="passer par la base 2 en intermédiaire.\n"
+            l="╠═══════{Conversion du nombre N exprimé dans la base 16 vers la base 2}═══════╣\n"
+            o=" - Convertir un nombre N en base 16 vers la base 2 s’effectue en remplaçant chacun des chiffres du nombre par leur équivalent binaire sur 4 bits. \n"
+            p="– Convertir un nombre N en base 2 vers la base 16 s’effectue en découpant la chaîne binaire N en paquet de 4 bits depuis le bit de poids faible.\n"
 
-            Label(rappel, text=l, bg='lightskyblue1', fg='darkslateblue', font=('Courier',20,'bold')).grid(row=10, column=1, columnspan=3)               
-            Label(rappel, text=o, bg='lightskyblue1', fg='darkslateblue', font=('Courier',16)).grid(row=11, column=1, columnspan=3)
+            Label(rappel, text=l, bg='white', fg='darkslateblue', font=('Courier',14)).grid(row=10, column=1)               
+            Label(rappel, text=o+p, bg='white', fg='firebrick3', font=('Segoe Print',10)).grid(row=11, column=1)
             ##Label(rappel, image= imag).grid(row=4, column=2, rowspan=8) 
 
             def exit_btn():
@@ -670,10 +680,10 @@ def Menu():
         B2.grid(row=9, column=2)
         B3=Button(fen, text="Valider", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2, command=lambda:(get(basedep,basearr,entier,man)))
         B3.grid(row=9, column=3)
-        B4=Button(fen, text="Menu", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2, command= back2)
-        B4.grid(row=9, column=4)
-        B5=Button(fen, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='grey', width=15, height=2,command=back)
-        B5.grid(row=9, column=5)
+        B4=Button(fen, text="Menu", font=("courier", 18, "italic"), fg='white', bg='grey', width=15, height=2, command= back2)
+        B4.grid(row=9, column=5)
+        B5=Button(fen, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='#103985', width=15, height=2,command=back)
+        B5.grid(row=9, column=4)
         
 #===================================================================================================================================================================================
 #=========================================================================================
@@ -723,22 +733,35 @@ def Menu():
         return(Entier1, Entier2, oper, util)
 
     def Binaire_saisEx2(e1, e2, ope):
-        if ope == '+' or ope == '-' or ope == 'x':
-            op = ope
-        else:
-            messagebox.showerror("showerror", "Mauvaise saisie du signe d'opération")
-        
-        ent1=CtrlSyntaxe(e1,16,1,16)
-        if ent1 == True:
-            a = e1
-        else:
-            messagebox.showerror("showerror", "Mauvaise saisie du Nombre binaire 1")
 
-        ent2=CtrlSyntaxe(e2,16,1,16)
-        if ent2 == True:
-            b = e2
+        if e1=='' or e2=='' or ope=='':
+             messagebox.showerror("showerror", "Veuillez saisir toutes les valeurs")
+             return(1)
         else:
-            messagebox.showerror("showerror", "Mauvaise saisie du Nombre binaire 2")
+            if "." in e1 or "." in e2 or "." in ope:
+                messagebox.showerror("showerror", "Erreur de saisie les points ne sont pas acceptés")
+                return(1)
+            else:
+                
+                if not ope == '+' or ope == '-' or ope == 'x':
+                    messagebox.showerror("showerror", "Mauvaise saisie du signe d'opération")
+                    return(1)
+                else:
+                    
+                    op = ope
+                    ent1=CtrlSyntaxe(e1,2,1,16)
+                    
+                    if  ent1 == False:
+                        messagebox.showerror("showerror", "Mauvaise saisie du Nombre binaire 1")
+                        return(1)
+                    else:    
+                        a = e1
+                        ent2=CtrlSyntaxe(e2,2,1,16)
+                        if ent2 == True:
+                            b = e2
+                        else:
+                            messagebox.showerror("showerror", "Mauvaise saisie du Nombre binaire 2")
+                            return(1)
         return(a,b,op)
 
     #============================================================================================
@@ -765,18 +788,55 @@ def Menu():
         
     def Valide(saisie, sa):
         global reponse
+         
         if saisie == 1:
-            getEntryA()
-            reponse = RepExo2(sa[0],sa[1],sa[2])
-            print(reponse)
-            rep = VerifRep(reponse,util)
+            util = saisieRep.get()
+            print(util)
+            if util=='':
+                messagebox.showerror(title="showerror",
+                                message="Veuillez saisir un résultat")
+                return(1)
+            else:
+                if "." in util:
+                     messagebox.showerror("showerror", "Erreur de syntaxe les points ne sont pas acceptés")
+                     return(1)
+                else:
+                    
+                    ok = CtrlSyntaxe(util,10,1,16,1,1111111111111111)
+                    if ok==False:
+                         messagebox.showerror(title="showerror",
+                                        message="Erreur de syntaxte dans la saisie du résultat")
+                         return(1)
+                    else:
+                       
+                        reponse = RepExo2(sa[0],sa[1],sa[2])
+                        print(reponse)
+                        rep = VerifRep(reponse,util)
+            
         elif saisie ==2:
             getEntryM()
-            sa= Binaire_saisEx2(Entier1, Entier2, oper)
-            reponse = RepExo2(sa[0],sa[1],sa[2])
-            #========================Vérification==============================
-            # (rep => réponse calculé) qui est comparé à (util => réponse de l'utilisateur)
-            rep = VerifRep(reponse,util)
+            util = saisieRep.get()
+            sais=Binaire_saisEx2(Entier1, Entier2, oper)
+          
+            if not sais==1:
+                if "." in util:
+                     messagebox.showerror("showerror", "Erreur de syntaxe les points ne sont pas acceptés")
+                     return(1)
+                else:
+                    ok = CtrlSyntaxe(util,10,1,16,1,1111111111111111)
+                    if ok==False:
+                         messagebox.showerror(title="showerror",
+                                        message="Erreur de syntaxte dans la saisie du résultat")
+                         return(1)
+                    else:
+                        
+                            reponse = RepExo2(sais[0],sais[1],sais[2])
+                            rep = VerifRep(reponse,util)
+                            ok=True
+            else:
+                ok=False
+                return(1)
+            
         global resu
         
         if rep == 1:
@@ -1266,8 +1326,8 @@ def Menu():
         B1.grid(row=7, column=1)
         B2.grid(row=7, column=2)
         B3.grid(row=7, column=3)
-        B4.grid(row=7, column=4)
-        B5.grid(row=7, column=5)
+        B4.grid(row=7, column=5)
+        B5.grid(row=7, column=4)
 #===================================================================================================================================================================================
 #=========================================================================================
 #===================== Chapitre 1 - Exercice 4 ===========================================
@@ -1480,43 +1540,51 @@ def Menu():
             op=['*','/']
 
             if man==1:
-                
-                if oper=='' or nbbin==''or puis==''or util=='':
-                    ok=False
-                    messagebox.showerror("ATTENTION!","Veuillez saisir toute les valeurs")
-                    return(1)
+                if "." in util or "." in nbbin or "." in puis or "." in oper:
+                     messagebox.showerror("showerror", "Erreur de syntaxe les points ne sont pas acceptés")
+                     return(1)
                 else:
-        
-                    if oper not in op:
+                    
+                    if oper=='' or nbbin==''or puis==''or util=='':
                         ok=False
-                        messagebox.showerror("ATTENTION !", "Operation : Mettre '*' ou '/'")
+                        messagebox.showerror("ATTENTION!","Veuillez saisir toute les valeurs")
                         return(1)
                     else:
-                        if not CtrlSyntaxe(nbbin,2,1,16):
+            
+                        if oper not in op:
                             ok=False
-                            messagebox.showerror("ATTENTION !", "Mauvaise saisie du nombre binaire")
+                            messagebox.showerror("ATTENTION !", "Operation : Mettre '*' ou '/'")
                             return(1)
                         else:
-                            if not CtrlSyntaxe(puis,10,1,10,1,8):
+                            if not CtrlSyntaxe(nbbin,2,1,16):
                                 ok=False
-                                messagebox.showerror("ATTENTION !", "Mauvaise saisie de l'exposant")
+                                messagebox.showerror("ATTENTION !", "Mauvaise saisie du nombre binaire")
                                 return(1)
-                            else:                
-                                if not CtrlSyntaxe(util,2,1,35):
+                            else:
+                                if not CtrlSyntaxe(puis,10,1,10,1,8):
                                     ok=False
-                                    messagebox.showerror("ATTENTION !", "Vérifier la syntaxe de votre résultat.")
+                                    messagebox.showerror("ATTENTION !", "Mauvaise saisie de l'exposant")
                                     return(1)
+                                else:                
+                                    if not CtrlSyntaxe(util,2,1,35):
+                                        ok=False
+                                        messagebox.showerror("ATTENTION !", "Vérifier la syntaxe de votre résultat.")
+                                        return(1)
                                 
             elif man==2:
-                if util=='':
-                    ok=False
-                    messagebox.showerror("ATTENTION!","Veuillez saisir un résultat")
-                    return(1)
+                if "." in util :
+                     messagebox.showerror("showerror", "Erreur de syntaxe dans votre réponse les points ne sont pas acceptés")
+                     return(1)
                 else:
-                     ctrlR=CtrlSyntaxe(util,2,1,35)
-                     if ctrlR==False:
-                         messagebox.showerror("ATTENTION !", "Vérifier la syntaxe de votre résultat.")
-                         return(1)
+                    if util=='':
+                        ok=False
+                        messagebox.showerror("ATTENTION!","Veuillez saisir un résultat")
+                        return(1)
+                    else:
+                         ctrlR=CtrlSyntaxe(util,2,1,35)
+                         if ctrlR==False:
+                             messagebox.showerror("ATTENTION !", "Vérifier la syntaxe de votre résultat.")
+                             return(1)
 
         #===========================================================
         #========= Rappel fenetre ==================================
@@ -1847,7 +1915,7 @@ def Menu():
 #=========================================================================================
 #===================== Chapitre 1 - Exercice 5b ===========================================
 
-    def Exercice5b(f):
+    def Exercice5b(f,select):
         Li=["10","SVA","C2"]
 
         def  AleaFormatBi5(Li):
@@ -2004,7 +2072,7 @@ def Menu():
         fenetre.columnconfigure(4, weight=1)
         fenetre.columnconfigure(5, weight=1)
 
-        man=2
+        man=select
 
         if man==1:
                 based=AleaFormatBi5(Li)
@@ -2096,91 +2164,102 @@ def Menu():
                 
                 if basedep=="SVA" or basedep=="C2":
                         
-                        if entier=='' or  util=='' :
-                                messagebox.showerror("showerror", "Toutes les valeurs ne sont pas saisie")
+                        if "." in entier or "." in util :
+                                messagebox.showerror("showerror", "Erreur de syntaxe les points ne sont pas acceptés")
                                 return(1)
                         else:
-                                ctrl=CtrlSyntaxe(entier,2,2,16)
+                            
+                            if entier=='' or  util=='' :
+                                    messagebox.showerror("showerror", "Toutes les valeurs ne sont pas saisie")
+                                    return(1)
+                            else:
+                                    ctrl=CtrlSyntaxe(entier,2,2,16)
 
-                                if ctrl==True: 
-                                        if basearriv=="10":
-                                                
-                                                Bits='0'
-                                                ctrlR=CtrlSyntaxe(util,10,0,5,-99999,99999)
+                                    if ctrl==True: 
+                                            if basearriv=="10":
+                                                    
+                                                    Bits='0'
+                                                    ctrlR=CtrlSyntaxe(util,10,0,5,-99999,99999)
 
-                                                if not ctrlR==True:
-                                                        
-                                                        messagebox.showerror("showerror", "erreur de syntaxe dans la réponse")
-                                                        return(1)
-                                        else:
-                                        
-                                                if man==2:
-                                                        ct=CtrlSyntaxe(str(Bits),10,1,10,4,16)
-                                                else:
-                                                        Bits=bit
-                                                        ct=CtrlSyntaxe(str(Bits),10,1,10,4,16)
+                                                    if not ctrlR==True:
+                                                            
+                                                            messagebox.showerror("showerror", "erreur de syntaxe dans la réponse")
+                                                            return(1)
+                                            else:
+                                            
+                                                    if man==2:
+                                                            ct=CtrlSyntaxe(str(Bits),10,1,10,4,16)
+                                                    else:
+                                                            Bits=bit
+                                                            ct=CtrlSyntaxe(str(Bits),10,1,10,4,16)
 
-                                                if ct == True:
-                                                
-                                                        ctrlR=CtrlSyntaxe(util,2,int(Bits), int(Bits))
-                                                        if ctrlR==True:
-                                                                
-                                                                if not len(str(entier))==len(str(util)):
-                                                                   
-                                                                        messagebox.showerror("showerror", "Les deux chaines non pas la même longueur")
-                                                                        return(1)
-                                                        else:
-                                                                
-                                                                messagebox.showerror("showerror", "erreur de syntaxe dans la réponse,ou ne correspond pas au nombre de bit")
-                                                                return(1)
-                                                else:
-                                                        messagebox.showerror("showerror", "Les bits ne sont pas dans la bonne intervalle")
-                                                        return(1)
+                                                    if ct == True:
+                                                    
+                                                            ctrlR=CtrlSyntaxe(util,2,int(Bits), int(Bits))
+                                                            if ctrlR==True:
+                                                                    
+                                                                    if not len(str(entier))==len(str(util)):
+                                                                       
+                                                                            messagebox.showerror("showerror", "Les deux chaines non pas la même longueur")
+                                                                            return(1)
+                                                            else:
+                                                                    
+                                                                    messagebox.showerror("showerror", "erreur de syntaxe dans la réponse,ou ne correspond pas au nombre de bit")
+                                                                    return(1)
+                                                    else:
+                                                            messagebox.showerror("showerror", "Les bits ne sont pas dans la bonne intervalle")
+                                                            return(1)
 
-                                else:                   
-                                        
-                                        messagebox.showerror("showerror", "erreur de syntaxe sur l'entier de départ")
-                                        return(1)
+                                    else:                   
+                                            
+                                            messagebox.showerror("showerror", "erreur de syntaxe sur l'entier de départ")
+                                            return(1)
 
 
                                         
                 elif basedep=="10":
                         
-                        if entier=='' or Bits==''  or  util=='':
-                                messagebox.showerror("showerror", "Toutes les valeurs ne sont pas saisie")
+                        if "." in entier or "." in util or "." in Bits:
+                            
+                                messagebox.showerror("showerror", "Erreur de syntaxe les points ne sont pas acceptés")
                                 return(1)
                         else:
+                            
+                            if entier=='' or Bits==''  or  util=='':
+                                    messagebox.showerror("showerror", "Toutes les valeurs ne sont pas saisie")
+                                    return(1)
+                            else:
 
 
-                                if man==2:
-                                        ct=CtrlSyntaxe(str(Bits),10,1,4,4,16)
-                                else:
-                                        Bits=bit
-                                        print(Bits)
-                                        ct=CtrlSyntaxe(str(Bits),10,1,4,4,16)
-                
-                                if ct==True:
-                                        min= 1-2**(int(Bits)-1)
-                                        max= 2**(int(Bits)-1)-1
-         
-                                        ctrl=CtrlSyntaxe(str(entier),10,1,10,min,max)
-                                  
+                                    if man==2:
+                                            ct=CtrlSyntaxe(str(Bits),10,1,4,4,16)
+                                    else:
+                                            Bits=bit
+                                            print(Bits)
+                                            ct=CtrlSyntaxe(str(Bits),10,1,4,4,16)
+                    
+                                    if ct==True:
+                                            min= 1-2**(int(Bits)-1)
+                                            max= 2**(int(Bits)-1)-1
+             
+                                            ctrl=CtrlSyntaxe(str(entier),10,1,10,min,max)
+                                      
 
-                                        if ctrl==True:
-                                                ctrlR=CtrlSyntaxe(util,2,int(Bits),int(Bits))
+                                            if ctrl==True:
+                                                    ctrlR=CtrlSyntaxe(util,2,int(Bits),int(Bits))
 
-                                                if not ctrlR==True:
-                                                         messagebox.showerror("showerror", "erreur de syntaxe dans la réponse")
-                                                         return(1)
-                                                
-                                        else:
-                                                messagebox.showerror("showerror", "erreur de syntaxe dans l'entier de départ")
-                                                return(1)
-                                                
+                                                    if not ctrlR==True:
+                                                             messagebox.showerror("showerror", "erreur de syntaxe dans la réponse")
+                                                             return(1)
+                                                    
+                                            else:
+                                                    messagebox.showerror("showerror", "erreur de syntaxe dans l'entier de départ")
+                                                    return(1)
+                                                    
 
-                                else:
-                                        messagebox.showerror("showerror", "Bits non compris dans l'intervalle")
-                                        return(1)                
+                                    else:
+                                            messagebox.showerror("showerror", "Bits non compris dans l'intervalle")
+                                            return(1)                
                     
                         
                 return(basedep,entier,basearriv,util,Bits)
@@ -2191,7 +2270,7 @@ def Menu():
 
                 if man==1:                
                         based=menuD.get()
-                        basedep=Raccourcir(basedep)
+                        based=Raccourcir(based)
                         
                         basea=menuA.get()
                         basea=Raccourcir(basea)
@@ -2319,7 +2398,7 @@ def Menu():
                         
         titre=Label(fenetre, text="Conversion", font=("Courier", 40, "italic"), fg='black', bg='lightskyblue1')  
 
-        soustitre=Label(fenetre, text="Quelques Indications: valeur 1000000000 impossible à convertir\n Attention pas de virgule mais des points                       \n    La valeur absolue doit être comprise entre 1-2^(n-1) et 2^(n-1)-1.", font=("courier", 20), fg='darkblue', bg='lightskyblue1') 
+        soustitre=Label(fenetre, text="Quelques Indications: valeur 1000000000 impossible à convertir\n Pour la base 10 uniquement des entiers                         \n    La valeur absolue doit être comprise entre 1-2^(n-1) et 2^(n-1)-1.", font=("courier", 20), fg='darkblue', bg='lightskyblue1') 
 
         txt1=Label(fenetre, text="Format de départ", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
         if man==2:
@@ -2627,6 +2706,7 @@ def Menu():
                 formats = fenetre.option_var.get()
                 print("voici le format:",formats)
                 
+
                 if entier=='' or util=='' or ApresVirg=='':
                     messagebox.showerror("showerror", "Veuillez saisir toutes les valeurs")
                     return(1)
@@ -2701,8 +2781,10 @@ def Menu():
 
                             ok2 = CtrlSyntaxe(util,10,1,20,1,10000)
                             print(ok2)
-                          
-                        
+                            print("miamiaou")
+
+                        else:
+                            print("miaou bitch")
                     
                         if ok2==True:
                             if ok3==False:  
@@ -3135,7 +3217,7 @@ def Menu():
 
         titre=Label(fenetre, text="Les réels", font=("Courier", 40, "italic"), fg='black', bg='lightskyblue1')  # Placement de l'invite
 
-        soustitre=Label(fenetre, text="Quelques Indications: Les valeurs en base 10 sont compris entre -10 000 et 10 000 \n Attention mettre un . et non , pour les réels à virgule ", font=("courier", 20, "italic"), fg='darkblue', bg='lightskyblue1') 
+        soustitre=Label(fenetre, text="Quelques Indications: Les valeurs en base 10 sont compris entre -10 000 et 10 000 \n\n Attention mettre un . et non , pour les réels à virgule\n \nConversion en IEEE= Hexadécimal ", font=("courier", 20, "italic"), fg='darkblue', bg='lightskyblue1') 
         ##
         ##indication=Label(fenetre,text="Les valeurs en base 10 sont compris entre -10 000 et 10 000 ", font=("courier", 10), fg='darkblue', bg='lightskyblue1') 
 
@@ -3347,19 +3429,49 @@ def Menu():
                 TailleC=Raccourcir(TailleC)
                 Adresse = AdPMTab.get()
                 Adresse=Raccourcir(Adresse)
-                ok=CtrlSyntaxe(str(taille),10,1,10,30,300)
-                ok2=CtrlSyntaxe(str(TailleC),10,1,10,1,300)
-                ok3=CtrlSyntaxe(str(Adresse),10,1,100,1,1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000)
-                if ok==False or ok2==False or ok3==False:
+                
+                if taille=="" or TailleC=="" or Adresse=="":
                     B6['state']='normal'
-                    messagebox.showerror(title="Information",
-                                message="Mauvaise saisie")
+                    messagebox.showerror(title="Erreur",
+                                message="Veuillez saisir toutes les valeurs")
                     return(1)
-                elif int(taille)*int(TailleC)>950:
-                    B6['state']='normal'
-                    messagebox.showerror(title="Information",
-                                message="Mauvaise saisie")
-                    return(1)
+                else:
+
+                    if "." in taille or "." in TailleC or "."in Adresse:
+                        B6['state']='normal'
+                        messagebox.showerror(title="Erreur",
+                                    message="Erreur les points ne sont pas acceptés")
+                        
+                        return(1)
+                
+                    else:
+                        
+                        ok=CtrlSyntaxe(str(taille),10,1,10,30,300)
+                        ok2=CtrlSyntaxe(str(TailleC),10,1,10,1,300)
+                        ok3=CtrlSyntaxe(str(Adresse),10,1,100,1,1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000)
+
+                        if ok==False:
+                            B6['state']='normal'
+                            messagebox.showerror(title="Erreur",
+                                        message="Erreur de saisie pour la taille du tableau")
+                            return(1)
+
+                        elif ok2==False:
+                            B6['state']='normal'
+                            messagebox.showerror(title="Erreur",
+                                        message="Erreur de saisie pour la taille d'une case")
+                            return(1)
+                        elif ok3==False:
+                            B6['state']='normal'
+                            messagebox.showerror(title="Erreur",
+                                        message="Erreur de saisie pour l'adresse du premier mot")
+                            return(1)
+                        
+                        elif int(taille)*int(TailleC)>950:
+                            B6['state']='normal'
+                            messagebox.showerror(title="Erreur",
+                                        message="Erreur : Taille du tableau * Taille d'une case >950")
+                            return(1)
                     
             if ko==1:
                 donne2=AleaExAll(10,1,int(taille))
@@ -3396,7 +3508,7 @@ def Menu():
             if man==1:
                 if type(donne[3])==str:
                     print(donne[3])
-                    print("Miaou")
+                   
                     return(1)
             rep2=(str(int(donne[2])+(int(donne[3])-1)*int(donne[1])))
             rep4=rep2
