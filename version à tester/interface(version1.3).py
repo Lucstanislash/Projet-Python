@@ -10,15 +10,15 @@ import math
 
 
 fenetre=Tk()
-##fenetre.attributes('-fullscreen', True)
+
 fenetre.title("Application Python")
-##fenetre.geometry("1500x700")
-##fenetre.minsize(500,600 )
+fenetre.geometry("1500x700")
+fenetre.minsize(500,600 )
 ##fenetre.iconbitmap("logo.ico")
 fenetre.config(background='lightskyblue1')
-
-w, h = fenetre.winfo_screenwidth(), fenetre.winfo_screenheight()
-fenetre.geometry("%dx%d" % (w, h))
+##
+##w, h = fenetre.winfo_screenwidth(), fenetre.winfo_screenheight()
+##fenetre.geometry("%dx%d" % (w, h))
 
 
 fenetre.rowconfigure(1, weight=0)
@@ -28,12 +28,14 @@ fenetre.rowconfigure(4, weight=1)
 fenetre.rowconfigure(5, weight=1)
 fenetre.rowconfigure(6, weight=1)
 fenetre.rowconfigure(7, weight=1)
+fenetre.rowconfigure(8, weight=1)
+fenetre.rowconfigure(9, weight=1)
 
 fenetre.columnconfigure(1, weight=1)
 fenetre.columnconfigure(2, weight=1)
 fenetre.columnconfigure(3, weight=1)
 fenetre.columnconfigure(4, weight=1)
-fenetre.columnconfigure(5, weight=1)
+fenetre.columnconfigure(5, weight=0)
 fenetre.columnconfigure(6, weight=1)
 
 
@@ -87,13 +89,13 @@ def ChapChoix():
     soustitre.grid(row=3, column=1, columnspan=5,sticky='s')
             
     signe=Button(fenetre, text="Déterminer \n le signe", font=("courier", 18, "italic"), fg='white', bg='#103985',command=partial(CommandExo,'Signe'))
-    signe.grid(row=5, column=2, ipady=30, ipadx=140,sticky='e')
+    signe.grid(row=6, column=2, ipady=30, ipadx=140,sticky='e')
 
     conversion=Button(fenetre, text="Conversion", font=("courier", 18, "italic"), fg='white', bg='#103985',command=partial(CommandExo,'Conversion'))
-    conversion.grid(row=5, column=4, ipady=30,ipadx=140,sticky='w')
+    conversion.grid(row=6, column=4, ipady=30,ipadx=140,sticky='w')
 
     RetourM=Button(fenetre, text="Retour", font=("courier", 18, "italic"), fg='white', bg='#103985', command=lambda:back(1))
-    RetourM.grid(row=7, column=3,ipady= 15,ipadx=70)
+    RetourM.grid(row=9, column=3,ipady= 15,ipadx=70)
 
 # Command est la fonction produite en cliquant sur chaque exercice
 def PageChoix(NomExercice): #======== Fenêtre de demande aléatoire ou manuel ===========
@@ -178,13 +180,13 @@ def PageChoix(NomExercice): #======== Fenêtre de demande aléatoire ou manuel =
     txt3.grid(row=3, column=1, columnspan=5,sticky='s')
             
     bManuelle=Button(fenetre, text="Manuel", font=("courier", 18, "italic"), fg='white', bg='#103985', command=partial(CommandExo,'Manuel'))
-    bManuelle.grid(row=5, column=2, ipady=30, ipadx=140,sticky='e')
+    bManuelle.grid(row=6, column=2, ipady=30, ipadx=140,sticky='e')
 
     bAléa=Button(fenetre, text="Aléatoire", font=("courier", 18, "italic"), fg='white', bg='#103985',command=partial(CommandExo,'Aléa'))
-    bAléa.grid(row=5, column=4, ipady=30,ipadx=140,sticky='w')
+    bAléa.grid(row=6, column=4, ipady=30,ipadx=140,sticky='w')
 
     bRetour=Button(fenetre, text="Retour", font=("courier", 18, "italic"), fg='white', bg='#103985', command=partial(back,2))
-    bRetour.grid(row=7, column=3,ipady= 15,ipadx=70)
+    bRetour.grid(row=9, column=3,ipady= 15,ipadx=70)
 
 def ChoixExo():
     tExoChap1.destroy() # pour détruire les buttons de la fenetre2= contient la liste des exos du Chap "Codage de l'information"
@@ -262,31 +264,31 @@ def Menu():
         
                     
         Bexo1=Button(fenetre, text="Entiers non signées", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= partial(PageChoix,"Entiers non signées")) #, command= PageChoix("Entiers non signées")
-        Bexo1.grid(ipady=25, row=2, column=1,columnspan=3,ipadx=50)
+        Bexo1.grid(ipady=25, row=3, column=1,columnspan=3,ipadx=50)
 
         Bexo2=Button(fenetre, text="Opérations en binaire", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= partial(PageChoix,"Opérations en binaire"))
-        Bexo2.grid(ipady=25,  row=3, column=1,columnspan=3,ipadx=50)
+        Bexo2.grid(ipady=25,  row=4, column=1,columnspan=3,ipadx=50)
 
         Bexo3=Button(fenetre, text="Multiplications en binaire", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= ChoixExo)
-        Bexo3.grid(ipady=25,  row=4, column=1,columnspan=3,ipadx=50)
+        Bexo3.grid(ipady=25,  row=5, column=1,columnspan=3,ipadx=50)
 
         Bexo4=Button(fenetre, text="Opérations sans calcul", font=("courier", 18, "italic"), fg='white', bg='#103985',width=largeur, height=hauteur , command= partial(PageChoix,"Opérations sans calcul"))#command=affich3)
-        Bexo4.grid(ipady=25,row=5, column=1,columnspan=3,ipadx=50)
+        Bexo4.grid(ipady=25,row=6, column=1,columnspan=3,ipadx=50)
 
         Bexo5=Button(fenetre, text="Entiers signées", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= partial(PageChoix,"Entiers signées"))
-        Bexo5.grid(ipady=25,  row=2, column=3,columnspan=6,ipadx=50)
+        Bexo5.grid(ipady=25,  row=3, column=3,columnspan=6,ipadx=50)
 
         Bexo6=Button(fenetre, text="Les Réels", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= partial(PageChoix,"Les Réels"))
-        Bexo6.grid(ipady=25,   row=3, column=3,columnspan=5,ipadx=50)
+        Bexo6.grid(ipady=25,   row=4, column=3,columnspan=5,ipadx=50)
 
         Bexo7=Button(fenetre, text="Les Décimaux", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= partial(PageChoix,"Les Décimaux"))#command=affich3)
-        Bexo7.grid(ipady=25,  row=4, column=3,columnspan=5,ipadx=50)
+        Bexo7.grid(ipady=25,  row=5, column=3,columnspan=5,ipadx=50)
 
         Bexo8=Button(fenetre, text="Les Tableaux", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= partial(PageChoix,"Les Tableaux"))
-        Bexo8.grid(ipady=25,row=5, column=3,columnspan=5,ipadx=50)
+        Bexo8.grid(ipady=25,row=6, column=3,columnspan=5,ipadx=50)
 
         Retour=Button(fenetre, text= "Retour", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= back)
-        Retour.grid(row=7, column=3,columnspan=4,ipadx=10,sticky='w')
+        Retour.grid(row=9, column=3,columnspan=4,ipadx=10,sticky='w')
 
 #===================================================================================================================================================================================
 #=========================================================================================
@@ -875,7 +877,10 @@ def Menu():
         f.rowconfigure(5, weight=1)
         f.rowconfigure(6, weight=1)
         f.rowconfigure(7, weight=1)
-
+        f.rowconfigure(8, weight=1)
+        f.rowconfigure(9, weight=1)
+         
+        
         f.columnconfigure(0, weight=0)
         f.columnconfigure(1, weight=1)
         f.columnconfigure(2, weight=1)
@@ -935,7 +940,7 @@ def Menu():
         tExo2.grid(row=1, column = 2, columnspan=3)
                         
         st=Label(f, text="Quelques Indications: Les entrées des données ne peuvent pas\n excéder 16 bits ", font=("courier", 20, "italic"), fg='darkblue', bg='lightskyblue1') #width=largeur, height=hauteur ,command= partial(PageChoix,"Entiers non signées")) #, command= PageChoix("Entiers non signées")
-        st.grid(row=2, column=1,columnspan=4,ipady=10,ipadx=50)
+        st.grid(row=2, column=1,columnspan=4,ipady=50,ipadx=50)
             
         txt1=Label(f, text="Nombre Binaire 1 : ", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
         txt1.grid(row=3,column=1,columnspan=2,sticky='nsew',ipady=10)
@@ -987,15 +992,15 @@ def Menu():
         x=10
 
         B1=Button(f, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2, command=lambda:create(f))
-        B1.grid(row=7, column=1)
+        B1.grid(row=9, column=1)
         B2=Button(f, text="Nouveau", state='disabled', font=("bold", 18, "italic"), fg='white', bg='#103985',width=15, height=2, command=lambda:Nouveau(saisie,fenetre))
-        B2.grid(row=7, column=2)
+        B2.grid(row=9, column=2)
         B3=Button(f, text="Valider", font=("courier", 18, "bold"), fg='white', bg='#103985',width=15, height=2, command=lambda:Valide(saisie, sa))
-        B3.grid(row=7, column=3)
+        B3.grid(row=9, column=3)
         B5=Button(f, text="Menu", font=("courier", 18, "bold"), fg='white', bg='grey',width=15, height=2, command=back2)
         B4=Button(f, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='#103985',  width=15, height=2, command=back)
-        B4.grid(row=7, column=4)
-        B5.grid(row=7, column=5)
+        B4.grid(row=9, column=4)
+        B5.grid(row=9, column=5)
 
 
 
@@ -1076,13 +1081,18 @@ def Menu():
         fenetre.rowconfigure(4, weight=1)
         fenetre.rowconfigure(5, weight=1)
         fenetre.rowconfigure(6, weight=1)
+        fenetre.rowconfigure(7, weight=1)
+        fenetre.rowconfigure(8, weight=1)
+        fenetre.rowconfigure(9, weight=1)
+        
 
-        fenetre.columnconfigure(0, weight=1)
         fenetre.columnconfigure(1, weight=1)
         fenetre.columnconfigure(2, weight=1)
         fenetre.columnconfigure(3, weight=1)
         fenetre.columnconfigure(4, weight=1)
-        fenetre.columnconfigure(5, weight=1)
+        fenetre.columnconfigure(5, weight=0)
+        fenetre.columnconfigure(6, weight=1)
+        
         #===================================================================================================================
         #=======================================FONCTIONS D'EXERCICE 3
         #====================================================================================================================
@@ -1253,13 +1263,15 @@ def Menu():
 
 
         #===================================cadre2
-        txt1=Label(fenetre, text="QUESTION: Cochez la bonne réponse...", font=("courier", 20, "bold"), fg='black', bg='lightskyblue1')
-        txt1.grid(row=2, column=3,columnspan=4,sticky='w',ipady=10)
+        txt1=Label(fenetre, text="QUESTION: Cochez les bonnes réponses", font=("courier", 20, "bold"), fg='black', bg='lightskyblue1')
+        txt1.grid(row=2, column=2,columnspan=3,ipady=40)
         #choix aleatoire de la puissance de 2
-        txt2=Label(fenetre, text="Puissance de 2", font=("courier", 20), fg='black', bg='lightskyblue1')
-        txt2.grid(row=3,column=1,columnspan=2,ipady=10) # Placement de la zone de saisie
+        
+        txt2=Label(fenetre, text="Puissance de 2    ", font=("courier", 25), fg='black', bg='lightskyblue1')
+        txt2.grid(row=4,column=1,columnspan=2,ipady=10) # Placement de la zone de saisie
+        
         t2 = Text(fenetre,  font=("courier", 15), height = 1, width = 25)
-        t2.grid(row=3, column=3,ipadx=100,columnspan=4,ipady=10)
+        t2.grid(row=4, column=3,ipadx=100,columnspan=4,ipady=10)
         ch=""
         syn='puissanceExp'
         alea=AleaExAll('puissanceExp',1, 20)
@@ -1267,13 +1279,13 @@ def Menu():
         t2.insert(END, ch)
 
         #choix aleatoire d'entiers binaire
-        txt3=Label(fenetre, text="Entiers en binaire", font=("courier", 20), fg='black', bg='lightskyblue1')
-        txt3.grid(row=4, column=1,columnspan=2)
+        txt3=Label(fenetre, text="Entiers en binaire", font=("courier", 25), fg='black', bg='lightskyblue1')
+        txt3.grid(row=5, column=1,columnspan=2)
 
         my_listbox=Listbox(fenetre,font=("courier", 15), width=25, selectmode = MULTIPLE) #(yscrollcommand = my_scrollbar.set, )
         #my_scrollbar.config(command = my_listbox.yview) 
         #my_scrollbar.pack(side = RIGHT, fill=Y)         
-        my_listbox.grid(row=4, column=3,ipadx=100,columnspan=4,ipady=10)                
+        my_listbox.grid(row=5, column=3,ipadx=100,columnspan=4,ipady=10)                
 
         lprop=List( alea) 
         my_list = lprop
@@ -1287,14 +1299,14 @@ def Menu():
                 my_listbox.select_set(i)
 
         select= Button(fenetre, text="selectionner tous", width=5, height=1, command = select)
-        select.grid(row=5, column=2,ipadx=100,columnspan=4,ipady=10)
+        select.grid(row=7, column=2,ipadx=100,columnspan=4,ipady=10)
 
         def delet():
             for i in range (10):
                 my_listbox.select_clear(i)
 
         delet= Button(fenetre, text="supprimer", width=5, height=1, command =delet)
-        delet.grid(row=5, column=4,ipadx=100,columnspan=4,ipady=10)
+        delet.grid(row=7, column=4,ipadx=100,columnspan=4,ipady=10)
 
         def Nouveau ():
             global ch
@@ -1319,34 +1331,41 @@ def Menu():
         B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2,command=lambda:create())
         B2=Button(fenetre, text="Nouveau",state="disabled",font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:Nouveau())
         B3=Button(fenetre, text="Valider",command=Valid, font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2)
-        B4=Button(fenetre, text="Menu", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2, command=back2)
-        B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='red', bg='grey', width=15, height=2, command= back)
+        B4=Button(fenetre, text="Menu", font=("courier", 18, "italic"), fg='white', bg='grey', width=15, height=2, command=back2)
+        B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='#103985', width=15, height=2, command= back)
          
 
-        B1.grid(row=7, column=1)
-        B2.grid(row=7, column=2)
-        B3.grid(row=7, column=3)
-        B4.grid(row=7, column=5)
-        B5.grid(row=7, column=4)
+        B1.grid(row=9, column=1)
+        B2.grid(row=9, column=2)
+        B3.grid(row=9, column=3)
+        B4.grid(row=9, column=5)
+        B5.grid(row=9, column=4)
 #===================================================================================================================================================================================
 #=========================================================================================
 #===================== Chapitre 1 - Exercice 4 ===========================================
     def Exercice4(f, select):
         fenetre=f
         fenetre.config(background='lightskyblue1')
+
+
         fenetre.rowconfigure(1, weight=0)
         fenetre.rowconfigure(2, weight=0)
         fenetre.rowconfigure(3, weight=1)
         fenetre.rowconfigure(4, weight=1)
         fenetre.rowconfigure(5, weight=1)
         fenetre.rowconfigure(6, weight=1)
+        fenetre.rowconfigure(7, weight=1)
+        fenetre.rowconfigure(8, weight=1)
+        fenetre.rowconfigure(9, weight=1)
 
-        fenetre.columnconfigure(0, weight=1)
         fenetre.columnconfigure(1, weight=1)
         fenetre.columnconfigure(2, weight=1)
         fenetre.columnconfigure(3, weight=1)
         fenetre.columnconfigure(4, weight=1)
-        fenetre.columnconfigure(5, weight=1)
+        fenetre.columnconfigure(5, weight=0)
+        fenetre.columnconfigure(6, weight=1)
+
+        
 
         man=select
         #========================Calcul de la réponse selon les données==============================
@@ -1453,7 +1472,7 @@ def Menu():
                 res.delete(0,END)
                 B2['state']='disabled'
                     
-            #====================================cadre1=================x 
+     
             
             txt1=Label(fenetre, text="Type d'opération", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
             oper=Label(fenetre, text=donnee[2], font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
@@ -1521,16 +1540,16 @@ def Menu():
             
             #===================================cadre2
             #puissance
-            txt1=Label(fenetre, text="Type d'opération", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+            txt1=Label(fenetre, text="   Type d'opération", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
             oper=Entry(fenetre) 
 
-            txt2=Label(fenetre, text="Nombre Binaire ", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+            txt2=Label(fenetre, text="   Nombre Binaire ", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
             nbbin=Entry(fenetre) 
 
-            txt3=Label(fenetre, text="Puissance en base de 2 ", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+            txt3=Label(fenetre, text="   Puissance en base de 2 ", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
             puis=Entry(fenetre) 
 
-            txt4=Label(fenetre, text="Résultat", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+            txt4=Label(fenetre, text="   Résultat", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
             res=Entry(fenetre) 
         #===========================================================
         #========= Contrôle =========================================
@@ -1661,36 +1680,38 @@ def Menu():
             B4.destroy()
             B5.destroy()
             Menu()
-        #======================Cadre 3=================================================
-        titre=Label(fenetre, text="Opération sans calcul", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1') # 
-        titre.grid(row=1, column=2,columnspan=3) # Placement de l'invite
+       
+        titre=Label(fenetre, text="Opération sans calcul", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')  
+        titre.grid(row=1, column=2,columnspan=3) 
 
-        #l4 = Label(fenetre, text = "", font = "normal 20 bold", bg = 'lightskyblue1', width = 15)
-        #l4.grid(row=2, column=3,columnspan=4,sticky='w',ipady=10)
+        soustitre=Label(fenetre, text="Quelques indications :", font=("Courier", 25, "italic"), fg='blue4', bg='lightskyblue1')
+        soustitre.grid(row=2, column=2,columnspan=3,ipady=30) 
 
-
-        txt1.grid(row=3, column=1,columnspan=2,sticky='w',ipady=10)
-        oper.grid(row=3,column=2,ipadx=100,columnspan=4,ipady=10) # Placement de la zone de saisie
-        txt2.grid(row=4, column=1,columnspan=2,sticky='w')
-        nbbin.grid(row=4, column=2,ipadx=100,columnspan=4,ipady=10)
-        txt3.grid(row=5, column=1,columnspan=2,sticky='w',ipady=10)
-        puis.grid(row=5, column=2,ipadx=100,columnspan=4,ipady=10)
-        txt4.grid(row=6,column=1,columnspan=2,sticky='w',ipady=10)
-        res.grid(row=6, column=2,ipadx=100,columnspan=4,ipady=10)
+        txt1.grid(row=4, column=1,columnspan=2,sticky='w',ipady=30)
+        oper.grid(row=4,column=2,ipadx=200,columnspan=4,ipady=10) # Placement de la zone de saisie
+        
+        txt2.grid(row=5, column=1,columnspan=2,sticky='w')
+        nbbin.grid(row=5, column=2,ipadx=200,columnspan=4,ipady=10)
+        
+        txt3.grid(row=6, column=1,columnspan=2,sticky='w',ipady=30)
+        puis.grid(row=6, column=2,ipadx=200,columnspan=4,ipady=10)
+        
+        txt4.grid(row=7,column=1,columnspan=2,sticky='w',ipady=30)
+        res.grid(row=7, column=2,ipadx=200,columnspan=4,ipady=10)
 
             
         B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2,command=lambda:create())
         B2=Button(fenetre, text="Nouveau",font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:Nouveau(), state='disabled')
         B3=Button(fenetre, text="Valider", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:Exo4())
-        B4=Button(fenetre, text="Menu", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2, command= back2)
-        B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='red', bg='grey', width=15, height=2,command=back)
+        B4=Button(fenetre, text="Menu", font=("courier", 18, "italic"), fg='white', bg='grey', width=15, height=2, command= back2)
+        B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='#103985', width=15, height=2,command=back)
          
 
-        B1.grid(row=7, column=1)
-        B2.grid(row=7, column=2)
-        B3.grid(row=7, column=3)
-        B4.grid(row=7, column=4)
-        B5.grid(row=7, column=5)
+        B1.grid(row=9, column=1)
+        B2.grid(row=9, column=2)
+        B3.grid(row=9, column=3)
+        B4.grid(row=9, column=5)
+        B5.grid(row=9, column=4)
 
 #===================================================================================================================================================================================
 #=========================================================================================
@@ -1732,13 +1753,17 @@ def Menu():
         fenetre.rowconfigure(4, weight=1)
         fenetre.rowconfigure(5, weight=1)
         fenetre.rowconfigure(6, weight=1)
+        fenetre.rowconfigure(7, weight=1)
+        fenetre.rowconfigure(8, weight=1)
+        fenetre.rowconfigure(9, weight=1)
+        
 
-        fenetre.columnconfigure(0, weight=1)
         fenetre.columnconfigure(1, weight=1)
         fenetre.columnconfigure(2, weight=1)
         fenetre.columnconfigure(3, weight=1)
         fenetre.columnconfigure(4, weight=1)
-        fenetre.columnconfigure(5, weight=1)
+        fenetre.columnconfigure(5, weight=0)
+        fenetre.columnconfigure(6, weight=1)
 
         formats=AleaFormat5(lis)
         entier=AleaEnt5()
@@ -1781,20 +1806,20 @@ def Menu():
 
         titre=Label(fenetre, text="Déterminer le signe d'un entier", font=("Courier", 30, "italic"), fg='black', bg='lightskyblue1')  # Placement de l'invite
 
-        soustitre=Label(fenetre, text="Quelques Indications: voir Rappel ", font=("courier", 20), fg='darkblue', bg='lightskyblue1') 
+        soustitre=Label(fenetre, text="     Quelques Indications: voir Rappel ", font=("courier", 20), fg='darkblue', bg='lightskyblue1') 
 
-        txt1=Label(fenetre, text="Formats", font=("courier", 30, "italic"), fg='black', bg='lightskyblue1')
+        txt1=Label(fenetre, text="   Formats", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
 
         formatsAl=Label(fenetre, text=formats, font=("courier", 20, "italic"), fg='black', bg='white',width=10, height=1)
 
 
-        txt2=Label(fenetre, text="Valeur", font=("courier", 30, "italic"), fg='black', bg='lightskyblue1')
+        txt2=Label(fenetre, text=" Valeur", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
 
         val=Label(fenetre, text=entier, font=("courier", 20, "italic"), fg='black', bg='white',width=4, height=1)
 
         choix=IntVar()
 
-        signe=Label(fenetre, text="Signe de\nl'entier", font=("courier", 30, "italic"), fg='black', bg='lightskyblue1')
+        signe=Label(fenetre, text="   Signe de\n  l'entier", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
         positif=tk.Radiobutton(fenetre, text="Positif",font=("courier", 25), variable=choix, value=1,fg='black', bg='lightskyblue1',activebackground="lightskyblue1",width=30,)
         negatif=tk.Radiobutton(fenetre, text="Négatif", font=("courier",25),variable=choix, value=2,fg='black', bg='lightskyblue1',activebackground="lightskyblue1")
 
@@ -1888,28 +1913,28 @@ def Menu():
          
         B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='grey', width=15, height=2,command=back)
 
-        titre.grid(row=1, column=2,columnspan=4,sticky='w',ipady=40)
+        titre.grid(row=1, column=2,columnspan=3,ipady=40)
         soustitre.grid(row=2, column=1,columnspan=5,sticky='w',ipady=40)
 
         txt1.grid(row=3, column=1,ipady=40)
-        formatsAl.grid(row=3, column=2,ipadx=300,columnspan=4,ipady=10)
+        formatsAl.grid(row=3, column=2,ipadx=200,columnspan=4,ipady=10)
 
         txt2.grid(row=4, column=1)
-        val.grid(row=4, column=2,ipadx=350,columnspan=4,ipady=10)
+        val.grid(row=4, column=2,ipadx=250,columnspan=4,ipady=10)
 
         signe.grid(row=5, column=1,ipady=40)
-        positif.grid(row=5, column=2,columnspan=3,sticky='w',padx=20, pady=40)
+        positif.grid(row=5, column=2,columnspan=3,sticky='w',ipadx=20, ipady=40)
         negatif.grid(row=5, column=4,columnspan=5,sticky='w',ipadx=50)
 
 
 
 
         #bouton#
-        B1.grid(row=6, column=1)
-        B2.grid(row=6, column=2)
-        B3.grid(row=6, column=3)
-        B4.grid(row=6, column=4)
-        B5.grid(row=6, column=5)
+        B1.grid(row=9, column=1)
+        B2.grid(row=9, column=2)
+        B3.grid(row=9, column=3)
+        B4.grid(row=9, column=5)
+        B5.grid(row=9, column=4)
 
 #===================================================================================================================================================================================
 #=========================================================================================
@@ -2062,15 +2087,15 @@ def Menu():
         fenetre.rowconfigure(6, weight=1)
         fenetre.rowconfigure(7, weight=1)
         fenetre.rowconfigure(8, weight=1)
+        fenetre.rowconfigure(9, weight=1)
+        
 
-
-
-        fenetre.columnconfigure(0, weight=1)
         fenetre.columnconfigure(1, weight=1)
         fenetre.columnconfigure(2, weight=1)
         fenetre.columnconfigure(3, weight=1)
         fenetre.columnconfigure(4, weight=1)
-        fenetre.columnconfigure(5, weight=1)
+        fenetre.columnconfigure(5, weight=0)
+        fenetre.columnconfigure(6, weight=1)
 
         man=select
 
@@ -2400,7 +2425,7 @@ def Menu():
 
         soustitre=Label(fenetre, text="Quelques Indications: valeur 1000000000 impossible à convertir\n Pour la base 10 uniquement des entiers                         \n    La valeur absolue doit être comprise entre 1-2^(n-1) et 2^(n-1)-1.", font=("courier", 20), fg='darkblue', bg='lightskyblue1') 
 
-        txt1=Label(fenetre, text="Format de départ", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
+        txt1=Label(fenetre, text="   Format de départ", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
         if man==2:
            
             fenetre.menud= tk.StringVar(fenetre)
@@ -2411,7 +2436,7 @@ def Menu():
             menuD.configure(state="readonly")
 
 
-        txt2=Label(fenetre, text="Format d'arrivée", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
+        txt2=Label(fenetre, text="   Format d'arrivée", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
         if man==2:
            
             fenetre.menua= tk.StringVar(fenetre)
@@ -2423,14 +2448,14 @@ def Menu():
 
 
 
-        txt3=Label(fenetre, text="Nombre de bits\n(entre 4 et 16)", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
+        txt3=Label(fenetre, text="   Nombre de bits\n  (entre 4 et 16)", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
 
 
-        txt4=Label(fenetre, text="Valeur de départ", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
+        txt4=Label(fenetre, text="   Valeur de départ", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
 
 
 
-        txt5=Label(fenetre, text="Résultats", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
+        txt5=Label(fenetre, text="   Résultats", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
 
         Resultats=Entry(fenetre,justify='center',borderwidth=3)
 
@@ -2552,11 +2577,11 @@ def Menu():
 
 
         #bouton#
-        B1.grid(row=8, column=1)
-        B2.grid(row=8, column=2)
-        B3.grid(row=8, column=3)
-        B4.grid(row=8, column=5)
-        B5.grid(row=8, column=4)
+        B1.grid(row=9, column=1)
+        B2.grid(row=9, column=2)
+        B3.grid(row=9, column=3)
+        B4.grid(row=9, column=5)
+        B5.grid(row=9, column=4)
 
 
 #===================================================================================================================================================================================
@@ -2665,7 +2690,6 @@ def Menu():
         fenetre=f
         fenetre.config(background="lightskyblue1")
 
-
         fenetre.rowconfigure(1, weight=0)
         fenetre.rowconfigure(2, weight=0)
         fenetre.rowconfigure(3, weight=1)
@@ -2673,13 +2697,16 @@ def Menu():
         fenetre.rowconfigure(5, weight=1)
         fenetre.rowconfigure(6, weight=1)
         fenetre.rowconfigure(7, weight=1)
+        fenetre.rowconfigure(8, weight=1)
+        fenetre.rowconfigure(9, weight=1)
+        
 
-        fenetre.columnconfigure(0, weight=1)
         fenetre.columnconfigure(1, weight=1)
         fenetre.columnconfigure(2, weight=1)
         fenetre.columnconfigure(3, weight=1)
         fenetre.columnconfigure(4, weight=1)
-        fenetre.columnconfigure(5, weight=1)
+        fenetre.columnconfigure(5, weight=0)
+        fenetre.columnconfigure(6, weight=1)
 
         man=select
 
@@ -2868,16 +2895,16 @@ def Menu():
 
         titre=Label(fenetre, text="Les Décimaux", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')  # Placement de l'invite
 
-        soustitre=Label(fenetre, text="Quelques Indications: \n Base de départ 10 valeur --> 0 et 10 000, entre 1 et 6 bits après la virgule \n Base de départ 2 --> max 5 bits après la virgule , valeur max 32 bits", font=("courier", 15), fg='darkblue', bg='lightskyblue1') 
+        soustitre=Label(fenetre, text="Quelques Indications: Base de départ 10 valeur --> 0 et 10 000, entre 1 et 6 bits après la virgule \n              Base de départ 2 --> max 5 bits après la virgule , valeur max 32 bits", font=("courier", 15), fg='darkblue', bg='lightskyblue1') 
 
         if man==1:
             if ordre=='10':    
-                txt1=Label(fenetre, text="Binaire à convertir", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+                txt1=Label(fenetre, text="  Binaire à convertir", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
             else:
-                txt1=Label(fenetre, text="Décimal à convertir", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+                txt1=Label(fenetre, text="  Décimal à convertir", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
             
         else:
-                txt1=Label(fenetre, text="Valeur à convertir", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+                txt1=Label(fenetre, text="  Valeur à convertir", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
                
            
         if man==2:
@@ -2887,7 +2914,7 @@ def Menu():
             saisieVal=Label(fenetre, text=valeur, font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
 
 
-        txt2=Label(fenetre, text="Convertir au format", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+        txt2=Label(fenetre, text="  Convertir au format", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
 
         ##val.set(OptionsExo6[0]) # default value
         ##w1 = ttk.OptionMenu(fenetre,fenetre.option_var,OptionsExo6[0], *OptionsExo6)
@@ -2900,11 +2927,11 @@ def Menu():
 
         if man==1:
             if ordre=='10':
-                txt3=Label(fenetre, text="Nombres après la virgule", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+                txt3=Label(fenetre, text="  Nombres après la virgule", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
             else:
-                txt3=Label(fenetre, text="Bits après la virgule", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+                txt3=Label(fenetre, text="  Bits après la virgule", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
         else:
-                txt3=Label(fenetre, text="Nombres après la virgule", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+                txt3=Label(fenetre, text="  Nombres après la virgule", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
 
             
         if man == 2 :
@@ -2914,7 +2941,7 @@ def Menu():
             saisieVirg = Label(fenetre, text=virgule, font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
 
 
-        txt4=Label(fenetre, text="Résultat", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+        txt4=Label(fenetre, text="  Résultat", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
         Resultats=Entry(fenetre) #width= largeur, height= hauteur) # Création de la zone de résultats
 
         #======================================================================================================================#
@@ -2996,28 +3023,28 @@ def Menu():
          
         B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='#103985', width=15, height=2,command=back)
 
-        titre.grid(row=1, column=2,columnspan=3)
+        titre.grid(row=1, column=2,columnspan=3,ipady=10)
         soustitre.grid(row=2, column=1,columnspan=4,ipady=10)
-        txt1.grid(row=3, column=1,columnspan=2,sticky='w',ipady=10)
-        saisieVal.grid(row=3, column=2,ipadx=200,columnspan=4,ipady=10)
+        txt1.grid(row=4, column=1,columnspan=2,sticky='w',ipady=10)
+        saisieVal.grid(row=4, column=2,ipadx=200,columnspan=4,ipady=10)
 
-        txt2.grid(row=4, column=1,columnspan=2,sticky='w')
-        w1.grid(row=4, column=2,ipadx=235,columnspan=4,ipady=10)
+        txt2.grid(row=5, column=1,columnspan=2,sticky='w')
+        w1.grid(row=5, column=2,ipadx=235,columnspan=4,ipady=10)
 
-        txt3.grid(row=5, column=1,columnspan=2,sticky='w',ipady=10)
-        saisieVirg.grid(row=5, column=2,ipadx=200,columnspan=4,ipady=10)
+        txt3.grid(row=6, column=1,columnspan=2,sticky='w',ipady=10)
+        saisieVirg.grid(row=6, column=2,ipadx=200,columnspan=4,ipady=10)
 
-        txt4.grid(row=6, column=1,columnspan=2,sticky='w',ipady=10)
-        Resultats.grid(row=6, column=2,ipadx=200,columnspan=4,ipady=10)
+        txt4.grid(row=7, column=1,columnspan=2,sticky='w',ipady=10)
+        Resultats.grid(row=7, column=2,ipadx=200,columnspan=4,ipady=10)
 
 
 
         #bouton#
-        B1.grid(row=7, column=1)
-        B2.grid(row=7, column=2)
-        B3.grid(row=7, column=3)
-        B4.grid(row=7, column=5)
-        B5.grid(row=7, column=4)
+        B1.grid(row=9, column=1)
+        B2.grid(row=9, column=2)
+        B3.grid(row=9, column=3)
+        B4.grid(row=9, column=5)
+        B5.grid(row=9, column=4)
 
 
         
@@ -3141,14 +3168,18 @@ def Menu():
         fenetre.rowconfigure(4, weight=1)
         fenetre.rowconfigure(5, weight=1)
         fenetre.rowconfigure(6, weight=1)
+        fenetre.rowconfigure(7, weight=1)
+        fenetre.rowconfigure(8, weight=1)
+        fenetre.rowconfigure(9, weight=1)
+        
 
-        fenetre.columnconfigure(0, weight=1)
         fenetre.columnconfigure(1, weight=1)
         fenetre.columnconfigure(2, weight=1)
         fenetre.columnconfigure(3, weight=1)
         fenetre.columnconfigure(4, weight=1)
-        fenetre.columnconfigure(5, weight=1)
-        
+        fenetre.columnconfigure(5, weight=0)
+        fenetre.columnconfigure(6, weight=1)
+
         man=select # variable qui va définir si c'est manuel ou aléatoire
         
         formats=""
@@ -3217,11 +3248,9 @@ def Menu():
 
         titre=Label(fenetre, text="Les réels", font=("Courier", 40, "italic"), fg='black', bg='lightskyblue1')  # Placement de l'invite
 
-        soustitre=Label(fenetre, text="Quelques Indications: Les valeurs en base 10 sont compris entre -10 000 et 10 000 \n\n Attention mettre un . et non , pour les réels à virgule\n \nConversion en IEEE= Hexadécimal ", font=("courier", 20, "italic"), fg='darkblue', bg='lightskyblue1') 
-        ##
-        ##indication=Label(fenetre,text="Les valeurs en base 10 sont compris entre -10 000 et 10 000 ", font=("courier", 10), fg='darkblue', bg='lightskyblue1') 
-
-        txt1=Label(fenetre, text="Réel à convertir", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+        soustitre=Label(fenetre, text="    Quelques Indications: Les valeurs en base 10 sont compris entre -10 000 et 10 000 \n\n                     Attention mettre un . et non , pour les réels à virgule\n \n                    Conversion en IEEE= Hexadécimal ", font=("courier", 18, "italic"), fg='darkblue', bg='lightskyblue1') 
+        
+        txt1=Label(fenetre, text="  Réel à convertir", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
         if man==2:
             
             saisieVal=Entry(fenetre) 
@@ -3232,7 +3261,7 @@ def Menu():
 
 
 
-        txt2=Label(fenetre, text="Convertir au format", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+        txt2=Label(fenetre, text="  Convertir au format", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
         if man==2:
            
             fenetre.option_var= tk.StringVar(fenetre)
@@ -3242,7 +3271,7 @@ def Menu():
 
 
 
-        txt3=Label(fenetre, text="Résultat", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+        txt3=Label(fenetre, text="  Résultat", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
 
         Resultats=Entry(fenetre) #width= largeur, height= hauteur) # Création de la zone de résultats
 
@@ -3339,34 +3368,34 @@ def Menu():
             B5.destroy()
             Menu()
                 
-        B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='white', bg='grey', width=15, height=2,command=lambda:create())
+        B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2,command=lambda:create())
 
         B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "bold"), fg='white', bg='#103985', width=15, height=2,command=lambda:nouveau())
          
         B3=Button(fenetre, text="Valider", font=("courier", 18, "bold"), fg='white', bg='#103985', width=15, height=2,command=lambda:get(formats))
          
-        B4=Button(fenetre, text="Menu", font=("courier", 18, "bold"), fg='white', bg='#103985', width=15, height=2,command=back2)
+        B4=Button(fenetre, text="Menu", font=("courier", 18, "bold"), fg='white', bg='grey', width=15, height=2,command=back2)
          
-        B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='grey', width=15, height=2,command=back)
+        B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='#103985', width=15, height=2,command=back)
 
-        titre.grid(row=1, column=2,columnspan=3)
-        soustitre.grid(row=2, column=1,columnspan=5,sticky='w',ipady=40)
-        txt1.grid(row=3, column=1,columnspan=2,sticky='w',ipady=40)
-        saisieVal.grid(row=3, column=2,ipadx=200,columnspan=4,ipady=10)
+        titre.grid(row=1, column=2,columnspan=3,ipady=20)
+        soustitre.grid(row=2, column=1,columnspan=5,sticky='w',ipady=20)
+        txt1.grid(row=4, column=1,columnspan=2,sticky='w',ipady=40)
+        saisieVal.grid(row=4, column=2,ipadx=200,columnspan=4,ipady=10)
 
-        txt2.grid(row=4, column=1,columnspan=2,sticky='w')
-        txt3.grid(row=5, column=1,columnspan=2,sticky='w',ipady=40)
-        w1.grid(row=4, column=2,ipadx=235,columnspan=4,ipady=10)
-        Resultats.grid(row=5, column=2,ipadx=200,columnspan=4,ipady=10)
+        txt2.grid(row=5, column=1,columnspan=2,sticky='w')
+        txt3.grid(row=6, column=1,columnspan=2,sticky='w',ipady=40)
+        w1.grid(row=5, column=2,ipadx=235,columnspan=4,ipady=10)
+        Resultats.grid(row=6, column=2,ipadx=200,columnspan=4,ipady=10)
 
 
 
         #bouton#
-        B1.grid(row=6, column=1)
-        B2.grid(row=6, column=2)
-        B3.grid(row=6, column=3)
-        B4.grid(row=6, column=4)
-        B5.grid(row=6, column=5)
+        B1.grid(row=9, column=1)
+        B2.grid(row=9, column=2)
+        B3.grid(row=9, column=3)
+        B4.grid(row=9, column=5)
+        B5.grid(row=9, column=4)
 
 #===================================================================================================================================================================================
 #==========================================================================================
@@ -3377,7 +3406,7 @@ def Menu():
         #fenetre.attributes('-fullscreen', True)
 
         fenetre.rowconfigure(1, weight=0)
-        fenetre.rowconfigure(2, weight=2)
+        fenetre.rowconfigure(2, weight=0)
         fenetre.rowconfigure(3, weight=1)
         fenetre.rowconfigure(4, weight=1)
         fenetre.rowconfigure(5, weight=1)
@@ -3385,13 +3414,15 @@ def Menu():
         fenetre.rowconfigure(7, weight=1)
         fenetre.rowconfigure(8, weight=1)
         fenetre.rowconfigure(9, weight=1)
+        
 
-        fenetre.columnconfigure(0, weight=1)
         fenetre.columnconfigure(1, weight=1)
         fenetre.columnconfigure(2, weight=1)
         fenetre.columnconfigure(3, weight=1)
         fenetre.columnconfigure(4, weight=1)
-        fenetre.columnconfigure(5, weight=1)
+        fenetre.columnconfigure(5, weight=0)
+        fenetre.columnconfigure(6, weight=1)
+
 
         Raiponce={}
         man=select
@@ -3579,24 +3610,24 @@ def Menu():
                
         titre=Label(fenetre, text="Les Tableaux", font=("Courier", 40, "italic"), fg='black', bg='lightskyblue1')  # Placement de l'invite
 
-        soustitre=Label(fenetre, text="Quelques Indications: La taille du tableau est comprise entre 30 et 300 cases \n                     Taille mot * taille case ne doit pas dépasser 950 mots ",font=("courier", 20), fg='darkblue', bg='lightskyblue1') 
+        soustitre=Label(fenetre, text="    Quelques Indications: La taille du tableau est comprise entre 30 et 300 cases \n                     Taille mot * taille case ne doit pas dépasser 950 mots ",font=("courier", 20), fg='darkblue', bg='lightskyblue1') 
 
-        txt1=Label(fenetre, text="Taille du tableau", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1')
-        txt1a=Label(fenetre, text="(en nombre de case)", font=("courier", 12, "italic"), fg='black', bg='lightskyblue1')
+        txt1=Label(fenetre, text="  Taille du tableau", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1')
+        txt1a=Label(fenetre, text="  (en nombre de case)", font=("courier", 12, "italic"), fg='black', bg='lightskyblue1')
 
-        txt2=Label(fenetre, text="Taille d'une case", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1')
-        txt2a=Label(fenetre, text="(en nombre de mot)", font=("courier", 12, "italic"), fg='black', bg='lightskyblue1')
+        txt2=Label(fenetre, text="  Taille d'une case", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1')
+        txt2a=Label(fenetre, text="  (en nombre de mot)", font=("courier", 12, "italic"), fg='black', bg='lightskyblue1')
 
-        txt3=Label(fenetre, text="Adresse 1 mot ", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1')
-        txt4=Label(fenetre, text="Numéro de case", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1')
+        txt3=Label(fenetre, text="  Adresse 1 mot ", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1')
+        txt4=Label(fenetre, text="  Numéro de case", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1')
 
-        txtQ10=Label(fenetre, text="Nombre de mots", font=("courier", 20), fg='black', bg='lightskyblue1')
-        txtQu1=Label(fenetre, text="Question 1 :", font=("courier", 20, "bold"), fg='black', bg='lightskyblue1')
-        txtQ11=Label(fenetre, text="Numéro du premier mot", font=("courier", 20), fg='black', bg='lightskyblue1')
-        txtQ12=Label(fenetre, text="Numéro du dernier mot", font=("courier", 20), fg='black', bg='lightskyblue1')
+        txtQ10=Label(fenetre, text="  Nombre de mots", font=("courier", 20), fg='black', bg='lightskyblue1')
+        txtQu1=Label(fenetre, text="  Question 1 :", font=("courier", 20, "bold"), fg='black', bg='lightskyblue1')
+        txtQ11=Label(fenetre, text="  Numéro du premier mot", font=("courier", 20), fg='black', bg='lightskyblue1')
+        txtQ12=Label(fenetre, text="  Numéro du dernier mot", font=("courier", 20), fg='black', bg='lightskyblue1')
 
-        txtQ2=Label(fenetre, text="Mot contenus dans la case", font=("courier", 20), fg='black', bg='lightskyblue1')
-        txtQu2=Label(fenetre, text="Question 2 :", font=("courier", 20, "bold"), fg='black', bg='lightskyblue1')
+        txtQ2=Label(fenetre, text="  Mot contenus dans la case", font=("courier", 20), fg='black', bg='lightskyblue1')
+        txtQu2=Label(fenetre, text="  Question 2 :", font=("courier", 20, "bold"), fg='black', bg='lightskyblue1')
 
         if man ==2:
             
@@ -3915,7 +3946,7 @@ def Menu():
     Bchap4.grid(row=6, column=3,sticky='ew',ipady=10)
     
     Quitter=Button(fenetre, text= "Quitter", font=("courier", 18, "italic"), fg='white', bg='#103985', command= fenetre.destroy)
-    Quitter.grid(row=7, column=3)
+    Quitter.grid(row=8, column=3)
 
 
 
