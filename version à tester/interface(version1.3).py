@@ -3677,7 +3677,7 @@ def Menu():
             AdPMTab=Label(fenetre, text=Adresse , font=("courier", 14, "italic"), fg='black', bg='white',borderwidth=3, relief="sunken",width=10)
 
             
-        NumCase=Label(fenetre, text=donne2 , font=("courier", 15, "italic"), fg='black', bg='white',borderwidth=3, relief="sunken")
+        NumCase=Label(fenetre, text=donne2 , font=("courier", 12, "italic"), fg='black', bg='white',borderwidth=3, relief="sunken")
 
 
         NbCTab=Entry(fenetre,justify='center')
@@ -3860,7 +3860,7 @@ def Menu():
         AdPMTab.grid(row=4, column=2,ipady=10)
 
         txt4.grid(row=4,column=3,columnspan=4,sticky='w',ipady=30)
-        NumCase.grid(row=4, column=4,ipady=10)
+        NumCase.grid(row=4, column=4,ipady=10,ipadx=20)
 
         txtQ10.grid(row=5, column=2,columnspan=3,sticky='w')
         NbCTab.grid(row=5, column=4,columnspan=5,ipadx=100,ipady=10,sticky='w')
