@@ -1678,8 +1678,8 @@ def Menu():
         titre=Label(fenetre, text="Opération sans calcul", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')  
         titre.grid(row=1, column=2,columnspan=3) 
 
-        soustitre=Label(fenetre, text="Quelques indications :", font=("Courier", 25, "italic"), fg='blue4', bg='lightskyblue1')
-        soustitre.grid(row=2, column=2,columnspan=3,ipady=30) 
+        soustitre=Label(fenetre, text="Quelques indications :Base 2 => maximum 16 bits en entrée Base 10 => entre 2 et 256 en puissance de 2\nDivision =>Le nombre en base 2 doit se terminer par au moins autant de 0 que l’exposant de la puissance de 2", font=("Courier", 15, "italic"), fg='blue4', bg='lightskyblue1')
+        soustitre.grid(row=2, column=1,columnspan=5,ipady=30) 
 
         txt1.grid(row=4, column=1,columnspan=2,sticky='w',ipady=30)
         oper.grid(row=4,column=2,ipadx=200,columnspan=4,ipady=10) # Placement de la zone de saisie
