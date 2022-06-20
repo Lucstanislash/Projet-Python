@@ -641,7 +641,7 @@ def Menu():
 
             Label(rappel, text=l, bg='lightskyblue1', fg='darkslateblue', font=('Courier',20,'bold')).grid(row=10, column=1, columnspan=3)               
             Label(rappel, text=o, bg='lightskyblue1', fg='darkslateblue', font=('Courier',16)).grid(row=11, column=1, columnspan=3)
-            ##Label(rappel, image= imag).grid(row=4, column=2, rowspan=8) 
+            ##Label(rappel, image= imag).grid(row=4, column=2, rowspan=8)  
 
             def exit_btn():
 
@@ -1187,10 +1187,10 @@ def Menu():
             titre=Label(rappel,text="Rappel", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
             titre.grid(row=1, column=2,columnspan=3,sticky='s')
 
-            txt1=Label(rappel, text="Si un entier \n est multiple d'une puissance (n) de 2 :", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
-            txt2=Label(rappel, text="Il doit se terminer \n par (n) 0.", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
+            txt1=Label(rappel, text="Si un entier est multiple d'une puissance (n) de 2 :", font=("courier", 20, "italic",'bold'), fg='darkslateblue', bg='lightskyblue1',width=60, height=2)
+            txt2=Label(rappel, text="Il doit se terminer par (n) 0.", font=("courier", 16, "italic"), fg='darkslateblue', bg='lightskyblue1',width=40, height=2)
             
-            txt1.grid(row=2, column=3)
+            txt1.grid(row=2, column=2, columnspan=4)
             txt2.grid(row=3, column=3)
             
             rappel.rowconfigure(1, weight=1)
@@ -1606,10 +1606,10 @@ def Menu():
             titre=Label(rappel,text="Rappel", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
             titre.grid(row=1, column=2,columnspan=3,sticky='s')
 
-            txt1=Label(rappel, text="Multiplication :", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
-            txt2=Label(rappel, text="Ajouter des 0 à la fin \n du nombre en base 2 donné", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
-            txt3=Label(rappel, text="Division : ", font=("courier", 25, "italic"), fg='black', bg= 'lightskyblue1',width=40, height=2)
-            txt4=Label(rappel, text="Supprimer des 0 à la fin \n du nombre en base 2  donné", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
+            txt1=Label(rappel, text="Multiplication :", font=("courier", 20, "italic",'bold'), fg='darkslateblue', bg='lightskyblue1',width=40, height=2)
+            txt2=Label(rappel, text="Ajouter des 0 à la fin du nombre en base 2 donné", font=("courier", 16, "italic"), fg='darkslateblue', bg='lightskyblue1',width=60, height=2)
+            txt3=Label(rappel, text="Division : ", font=("courier", 20, "italic",'bold'), fg='darkslateblue', bg= 'lightskyblue1',width=40, height=2)
+            txt4=Label(rappel, text="Supprimer des 0 à la fin du nombre en base 2  donné", font=("courier", 16, "italic"), fg='darkslateblue', bg='lightskyblue1',width=60, height=2)
 
             txt1.grid(row=2, column=3)
             txt2.grid(row=3, column=3)
@@ -1864,10 +1864,10 @@ def Menu():
             titre=Label(rappel,text="Rappel", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
             titre.grid(row=1, column=2,columnspan=3,sticky='s')
 
-            txt1=Label(rappel, text="L’entier ne peut pas excéder 16 bits", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
-            txt2=Label(rappel, text="Dans cet exercice, une seule tentative ", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
-            txt3=Label(rappel, text="sera accordée à l’utilisateur", font=("courier", 25, "italic"), fg='black', bg= 'lightskyblue1',width=40, height=2)
-            txt4=Label(rappel, text="", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
+            txt1=Label(rappel, text="L’entier ne peut pas excéder 16 bits", font=("courier", 20, "italic",'bold'), fg='darkslateblue', bg='lightskyblue1',width=40, height=2)
+            txt2=Label(rappel, text="Dans cet exercice, une seule tentative ", font=("courier", 20, "italic",'bold'), fg='darkslateblue', bg='lightskyblue1',width=40, height=2)
+            txt3=Label(rappel, text="sera accordée à l’utilisateur", font=("courier", 20, "italic",'bold'), fg='darkslateblue', bg= 'lightskyblue1',width=40, height=2)
+            txt4=Label(rappel, text="", font=("courier", 25, "italic"), fg='darkslateblue', bg='lightskyblue1',width=40, height=2)
 
             txt1.grid(row=2, column=3)
             txt2.grid(row=3, column=3)
@@ -2476,15 +2476,27 @@ def Menu():
             titre=Label(rappel,text="Rappel", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
             titre.grid(row=1, column=2,columnspan=3,sticky='s')
 
-            txt1=Label(rappel, text="Si l’entier codé en SVA/C2 commence par 1 : \n son signe est négatif.", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
-            txt2=Label(rappel, text="Si l’entier codé en SVA/C2 commence par 0 : \n son signe est positif.", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
-            txt3=Label(rappel, text="Pour convertir un nombre négatif de C2 vers \n SVA: on soustrait 1,puis on inverse les bits\nen faisant attention au signe.", font=("courier", 25, "italic"), fg='black', bg= 'lightskyblue1',width=40, height=2)
-            txt4=Label(rappel, text="Pour coder un entier négatif en C2 :on part \nde la valeur absolue,on inverse les bits puis\n on ajoute 1", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
+            txt1=Label(rappel, text="Si l’entier codé en SVA/C2 commence par 1 :", font=("courier", 20, "italic",'bold'), fg='darkslateblue', bg='lightskyblue1',width=60, height=2)
+            txt2=Label(rappel, text="Son signe est négatif.", font=("courier", 16, "italic"), fg='darkslateblue', bg= 'lightskyblue1',width=60, height=2)
 
-            txt1.grid(row=2, column=3,ipadx=50,ipady=40)
-            txt2.grid(row=3, column=3,ipadx=50,ipady=40)
-            txt3.grid(row=4, column=3,ipadx=50,ipady=40)
-            txt4.grid(row=5, column=3,ipadx=50,ipady=40)
+            txt3=Label(rappel, text="Si l’entier codé en SVA/C2 commence par 0 :", font=("courier", 20, "italic",'bold'), fg='darkslateblue', bg='lightskyblue1',width=60, height=2)
+            txt4=Label(rappel, text="Son signe est positif.", font=("courier", 16, "italic"), fg='darkslateblue', bg= 'lightskyblue1',width=60, height=2)
+
+            txt5=Label(rappel, text="Pour convertir un nombre négatif de C2 vers SVA:", font=("courier", 20, "italic",'bold'), fg='darkslateblue', bg= 'lightskyblue1',width=60, height=2)
+            txt6=Label(rappel, text="On soustrait 1,puis on inverse les bits en faisant attention au signe.", font=("courier", 16, "italic"), fg='darkslateblue', bg= 'lightskyblue1',width=80, height=2)
+
+            txt7=Label(rappel, text="Pour coder un entier négatif en C2 :", font=("courier", 20, "italic",'bold'), fg='darkslateblue', bg='lightskyblue1',width=60, height=2)
+            txt8=Label(rappel, text="On part de la valeur absolue,on inverse les bits puis on ajoute 1", font=("courier", 16, "italic"), fg='darkslateblue', bg= 'lightskyblue1',width=80, height=2)
+
+            txt1.grid(row=2, column=3)
+            txt2.grid(row=3, column=2, columnspan=4)
+            txt3.grid(row=4, column=3)
+            txt4.grid(row=5, column=2, columnspan=4)
+            txt5.grid(row=6, column=3)
+            txt6.grid(row=7, column=2, columnspan=4)
+            txt7.grid(row=8, column=3)
+            txt8.grid(row=9, column=2, columnspan=4)
+                                                            
 
             rappel.rowconfigure(1, weight=1)
             rappel.rowconfigure(2, weight=1)
@@ -2492,12 +2504,18 @@ def Menu():
             rappel.rowconfigure(4, weight=1)
             rappel.rowconfigure(5, weight=1)
             rappel.rowconfigure(6, weight=1)
+            rappel.rowconfigure(7, weight=1)
+            rappel.rowconfigure(8, weight=1)
+            rappel.rowconfigure(9, weight=1)
+            rappel.rowconfigure(10, weight=1)
 
             rappel.columnconfigure(1, weight=0)
             rappel.columnconfigure(2, weight=1)
             rappel.columnconfigure(3, weight=1)
             rappel.columnconfigure(4, weight=1)
-            rappel.columnconfigure(5, weight=0)    
+            rappel.columnconfigure(5, weight=1)
+            rappel.columnconfigure(6, weight=1)
+            rappel.columnconfigure(7, weight=0)  
 
             def exit_btn():
 
@@ -2961,7 +2979,7 @@ def Menu():
             titre=Label(rappel,text="Rappel", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
             titre.grid(row=1, column=2,columnspan=3,sticky='s')
 
-            txt1=Label(rappel, text="Pour obtenir la partie décimale\non utilise la méthode de la multiplication.", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
+            txt1=Label(rappel, text="Pour obtenir la partie décimale\non utilise la méthode de la multiplication.", font=("courier", 20, "italic",'bold'), fg='darkslateblue', bg='lightskyblue1',width=40, height=2)
           
             txt1.grid(row=2, column=3,ipadx=100,ipady=40)
           
@@ -3298,10 +3316,10 @@ def Menu():
             titre=Label(rappel,text="Rappel", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
             titre.grid(row=1, column=2,columnspan=3,sticky='s')
 
-            txt1=Label(rappel, text="1 bit de signe", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
-            txt2=Label(rappel, text="8 bits d’exposant biaisé (biaisé de 127)", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
-            txt3=Label(rappel, text="23 bits de mantisse", font=("courier", 25, "italic"), fg='black', bg= 'lightskyblue1',width=40, height=2)
-            txt4=Label(rappel, text="Ne pas oublier le bit implicite", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
+            txt1=Label(rappel, text="1 bit de signe", font=("courier", 20, "italic",'bold'), fg='darkslateblue', bg='lightskyblue1',width=40, height=2)
+            txt2=Label(rappel, text="8 bits d’exposant biaisé (biaisé de 127)", font=("courier", 20, "italic",'bold'), fg='darkslateblue', bg='lightskyblue1',width=40, height=2)
+            txt3=Label(rappel, text="23 bits de mantisse", font=("courier", 20, "italic",'bold'), fg='darkslateblue', bg= 'lightskyblue1',width=40, height=2)
+            txt4=Label(rappel, text="Ne pas oublier le bit implicite", font=("courier", 20, "italic",'bold'), fg='darkslateblue', bg='lightskyblue1',width=40, height=2)
 
             txt1.grid(row=2, column=3)
             txt2.grid(row=3, column=3)
@@ -3677,10 +3695,10 @@ def Menu():
             titre=Label(rappel,text="Rappel", font=("Courier", 40, "italic"), fg='darkblue', bg='lightskyblue1')
             titre.grid(row=1, column=2,columnspan=3,sticky='s')
 
-            txt1=Label(rappel, text="Si a est le premier mot du tableau,", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
-            txt2=Label(rappel, text=" et si une case contient n mots,", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
-            txt3=Label(rappel, text=" le premier mot de la case n°k", font=("courier", 20, "italic"), fg='black', bg= 'lightskyblue1',width=40, height=2)
-            txt4=Label(rappel, text=" est le mot a+(k-1)*n", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
+            txt1=Label(rappel, text="Si a est le premier mot du tableau,", font=("courier", 20, "italic",'bold'), fg='darkslateblue', bg='lightskyblue1',width=40, height=2)
+            txt2=Label(rappel, text=" et si une case contient n mots :", font=("courier", 20, "italic",'bold'), fg='darkslateblue', bg='lightskyblue1',width=40, height=2)
+            txt3=Label(rappel, text=" Le premier mot de la case n°k", font=("courier", 16, "italic"), fg='darkslateblue', bg= 'lightskyblue1',width=40, height=2)
+            txt4=Label(rappel, text=" est le mot a+(k-1)*n", font=("courier", 16, "italic"), fg='darkslateblue', bg='lightskyblue1',width=40, height=2)
 
             txt1.grid(row=2, column=3)
             txt2.grid(row=3, column=3)
