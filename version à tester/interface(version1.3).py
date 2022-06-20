@@ -1117,6 +1117,13 @@ def Menu():
             return(liste)
         #========================================================================================================================
         def Valid():
+            lprop=my_listbox.get('@1,0', END)
+
+            x=[]
+            x=t2.get('@1,0', END)
+            n=x[3:]
+            n=int(n)
+            
             #============================Liste des réponses correctes
             def ReponseEx3(lprop, n):
                 RepEx3=[]                   #Récupère les bonnes réponses
