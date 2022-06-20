@@ -3229,6 +3229,7 @@ def Menu():
                 entier=Raccourcir(entier)
                 util = Resultats.get()
                 util=Raccourcir(util)
+                util=util.upper()
                 formats = fenetre.option_var.get()
                 formats=Raccourcir(formats)
                 w1.config(state='disabled')
@@ -3236,6 +3237,7 @@ def Menu():
                 entier=valeur
                 util = Resultats.get()
                 util=Raccourcir(util)
+                util=util.upper()
 
             if formats=="IEEE":
                 ok=CtrlSyntaxe(str(entier),10,1,20,-10000,10000)
@@ -3258,11 +3260,11 @@ def Menu():
             
             if formats=="IEEE":
                 rep=Ent_IEEE(entier)
-                rep=rep.upper()
+               
 
             else:
                 rep=IEE_Ent(entier)
-                rep=rep.upper()
+             
             
             Verif=VerifRep(rep,util)
             
