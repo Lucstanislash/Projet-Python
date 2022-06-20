@@ -1030,8 +1030,8 @@ def Menu():
         titre=Label(rappel,text="Rappel", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
         titre.grid(row=1, column=2,columnspan=3,sticky='s')
 
-        txt1=Label(rappel, text="N'oubliez pas que : 1 + 1 = 10", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
-        txt2=Label(rappel, text="N'oubliez pas les retenues", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1',width=40, height=2)
+        txt1=Label(rappel, text="N'oubliez pas que : 1 + 1 = 10", font=("courier", 20, "italic",'bold'), fg='darkslateblue', bg='lightskyblue1',width=40, height=2)
+        txt2=Label(rappel, text="N'oubliez pas les retenues", font=("courier", 20, "italic",'bold'), fg='darkslateblue', bg='lightskyblue1',width=40, height=2)
         
 
         txt1.grid(row=2, column=3)
@@ -2523,7 +2523,7 @@ def Menu():
                 rappel.update()
 
             btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='white', bg='#103985', width=15, height=2)
-            btn.grid(row=6, column=2,columnspan=3,sticky='n')
+            btn.grid(row=10, column=2,columnspan=3,sticky='n')
 
         def back():
             titre.destroy()
