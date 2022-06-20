@@ -3258,9 +3258,11 @@ def Menu():
             
             if formats=="IEEE":
                 rep=Ent_IEEE(entier)
+                rep=rep.upper()
 
             else:
                 rep=IEE_Ent(entier)
+                rep=rep.upper()
             
             Verif=VerifRep(rep,util)
             
