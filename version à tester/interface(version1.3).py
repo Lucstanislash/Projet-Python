@@ -3552,6 +3552,8 @@ def Menu():
                             TailleTab.configure(state="disabled")
                             TailleCase.configure(state="disabled")
                             AdPMTab.configure(state="disabled")
+            else:
+                B3['state']='normal'
                     
             if ko==1:
                 donne2=AleaExAll(10,1,int(taille))
@@ -3748,7 +3750,7 @@ def Menu():
             NumCase.config(text=donne2)
             B6['state']='normal'
             if man ==1 : 
-
+               B3['state']='disabled'
                taille=AleaExAll(10,30,300)
                TailleC=AleaExAll(10,1,30)
                Adresse=AleaExAll(10,1,1000)
@@ -4005,3 +4007,4 @@ def Menu():
 Menu()
 
 fenetre.mainloop()
+
