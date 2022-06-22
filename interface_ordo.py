@@ -128,28 +128,28 @@ def buttonGo():
         print("yo")
     
 fenetre.menu= tk.StringVar(fenetre)
-menu= ttk.OptionMenu(fenetre,fenetre.menu,Li[0], *Li)
-menu.grid(row=4, column=3,columnspan=5,sticky='w',ipady=10,ipadx=100)
+menu= ttk.OptionMenu(fenetre,fenetre.menu,Li[6], *Li)
+menu.grid(row=4, column=2,columnspan=3,ipady=10,ipadx=50)
 
 
 ttmenu=Label(fenetre, text="Sélectionner le type \n ordonnancement voulue", font=("Courier", 20, "italic"), fg='black', bg='lightskyblue1')
-ttmenu.grid(row=3, column=3,columnspan=5,sticky='w')
+ttmenu.grid(row=3, column=2,columnspan=3)
 
 OK=Button(fenetre, text="Débloquer données", font=("calibri", 15, "bold",), fg='white', bg='#103985', width=17, height=0,command=lambda:debloq())
 OK.grid(row=5, column=2,columnspan=3)
 
 ttprocs=Label(fenetre, text="Nombre de \nprocessus", font=("Courier", 20, "italic"), fg='black', bg='lightskyblue1')#titre pour le nombre de processus
-ttprocs.grid(row=3, column=5,columnspan=6,)
+ttprocs.grid(row=3, column=4,columnspan=7)
 
 nbprocs=Entry(justify='center',borderwidth=3,state='disabled')#case de saisie pour le nombre de processus
-nbprocs.grid(row=4, column=5,columnspan=6,ipady=15,ipadx=30)
+nbprocs.grid(row=4, column=4,columnspan=7,ipady=15,ipadx=30)
 
 
 ttQuantum=Label(fenetre, text="Quantum", font=("Courier", 20, "italic"), fg='black', bg='lightskyblue1')#titre pour le quantum
-ttQuantum.grid(row=3, column=7,columnspan=8,)
+ttQuantum.grid(row=3, column=6,columnspan=8)
 
 Quantum=Entry(justify='center',borderwidth=3,state='disabled')#case de saisie pour le quantum
-Quantum.grid(row=4, column=7,columnspan=8,ipady=15,ipadx=30)
+Quantum.grid(row=4, column=6,columnspan=8,ipady=15,ipadx=30)
 
 
 GO=Button(fenetre, text="GO", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=5, height=0,command=lambda:buttonGo())
@@ -165,9 +165,9 @@ titre=Label(fenetre, text="Ordonnancement", font=("Courier", 40, "italic"), fg='
 soustitre=Label(fenetre, text="Quelques Indications:  ", font=("courier", 20), fg='darkblue', bg='lightskyblue1') 
 
 titre.grid(row=1, column=4,columnspan=7)
-soustitre.grid(row=2, column=3,columnspan=5,sticky='w',ipady=40)
+soustitre.grid(row=2, column=2,columnspan=3,ipady=40)
 
-B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2,command=lambda:create())
+B1=Button(fenetre, text="Rappel", font=("courier", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2,command=lambda:create())
 
 B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2)
  
@@ -175,13 +175,17 @@ B3=Button(fenetre, text="Valider", font=("courier", 18, "italic"), fg='white', b
  
 B4=Button(fenetre, text="Score", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,state='disabled')
  
-B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='grey', width=15, height=2,command=fenetre.destroy)
+B5=Button(fenetre, text="Quitter", font=("courier", 18), fg='white', bg='grey', width=15, height=2,command=fenetre.destroy)
 
-B1.grid(row=18, column=3)
-B2.grid(row=18, column=5)
-B3.grid(row=18, column=7)
-B4.grid(row=18, column=9)
-B5.grid(row=18, column=12)
+B6=Button(fenetre, text="Menu", font=("courier", 18, "italic"), fg='white', bg='grey', width=15, height=2)
+         
+
+B1.grid(row=18, column=2)
+B2.grid(row=18, column=4)
+B3.grid(row=18, column=6)
+B4.grid(row=18, column=8)
+B5.grid(row=18, column=10)
+B6.grid(row=18, column=12)
 
 ##############################################################Fenetre rappel####################################################################
 def create():
