@@ -46,13 +46,43 @@ fenetre.columnconfigure(12, weight=1)
 
 Li=["Tourniquet","FIFO","PCTER","Priorite fixes","Algorithmes multifiles FIFO sans migration","Algorithmes multi files FIFO avec migration","Algorithmes multi files TOURNIQUET sans migration","Algorithmes multi files TOURNIQUET avec  migration"]
 
-
+Duree=10
+def CreaCase(Duree):
+    colmin=5
+    colmax=12
+    lignemin=5
+    lignemax=14
+    col=0
+    ligne=0
+    ListNom=[]
+    for i in range(Duree):
+        Nom=str("a"+str(i))
+        ListNom.append(Nom)
+    print(ListNom)
+    print(ListNom[1])
+    for i in range(Duree):
+        ListNom[i]=Entry(fenetre,width=10)
+        ListNom[i].grid(row=lignemin+ligne, column=colmin+col, pady=20, columnspan=colmin+col )
+        ValTemps=(str(i)+"-"+str(i+1))
+        Temps=Label(fenetre, text=ValTemps ,font=("courier", 8), fg='black', bg='white')
+        Temps.grid(row=lignemin+ligne, column=colmin+col,sticky='s', columnspan=colmin+col)
+        
+        if colmin+col>=colmax:
+            col=0
+            ligne+=1
+        else:
+            col+=1
+   
+    
 def debloq():
 
-    formats=fenetre.menu.get()
+    types=fenetre.menu.get()
     nbprocs['state']='normal'
+    B1['state']='normal'
+    menu.configure(state="disabled")
+    OK['state']='disabled'
     
-    if formats=='Tourniquet' or formats=='Algorithmes multi files TOURNIQUET sans migration' or formats=='Algorithmes multi files TOURNIQUET avec  migration':
+    if types=='Tourniquet' or types=='Algorithmes multi files TOURNIQUET sans migration' or types=='Algorithmes multi files TOURNIQUET avec  migration':
         Quantum['state']='normal'
     else:
         Quantum['state']='normal'
@@ -69,19 +99,19 @@ def CtrlDonnee():
     if Quantum['state']=='disabled':
 
         if nbprocessus=='':
-            messagebox.showinfo(title="Information",
+            messagebox.showerror(title="Information",
                                                     message="Veuillez saisir une réponse")
             return(1)
         else:
-            if "." in nbprocessus or "." in quantum :
+            if "." in nbprocessus  :
                 messagebox.showerror("showerror", "Erreur de saisie les points ne sont pas acceptés")
                 return(1)
             else:
                 
                 ctrl=CtrlSyntaxe(str(nbprocessus),10,1,2,4,10)
                 if ctrl==False:
-                    messagebox.showinfo(title="Information",
-                                                        message="Nombre de processus non compris dans l'intervalle")
+                    messagebox.showerror(title="Information",
+                                                        message="Erreur de syntaxe ou intervalle non respectée dans nombre de processus")
                     return(1)
                 else:
                     nbprocs['state']='disabled'
@@ -102,20 +132,19 @@ def CtrlDonnee():
 
                 ctrl2=CtrlSyntaxe(str(quantum),10,1,2,1,4)
                 if ctrl==False:
-                    messagebox.showinfo(title="Information",
-                                                        message="Nombre de processus non compris dans l'intervalle")
+                    messagebox.showerror(title="Information",
+                                                        message="Erreur de syntaxe ou intervalle non respectée dans nombre de processus")
                     return(1)
                 
                 else:
                     if ctrl2==False:
-                        messagebox.showinfo(title="Information",
-                                                       message="Nombre de quantum non compris dans l'intervalle")
+                        messagebox.showerror(title="Information",
+                                                       message="Erreur de syntaxe ou intervalle non respectée pour quantum")
                         return(1)
                     else:
                         nbprocs['state']='disabled'
                         Quantum['state']='disabled'
                     
-           
                    
                 
 
@@ -157,7 +186,7 @@ GO.grid(row=4, column=10,columnspan=12,sticky='n')
 
 
 
-affcase=Button(fenetre, text="Afficher les cases", font=("calibri", 15, "bold"), fg='white', bg='#103985', width=17, height=0)
+affcase=Button(fenetre, text="Afficher les cases", font=("calibri", 15, "bold"), fg='white', bg='#103985', width=17, height=0,command=lambda:CreaCase(Duree))
 affcase.grid(row=17, column=2,columnspan=3)
 
 
@@ -167,7 +196,7 @@ soustitre=Label(fenetre, text="Quelques Indications:  ", font=("courier", 20), f
 titre.grid(row=1, column=4,columnspan=7)
 soustitre.grid(row=2, column=3,columnspan=5,sticky='w',ipady=40)
 
-B1=Button(fenetre, text="Rappel", font=("courier", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2,command=lambda:create())
+B1=Button(fenetre, text="Rappel", font=("courier", 18, "bold", 'underline'), fg='white', bg='#103985',state='disabled', width=15, height=2,command=lambda:create())
 
 B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2)
  
@@ -185,20 +214,84 @@ B4.grid(row=18, column=12)
 
 ##############################################################Fenetre rappel####################################################################
 def create():
+        types=fenetre.menu.get()
         rappel = Toplevel(fenetre)
         rappel.config(background="lightskyblue1")
-        titre=Label(rappel,text="Rappel", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
-        titre.grid(row=1, column=2,columnspan=3,sticky='s')
+     
+            
+        Label(rappel,text="Rappel", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1').grid(row=1, column=1, columnspan=3)
 
-        txt1=Label(rappel, text="Multiplication :", font=("courier", 20, "italic",'bold'), fg='darkslateblue', bg='lightskyblue1',width=40, height=2)
-        txt2=Label(rappel, text="Ajouter des 0 à la fin du nombre en base 2 donné", font=("courier", 16, "italic"), fg='darkslateblue', bg='lightskyblue1',width=60, height=2)
-        txt3=Label(rappel, text="Division : ", font=("courier", 20, "italic",'bold'), fg='darkslateblue', bg= 'lightskyblue1',width=40, height=2)
-        txt4=Label(rappel, text="Supprimer des 0 à la fin du nombre en base 2  donné", font=("courier", 16, "italic"), fg='darkslateblue', bg='lightskyblue1',width=60, height=2)
+        if types=='Tourniquet':
+            
+            i="Tourniquet :\n"
+            a="Le processus sélectionné est celui en top de liste \net chaque nouveau processus est ajouté en fin de liste\n"
+            j="Un processus en cours s'exécute pendant un temps (q)\n et se met en fin de file s’il n’a pas fini :\n"
+            c="L’arrivée d’un processus avec une plus grande priorité \nentraîne l’arrêt du processus en cours et s'exécute.\n"                      
+            
+        elif types=='FIFO':
+            
+            i="FIFO :\n"
+            a="FIFO = First-In, First-Out , le premier processus\n arrivé est le premier à s'exécuter\n"
+            j="Temps de réponse pour un processus = \nDate de fin - Date d'arrivée :\n"
+            c="Temps moyen de réponse = somme des temps de réponse \nde chaque processus divisé par nombre de processus\n"                      
+            
 
-        txt1.grid(row=2, column=3)
-        txt2.grid(row=3, column=3)
-        txt3.grid(row=4, column=3)
-        txt4.grid(row=5, column=3)
+
+        elif types=='PCTER':
+            
+            i="PCTER :\n"
+            a="Le processus sélectionné est celui qui a le plus court temps d'exécution restant\n"
+            j=" :\n"
+            c="\n"                      
+            
+
+        elif types=='Priorite fixes':
+
+            i="Priorités fixes :\n"
+            a="Comparaison des processus pour trouver celui avec la plus grande priorité\n"
+            j="Respecter l’ordre de priorité : si une nouvelle tâche à une plus grande priorité, le processus est interrompu:\n"
+            c="Lorsque deux processus ont la même priorités, la règle du FIFO s’applique\n"                      
+
+
+        elif types=='Algorithmes multi files FIFO avec migration':
+
+            i="Algorithmes multifiles FIFO avec migration:\n"
+            a="Quand une file est ordonnancée par un quantum n, elle applique son algorithme d'ordonnancement pendant n unités de temps\nsauf si elle se retrouve vide avant l'expiration du quantum dans ce cas la file suivante prend le relai \n"
+            j=":Quand une file est interrompue, elle reprend là où elle en était, donc si un processus n'avait pas fini son quantum, il le termine.\n"
+            c="\n"                      
+            
+        elif types=='Algorithmes multifiles FIFO sans migration':
+
+            i="Algorithmes multifiles FIFO sans migration :\n"
+            a="Le processus sélectionné est celui en top de liste \net chaque nouveau processus est ajouté en fin de liste\n"
+            j="Un processus en cours s'exécute pendant un temps (q)\n et se met en fin de file s’il n’a pas fini :\n"
+            c="L’arrivée d’un processus avec une plus grande priorité \nentraîne l’arrêt du processus en cours et s'exécute.\n"                      
+            
+
+        elif types =='Algorithmes multi files TOURNIQUET sans migration':
+
+            i="Algorithmes multifiles TOURNIQUET sans migration :\n"
+            a="Le processus sélectionné est celui en top de liste \net chaque nouveau processus est ajouté en fin de liste\n"
+            j="Un processus en cours s'exécute pendant un temps (q)\n et se met en fin de file s’il n’a pas fini :\n"
+            c="L’arrivée d’un processus avec une plus grande priorité \nentraîne l’arrêt du processus en cours et s'exécute.\n"                      
+            
+
+        elif types=='Algorithmes multi files TOURNIQUET avec  migration':
+
+            i="Algorithmes multifiles TOURNIQUET avec migration :\n"
+            a="Le processus sélectionné est celui en top de liste \net chaque nouveau processus est ajouté en fin de liste\n"
+            j="Un processus en cours s'exécute pendant un temps (q)\n et se met en fin de file s’il n’a pas fini :\n"
+            c="L’arrivée d’un processus avec une plus grande priorité \nentraîne l’arrêt du processus en cours et s'exécute.\n"                      
+            
+       
+        
+        Label(rappel, text=i, bg='lightskyblue1', fg='darkslateblue', font=('Courier',20,'bold')).grid(row=4, column=1, columnspan=3)                   
+        Label(rappel, text=a, bg='lightskyblue1', fg='darkslateblue', font=('Courier',16)).grid(row=5, column=1, columnspan=3)
+        
+                          
+        Label(rappel, text=j, bg='lightskyblue1', fg='darkslateblue', font=('Courier',16)).grid(row=6, column=1, columnspan=3)                  
+        Label(rappel, text=c, bg='lightskyblue1', fg='darkslateblue', font=('Courier',16)).grid(row=7, column=1, columnspan=3)
+       
 
         rappel.rowconfigure(1, weight=1)
         rappel.rowconfigure(2, weight=1)
@@ -206,12 +299,16 @@ def create():
         rappel.rowconfigure(4, weight=1)
         rappel.rowconfigure(5, weight=1)
         rappel.rowconfigure(6, weight=1)
+        rappel.rowconfigure(7, weight=1)
+        rappel.rowconfigure(8, weight=1)
+        rappel.rowconfigure(9, weight=1)
+        rappel.rowconfigure(10, weight=1)
+        rappel.rowconfigure(11, weight=1)
+        rappel.rowconfigure(12, weight=1)
 
         rappel.columnconfigure(1, weight=0)
         rappel.columnconfigure(2, weight=1)
-        rappel.columnconfigure(3, weight=1)
-        rappel.columnconfigure(4, weight=1)
-        rappel.columnconfigure(5, weight=0)    
+        rappel.columnconfigure(3, weight=0)    
 
         def exit_btn():
 
@@ -219,8 +316,7 @@ def create():
             rappel.update()
 
         btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='white', bg='#103985', width=15, height=2)
-        btn.grid(row=6, column=2,columnspan=3,sticky='n')
-
+        btn.grid(row=12, column=1,columnspan=3,sticky='n')
 
 
 fenetre.mainloop()
