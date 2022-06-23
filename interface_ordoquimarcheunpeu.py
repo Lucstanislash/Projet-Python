@@ -34,23 +34,51 @@ fenetre.columnconfigure(2, weight=1)
 fenetre.columnconfigure(3, weight=1)
 fenetre.columnconfigure(4, weight=1)
 fenetre.columnconfigure(5, weight=1)
-fenetre.columnconfigure(6, weight=1,minsize=130)
-fenetre.columnconfigure(7, weight=1,minsize=130)
-fenetre.columnconfigure(8, weight=1,minsize=130)
-fenetre.columnconfigure(9, weight=2,minsize=100)
-fenetre.columnconfigure(10, weight=2,minsize=100)
-fenetre.columnconfigure(11, weight=2,minsize=100)
-fenetre.columnconfigure(12, weight=2,minsize=100)
+fenetre.columnconfigure(6, weight=1)
+fenetre.columnconfigure(7, weight=1)
+fenetre.columnconfigure(8, weight=1)
+fenetre.columnconfigure(9, weight=2)
+fenetre.columnconfigure(10, weight=2)
+fenetre.columnconfigure(11, weight=2)
+fenetre.columnconfigure(12, weight=2)
 
 
 Li=["Tourniquet","FIFO","PCTER","Priorite fixes","Algorithmes multifiles FIFO sans migration","Algorithmes multi files FIFO avec migration","Algorithmes multi files TOURNIQUET sans migration","Algorithmes multi files TOURNIQUET avec  migration"]
 
-Duree=50
+Duree=100
 def CreaCase(Duree):
-    colmin=5
-    colmax=12
-    lignemin=5
-    lignemax=14
+    frame_main = tk.Frame(fenetre, bg="lightskyblue1")
+    frame_main.grid(column=6,row=7,columnspan=9)
+
+    # Create a frame for the canvas with non-zero row&column weights
+    frame_canvas = tk.Frame(frame_main)
+    frame_canvas.grid(row=2, column=0, pady=(5, 0), sticky='nw')
+    frame_canvas.grid_rowconfigure(0, weight=1)
+    frame_canvas.grid_columnconfigure(0, weight=1)
+    # Set grid_propagate to False to allow 5-by-5 buttons resizing later
+    frame_canvas.grid_propagate(False)
+
+    # Add a canvas in that frame
+    canvas = tk.Canvas(frame_canvas, bg="lightskyblue1")
+    canvas.grid(row=0, column=0, sticky="news")
+
+    # Link a scrollbar to the canvas
+    vsb = tk.Scrollbar(frame_canvas, orient="vertical", command=canvas.yview)
+    vsb.grid(row=0, column=1, sticky='ns')
+    canvas.configure(yscrollcommand=vsb.set)
+
+    # Create a frame to contain the buttons
+    frame_buttons = tk.Frame(canvas, bg="lightskyblue1")
+    canvas.create_window((0, 0), window=frame_buttons, anchor='nw')
+
+    # Add 9-by-5 buttons to the frame
+    rows = 9
+    columns = 10
+
+    colmin=0
+    colmax=9
+    lignemin=0
+    lignemax=8
     col=0
     ligne=0
     ListNom=[]
@@ -60,17 +88,27 @@ def CreaCase(Duree):
     print(ListNom)
     print(ListNom[1])
     for i in range(Duree):
-        ListNom[i]=Entry(fenetre,width=10)
-        ListNom[i].grid(row=lignemin+ligne, column=colmin+col, pady=10, columnspan=colmin+col+2)
+        ListNom[i]=Entry(frame_buttons,width=10)
+        ListNom[i].grid(row=lignemin+ligne, column=colmin+col, pady=20)
         ValTemps=(str(i)+"-"+str(i+1))
-        Temps=Label(fenetre, text=ValTemps ,font=("courier", 8), fg='black', bg='white')
-        Temps.grid(row=lignemin+ligne, column=colmin+col,sticky='s', columnspan=colmin+col+2)
+        Temps=Label(frame_buttons, text=ValTemps ,font=("courier", 8), fg='black', bg='white')
+        Temps.grid(row=lignemin+ligne, column=colmin+col,sticky='s')
         
         if colmin+col>=colmax:
             col=0
             ligne+=1
         else:
             col+=1
+
+    # Update buttons frames idle tasks to let tkinter calculate buttons sizes       
+    frame_buttons.update_idletasks()
+    # Resize the canvas frame to show exactly 5-by-5 buttons and the scrollbar
+    first5columns_width = sum([ListNom[j].winfo_width() for j in range(0, 10)])
+    first5rows_height = sum([ListNom[i].winfo_height() for i in range(0, 5)])
+    frame_canvas.config(width=first5columns_width + vsb.winfo_width(),
+                        height=first5rows_height+100)
+    # Set the canvas scrolling region
+    canvas.config(scrollregion=canvas.bbox("all"))
     
 def debloq():
 
