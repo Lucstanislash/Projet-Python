@@ -46,13 +46,47 @@ fenetre.columnconfigure(12, weight=1)
 
 Li=["Tourniquet","FIFO","PCTER","Priorite fixes","Algorithmes multifiles FIFO sans migration","Algorithmes multi files FIFO avec migration","Algorithmes multi files TOURNIQUET sans migration","Algorithmes multi files TOURNIQUET avec  migration"]
 
-Duree=100
+man = 2
+Duree=10
+
+def Nbproc () :
+    n=randrange(4,14)
+    print("Nombre de processus : ",n)
+    mini=0
+    maxi=0
+    cpt=0
+    listarv=[]
+    listdur=[]
+    listp=[]
+    alea={}
+    LP=[]
+    for i in range (n):
+        duree=randrange(1,10)
+        cpt=cpt+1
+        listdur.append(duree)
+        listp.append(i+1)
+        arv=randint(mini,maxi)
+        listarv.append(arv)
+        mini=arv
+        maxi=maxi+duree
+        
+       
+    for i in range(len(listp)):
+        LP.append({"n°":listp[i],"Arv":listarv[i],"duree":listdur[i]})
+         
+
+    print("Processus : ",listp)
+    print("DateA : ",listarv)
+    print("Duree : ",listdur)
+    print(LP)
+
 def CreaCase(Duree):
+    global ListNom
     frame_main = tk.Frame(fenetre, bg="lightskyblue1")
     frame_main.grid(column=6,row=7,columnspan=9)
 
     # Create a frame for the canvas with non-zero row&column weights
-    frame_canvas = tk.Frame(frame_main,)
+    frame_canvas = tk.Frame(frame_main,bg="lightskyblue1")
     frame_canvas.grid(row=2, column=0, pady=(5, 0), sticky='nw')
     frame_canvas.grid_rowconfigure(0, weight=1)
     frame_canvas.grid_columnconfigure(0, weight=1)
@@ -72,27 +106,23 @@ def CreaCase(Duree):
     frame_buttons = tk.Frame(canvas, bg="lightskyblue1")
     canvas.create_window((0, 0), window=frame_buttons, anchor='nw')
 
-    # Add 9-by-5 buttons to the frame
     rows = 9
     columns = 10
 
     colmin=0
     colmax=9
     lignemin=0
-    lignemax=8
     col=0
     ligne=0
     ListNom=[]
     for i in range(Duree):
         Nom=str("a"+str(i))
         ListNom.append(Nom)
-    print(ListNom)
-    print(ListNom[1])
     for i in range(Duree):
         ListNom[i]=Entry(frame_buttons,width=10)
-        ListNom[i].grid(row=lignemin+ligne, column=colmin+col, pady=20)
+        ListNom[i].grid(row=lignemin+ligne, column=colmin+col, pady=25)
         ValTemps=(str(i)+"-"+str(i+1))
-        Temps=Label(frame_buttons, text=ValTemps ,font=("courier", 8), fg='black', bg='white')
+        Temps=Label(frame_buttons, text=ValTemps ,font=("courier", 10), fg='black', bg='lightskyblue1')
         Temps.grid(row=lignemin+ligne, column=colmin+col,sticky='s')
         
         if colmin+col>=colmax:
@@ -104,14 +134,24 @@ def CreaCase(Duree):
     # Update buttons frames idle tasks to let tkinter calculate buttons sizes       
     frame_buttons.update_idletasks()
     # Resize the canvas frame to show exactly 5-by-5 buttons and the scrollbar
-    first5columns_width = sum([ListNom[j].winfo_width() for j in range(0, 10)])
-    first5rows_height = sum([ListNom[i].winfo_height() for i in range(0, 5)])
+    if Duree>10:
+        c=10
+    else:
+        c=Duree
+    first5columns_width = sum([ListNom[j].winfo_width() for j in range(0, c)])
+    first5rows_height = sum([ListNom[i].winfo_height() for i in range(0, 1)])
     frame_canvas.config(width=first5columns_width + vsb.winfo_width(),
-                        height=first5rows_height+150)
+                        height=first5rows_height+250)
     # Set the canvas scrolling region
     canvas.config(scrollregion=canvas.bbox("all"))
+    
   
-   
+    deno['state']='normal'
+    numer['state']='normal'
+    B3['state']='normal'
+ 
+    
+    
 def debloq():
 
     types=fenetre.menu.get()
@@ -127,12 +167,15 @@ def debloq():
         Quantum['state']='normal'
         Quantum.insert(0,"Donnée non utile")
         Quantum['state']='disabled'
-       
+
         
 def CtrlDonnee():
     
     nbprocessus=nbprocs.get()
+    nbprocessus=Raccourcir(nbprocessus)
     quantum=Quantum.get()
+    quantum=Raccourcir( quantum)
+
 
 
     if Quantum['state']=='disabled':
@@ -191,31 +234,121 @@ def buttonGo():
     
     ok=CtrlDonnee()
 
-    if not ok==1:
+    if ok!=1:
+        affcase['state']='normal'
+        GO['state']='disabled'
+        
+
+def CtrlCase():
+    global Lutil
+    global ct
     
-        print("yo")
+    Lutil=[]
+    err=[]
+    ok=True
+    ct=0
+    synerror=[]
+    for i in range(len(ListNom)):
+        val=ListNom[i].get()
+        val=Raccourcir( val)
+
+        Lutil.append(val)
+        if Lutil[i]=='':
+            messagebox.showinfo(title="Information",
+                                                   message="Veuillez remplir toutes les cases")
+            ok=False
+            return(1)
+               
+        else:
+            if "." in Lutil[i] :
+                messagebox.showerror("showerror", "Erreur de saisie les points ne sont pas acceptés")
+                ok=False
+                return(1)
+            else:
+               ctrl=CtrlSyntaxe(str(Lutil[i]),10,1,2,1,10)
+               
+               if ctrl==False:
+                    synerror.append(i)  
+                    ListNom[i].config(bg= "crimson")
+                    ct =ct+1
+                    ok=False
+            
+               else:
+                    ListNom[i].config(bg= "white")
+                    i=i+1
+                    
+    if ct >= 1:
+            messagebox.showinfo(title="Information",
+                            message="Erreur de syntaxe ou d'intervalle ")
+            return(1)
+      
+                                 
+
+    
+def valider():
+    LRep=['1','3','1','1','1','5','1','1','1','1'] 
+    erreur=[]
+    
+    rep="attente"
+    
+    controleD=CtrlDonnee()
+    
+    controleC=CtrlCase()
+    
+        
+    if  controleC != 1 :
+        
+        Verif=VerifRep(LRep,Lutil)
+
+        if Verif == 1:
+            B3['state']='disabled' #bloquer le bouton valider ==> Gagner
+            B2['state']='normal'
+            messagebox.showinfo(title="Information",
+                                message="Bonne Réponse, Bravo !! ")
+        elif Verif == -1:
+            B3['state']='disabled' #bloquer le bouton valider ==> Perdu
+            B2['state']='normal'  #débloquer le bouton nouveau ==> recommencer
+            messagebox.showinfo(title="Information",
+                                message=" Mauvaise réponse, vous avez perdu !\n \n Le résultat est: \n" +("".join(str(rep))))
+        elif Verif == 0:
+       
+            for j in range(len(Lutil)):
+                if LRep[j]!=Lutil[j]:
+                    erreur.append(j)  
+                    ListNom[j].config(bg= "crimson")                
+                else:
+                    ListNom[j].config(bg= "white")
+                    j=j+1
+
+            messagebox.showinfo(title="Information",
+                                message="Mauvaise réponse, réessayer ")
+          
+            
+
+    
+
     
 fenetre.menu= tk.StringVar(fenetre)
 menu= ttk.OptionMenu(fenetre,fenetre.menu,Li[6], *Li)
-menu.grid(row=4, column=3,columnspan=5,sticky='w',ipady=10,ipadx=100)
+menu.grid(row=4, column=3,columnspan=3,sticky='nsew',pady=40,padx=20)
 
 tmr=Label(fenetre, text="Temps moyen de réponse", font=("Courier", 17, "italic"), fg='black', bg='lightskyblue1')
-tmr.grid(row=15, column=6,columnspan=7,sticky='w')
+tmr.grid(row=16, column=6,columnspan=7,sticky='w')
 
 deno=Entry(justify='center',borderwidth=3,state='disabled')#case de saisie pour le nombre de processus
-deno.grid(row=14,column=6,columnspan=7,sticky='s')
+deno.grid(row=15,column=6,columnspan=7,sticky='s',ipady=5)
 
 numer=Entry(justify='center',borderwidth=3,state='disabled')#case de saisie pour le nombre de processus
-numer.grid(row=16,column=6,columnspan=7,sticky='s')
+numer.grid(row=17,column=6,columnspan=7,sticky='n',ipady=5)
 
 ligne=Label(fenetre, text="___________", font=("Courier", 17), fg='black', bg='lightskyblue1')
-ligne.grid(row=15, column=6,columnspan=7)
+ligne.grid(row=16, column=6,columnspan=7,sticky='n')
 
-ttmenu=Label(fenetre, text="Sélectionner le type \n ordonnancement voulue", font=("Courier", 20, "italic"), fg='black', bg='lightskyblue1')
-ttmenu.grid(row=3, column=3,columnspan=5,sticky='w')
+ttmenu=Label(fenetre, text="    Sélectionner le type \n   d'ordonnancement voulue", font=("Courier", 20, "italic"), fg='black', bg='lightskyblue1')
+ttmenu.grid(row=3, column=3,columnspan=3,sticky='w')
 
 OK=Button(fenetre, text="Débloquer données", font=("calibri", 15, "bold",), fg='white', bg='#103985', width=17, height=0,command=lambda:debloq())
-OK.grid(row=5, column=2,columnspan=3)
+OK.grid(row=5, column=3,columnspan=3)
 
 ttprocs=Label(fenetre, text="Nombre de \nprocessus", font=("Courier", 20, "italic"), fg='black', bg='lightskyblue1')#titre pour le nombre de processus
 ttprocs.grid(row=3, column=5,columnspan=6,)
@@ -232,11 +365,11 @@ Quantum.grid(row=4, column=7,columnspan=8,ipady=15,ipadx=30)
 
 
 GO=Button(fenetre, text="GO", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=5, height=0,command=lambda:buttonGo())
-GO.grid(row=4, column=10,columnspan=12,sticky='n')
+GO.grid(row=4, column=10,columnspan=12)
 
 
 
-affcase=Button(fenetre, text="Afficher les cases", font=("calibri", 15, "bold"), fg='white', bg='#103985', width=17, height=0,command=lambda:CreaCase(Duree))
+affcase=Button(fenetre, text="Afficher les cases",state='disabled', font=("calibri", 15, "bold"), fg='white', bg='#103985', width=17, height=0,command=lambda:CreaCase(Duree))
 affcase.grid(row=17, column=2,columnspan=3)
 
 
@@ -250,7 +383,7 @@ B1=Button(fenetre, text="Rappel", font=("courier", 18, "bold", 'underline'), fg=
 
 B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2)
  
-B3=Button(fenetre, text="Valider", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:valider (rep,util))
+B3=Button(fenetre, text="Valider", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:valider())
  
 B4=Button(fenetre, text="Menu", font=("courier", 18, "italic"), fg='white', bg='grey', width=15, height=2)
  
