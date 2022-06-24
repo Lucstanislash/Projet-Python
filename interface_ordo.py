@@ -86,7 +86,6 @@ def CreaCase(Duree):
         Nom=str("a"+str(i))
         ListNom.append(Nom)
     print(ListNom)
-    print(ListNom[1])
     for i in range(Duree):
         ListNom[i]=Entry(frame_buttons,width=10)
         ListNom[i].grid(row=lignemin+ligne, column=colmin+col, pady=25)
@@ -103,13 +102,17 @@ def CreaCase(Duree):
     # Update buttons frames idle tasks to let tkinter calculate buttons sizes       
     frame_buttons.update_idletasks()
     # Resize the canvas frame to show exactly 5-by-5 buttons and the scrollbar
-    first5columns_width = sum([ListNom[j].winfo_width() for j in range(0, 10)])
-    first5rows_height = sum([ListNom[i].winfo_height() for i in range(0, 5)])
+    if Duree>10:
+        c=10
+    else:
+        c=Duree
+    first5columns_width = sum([ListNom[j].winfo_width() for j in range(0, c)])
+    first5rows_height = sum([ListNom[i].winfo_height() for i in range(0, 1)])
     frame_canvas.config(width=first5columns_width + vsb.winfo_width(),
                         height=first5rows_height+100)
     # Set the canvas scrolling region
     canvas.config(scrollregion=canvas.bbox("all"))
-
+    
 def get():
     ok=True
     a=[]
