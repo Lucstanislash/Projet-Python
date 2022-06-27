@@ -2,8 +2,8 @@ from random import*
 import math
 from Outils import*
 
-type1=['FIFO','PCTER','Tourniquet']
-type1='Tourniquet'
+type1=['FIFO','PCTER','Tourniquet','Prio']
+type1='Prio' 
 
 def Nbproc () :
     n=randrange(4,14)
@@ -32,7 +32,7 @@ def Nbproc () :
         
        
     for i in range(len(listp)):
-        if type1=='Tourniquet':
+        if type1=='Prio': #Prioeité fixe
             LP.append({"n°":listp[i],"Arv":listarv[i],"duree":listdur[i],'prio':listprio[i]})
         else :
             LP.append({"n°":listp[i],"Arv":listarv[i],"duree":listdur[i]})
