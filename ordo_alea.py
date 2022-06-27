@@ -2,7 +2,8 @@ from random import*
 import math
 from Outils import*
 
-type=2
+type1=['FIFO','PCTER','Tourniquet']
+type1='Tourniquet'
 
 def Nbproc () :
     n=randrange(4,14)
@@ -12,9 +13,11 @@ def Nbproc () :
     cpt=0
     listarv=[]
     listdur=[]
+    listprio=[]
     listp=[]
     alea={}
     LP=[]
+    q=randrange(1,5)
     for i in range (n):
         duree=randrange(1,10)
         cpt=cpt+1
@@ -23,29 +26,26 @@ def Nbproc () :
         arv=randint(mini,maxi)
         listarv.append(arv)
         mini=arv
+        prio=randrange(1,5)
+        listprio.append(prio)
         maxi=maxi+duree
         
        
     for i in range(len(listp)):
-        LP.append({"n°":listp[i],"Arv":listarv[i],"duree":listdur[i]})
-         
-
+        if type1=='Tourniquet':
+            LP.append({"n°":listp[i],"Arv":listarv[i],"duree":listdur[i],'prio':listprio[i]})
+        else :
+            LP.append({"n°":listp[i],"Arv":listarv[i],"duree":listdur[i]})
+    
     print("Processus : ",listp)
     print("DateA : ",listarv)
     print("Duree : ",listdur)
     print(LP)
-    
+
+    return(LP)
 
     
-    Somme=0
-    
-##    for i in range(len(listarv)):
-##        Somme+=listdur[i] #calcul somme des duree
-##        if listarv[i]>Somme: #comparaison somme duree et date arrivee
-##            Nbproc()
 
-    print(alea)
-        
 
 
     
