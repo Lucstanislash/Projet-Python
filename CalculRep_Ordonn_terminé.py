@@ -12,7 +12,23 @@ lp=[{"n": 1, "da": 0, "d": 6, "prio": 1},
 Li=["Tourniquet","FIFO","PCTER","Priorite fixes","Algorithmes multi files FIFO sans migration","Algorithmes multi files FIFO avec migration","Algorithmes multi files TOURNIQUET sans migration","Algorithmes multi files TOURNIQUET avec  migration"]
 
 #====================================================
-#FIFO
+def CalculMoy(lp):
+    nb_proc= 10
+    t_sejour = 0
+    somme_sej=0
+    for element in lp:
+        t_sejour += element['d']
+        #date_fin = t_sejour+element['date_arriv']
+        somme_sej=somme_sej+ t_sejour
+        #moysej=float(somme_sej)/nb_proc
+        print(f'\n')
+        print(t_sejour)
+    p1= "La somme des temps de séjour est: " +("".join(str(somme_sej)))
+    p2= "Le nombre de processus est:" +("".join(str(nb_proc)))
+    lolo=[p1, p2]
+    #p3= "Le temps moyen de réponse est: " +("".join(str(moysej)))
+    return (lolo)
+#====================================================
 def CalculRep(Duree,lp,Type,Quantum):
     cpt=0
     pret=[]
@@ -51,7 +67,8 @@ def CalculRep(Duree,lp,Type,Quantum):
                     cpt=0
                 else:
                     cpt+=1
-    return(ordo)
+    kiko=CalculMoy(lp)
+    return(ordo, kiko)
 
 def CalculRepFile(Duree,lp,Type):
     pretF1=[]
@@ -141,7 +158,8 @@ def CalculRepFile(Duree,lp,Type):
                         cptF3=0
                     else:
                         cptF3+=1
-    return(ordo)
+    kiko=CalculMoy(lp)
+    return(ordo, kiko)
 
 
 
