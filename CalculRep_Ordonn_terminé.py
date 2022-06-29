@@ -30,6 +30,7 @@ def CalculMoy(lp):
     return (lolo)
 #====================================================
 def CalculRep(Duree,lp,Type,Quantum):
+    kiko=CalculMoy(lp)
     cpt=0
     pret=[]
     ordo=[]
@@ -67,10 +68,11 @@ def CalculRep(Duree,lp,Type,Quantum):
                     cpt=0
                 else:
                     cpt+=1
-    kiko=CalculMoy(lp)
+    
     return(ordo, kiko)
 
 def CalculRepFile(Duree,lp,Type):
+    kiko=CalculMoy(lp)
     pretF1=[]
     pretF2=[]
     pretF3=[]
@@ -158,8 +160,16 @@ def CalculRepFile(Duree,lp,Type):
                         cptF3=0
                     else:
                         cptF3+=1
-    kiko=CalculMoy(lp)
+    
     return(ordo, kiko)
+
+
+
+
+
+
+
+
 
 
 
