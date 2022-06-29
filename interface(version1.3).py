@@ -3186,7 +3186,7 @@ def Menu():
 
         def SaisieAllEx7():
             formats=AleaFormat5(lis)
-            if formats=="entier":
+            if formats=="réel":
                     valeur=AleaEx7IEEE()
                     
             else:     
@@ -3249,10 +3249,11 @@ def Menu():
                     messagebox.showerror("showerror", "Erreur de saisie du résultat")
                     return(1)
             else:
-                ok=CtrlSyntaxe(entier,16,1,8)
+                    
+                ok=CtrlSyntaxe(str(entier),16,1,8)
                 ok2=CtrlSyntaxe(util,10,1,20,-10000,10000)
                 if ok==False: 
-                    messagebox.showerror("showerror", "Erreur de saisie du réel")
+                    messagebox.showerror("showerror", "Erreur de saisie de hexadécimal")
                     return(1)
                 elif ok2==False:
                     messagebox.showerror("showerror", "Erreur de saisie du résultat")
