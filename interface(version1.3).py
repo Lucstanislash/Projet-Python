@@ -8,7 +8,7 @@ from random import*
 import random
 import math
 
-
+"reels"
 fenetre=Tk()    ## Permet de creer une fenetre
 
 fenetre.title("Application Python")
