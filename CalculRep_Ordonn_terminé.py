@@ -163,18 +163,12 @@ def CalculRepFile(Duree,lp,Type):
     
     return(ordo, kiko)
 
+def dicointolist(ordo):
+    liste=[]
+    for i in range(len(ordo)):
+        liste.append(ordo[i]["nump"])
 
-
-
-
-
-
-
-
-
-
-
-
+    return(liste)
 
 
 
