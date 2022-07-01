@@ -114,12 +114,17 @@ def CalculRepFile(Duree,lp,Type):
     QF3=3
     cptF2=0
     cptF3=0
+    print("yoyoyoyo",lp)
+    print("duree",Duree)
+    print("type",Type)
     for t in range(Duree):
         ici=len(lp)
+        
         for i in range(len(lp)):
             if Type=="Algorithmes multi files TOURNIQUET avec migration" or Type=="Algorithmes multi files FIFO avec migration":
                 if lp[i]["da"]==t:
                     pretF1.append(lp[i])
+        
                 else:
                     ici=i
                     break
@@ -190,7 +195,7 @@ def CalculRepFile(Duree,lp,Type):
                         cptF3=0
                     else:
                         cptF3+=1
-    
+    print("ordo  ",ordo)
     return(ordo)
 
 
@@ -202,12 +207,11 @@ def dicointolist(ordo):
     return(liste)   
 
 man = 2
-Duree=33
 
 if man==1:
-
+   
     i=randrange(0,7)
-    Type=Li[2]
+    Type=Li[i]
     n=randrange(4,10)
     print("Nombre de processus : ",n)
     mini=0
@@ -219,7 +223,7 @@ if man==1:
     listp=[]
     listq=[]
     alea={}
-    LP=[]
+    lp=[]
     
     for i in range (n):
         duree=randrange(1,10)
@@ -240,30 +244,123 @@ if man==1:
         q=randrange(1,4)
         quantum=q
         listq.append(quantum)
-        
-    Type="FIFO"   
+          
     for i in range(len(listp)):
-        if Type=='Prio': #Prioeité fixe
-            LP.append({"n°":listp[i],"Arv":listarv[i],"duree":listdur[i],'prio':listprio[i]})
+        if Type=='Priorite fixes' or Type=="Algorithmes multi files TOURNIQUET sans migration" or Type=="Algorithmes multi files FIFO sans migration":
+            lp.append({"n°":listp[i],"Arv":listarv[i],"duree":listdur[i],"prio":listprio[i]})
         else :
-            LP.append({"n°":listp[i],"Arv":listarv[i],"duree":listdur[i],"quantum":listq[i]})
+            lp.append({"n°":listp[i],"Arv":listarv[i],"duree":listdur[i],"quantum":listq[i]})
+
+
+def AleaTab(lp,mode,NbProc,n):
+    if man==1:
+        global Duree
+        i=0
+        j=0
+        Duree=0
+        if mode == "Tout":
+            nbc=3
+        else:
+            nbc=2
+        while i<NbProc*nbc and j<len(lp):
+            if i+nbc>NbProc*nbc:
+                break
+            else:
+                ListTabl[i].insert(0,lp[j]["Arv"])
+                ListTabl[i+1].insert(0,lp[j]["duree"])
+                Duree+=(lp[j]["duree"])
+                print(Duree)
+                
+                if nbc==3:
+                    ListTabl[i+2].insert(0,lp[j]["prio"])
+                i+=nbc
+                j+=1
+
+def listintodico(liste):
+    li=[]
+    i=0
+    cpt=0
+    while i<len(liste):
+        if i+3>len(liste):
+            break
+        li.append({"n": liste[cpt], "da": liste[i], "d": liste[i+1], "prio": liste[i+2]})
+        cpt+=1
+        i=i+3
+    return(li)
+
+def ctrltab():
+    global Ltab
+    global ct
+    global Duree
+    global lp
+    Ltab=[]
+    err=[]
+    ok=True
+    ct=0
+    synerror=[]
+
     
-    print("Processus : ",listp)
-    print("DateA : ",listarv)
-    print("Duree : ",listdur)
-    print(LP)
+    
+    for j in range(len(ListTabl)):
 
+        val=ListTabl[j].get()
+        val=Raccourcir(val)
 
+        Ltab.append(val)
+        
 
-def CreaCase(Duree):
+        
+        if Ltab[j]=='' or Ltab[j]=='None' :
+            messagebox.showinfo(title="Information",
+                                                   message="Veuillez remplir toutes les cases")
+            ok=False
+            return(1)
+               
+        else:
+            if "." in Ltab[j] :
+                messagebox.showerror("showerror", "Erreur de saisie les points ne sont pas acceptés")
+                ok=False
+                return(1)
+            else:
+               ctrl=CtrlSyntaxe(str(Ltab[j]),10,1,2,1,10)
+               
+               if ctrl==False:
+                    synerror.append(j)  
+                    ListTabl[j].config(bg= "crimson")
+                    ct =ct+1
+                    ok=False
+            
+               else:
+                    ListTabl[j].config(bg= "white")
+                    
+    if ct >= 1:
+            messagebox.showinfo(title="Information",
+                            message="Erreur de syntaxe ou d'intervalle ")
+            return(1)
+        
+    for i in range(len(ListTabl)):
+        lp=listintodico(Ltab)
+        Duree=0
+        i=0
+    while i<len(lp):
+        
+        Duree+=int(lp[i]["d"])
+        
+        i=i+1
+       
+                
+def CreaCase():
     global ListNom
+   
+    
+    if man==2:    
+        ok=ctrltab()
+    else:
+        ok=0
 
-##    ok=ctrltab()
-##    print(ok)
-    ok=0
     if ok!=1:
         
-        
+        print(Duree)
         frame_main = tk.Frame(fenetre, bg="lightskyblue1")
         frame_main.grid(column=6,row=6,columnspan=9,sticky='nw',pady=40)
         # Create a frame for the canvas with non-zero row&column weights
@@ -314,7 +411,7 @@ def CreaCase(Duree):
             else:
                 col+=1
 
-            ListNom[i].insert(0,1)
+         
 
         # Update buttons frames idle tasks to let tkinter calculate buttons sizes       
         frame_buttons.update_idletasks()
@@ -328,16 +425,10 @@ def CreaCase(Duree):
         frame_canvas.config(width=first5columns_width + vsb.winfo_width(),
                             height=first5rows_height+200)
         # Set the canvas scrolling region
-        canvas.config(scrollregion=canvas.bbox("all"))
+        canvas.config(scrollregion=canvas.bbox("all"))    
+
+        tmr['state']='normal'
             
-       
-        
-      
-        deno['state']='normal'
-        numer['state']='normal'
-        B3['state']='normal'
-     
-    
     
 def debloq():
         global Type
@@ -421,22 +512,31 @@ def CtrlDonnee():
                 
 
    
-def buttonGo():
+def buttonGo(Type):
     global ListTabl
     if man==2:
-        
         ok=CtrlDonnee()
-        
+       
+    else:
+        ok=0
+      
     if ok!=1:
         affcase['state']='normal'
-        GO['state']='disabled'
-        NbProc = 10
-        mode = "Tout"
-   
-        if mode == "Tout":
+        GO['state']='disabled'   
+        
+        if man==1:
+            NbProc = int(n)
+        else:    
+            NbProc = int(nbprocessus)
+        
+        print(Type)
+       
+        if Type=='Priorite fixes' or Type=='Algorithmes multi files TOURNIQUET sans migration' or Type=='Algorithmes multi files FIFO sans migration':
+            mode="Tout"
             NbCaseT = NbProc*3
             NbCaseL = 3
         else:
+            mode="None"
             NbCaseT = NbProc*2
             NbCaseL = 2
         
@@ -521,60 +621,15 @@ def buttonGo():
         frame_canvas.config(width=520,height=250)
  
         canvas.config(scrollregion=canvas.bbox("all"))
+        
+        
+    if man==1:
+        AleaTab(lp,mode,NbProc,n)
+ 
 
          
      
        
-def ctrltab () :
-    global Ltab
-    global ct
-   
-    Ltab=[]
-    err=[]
-    ok=True
-    ct=0
-    synerror=[]
-
-    
-    
-    for j in range(len(ListTabl)):
-
-        val= ListTabl[j].get()
-        val=Raccourcir( val)
-        
-    
-
-        Ltab.append(val)
-        
-        if Ltab[j]=='' or Ltab[j]=='None' :
-            messagebox.showinfo(title="Information",
-                                                   message="Veuillez remplir toutes les cases")
-            ok=False
-            return(1)
-               
-        else:
-            if "." in Ltab[j] :
-                messagebox.showerror("showerror", "Erreur de saisie les points ne sont pas acceptés")
-                ok=False
-                return(1)
-            else:
-               ctrl=CtrlSyntaxe(str(Ltab[j]),10,1,2,1,10)
-               
-               if ctrl==False:
-                    synerror.append(j)  
-                    Ltab[j].config(bg= "crimson")
-                    ct =ct+1
-                    ok=False
-            
-               else:
-                    Ltab[j].config(bg= "white")
-                    i=i+1
-                    
-    if ct >= 1:
-            messagebox.showinfo(title="Information",
-                            message="Erreur de syntaxe ou d'intervalle ")
-            return(1)
-      
 
 
 def CtrlCase():
@@ -589,7 +644,6 @@ def CtrlCase():
 
 
     for i in range(len(ListNom)):
-##        print(type(ListNom[i]))
         
         val=ListNom[i].get()
         val=Raccourcir( val)
@@ -626,35 +680,26 @@ def CtrlCase():
             return(1)
       
                                  
-
     
-def valider(Type,Duree):
-    global lp
-    vef=False
-    lp=[{"n": 1, "da": 0, "d": 6, "prio": 1},
-    {"n": 2, "da": 0, "d": 7, "prio": 2},
-    {"n": 3, "da": 1, "d": 3, "prio": 1},
-    {"n": 4, "da": 1, "d": 4, "prio": 3},
-    {"n": 5, "da": 2, "d": 1, "prio": 2},
-    {"n": 6, "da": 11, "d": 2, "prio": 1},
-    {"n": 7, "da": 16, "d": 3, "prio": 2},
-    {"n": 8, "da": 21, "d": 2, "prio": 1},
-    {"n": 9, "da": 24, "d": 1, "prio": 3},
-    {"n": 10, "da": 25, "d": 4, "prio": 1}]
+def validerSaisie(Type,Duree,lp):
+
+    print(lp)
+    print(Type)
+    print(Duree)
+    
+    
     erreur=[]
-
-    Lutil=['1', '1', '1', '1', '1', '1', '2', '2', '2', '2', '2', '2', '2', '3', '3', '3', '4', '4', '4', '4', '5', '6', '6', '7', '7', '7', '8', '8', '9', '10', '10', '10', '10']    
-    print(Lutil)
-    
+   
     if Type=="Tourniquet"or Type=="FIFO"or Type=="PCTER"or Type=="Priorite fixes":
         rep0=CalculRep(Duree,lp,Type,int(quantum))
         rep=dicointolist(rep0)
-        print("Voci la rep",rep)
+        print("Voici la rep",rep)
 
     elif Type=="Algorithmes multi files FIFO sans migration" or Type=="Algorithmes multi files FIFO avec migration"or Type=="Algorithmes multi files TOURNIQUET sans migration" or Type=="Algorithmes multi files TOURNIQUET avec  migration":
         rep0=CalculRepFile(Duree,lp,Type)
+        print(rep0)
         rep=dicointolist(rep0)
-        print("Voci la rep",rep)
+        print("Voici la rep2",rep)
      
     controleC=CtrlCase()
     
@@ -662,12 +707,18 @@ def valider(Type,Duree):
             Verif=VerifRep(rep,Lutil)
 
             if Verif == 1:
-                vef=True
+                messagebox.showinfo(title="Information",
+                                    message="Bonne Réponse,\n\n Veuillez saisir le temps moyen de réponse !! ")
+                B3['state']='normal'
+                tmr['state']='disabled'
+                deno['state']='normal'
+                numer['state']='normal'
                
                         
             elif Verif == -1:
                 B3['state']='disabled' #bloquer le bouton valider ==> Perdu
                 B2['state']='normal'  #débloquer le bouton nouveau ==> recommencer
+                tmr['state']='disabled'
                 messagebox.showinfo(title="Information",
                                     message=" Mauvaise réponse, vous avez perdu !\n \n Le résultat est: \n" +("".join(str(rep))))
             elif Verif == 0:
@@ -682,16 +733,19 @@ def valider(Type,Duree):
 
                 messagebox.showinfo(title="Information",
                                     message="Mauvaise réponse, réessayer ")
-                    
-    if vef==True:
-        ok=1
-        if ok==1:
-            messagebox.showinfo(title="Information",
-                                    message="Bonne Réponse, Bravo !! ")
-            ok=0
+
+    
+def Valider():
+    
         controleTemps=CtrlTmpRep()
         
         if controleTemps!=1:
+            
+            tmp=CalculMoy(lp)
+            numerateur=tmp[0]
+            print(numerateur)
+            denominateur=tmp[1]
+            print(denominateur)
             
             denomi=deno.get()
             numera=numer.get()   
@@ -713,29 +767,28 @@ def valider(Type,Duree):
            
                 messagebox.showinfo(title="Information",
                                     message="Mauvaise réponse dans la fraction, réessayer ")  
-      
-        
+  
+    
 def CtrlTmpRep():
-    global numerateur
-    global denominateur
+    global numera
+    global denomi
+
+    denomi=deno.get()
+    numera=numer.get()
     
-    tmp=CalculMoy(lp)
-    numerateur=tmp[0]
-    denominateur=tmp[1]
-    
-    if numerateur =='' or denominateur=='':
+    if numera =='' or denomi=='':
         
             messagebox.showinfo(title="Information",
                                                message="Veuillez remplir la fraction")
             return(1)
                
     else:
-            if "." in numerateur or "." in  denominateur :
+            if "." in numera or "." in  denomi :
                 messagebox.showerror("showerror", "Erreur pas de points dans la fraction")
                 return(1)
             else:
-               ctrl2=CtrlSyntaxe(str(denominateur),10,1,10,1,1000)
-               ctrl1=CtrlSyntaxe(str(numerateur),10,1,10,1,20)
+               ctrl2=CtrlSyntaxe(str(denomi),10,1,10,0,20)
+               ctrl1=CtrlSyntaxe(str(numera),10,1,10,0,1000)
                
                if ctrl1==False:
                     messagebox.showerror("showerror", "Erreur dans le numerateur")
@@ -760,30 +813,33 @@ menu.grid(row=4, column=3,columnspan=3,sticky='nsew',pady=40,padx=20)
 
 
 
-tmr=Label(fenetre, text="Temps moyen de réponse", font=("Courier", 12, "italic"), fg='black', bg='lightskyblue1')
-tmr.grid(row=16, column=8,columnspan=9,sticky='w')
+tmr=Label(fenetre, text="Temps moyen de réponse", font=("Courier", 15), fg='black', bg='lightskyblue1')
+tmr.grid(row=8, column=6,columnspan=7,sticky='w')
 
 deno=Entry(justify='center',borderwidth=3,state='disabled')#case de saisie pour le nombre de processus
-deno.grid(row=17,column=10,columnspan=11,sticky='n',ipady=1)
+deno.grid(row=9,column=6,columnspan=7,sticky='n',ipady=2)
 
 numer=Entry(justify='center',borderwidth=3,state='disabled')#case de saisie pour le nombre de processus
-numer.grid(row=15,column=10,columnspan=11,sticky='n',ipady=1)
+numer.grid(row=7,column=6,columnspan=7,sticky='n',ipady=2)
 
 ligne=Label(fenetre, text="—————————", font=("cadratin", 12), fg='black', bg='lightskyblue1')
 
-ligne.grid(row=16, column=10,columnspan=11,sticky='n',ipady=1)
+ligne.grid(row=8, column=6,columnspan=7,sticky='n',ipady=1)
 
-tmr=Button(fenetre, text="Valider\n saisie ", state='disabled',font=("calibri", 15,"bold",), fg='white', bg='#103985', width=10, height=0)
+tmr=Button(fenetre, text="Valider\n saisie ", state='disabled',font=("calibri", 15,"bold",), fg='white', bg='steelblue', width=13, height=0,command=lambda:validerSaisie(Type,Duree,lp))
 tmr.grid(row=6, column=11,sticky='e')
 
 ttmenu=Label(fenetre, text="    Sélectionner le type \n   d'ordonnancement voulue", font=("Courier", 20, "italic"), fg='black', bg='lightskyblue1')
 ttmenu.grid(row=3, column=3,columnspan=3,sticky='w')
 
 
+tt=Label(fenetre, text="", font=("Courier", 20), fg='black', bg='lightskyblue1', width=33 ,height=7)
+tt.grid(column=2,row=6,columnspan=5,pady=40,sticky='s')
+
 
 if man ==2:
     
-    OK=Button(fenetre, text="Débloquer données", font=("calibri", 15, "bold",), fg='white', bg='#103985', width=17, height=0,command=lambda:debloq())
+    OK=Button(fenetre, text="Débloquer données", font=("calibri", 15, "bold",), fg='white', bg='steelblue', width=17, height=0,command=lambda:debloq())
     OK.grid(row=5, column=3,columnspan=3)
 
 ttprocs=Label(fenetre, text="Nombre de \nprocessus", font=("Courier", 20, "italic"), fg='black', bg='lightskyblue1')#titre pour le nombre de processus
@@ -819,13 +875,13 @@ else:
 Quantum.grid(row=4, column=7,columnspan=8,ipady=15,ipadx=30)
 
 
-GO=Button(fenetre, text="GO", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=5, height=0,command=lambda:buttonGo())
+GO=Button(fenetre, text="GO", font=("calibri", 18, "bold", 'underline'), fg='white', bg='steelblue', width=5, height=0,command=lambda:buttonGo(Type))
 GO.grid(row=4, column=10,columnspan=12)
 
 
 
-affcase=Button(fenetre, text="Afficher les cases",state='disabled', font=("calibri", 15, "bold"), fg='white', bg='#103985', width=17, height=0,command=lambda:CreaCase(Duree))
-affcase.grid(row=13, column=3,columnspan=3)
+affcase=Button(fenetre, text="Afficher les cases",state='disabled', font=("calibri", 15, "bold"), fg='white', bg='steelblue', width=17, height=0,command=lambda:CreaCase())
+affcase.grid(row=8,column=3,columnspan=3)
 
 
 titre=Label(fenetre, text="Ordonnancement", font=("Courier", 40, "italic"), fg='black', bg='lightskyblue1')  
@@ -843,7 +899,7 @@ else:
 
 B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2)
  
-B3=Button(fenetre, text="Valider", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:valider(Type,Duree))
+B3=Button(fenetre, text="Valider", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:Valider())
  
 B4=Button(fenetre, text="Menu", font=("courier", 18, "italic"), fg='white', bg='grey', width=15, height=2)
  
