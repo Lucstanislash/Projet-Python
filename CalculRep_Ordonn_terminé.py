@@ -1,3 +1,4 @@
+from random import*
 lp=[{"n": 1, "da": 0, "d": 6, "prio": 1},
     {"n": 2, "da": 0, "d": 7, "prio": 2},
     {"n": 3, "da": 1, "d": 3, "prio": 1},
@@ -21,8 +22,6 @@ def CalculMoy(lp):
         #date_fin = t_sejour+element['date_arriv']
         somme_sej=somme_sej+ t_sejour
         #moysej=float(somme_sej)/nb_proc
-        print(f'\n')
-        print(t_sejour)
     p1= "La somme des temps de séjour est: " +("".join(str(somme_sej)))
     p2= "Le nombre de processus est:" +("".join(str(nb_proc)))
     lolo=[p1, p2]
@@ -166,11 +165,30 @@ def CalculRepFile(Duree,lp,Type):
 def dicointolist(ordo):
     liste=[]
     for i in range(len(ordo)):
-        liste.append(ordo[i]["nump"])
+        liste.append(str(ordo[i]["nump"]))
 
     return(liste)
 
+##liste=[]
+##for i in range(10):
+##    liste.append(i+1)
+##    da=randrange(0,3)
+##    liste.append(da)
+##    d=randrange(1,8)
+##    liste.append(d)
+##    prio=randrange(1,3)
+##    liste.append(prio)   
 
+def listintodico(liste):
+    li=[]
+    i=0
+    while i<len(liste):
+        if i+4>len(liste):
+            break
+        li.append(str({"n": liste[i], "da": liste[i+1], "d": liste[i+2], "prio": liste[i+3]}))
+        i=i+4
+    return(li)
+        
 
 
 
