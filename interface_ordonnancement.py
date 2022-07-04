@@ -114,13 +114,12 @@ def CalculRepFile(Duree,lp,Type):
     QF3=3
     cptF2=0
     cptF3=0
-    print("yoyoyoyo",lp)
-    print("duree",Duree)
-    print("type",Type)
+  
     for t in range(Duree):
         ici=len(lp)
         
         for i in range(len(lp)):
+           
             if Type=="Algorithmes multi files TOURNIQUET avec migration" or Type=="Algorithmes multi files FIFO avec migration":
                 if lp[i]["da"]==t:
                     pretF1.append(lp[i])
@@ -129,21 +128,28 @@ def CalculRepFile(Duree,lp,Type):
                     ici=i
                     break
             elif Type=="Algorithmes multi files TOURNIQUET sans migration" or Type=="Algorithmes multi files FIFO sans migration":
+         
+               
                 if lp[i]["da"]==t and lp[i]["prio"]==1:
-                    pretF1.append(lp[i])               
+                    pretF1.append(lp[i])
+                    
                 elif lp[i]["da"]==t and lp[i]["prio"]==2:
-                    pretF2.append(lp[i])            
+                    pretF2.append(lp[i])
+                   
                 elif lp[i]["da"]==t and lp[i]["prio"]==3:
-                    pretF3.append(lp[i])    
+                    pretF3.append(lp[i])
+                    
                 else:
                     ici=i
                     break
         if Type=="Algorithmes multi files TOURNIQUET sans migration" or Type=="Algorithmes multi files FIFO sans migration":
             if executeF1!=[]:
                 pretF1.append(executeF1[0])
+                
                 executeF1=[]
             if executeF2!=[]:
                 pretF2.append(executeF2[0])
+                
                 executeF2=[]
         if Type=="Algorithmes multi files TOURNIQUET sans migration" or "Algorithmes multi files TOURNIQUET avec migration":
             if executeF3!=[]:
@@ -151,9 +157,11 @@ def CalculRepFile(Duree,lp,Type):
                 executeF3=[]
 
         lp=lp[ici: ]
+        
         if pretF1!=[]:
             ordo.append({"temps":t, "nump":pretF1[0]["n"]})
             pretF1[0]["d"]-=1
+            
             if pretF1[0]["d"]==0:
                 pretF1=pretF1[1:]
             else:
@@ -163,6 +171,7 @@ def CalculRepFile(Duree,lp,Type):
                     pretF2.append(pretF1[0])
                 pretF1=pretF1[1:]  
         elif pretF2!=[]:
+            
             ordo.append({"temps":t, "nump":pretF2[0]["n"]})
             pretF2[0]["d"]-=1
             if pretF2[0]["d"]==0:
@@ -182,6 +191,7 @@ def CalculRepFile(Duree,lp,Type):
             if pretF3==[]:
                 break
             ordo.append({"temps":t, "nump":pretF3[0]["n"]})
+            
             pretF3[0]["d"]-=1
             if pretF3[0]["d"]==0:
                 pretF3=pretF3[1:]
@@ -195,8 +205,8 @@ def CalculRepFile(Duree,lp,Type):
                         cptF3=0
                     else:
                         cptF3+=1
-    print("ordo  ",ordo)
     return(ordo)
+    
 
 
 def dicointolist(ordo):
@@ -283,7 +293,7 @@ def listintodico(liste):
     while i<len(liste):
         if i+3>len(liste):
             break
-        li.append({"n": liste[cpt], "da": liste[i], "d": liste[i+1], "prio": liste[i+2]})
+        li.append({"n": int(liste[cpt]), "da": int(liste[i]), "d": int(liste[i+1]), "prio": int(liste[i+2])})
         cpt+=1
         i=i+3
     return(li)
@@ -306,8 +316,7 @@ def ctrltab():
         val=ListTabl[j].get()
         val=Raccourcir(val)
 
-        Ltab.append(val)
-        
+        Ltab.append(val) 
 
         
         if Ltab[j]=='' or Ltab[j]=='None' :
@@ -315,23 +324,31 @@ def ctrltab():
                                                    message="Veuillez remplir toutes les cases")
             ok=False
             return(1)
-               
-        else:
-            if "." in Ltab[j] :
-                messagebox.showerror("showerror", "Erreur de saisie les points ne sont pas acceptés")
-                ok=False
+        
+        else :
+  
+            if not Ltab[0]=='0':
+                messagebox.showinfo(title="Information",
+                                                 message="Premier processus doit arriver à 0 ")
                 return(1)
-            else:
-               ctrl=CtrlSyntaxe(str(Ltab[j]),10,1,2,1,10)
+           
                
-               if ctrl==False:
-                    synerror.append(j)  
-                    ListTabl[j].config(bg= "crimson")
-                    ct =ct+1
+            else:
+                if "." in Ltab[j] :
+                    messagebox.showerror("showerror", "Erreur de saisie les points ne sont pas acceptés")
                     ok=False
-            
-               else:
-                    ListTabl[j].config(bg= "white")
+                    return(1)
+                else:
+                   ctrl=CtrlSyntaxe(str(Ltab[j]),10,1,2,0,10)
+                   
+                   if ctrl==False:
+                        synerror.append(j)  
+                        ListTabl[j].config(bg= "crimson")
+                        ct =ct+1
+                        ok=False
+                
+                   else:
+                        ListTabl[j].config(bg= "white")
                     
     if ct >= 1:
             messagebox.showinfo(title="Information",
@@ -529,7 +546,7 @@ def buttonGo(Type):
         else:    
             NbProc = int(nbprocessus)
         
-        print(Type)
+       
        
         if Type=='Priorite fixes' or Type=='Algorithmes multi files TOURNIQUET sans migration' or Type=='Algorithmes multi files FIFO sans migration':
             mode="Tout"
@@ -662,7 +679,7 @@ def CtrlCase():
                 ok=False
                 return(1)
             else:
-               ctrl=CtrlSyntaxe(str(Lutil[i]),10,1,2,1,10)
+               ctrl=CtrlSyntaxe(str(Lutil[i]),10,1,2,0,10)
                
                if ctrl==False:
                     synerror.append(i)  
@@ -683,10 +700,7 @@ def CtrlCase():
     
 def validerSaisie(Type,Duree,lp):
 
-    print(lp)
-    print(Type)
-    print(Duree)
-    
+
     
     erreur=[]
    
@@ -697,9 +711,8 @@ def validerSaisie(Type,Duree,lp):
 
     elif Type=="Algorithmes multi files FIFO sans migration" or Type=="Algorithmes multi files FIFO avec migration"or Type=="Algorithmes multi files TOURNIQUET sans migration" or Type=="Algorithmes multi files TOURNIQUET avec  migration":
         rep0=CalculRepFile(Duree,lp,Type)
-        print(rep0)
         rep=dicointolist(rep0)
-        print("Voici la rep2",rep)
+        print("Voici la rep",rep)
      
     controleC=CtrlCase()
     
