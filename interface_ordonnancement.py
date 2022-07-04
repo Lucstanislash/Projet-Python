@@ -62,6 +62,7 @@ def CalculMoy(lp):
     return (p1,p2)
 #====================================================
 def CalculRep(Duree,lp,Type,Quantum):
+    print(lp)
     cpt=0
     pret=[]
     ordo=[]
@@ -99,7 +100,7 @@ def CalculRep(Duree,lp,Type,Quantum):
                     cpt=0
                 else:
                     cpt+=1
-    
+    print(ordo)
     return(ordo)
 
 def CalculRepFile(Duree,lp,Type):
@@ -286,16 +287,25 @@ def AleaTab(lp,mode,NbProc,n):
                 i+=nbc
                 j+=1
 
-def listintodico(liste):
+def listintodico(liste,Type):
     li=[]
     i=0
     cpt=0
-    while i<len(liste):
-        if i+3>len(liste):
-            break
-        li.append({"n": int(liste[cpt]), "da": int(liste[i]), "d": int(liste[i+1]), "prio": int(liste[i+2])})
-        cpt+=1
-        i=i+3
+    print(liste)
+    if Type=='Priorite fixes' or Type=="Algorithmes multi files TOURNIQUET sans migration" or Type=="Algorithmes multi files FIFO sans migration":
+        while i<len(liste):
+            if i+3>len(liste):
+                break
+            li.append({"n": int(liste[cpt]), "da": int(liste[i]), "d": int(liste[i+1]), "prio": int(liste[i+2])})
+            cpt+=1
+            i=i+3
+    else:
+        while i<len(liste):
+            if i+2>len(liste):
+                break
+            li.append({"n": int(liste[cpt]), "da": int(liste[i]), "d": int(liste[i+1])})
+            cpt+=1
+            i=i+2
     return(li)
 
 def ctrltab():
@@ -356,7 +366,7 @@ def ctrltab():
             return(1)
         
     for i in range(len(ListTabl)):
-        lp=listintodico(Ltab)
+        lp=listintodico(Ltab,Type)
         Duree=0
         i=0
     while i<len(lp):
