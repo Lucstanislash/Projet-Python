@@ -8,7 +8,6 @@ from random import*
 import random
 import math
 
-"reels"
 fenetre=Tk()    ## Permet de creer une fenetre
 
 fenetre.title("Application Python")
@@ -26,6 +25,16 @@ fenetre.rowconfigure(6, weight=1)
 fenetre.rowconfigure(7, weight=1)
 fenetre.rowconfigure(8, weight=1)
 fenetre.rowconfigure(9, weight=1)
+fenetre.rowconfigure(10, weight=1)
+fenetre.rowconfigure(11, weight=1)
+fenetre.rowconfigure(12, weight=1)
+fenetre.rowconfigure(13, weight=1)
+fenetre.rowconfigure(14, weight=1)
+fenetre.rowconfigure(15, weight=1)
+fenetre.rowconfigure(16, weight=1)
+fenetre.rowconfigure(17, weight=1)
+fenetre.rowconfigure(18, weight=1)
+
 
 fenetre.columnconfigure(1, weight=1)
 fenetre.columnconfigure(2, weight=1)
@@ -33,6 +42,13 @@ fenetre.columnconfigure(3, weight=1)
 fenetre.columnconfigure(4, weight=1)
 fenetre.columnconfigure(5, weight=0)
 fenetre.columnconfigure(6, weight=1)
+fenetre.columnconfigure(7, weight=1)
+fenetre.columnconfigure(8, weight=1)
+fenetre.columnconfigure(9, weight=1)
+fenetre.columnconfigure(10, weight=1)
+fenetre.columnconfigure(11, weight=1)
+fenetre.columnconfigure(12, weight=1)
+
 
 
 #============== Fonctions globales =====================================
@@ -172,18 +188,18 @@ def PageChoix(NomExercice): #======== Fenêtre de demande aléatoire ou manuel =
         #===== en cours
 
     NomExo = Label(fenetre, text= NomExercice, font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
-    NomExo.grid(row=1, column=1, columnspan=5)
+    NomExo.grid(row=2, column=4, columnspan=5)
     txt3=Label(fenetre, text= "Souhaitez vous une saisie Manuelle ou Aléatoire", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-    txt3.grid(row=3, column=1, columnspan=5,sticky='s')
+    txt3.grid(row=4, column=4, columnspan=5,sticky='s')
             
     bManuelle=Button(fenetre, text="Manuel", font=("courier", 18, "italic"), fg='white', bg='#103985', command=partial(CommandExo,'Manuel'))
-    bManuelle.grid(row=6, column=2, ipady=30, ipadx=140,sticky='e')
+    bManuelle.grid(row=10, column=6, ipady=30, ipadx=140,sticky='nesw')
 
     bAléa=Button(fenetre, text="Aléatoire", font=("courier", 18, "italic"), fg='white', bg='#103985',command=partial(CommandExo,'Aléa'))
-    bAléa.grid(row=6, column=4, ipady=30,ipadx=140,sticky='w')
+    bAléa.grid(row=10, column=8, ipady=30,ipadx=140,sticky='nesw')
 
     bRetour=Button(fenetre, text="Retour", font=("courier", 18, "italic"), fg='white', bg='#103985', command=partial(back,2))
-    bRetour.grid(row=9, column=3,ipady= 15,ipadx=70)
+    bRetour.grid(row=17, column=4,columnspan=6,ipady= 15,ipadx=70)
 
 def ChoixExo():
     tExoChap1.destroy() # pour détruire les buttons de la fenetre2= contient la liste des exos du Chap "Codage de l'information"
@@ -257,35 +273,35 @@ def Menu():
       
 
         tExoChap1 = Label(fenetre, text= "Codage de l'information", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
-        tExoChap1.grid(row=1, column=2,columnspan=4,ipady=40)
+        tExoChap1.grid(row=1, column=4,columnspan=6,ipady=40)
         
                     
         Bexo1=Button(fenetre, text="Entiers non signés", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= partial(PageChoix,"Entiers non signés")) #, command= PageChoix("Entiers non signées")
-        Bexo1.grid(ipady=25, row=3, column=1,columnspan=3,ipadx=50)
+        Bexo1.grid(ipady=25, row=3, column=2,columnspan=3,ipadx=50,sticky='e')
 
         Bexo2=Button(fenetre, text="Opérations en binaire", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= partial(PageChoix,"Opérations en binaire"))
-        Bexo2.grid(ipady=25,  row=4, column=1,columnspan=3,ipadx=50)
+        Bexo2.grid(ipady=25,  row=4, column=2,columnspan=3,ipadx=50,sticky='e')
 
         Bexo3=Button(fenetre, text="Multiplications en binaire", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= ChoixExo)
-        Bexo3.grid(ipady=25,  row=5, column=1,columnspan=3,ipadx=50)
+        Bexo3.grid(ipady=25,  row=5, column=2,columnspan=3,ipadx=50,sticky='e')
 
         Bexo4=Button(fenetre, text="Opérations sans calcul", font=("courier", 18, "italic"), fg='white', bg='#103985',width=largeur, height=hauteur , command= partial(PageChoix,"Opérations sans calcul"))#command=affich3)
-        Bexo4.grid(ipady=25,row=6, column=1,columnspan=3,ipadx=50)
+        Bexo4.grid(ipady=25,row=6, column=2,columnspan=3,ipadx=50,sticky='e')
 
         Bexo5=Button(fenetre, text="Entiers signés", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= partial(PageChoix,"Entiers signés"))
-        Bexo5.grid(ipady=25,  row=3, column=3,columnspan=6,ipadx=50)
+        Bexo5.grid(ipady=25,  row=3, column=5,columnspan=7,ipadx=50)
 
         Bexo6=Button(fenetre, text="Les Réels", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= partial(PageChoix,"Les Réels"))
-        Bexo6.grid(ipady=25,   row=4, column=3,columnspan=5,ipadx=50)
+        Bexo6.grid(ipady=25,   row=4, column=5,columnspan=7,ipadx=50)
 
         Bexo7=Button(fenetre, text="Les Décimaux", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= partial(PageChoix,"Les Décimaux"))#command=affich3)
-        Bexo7.grid(ipady=25,  row=5, column=3,columnspan=5,ipadx=50)
+        Bexo7.grid(ipady=25,  row=5,column=5,columnspan=7,ipadx=50)
 
         Bexo8=Button(fenetre, text="Les Tableaux", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= partial(PageChoix,"Les Tableaux"))
-        Bexo8.grid(ipady=25,row=6, column=3,columnspan=5,ipadx=50)
+        Bexo8.grid(ipady=25,row=6, column=5,columnspan=7,ipadx=50)
 
         Retour=Button(fenetre, text= "Retour", font=("courier", 18, "italic"), fg='white', bg='#103985', width=largeur, height=hauteur ,command= back)
-        Retour.grid(row=9, column=3,columnspan=4,ipadx=10,sticky='w')
+        Retour.grid(row=17, column=4,columnspan=5,ipadx=5)
 
 #===================================================================================================================================================================================
 #=========================================================================================
@@ -305,14 +321,30 @@ def Menu():
         fen.rowconfigure(7, weight=1)
         fen.rowconfigure(8, weight=1)
         fen.rowconfigure(9, weight=1)
+        fen.rowconfigure(10, weight=1)
+        fen.rowconfigure(11, weight=1)
+        fen.rowconfigure(12, weight=1)
+        fen.rowconfigure(13, weight=1)
+        fen.rowconfigure(14, weight=1)
+        fen.rowconfigure(15, weight=1)
+        fen.rowconfigure(16, weight=1)
+        fen.rowconfigure(17, weight=1)
+        fen.rowconfigure(18, weight=1)
 
-        fen.columnconfigure(0, weight=1)
+
         fen.columnconfigure(1, weight=1)
         fen.columnconfigure(2, weight=1)
         fen.columnconfigure(3, weight=1)
         fen.columnconfigure(4, weight=1)
-        fen.columnconfigure(5, weight=1)
+        fen.columnconfigure(5, weight=0)
         fen.columnconfigure(6, weight=1)
+        fen.columnconfigure(7, weight=1)
+        fen.columnconfigure(8, weight=1)
+        fen.columnconfigure(9, weight=1)
+        fen.columnconfigure(10, weight=1)
+        fen.columnconfigure(11, weight=1)
+        fen.columnconfigure(12, weight=1)
+
 
         #======================= Rappel =================================
         #https://apcpedagogie.com/rappels-sur-les-nombres-binaires/
@@ -528,11 +560,11 @@ def Menu():
         titre=Label(fen, text="Entiers non signées", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1') # 
         titre.grid(row=1, column=2,columnspan=3,ipady=30)
         soustitre=Label(fen, text="Quelques indications: Base 2 : maximum 32 bits Base 8 : maximum 10 symboles\n                    Base 10 : de 1 à 10000 Base 16 : maximum 8 symboles", font=("courier", 15), fg='blue4', bg='lightskyblue1') 
-        soustitre.grid(row=2, column=1,columnspan=4,sticky='w') 
+        soustitre.grid(row=2, column=2,columnspan=4,sticky='w') 
 
         #Création de menu déroulant d'entrée
         lab1=Label(fen,text="Valeur à convertir", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-        lab1.grid(row=2, column=2,columnspan=3, rowspan=2, sticky='s')   #Créé du texte Label(text=''), spécifie la fenêtre concernée, donne une couleur de fond (bg='') et le place dans la fenêtre avec .pack()
+        lab1.grid(row=4, column=2,columnspan=3, rowspan=2, sticky='s')   #Créé du texte Label(text=''), spécifie la fenêtre concernée, donne une couleur de fond (bg='') et le place dans la fenêtre avec .pack()
         if man==2:
             global Esaisie
             global A1
@@ -545,7 +577,7 @@ def Menu():
             global A8
             #Définit une variable utilisable dans tout le programme
             Esaisie=Entry(fen)                              #Créé une entrée que l'utilisateur pourra remplir de texte et spécifie la fenêtre concernée
-            Esaisie.grid(row=3, column=2,columnspan=3, rowspan=2, ipadx=200,ipady=10,sticky='s')                        #.pack() permet de placer le widget dans la fenêtre ou la Frame sélectionnée
+            Esaisie.grid(row=6, column=2,columnspan=3, rowspan=2, ipadx=200,ipady=10,sticky='s')                       
             Esaisie.focus()                                 #focus() permet ici de placer directement le curseur à l'intérieur de la zone de texte
             #Esaisie.insert(INSERT, 'Mettez la valeur à convertir en respectant les contraintes')      #Insert dans la saisie le texte entre guillemets
             Esaisie.selection_range(0, END)                 #Sélectionne le contenu entier de la saisie
@@ -565,27 +597,27 @@ def Menu():
             A7=Radiobutton(fen,text="Hexadécimal", fg='#103985', bg='Gainsboro',variable=basearrivee,value=16,indicatoron=0,width=26, height=2, cursor='hand2')
             A8=Radiobutton(fen,text="Octal", fg='#103985', bg='Gainsboro',variable=basearrivee,value=8,indicatoron=0,width=26, height=2, cursor='hand2')
 
-            A1.grid(row = 5, column = 2, rowspan=2, pady=5)
-            A2.grid(row = 6, column = 2, pady=5)
-            A3.grid(row = 6, column = 2, rowspan=2, pady=5)
-            A4.grid(row = 7, column = 2, pady=5)
-            A5.grid(row = 5, column = 4, rowspan=2, pady=5)
-            A6.grid(row = 6, column = 4, pady=5)
-            A7.grid(row = 6, column = 4, rowspan=2, pady=5)
-            A8.grid(row = 7, column = 4, pady=5)
+            A1.grid(row = 10, column = 2)
+            A2.grid(row = 11, column = 2)
+            A3.grid(row = 12, column = 2)
+            A4.grid(row = 13, column = 2)
+            A5.grid(row = 10, column = 4)
+            A6.grid(row =11, column = 4)
+            A7.grid(row = 12, column = 4)
+            A8.grid(row = 13, column = 4)
 
 
 
         lab2=Label(fen,text="Base de départ", font=("courier", 17), fg='black', bg='lightskyblue1')
-        lab2.grid(row=5, column=2)
+        lab2.grid(row=9, column=2)
 
         lab3=Label(fen,text="Base d'arrivée", font=("courier", 17), fg='black', bg='lightskyblue1')
-        lab3.grid(row = 5, column =4)
+        lab3.grid(row = 9, column =4)
 
         lab4=Label(fen,text="Résultats", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-        lab4.grid(row = 7, column = 2, pady=3, columnspan=3, rowspan=2)
+        lab4.grid(row = 13, column = 2, pady=3, columnspan=3, rowspan=2)
         Résultats=Entry(fen) # Création de la zone de résultats
-        Résultats.grid(row = 8, column = 2, columnspan=3, ipadx=200, ipady=10)
+        Résultats.grid(row = 15, column = 2, columnspan=3, ipadx=200, ipady=10)
         Résultats.selection_range(0, END)
         #====================================
         def nouveau(man):
@@ -669,15 +701,17 @@ def Menu():
             rappel.columnconfigure(3, weight=0)  
 
         B1=Button(fen, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2, command=create)
-        B1.grid(row=9, column=1)
+        B1.grid(row=17, column=1)
         B2=Button(fen, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2, command=lambda:(nouveau(man)))
-        B2.grid(row=9, column=2)
+        B2.grid(row=17, column=2)
         B3=Button(fen, text="Valider", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2, command=lambda:(get(basedep,basearr,entier,man)))
-        B3.grid(row=9, column=3)
+        B3.grid(row=17, column=3)
         B4=Button(fen, text="Menu", font=("courier", 18, "italic"), fg='white', bg='grey', width=15, height=2, command= back2)
-        B4.grid(row=9, column=5)
+        B4.grid(row=17, column=5)
         B5=Button(fen, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='#103985', width=15, height=2,command=back)
-        B5.grid(row=9, column=4)
+        B5.grid(row=17, column=4)
+
+        
         
 #===================================================================================================================================================================================
 #=========================================================================================
@@ -862,7 +896,7 @@ def Menu():
         
         
         f = fenetre
-        f.rowconfigure(1, weight=1)
+        f.rowconfigure(1, weight=0)
         f.rowconfigure(2, weight=0)
         f.rowconfigure(3, weight=1)
         f.rowconfigure(4, weight=1)
@@ -871,15 +905,30 @@ def Menu():
         f.rowconfigure(7, weight=1)
         f.rowconfigure(8, weight=1)
         f.rowconfigure(9, weight=1)
-         
-        
-        f.columnconfigure(0, weight=0)
+        f.rowconfigure(10, weight=1)
+        f.rowconfigure(11, weight=1)
+        f.rowconfigure(12, weight=1)
+        f.rowconfigure(13, weight=1)
+        f.rowconfigure(14, weight=1)
+        f.rowconfigure(15, weight=1)
+        f.rowconfigure(16, weight=1)
+        f.rowconfigure(17, weight=1)
+        f.rowconfigure(18, weight=1)
+
+
         f.columnconfigure(1, weight=1)
         f.columnconfigure(2, weight=1)
         f.columnconfigure(3, weight=1)
         f.columnconfigure(4, weight=1)
-        f.columnconfigure(5, weight=1)
+        f.columnconfigure(5, weight=0)
         f.columnconfigure(6, weight=1)
+        f.columnconfigure(7, weight=1)
+        f.columnconfigure(8, weight=1)
+        f.columnconfigure(9, weight=1)
+        f.columnconfigure(10, weight=1)
+        f.columnconfigure(11, weight=1)
+        f.columnconfigure(12, weight=1)
+        
         global saisieB1
         global saisieB2
         global saisieOper
@@ -1076,7 +1125,16 @@ def Menu():
         fenetre.rowconfigure(7, weight=1)
         fenetre.rowconfigure(8, weight=1)
         fenetre.rowconfigure(9, weight=1)
-        
+        fenetre.rowconfigure(10, weight=1)
+        fenetre.rowconfigure(11, weight=1)
+        fenetre.rowconfigure(12, weight=1)
+        fenetre.rowconfigure(13, weight=1)
+        fenetre.rowconfigure(14, weight=1)
+        fenetre.rowconfigure(15, weight=1)
+        fenetre.rowconfigure(16, weight=1)
+        fenetre.rowconfigure(17, weight=1)
+        fenetre.rowconfigure(18, weight=1)
+
 
         fenetre.columnconfigure(1, weight=1)
         fenetre.columnconfigure(2, weight=1)
@@ -1084,6 +1142,12 @@ def Menu():
         fenetre.columnconfigure(4, weight=1)
         fenetre.columnconfigure(5, weight=0)
         fenetre.columnconfigure(6, weight=1)
+        fenetre.columnconfigure(7, weight=1)
+        fenetre.columnconfigure(8, weight=1)
+        fenetre.columnconfigure(9, weight=1)
+        fenetre.columnconfigure(10, weight=1)
+        fenetre.columnconfigure(11, weight=1)
+        fenetre.columnconfigure(12, weight=1)
         
         #===================================================================================================================
         #=======================================FONCTIONS D'EXERCICE 3
@@ -1356,6 +1420,16 @@ def Menu():
         fenetre.rowconfigure(7, weight=1)
         fenetre.rowconfigure(8, weight=1)
         fenetre.rowconfigure(9, weight=1)
+        fenetre.rowconfigure(10, weight=1)
+        fenetre.rowconfigure(11, weight=1)
+        fenetre.rowconfigure(12, weight=1)
+        fenetre.rowconfigure(13, weight=1)
+        fenetre.rowconfigure(14, weight=1)
+        fenetre.rowconfigure(15, weight=1)
+        fenetre.rowconfigure(16, weight=1)
+        fenetre.rowconfigure(17, weight=1)
+        fenetre.rowconfigure(18, weight=1)
+
 
         fenetre.columnconfigure(1, weight=1)
         fenetre.columnconfigure(2, weight=1)
@@ -1363,6 +1437,12 @@ def Menu():
         fenetre.columnconfigure(4, weight=1)
         fenetre.columnconfigure(5, weight=0)
         fenetre.columnconfigure(6, weight=1)
+        fenetre.columnconfigure(7, weight=1)
+        fenetre.columnconfigure(8, weight=1)
+        fenetre.columnconfigure(9, weight=1)
+        fenetre.columnconfigure(10, weight=1)
+        fenetre.columnconfigure(11, weight=1)
+        fenetre.columnconfigure(12, weight=1)
 
         
 
@@ -1757,7 +1837,16 @@ def Menu():
         fenetre.rowconfigure(7, weight=1)
         fenetre.rowconfigure(8, weight=1)
         fenetre.rowconfigure(9, weight=1)
-        
+        fenetre.rowconfigure(10, weight=1)
+        fenetre.rowconfigure(11, weight=1)
+        fenetre.rowconfigure(12, weight=1)
+        fenetre.rowconfigure(13, weight=1)
+        fenetre.rowconfigure(14, weight=1)
+        fenetre.rowconfigure(15, weight=1)
+        fenetre.rowconfigure(16, weight=1)
+        fenetre.rowconfigure(17, weight=1)
+        fenetre.rowconfigure(18, weight=1)
+
 
         fenetre.columnconfigure(1, weight=1)
         fenetre.columnconfigure(2, weight=1)
@@ -1765,6 +1854,12 @@ def Menu():
         fenetre.columnconfigure(4, weight=1)
         fenetre.columnconfigure(5, weight=0)
         fenetre.columnconfigure(6, weight=1)
+        fenetre.columnconfigure(7, weight=1)
+        fenetre.columnconfigure(8, weight=1)
+        fenetre.columnconfigure(9, weight=1)
+        fenetre.columnconfigure(10, weight=1)
+        fenetre.columnconfigure(11, weight=1)
+        fenetre.columnconfigure(12, weight=1)
 
         formats=AleaFormat5(lis)
         entier=AleaEnt5()
@@ -2089,7 +2184,16 @@ def Menu():
         fenetre.rowconfigure(7, weight=1)
         fenetre.rowconfigure(8, weight=1)
         fenetre.rowconfigure(9, weight=1)
-        
+        fenetre.rowconfigure(10, weight=1)
+        fenetre.rowconfigure(11, weight=1)
+        fenetre.rowconfigure(12, weight=1)
+        fenetre.rowconfigure(13, weight=1)
+        fenetre.rowconfigure(14, weight=1)
+        fenetre.rowconfigure(15, weight=1)
+        fenetre.rowconfigure(16, weight=1)
+        fenetre.rowconfigure(17, weight=1)
+        fenetre.rowconfigure(18, weight=1)
+
 
         fenetre.columnconfigure(1, weight=1)
         fenetre.columnconfigure(2, weight=1)
@@ -2097,6 +2201,12 @@ def Menu():
         fenetre.columnconfigure(4, weight=1)
         fenetre.columnconfigure(5, weight=0)
         fenetre.columnconfigure(6, weight=1)
+        fenetre.columnconfigure(7, weight=1)
+        fenetre.columnconfigure(8, weight=1)
+        fenetre.columnconfigure(9, weight=1)
+        fenetre.columnconfigure(10, weight=1)
+        fenetre.columnconfigure(11, weight=1)
+        fenetre.columnconfigure(12, weight=1)
 
         man=select
 
@@ -2733,7 +2843,16 @@ def Menu():
         fenetre.rowconfigure(7, weight=1)
         fenetre.rowconfigure(8, weight=1)
         fenetre.rowconfigure(9, weight=1)
-        
+        fenetre.rowconfigure(10, weight=1)
+        fenetre.rowconfigure(11, weight=1)
+        fenetre.rowconfigure(12, weight=1)
+        fenetre.rowconfigure(13, weight=1)
+        fenetre.rowconfigure(14, weight=1)
+        fenetre.rowconfigure(15, weight=1)
+        fenetre.rowconfigure(16, weight=1)
+        fenetre.rowconfigure(17, weight=1)
+        fenetre.rowconfigure(18, weight=1)
+
 
         fenetre.columnconfigure(1, weight=1)
         fenetre.columnconfigure(2, weight=1)
@@ -2741,6 +2860,12 @@ def Menu():
         fenetre.columnconfigure(4, weight=1)
         fenetre.columnconfigure(5, weight=0)
         fenetre.columnconfigure(6, weight=1)
+        fenetre.columnconfigure(7, weight=1)
+        fenetre.columnconfigure(8, weight=1)
+        fenetre.columnconfigure(9, weight=1)
+        fenetre.columnconfigure(10, weight=1)
+        fenetre.columnconfigure(11, weight=1)
+        fenetre.columnconfigure(12, weight=1)
 
         man=select
 
@@ -3206,7 +3331,16 @@ def Menu():
         fenetre.rowconfigure(7, weight=1)
         fenetre.rowconfigure(8, weight=1)
         fenetre.rowconfigure(9, weight=1)
-        
+        fenetre.rowconfigure(10, weight=1)
+        fenetre.rowconfigure(11, weight=1)
+        fenetre.rowconfigure(12, weight=1)
+        fenetre.rowconfigure(13, weight=1)
+        fenetre.rowconfigure(14, weight=1)
+        fenetre.rowconfigure(15, weight=1)
+        fenetre.rowconfigure(16, weight=1)
+        fenetre.rowconfigure(17, weight=1)
+        fenetre.rowconfigure(18, weight=1)
+
 
         fenetre.columnconfigure(1, weight=1)
         fenetre.columnconfigure(2, weight=1)
@@ -3214,6 +3348,12 @@ def Menu():
         fenetre.columnconfigure(4, weight=1)
         fenetre.columnconfigure(5, weight=0)
         fenetre.columnconfigure(6, weight=1)
+        fenetre.columnconfigure(7, weight=1)
+        fenetre.columnconfigure(8, weight=1)
+        fenetre.columnconfigure(9, weight=1)
+        fenetre.columnconfigure(10, weight=1)
+        fenetre.columnconfigure(11, weight=1)
+        fenetre.columnconfigure(12, weight=1)
 
         man=select # variable qui va définir si c'est manuel ou aléatoire
         
@@ -3455,7 +3595,16 @@ def Menu():
         fenetre.rowconfigure(7, weight=1)
         fenetre.rowconfigure(8, weight=1)
         fenetre.rowconfigure(9, weight=1)
-        
+        fenetre.rowconfigure(10, weight=1)
+        fenetre.rowconfigure(11, weight=1)
+        fenetre.rowconfigure(12, weight=1)
+        fenetre.rowconfigure(13, weight=1)
+        fenetre.rowconfigure(14, weight=1)
+        fenetre.rowconfigure(15, weight=1)
+        fenetre.rowconfigure(16, weight=1)
+        fenetre.rowconfigure(17, weight=1)
+        fenetre.rowconfigure(18, weight=1)
+
 
         fenetre.columnconfigure(1, weight=1)
         fenetre.columnconfigure(2, weight=1)
@@ -3463,6 +3612,12 @@ def Menu():
         fenetre.columnconfigure(4, weight=1)
         fenetre.columnconfigure(5, weight=0)
         fenetre.columnconfigure(6, weight=1)
+        fenetre.columnconfigure(7, weight=1)
+        fenetre.columnconfigure(8, weight=1)
+        fenetre.columnconfigure(9, weight=1)
+        fenetre.columnconfigure(10, weight=1)
+        fenetre.columnconfigure(11, weight=1)
+        fenetre.columnconfigure(12, weight=1)
 
 
         Raiponce={}
@@ -3924,40 +4079,41 @@ def Menu():
                 Aléa2.destroy()
                 
             elif t == 2:
-                NomExo.destroy()
-                txt3.destroy()
-                bManuelle.destroy()
-                bAléa.destroy()
-                bRetour.destroy()
-                Chap1() #Retour à la page précédente: fenetre des exercices(2eme)     
+                tExoChap2.destroy()
+                Retour2.destroy()
+                txt.destroy()
+                Manuelle2.destroy()
+                Aléa2.destroy()
+                Menu() #Retour à la page précédente: fenetre des exercices(2eme)     
 
         def CommandExo(t):
             if t == 'Aléa':
-                back()
-                    
-                print("yo")
+                back(1)
+                Exercice1(fenetre, 1)    
+               
                 
             elif t == 'Manuel':
                 back(1) 
-                Exercice1(fenetre, 1)
+                Exercice1(fenetre, 2)
               
             
                 #===== en cours
 
         tExoChap2= Label(fenetre, text= "Ordonnancement", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
-        tExoChap2.grid(row=1, column=1, columnspan=5)
+        tExoChap2.grid(row=2, column=4, columnspan=5)
         txt=Label(fenetre, text= "Souhaitez vous une saisie Manuelle ou Aléatoire", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-        txt.grid(row=3, column=1, columnspan=5,sticky='s')
+        txt.grid(row=4, column=4, columnspan=5,sticky='s')
                 
         Manuelle2=Button(fenetre, text="Manuel", font=("courier", 18, "italic"), fg='white', bg='#103985', command=partial(CommandExo,'Manuel'))
-        Manuelle2.grid(row=6, column=2, ipady=30, ipadx=140,sticky='e')
+        Manuelle2.grid(row=10, column=6, ipady=30, ipadx=140,sticky='nesw')
 
         Aléa2=Button(fenetre, text="Aléatoire", font=("courier", 18, "italic"), fg='white', bg='#103985',command=partial(CommandExo,'Aléa'))
-        Aléa2.grid(row=6, column=4, ipady=30,ipadx=140,sticky='w')
+        Aléa2.grid(row=10, column=8, ipady=30,ipadx=140,sticky='nesw')
 
-        Retour2=Button(fenetre, text="Retour", font=("courier", 18, "italic"), fg='white', bg='#103985', command=lambda:(back(t)))
-        Retour2.grid(row=9, column=3,ipady= 15,ipadx=70)
-               
+        Retour2=Button(fenetre, text="Retour", font=("courier", 18, "italic"), fg='white', bg='#103985', command=lambda:(back(2)))
+        Retour2.grid(row=17, column=4,columnspan=6,ipady= 15,ipadx=70)
+
+
         def Exercice1(f, select):
         #========================================================================================       
             fenetre=f
@@ -3998,103 +4154,433 @@ def Menu():
             fenetre.columnconfigure(11, weight=1)
             fenetre.columnconfigure(12, weight=1)
 
-
-            Li=["Tourniquet","FIFO","PCTER","Priorite fixes","Algorithmes multifiles FIFO sans migration","Algorithmes multi files FIFO avec migration","Algorithmes multi files TOURNIQUET sans migration","Algorithmes multi files TOURNIQUET avec  migration"]
-
             man = select
-            Duree=10
+            
+            Li=["Tourniquet","FIFO","PCTER","Priorite fixes","Algorithmes multi files FIFO sans migration","Algorithmes multi files FIFO avec migration","Algorithmes multi files TOURNIQUET sans migration","Algorithmes multi files TOURNIQUET avec  migration"]
 
-            def CreaCase(Duree):
-                global ListNom
-                frame_main = tk.Frame(fenetre, bg="lightskyblue1")
-                frame_main.grid(column=6,row=7,columnspan=9)
-
-                # Create a frame for the canvas with non-zero row&column weights
-                frame_canvas = tk.Frame(frame_main)
-                frame_canvas.grid(row=2, column=0, pady=(5, 0), sticky='nw')
-                frame_canvas.grid_rowconfigure(0, weight=1)
-                frame_canvas.grid_columnconfigure(0, weight=1)
-                # Set grid_propagate to False to allow 5-by-5 buttons resizing later
-                frame_canvas.grid_propagate(False)
-
-                # Add a canvas in that frame
-                canvas = tk.Canvas(frame_canvas, bg="lightskyblue1")
-                canvas.grid(row=0, column=0, sticky="news")
-
-                # Link a scrollbar to the canvas
-                vsb = tk.Scrollbar(frame_canvas, orient="vertical", command=canvas.yview)
-                vsb.grid(row=0, column=1, sticky='ns')
-                canvas.configure(yscrollcommand=vsb.set)
-
-                # Create a frame to contain the buttons
-                frame_buttons = tk.Frame(canvas, bg="lightskyblue1")
-                canvas.create_window((0, 0), window=frame_buttons, anchor='nw')
-
-                rows = 9
-                columns = 10
-
-                colmin=0
-                colmax=9
-                lignemin=0
-                col=0
-                ligne=0
-                ListNom=[]
-                for i in range(Duree):
-                    Nom=str("a"+str(i))
-                    ListNom.append(Nom)
-                for i in range(Duree):
-                    ListNom[i]=Entry(frame_buttons,width=10)
-                    ListNom[i].grid(row=lignemin+ligne, column=colmin+col, pady=25)
-                    ValTemps=(str(i)+"-"+str(i+1))
-                    Temps=Label(frame_buttons, text=ValTemps ,font=("courier", 10), fg='black', bg='lightskyblue1')
-                    Temps.grid(row=lignemin+ligne, column=colmin+col,sticky='s')
-                    
-                    if colmin+col>=colmax:
-                        col=0
-                        ligne+=1
+            #====================================================
+            def CalculMoy(lp):
+                nb_proc= 10
+                t_sejour = 0
+                somme_sej=0
+                for element in lp:
+                    t_sejour += element['d']
+                    #date_fin = t_sejour+element['date_arriv']
+                    somme_sej=somme_sej+ t_sejour
+                    #moysej=float(somme_sej)/nb_proc
+                p1= "La somme des temps de réponse de chaque processus est: " +("".join(str(somme_sej)))
+                p2= "Le nombre de processus est:" +("".join(str(nb_proc)))
+               
+                return (p1,p2)
+            #====================================================
+            def CalculRep(Duree,lp,Type,Quantum):
+                cpt=0
+                pret=[]
+                ordo=[]
+                execute=[]
+                for t in range(Duree):
+                    ici=len(lp)
+                    for i in range(len(lp)):
+                        if lp[i]["da"]==t:
+                            pret.append(lp[i])
+                        else:
+                            ici=i
+                            break
+                    if Type=="Tourniquet":
+                        if execute!=[]:
+                            pret.append(execute[0])
+                            execute=[]
+                    if Type=="PCTER":
+                        pret=sorted(pret, key=lambda x: x["d"])
+                    if Type=="Priorite fixes":
+                        pret=sorted(pret, key=lambda x: x["prio"])
+                    lp=lp[ici: ]
+                    if pret==[]:
+                        break
+                    ordo.append({"temps":t, "nump":pret[0]["n"]})
+                    pret[0]["d"]-=1
+                    if pret[0]["d"]<=0:
+                        pret=pret[1:]
+                        if Type=="Tourniquet":
+                            cpt=0
                     else:
-                        col+=1
+                        if Type=="Tourniquet":
+                            if cpt==Quantum-1:
+                                execute.append(pret[0])
+                                pret=pret[1:]
+                                cpt=0
+                            else:
+                                cpt+=1
+                
+                return(ordo)
 
-                # Update buttons frames idle tasks to let tkinter calculate buttons sizes       
-                frame_buttons.update_idletasks()
-                # Resize the canvas frame to show exactly 5-by-5 buttons and the scrollbar
-                if Duree>10:
-                    c=10
-                else:
-                    c=Duree
-                first5columns_width = sum([ListNom[j].winfo_width() for j in range(0, c)])
-                first5rows_height = sum([ListNom[i].winfo_height() for i in range(0, 1)])
-                frame_canvas.config(width=first5columns_width + vsb.winfo_width(),
-                                    height=first5rows_height+250)
-                # Set the canvas scrolling region
-                canvas.config(scrollregion=canvas.bbox("all"))
-                
+            def CalculRepFile(Duree,lp,Type):
+                pretF1=[]
+                pretF2=[]
+                pretF3=[]
+                ordo=[]
+                executeF1=[]
+                executeF2=[]
+                executeF3=[]
+                QF2=2
+                QF3=3
+                cptF2=0
+                cptF3=0
               
-                deno['state']='normal'
-                numer['state']='normal'
-                B3['state']='normal'
-             
+                for t in range(Duree):
+                    ici=len(lp)
+                    
+                    for i in range(len(lp)):
+                       
+                        if Type=="Algorithmes multi files TOURNIQUET avec migration" or Type=="Algorithmes multi files FIFO avec migration":
+                            if lp[i]["da"]==t:
+                                pretF1.append(lp[i])
+                    
+                            else:
+                                ici=i
+                                break
+                        elif Type=="Algorithmes multi files TOURNIQUET sans migration" or Type=="Algorithmes multi files FIFO sans migration":
+                     
+                           
+                            if lp[i]["da"]==t and lp[i]["prio"]==1:
+                                pretF1.append(lp[i])
+                                
+                            elif lp[i]["da"]==t and lp[i]["prio"]==2:
+                                pretF2.append(lp[i])
+                               
+                            elif lp[i]["da"]==t and lp[i]["prio"]==3:
+                                pretF3.append(lp[i])
+                                
+                            else:
+                                ici=i
+                                break
+                    if Type=="Algorithmes multi files TOURNIQUET sans migration" or Type=="Algorithmes multi files FIFO sans migration":
+                        if executeF1!=[]:
+                            pretF1.append(executeF1[0])
+                            
+                            executeF1=[]
+                        if executeF2!=[]:
+                            pretF2.append(executeF2[0])
+                            
+                            executeF2=[]
+                    if Type=="Algorithmes multi files TOURNIQUET sans migration" or "Algorithmes multi files TOURNIQUET avec migration":
+                        if executeF3!=[]:
+                            pretF3.append(executeF3[0])
+                            executeF3=[]
+
+                    lp=lp[ici: ]
+                    
+                    if pretF1!=[]:
+                        ordo.append({"temps":t, "nump":pretF1[0]["n"]})
+                        pretF1[0]["d"]-=1
+                        
+                        if pretF1[0]["d"]==0:
+                            pretF1=pretF1[1:]
+                        else:
+                            if Type=="Algorithmes multi files TOURNIQUET sans migration" or Type=="Algorithmes multi files FIFO sans migration":
+                                executeF1.append(pretF1[0])
+                            else:
+                                pretF2.append(pretF1[0])
+                            pretF1=pretF1[1:]  
+                    elif pretF2!=[]:
+                        
+                        ordo.append({"temps":t, "nump":pretF2[0]["n"]})
+                        pretF2[0]["d"]-=1
+                        if pretF2[0]["d"]==0:
+                            pretF2=pretF2[1:]
+                            cptF2=0
+                        else:
+                            if cptF2==QF2-1:
+                                if Type=="Algorithmes multi files TOURNIQUET sans migration" or Type=="Algorithmes multi files FIFO sans migration":
+                                    executeF2.append(pretF2[0])
+                                else:
+                                    pretF3.append(pretF2[0])
+                                pretF2=pretF2[1:]
+                                cptF2=0
+                            else:
+                                cptF2+=1
+                    else:
+                        if pretF3==[]:
+                            break
+                        ordo.append({"temps":t, "nump":pretF3[0]["n"]})
+                        
+                        pretF3[0]["d"]-=1
+                        if pretF3[0]["d"]==0:
+                            pretF3=pretF3[1:]
+                            if Type=="Algorithmes multi files TOURNIQUET avec migration" or Type=="Algorithmes multi files TOURNIQUET sans migration":
+                                cptF3=0
+                        else:
+                            if Type=="Algorithmes multi files TOURNIQUET avec migration" or Type=="Algorithmes multi files TOURNIQUET sans migration":
+                                if cptF3==QF3-1:
+                                    executeF3.append(pretF3[0])
+                                    pretF3=pretF3[1:]
+                                    cptF3=0
+                                else:
+                                    cptF3+=1
+                return(ordo)
                 
+
+
+            def dicointolist(ordo):
+                liste=[]
+                for i in range(len(ordo)):
+                    liste.append(str(ordo[i]["nump"]))
+
+                return(liste)   
+
+
+
+            if man==1:
+               
+                i=randrange(0,7)
+                Type=Li[i]
+                n=randrange(4,10)
+                print("Nombre de processus : ",n)
+                mini=0
+                maxi=0
+                cpt=0
+                listarv=[]
+                listdur=[]
+                listprio=[]
+                listp=[]
+                listq=[]
+                alea={}
+                lp=[]
+                
+                for i in range (n):
+                    duree=randrange(1,10)
+                    cpt=cpt+1
+                    
+                    listdur.append(duree)
+                    listp.append(i+1)
+                    
+                    arv=randint(mini,maxi)
+                    listarv.append(arv)
+                    
+                    mini=arv
+                    
+                    prio=randrange(1,3)
+                    listprio.append(prio)
+                    
+                    maxi=maxi+duree
+                    q=randrange(1,4)
+                    quantum=q
+                    listq.append(quantum)
+                      
+                for i in range(len(listp)):
+                    if Type=='Priorite fixes' or Type=="Algorithmes multi files TOURNIQUET sans migration" or Type=="Algorithmes multi files FIFO sans migration":
+                        lp.append({"n°":listp[i],"Arv":listarv[i],"duree":listdur[i],"prio":listprio[i]})
+                    else :
+                        lp.append({"n°":listp[i],"Arv":listarv[i],"duree":listdur[i],"quantum":listq[i]})
+
+
+            def AleaTab(lp,mode,NbProc,n):
+                if man==1:
+                    global Duree
+                    i=0
+                    j=0
+                    Duree=0
+                    if mode == "Tout":
+                        nbc=3
+                    else:
+                        nbc=2
+                    while i<NbProc*nbc and j<len(lp):
+                        if i+nbc>NbProc*nbc:
+                            break
+                        else:
+                            ListTabl[i].insert(0,lp[j]["Arv"])
+                            ListTabl[i+1].insert(0,lp[j]["duree"])
+                            Duree+=(lp[j]["duree"])
+                            print(Duree)
+                            
+                            if nbc==3:
+                                ListTabl[i+2].insert(0,lp[j]["prio"])
+                            i+=nbc
+                            j+=1
+
+            def listintodico(liste):
+                li=[]
+                i=0
+                cpt=0
+                while i<len(liste):
+                    if i+3>len(liste):
+                        break
+                    li.append({"n": int(liste[cpt]), "da": int(liste[i]), "d": int(liste[i+1]), "prio": int(liste[i+2])})
+                    cpt+=1
+                    i=i+3
+                return(li)
+
+            def ctrltab():
+                global Ltab
+                global ct
+                global Duree
+                global lp
+                Ltab=[]
+                err=[]
+                ok=True
+                ct=0
+                synerror=[]
+
+                
+                
+                for j in range(len(ListTabl)):
+
+                    val=ListTabl[j].get()
+                    val=Raccourcir(val)
+
+                    Ltab.append(val) 
+
+                    
+                    if Ltab[j]=='' or Ltab[j]=='None' :
+                        messagebox.showinfo(title="Information",
+                                                               message="Veuillez remplir toutes les cases")
+                        ok=False
+                        return(1)
+                    
+                    else :
+              
+                        if not Ltab[0]=='0':
+                            messagebox.showinfo(title="Information",
+                                                             message="Premier processus doit arriver à 0 ")
+                            return(1)
+                       
+                           
+                        else:
+                            if "." in Ltab[j] :
+                                messagebox.showerror("showerror", "Erreur de saisie les points ne sont pas acceptés")
+                                ok=False
+                                return(1)
+                            else:
+                               ctrl=CtrlSyntaxe(str(Ltab[j]),10,1,2,0,10)
+                               
+                               if ctrl==False:
+                                    synerror.append(j)  
+                                    ListTabl[j].config(bg= "crimson")
+                                    ct =ct+1
+                                    ok=False
+                            
+                               else:
+                                    ListTabl[j].config(bg= "white")
+                                
+                if ct >= 1:
+                        messagebox.showinfo(title="Information",
+                                        message="Erreur de syntaxe ou d'intervalle ")
+                        return(1)
+                    
+                for i in range(len(ListTabl)):
+                    lp=listintodico(Ltab)
+                    Duree=0
+                    i=0
+                while i<len(lp):
+                    
+                    Duree+=int(lp[i]["d"])
+                    
+                    i=i+1
+                   
+                            
+            def CreaCase():
+                global ListNom
+               
+                
+                if man==2:    
+                    ok=ctrltab()
+                else:
+                    ok=0
+
+                if ok!=1:
+                    
+                    print(Duree)
+                    frame_main = tk.Frame(fenetre, bg="lightskyblue1")
+                    frame_main.grid(column=6,row=6,columnspan=9,sticky='nw',pady=40)
+                    # Create a frame for the canvas with non-zero row&column weights
+                    frame_canvas = tk.Frame(frame_main)
+                    frame_canvas.grid(row=2, column=0, pady=(5, 0), sticky='nw')
+                    frame_canvas.grid_rowconfigure(0, weight=1)
+                    frame_canvas.grid_columnconfigure(0, weight=1)
+                    # Set grid_propagate to False to allow 5-by-5 buttons resizing later
+                    frame_canvas.grid_propagate(False)
+
+                    # Add a canvas in that frame
+                    canvas = tk.Canvas(frame_canvas, bg="lightskyblue1")
+                    canvas.grid(row=0, column=0, sticky="news")
+
+                    # Link a scrollbar to the canvas
+                    vsb = ttk.Scrollbar(frame_canvas, orient="vertical", command=canvas.yview)
+                    vsb.grid(row=0, column=1, sticky='ns')
+                    
+                    canvas.configure(yscrollcommand=vsb.set,highlightcolor='lightskyblue1',highlightbackground='lightskyblue1')
+
+                    # Create a frame to contain the buttons
+                    frame_buttons = tk.Frame(canvas, bg="lightskyblue1")
+                    canvas.create_window((0, 0), window=frame_buttons, anchor='nw')
+
+                    rows = 9
+                    columns = 10
+
+                    colmin=0
+                    colmax=9
+                    lignemin=0
+                    col=0
+                    ligne=0
+                    ListNom=[]
+                    for i in range(Duree):
+                        Nom=str("a"+str(i))
+                        ListNom.append(Nom)
+                          
+                    for i in range(Duree):
+                        ListNom[i]=Entry(frame_buttons,width=10)
+                        ListNom[i].grid(row=lignemin+ligne, column=colmin+col, pady=25)
+                        ValTemps=(str(i)+"-"+str(i+1))
+                        Temps=Label(frame_buttons, text=ValTemps ,font=("courier", 10), fg='black', bg='lightskyblue1')
+                        Temps.grid(row=lignemin+ligne, column=colmin+col,sticky='s')
+                        
+                        if colmin+col>=colmax:
+                            col=0
+                            ligne+=1
+                        else:
+                            col+=1
+
+                     
+
+                    # Update buttons frames idle tasks to let tkinter calculate buttons sizes       
+                    frame_buttons.update_idletasks()
+                    # Resize the canvas frame to show exactly 5-by-5 buttons and the scrollbar
+                    if Duree>10:
+                        c=10
+                    else:
+                        c=Duree
+                    first5columns_width = sum([ListNom[j].winfo_width() for j in range(0, c)])
+                    first5rows_height = sum([ListNom[i].winfo_height() for i in range(0, 1)])
+                    frame_canvas.config(width=first5columns_width + vsb.winfo_width(),
+                                        height=first5rows_height+200)
+                    # Set the canvas scrolling region
+                    canvas.config(scrollregion=canvas.bbox("all"))    
+
+                    tmr['state']='normal'
+                        
                 
             def debloq():
+                    global Type
+                    Type=fenetre.menu.get()
+                    print(Type)
+                    nbprocs['state']='normal'
+                    B1['state']='normal'
+                    menu.configure(state="disabled")
+                    OK['state']='disabled'
+                
+                
+                    if Type=='Tourniquet' or Type=='Algorithmes multi files TOURNIQUET sans migration' or Type=='Algorithmes multi files TOURNIQUET avec  migration':
 
-                types=fenetre.menu.get()
-                nbprocs['state']='normal'
-                B1['state']='normal'
-                menu.configure(state="disabled")
-                OK['state']='disabled'
-                
-                
-                if types=='Tourniquet' or types=='Algorithmes multi files TOURNIQUET sans migration' or types=='Algorithmes multi files TOURNIQUET avec  migration':
-                    Quantum['state']='normal'
-                else:
-                    Quantum['state']='normal'
-                    Quantum.insert(0,"Donnée non utile")
-                    Quantum['state']='disabled'
+                        Quantum['state']='normal'
+                    else:
+                        Quantum['state']='normal'
+                        Quantum.insert(0,"Donnée non utile")
+                        Quantum['state']='disabled'
 
                     
             def CtrlDonnee():
-                
+                global quantum
+                global nbprocessus
                 nbprocessus=nbprocs.get()
                 nbprocessus=Raccourcir(nbprocessus)
                 quantum=Quantum.get()
@@ -4109,6 +4595,7 @@ def Menu():
                                                                 message="Veuillez saisir une réponse")
                         return(1)
                     else:
+                        quantum=0
                         if "." in nbprocessus  :
                             messagebox.showerror("showerror", "Erreur de saisie les points ne sont pas acceptés")
                             return(1)
@@ -4154,14 +4641,126 @@ def Menu():
                                
                             
 
-            def buttonGo():
-                
-                ok=CtrlDonnee()
-
+               
+            def buttonGo(Type):
+                global ListTabl
+                if man==2:
+                    ok=CtrlDonnee()
+                   
+                else:
+                    ok=0
+                  
                 if ok!=1:
                     affcase['state']='normal'
-                    GO['state']='disabled'
+                    GO['state']='disabled'   
                     
+                    if man==1:
+                        NbProc = int(n)
+                    else:    
+                        NbProc = int(nbprocessus)
+                    
+                   
+                   
+                    if Type=='Priorite fixes' or Type=='Algorithmes multi files TOURNIQUET sans migration' or Type=='Algorithmes multi files FIFO sans migration':
+                        mode="Tout"
+                        NbCaseT = NbProc*3
+                        NbCaseL = 3
+                    else:
+                        mode="None"
+                        NbCaseT = NbProc*2
+                        NbCaseL = 2
+                    
+                    frame_main = tk.Frame(fenetre, bg="lightskyblue1")
+                    frame_main.grid(column=2,row=6,columnspan=5,pady=40)
+                 
+
+                    # Create a frame for the canvas with non-zero row&column weights
+                    frame_canvas = tk.Frame(frame_main)
+                    frame_canvas.grid(row=2, column=0, pady=(5, 0), sticky='nw')
+                    frame_canvas.grid_rowconfigure(0, weight=1)
+                    frame_canvas.grid_columnconfigure(0, weight=1)
+                    # Set grid_propagate to False to allow 5-by-5 buttons resizing later
+                    frame_canvas.grid_propagate(False)
+
+                    # Add a canvas in that frame
+                    canvas = tk.Canvas(frame_canvas, bg="lightskyblue1")
+                    canvas.grid(row=0, column=0, sticky="news")
+
+                    canvas.configure(highlightcolor='lightskyblue1',highlightbackground='lightskyblue1')
+
+                    # Create a frame to contain the buttons
+                    frame_buttons = tk.Frame(canvas, bg="lightskyblue1")
+                    canvas.create_window((0, 0), window=frame_buttons, anchor='nw')
+
+                    # Add 9-by-5 buttons to the frame
+                    rows = 9
+                    columns = 10
+
+                    colmin=1
+                    colmax=NbCaseL+1
+                    lignemin=1
+                    lignemax=10
+                    col=0
+                    ligne=0
+                    ListTabl=[]
+              
+                    for i in range(NbCaseT):
+                        Process=str("g"+str(i))
+                        ListTabl.append(Process)
+                       
+                    
+                    #============titres de colonnes===============
+                    ProcT=Label(frame_buttons, text="Processus" ,font=("courier", 9), fg='black', bg='white',width=17)
+                    ProcT.grid(row=lignemin-1, column=col,sticky='s')
+                    ArrT=Label(frame_buttons, text="Arrivée" ,font=("courier", 9), fg='black', bg='white',width=17)
+                    ArrT.grid(row=lignemin-1, column=col+1,sticky='s')
+                    DureeT=Label(frame_buttons, text="Durée" ,font=("courier", 9), fg='black', bg='white',width=17)
+                    DureeT.grid(row=lignemin-1, column=col+2,sticky='s')
+                    if mode == "Tout":
+                        PrioT=Label(frame_buttons, text="Priorité initiale" ,font=("courier", 9), fg='black', bg='white',width=17)
+                        PrioT.grid(row=lignemin-1, column=col+3,sticky='s')
+                    #=================Première colonnes des Processus==========================
+                    for i in range(NbProc):
+                        Proc=Label(frame_buttons, text="p"+str(i+1) ,font=("courier", 8), fg='black', bg='white',width=17)
+                        Proc.grid(row=lignemin+ligne, column=col,sticky='s')
+
+                        if lignemin+ligne>=lignemax:
+                            ligne=lignemax
+                        else:
+                            ligne+=1
+                    colmin=1
+                    colmax=NbCaseL
+                    lignemin=1
+                    lignemax=10
+                    col=0
+                    ligne=0
+                        #=================Case vides==========================
+                    for i in range(NbCaseT):
+                        ListTabl[i]=Entry(frame_buttons,width=20)
+                        ListTabl[i].grid(row=lignemin+ligne, column=colmin+col)
+                    
+                    
+                        if colmin+col>=colmax:
+                            col=0
+                            ligne+=1
+                         
+                        else:
+                            col+=1
+                            
+
+                    frame_canvas.config(width=520,height=250)
+             
+                    canvas.config(scrollregion=canvas.bbox("all"))
+                    
+                    
+                if man==1:
+                    AleaTab(lp,mode,NbProc,n)
+             
+
+                     
+                 
+                   
+
 
             def CtrlCase():
                 global Lutil
@@ -4172,11 +4771,15 @@ def Menu():
                 ok=True
                 ct=0
                 synerror=[]
+
+
                 for i in range(len(ListNom)):
+                    
                     val=ListNom[i].get()
                     val=Raccourcir( val)
 
                     Lutil.append(val)
+                    
                     if Lutil[i]=='':
                         messagebox.showinfo(title="Information",
                                                                message="Veuillez remplir toutes les cases")
@@ -4189,7 +4792,7 @@ def Menu():
                             ok=False
                             return(1)
                         else:
-                           ctrl=CtrlSyntaxe(str(Lutil[i]),10,1,2,1,10)
+                           ctrl=CtrlSyntaxe(str(Lutil[i]),10,1,2,0,10)
                            
                            if ctrl==False:
                                 synerror.append(i)  
@@ -4207,94 +4810,255 @@ def Menu():
                         return(1)
                   
                                              
+                
+            def validerSaisie(Type,Duree,lp):
+
 
                 
-            def valider():
-                LRep=['1','3','1','1','1','5','1','1','1','1'] 
                 erreur=[]
-                
-                rep="attente"
-                
-                controleD=CtrlDonnee()
-                
+               
+                if Type=="Tourniquet"or Type=="FIFO"or Type=="PCTER"or Type=="Priorite fixes":
+                    rep0=CalculRep(Duree,lp,Type,int(quantum))
+                    rep=dicointolist(rep0)
+                    print("Voici la rep",rep)
+
+                elif Type=="Algorithmes multi files FIFO sans migration" or Type=="Algorithmes multi files FIFO avec migration"or Type=="Algorithmes multi files TOURNIQUET sans migration" or Type=="Algorithmes multi files TOURNIQUET avec  migration":
+                    rep0=CalculRepFile(Duree,lp,Type)
+                    rep=dicointolist(rep0)
+                    print("Voici la rep",rep)
+                 
                 controleC=CtrlCase()
                 
-                    
                 if  controleC != 1 :
+                        Verif=VerifRep(rep,Lutil)
+
+                        if Verif == 1:
+                            messagebox.showinfo(title="Information",
+                                                message="Bonne Réponse,\n\n Veuillez saisir le temps moyen de réponse !! ")
+                            B3['state']='normal'
+                            tmr['state']='disabled'
+                            deno['state']='normal'
+                            numer['state']='normal'
+                           
+                                    
+                        elif Verif == -1:
+                            B3['state']='disabled' #bloquer le bouton valider ==> Perdu
+                            B2['state']='normal'  #débloquer le bouton nouveau ==> recommencer
+                            tmr['state']='disabled'
+                            messagebox.showinfo(title="Information",
+                                                message=" Mauvaise réponse, vous avez perdu !\n \n Le résultat est: \n" +("".join(str(rep))))
+                        elif Verif == 0:
+                       
+                            for j in range(Duree):
+                                if rep[j]!=Lutil[j]:
+                                    erreur.append(j)  
+                                    ListNom[j].config(bg= "crimson")                
+                                else:
+                                    ListNom[j].config(bg= "white")
+                                    
+
+                            messagebox.showinfo(title="Information",
+                                                message="Mauvaise réponse, réessayer ")
+
+                
+            def Valider():
+                
+                    controleTemps=CtrlTmpRep()
                     
-                    Verif=VerifRep(LRep,Lutil)
-
-                    if Verif == 1:
-                        B3['state']='disabled' #bloquer le bouton valider ==> Gagner
-                        B2['state']='normal'
-                        messagebox.showinfo(title="Information",
-                                            message="Bonne Réponse, Bravo !! ")
-                    elif Verif == -1:
-                        B3['state']='disabled' #bloquer le bouton valider ==> Perdu
-                        B2['state']='normal'  #débloquer le bouton nouveau ==> recommencer
-                        messagebox.showinfo(title="Information",
-                                            message=" Mauvaise réponse, vous avez perdu !\n \n Le résultat est: \n" +("".join(str(rep))))
-                    elif Verif == 0:
-                   
-                        for j in range(len(Lutil)):
-                            if LRep[j]!=Lutil[j]:
-                                erreur.append(j)  
-                                ListNom[j].config(bg= "crimson")                
-                            else:
-                                ListNom[j].config(bg= "white")
-                                j=j+1
-
-                        messagebox.showinfo(title="Information",
-                                            message="Mauvaise réponse, réessayer ")
-                      
+                    if controleTemps!=1:
                         
+                        tmp=CalculMoy(lp)
+                        numerateur=tmp[0]
+                        print(numerateur)
+                        denominateur=tmp[1]
+                        print(denominateur)
+                        
+                        denomi=deno.get()
+                        numera=numer.get()   
+                            
+                        Verif1=VerifRep(numerateur,numera)
+                        Verif2=VerifRep(denominateur,denomi)
 
+                        if Verif1 == 1 and Verif2==1:
+                            B3['state']='disabled' 
+                            B2['state']='normal'
+                            messagebox.showinfo(title="Information",
+                                            message="Bonne Réponse, Bravo !! ")
+                        elif Verif1 == -1 or Verif2==-1:
+                            B3['state']='disabled' 
+                            B2['state']='normal'  
+                            messagebox.showinfo(title="Information",
+                                                message=" Mauvaise réponse, vous avez perdu !\n \n Le résultat est: \n" +("".join(str(numerateur)))+("/".join(str(denominateur))))
+                        elif Verif1 == 0 or Verif2==0:
+                       
+                            messagebox.showinfo(title="Information",
+                                                message="Mauvaise réponse dans la fraction, réessayer ")  
+              
                 
+            def CtrlTmpRep():
+                global numera
+                global denomi
 
+                denomi=deno.get()
+                numera=numer.get()
                 
-            fenetre.menu= tk.StringVar(fenetre)
-            menu= ttk.OptionMenu(fenetre,fenetre.menu,Li[6], *Li)
-            menu.grid(row=4, column=3,columnspan=5,sticky='w',ipady=10,ipadx=100)
+                if numera =='' or denomi=='':
+                    
+                        messagebox.showinfo(title="Information",
+                                                           message="Veuillez remplir la fraction")
+                        return(1)
+                           
+                else:
+                        if "." in numera or "." in  denomi :
+                            messagebox.showerror("showerror", "Erreur pas de points dans la fraction")
+                            return(1)
+                        else:
+                           ctrl2=CtrlSyntaxe(str(denomi),10,1,10,0,20)
+                           ctrl1=CtrlSyntaxe(str(numera),10,1,10,0,1000)
+                           
+                           if ctrl1==False:
+                                messagebox.showerror("showerror", "Erreur dans le numerateur")
+                                return(1)
+                           elif ctrl2==False:
+                                messagebox.showerror("showerror", "Erreur dans le denominateur")
+                                return(1)
+                                
+                            
+                  
 
-            tmr=Label(fenetre, text="Temps moyen de réponse", font=("Courier", 17, "italic"), fg='black', bg='lightskyblue1')
-            tmr.grid(row=16, column=6,columnspan=7,sticky='w')
+
+
+            if man==2:
+                  
+                fenetre.menu= tk.StringVar(fenetre)
+                menu= ttk.OptionMenu(fenetre,fenetre.menu,Li[6], *Li)
+            else:
+                menu=Label(fenetre, text=Type, font=("courier", 11), fg='black', bg='white',width=10, height=1)
+
+            menu.grid(row=4, column=3,columnspan=3,sticky='nsew',pady=40,padx=20)
+
+            def back():
+                tmr.destroy()
+                menu.destroy()
+                deno.destroy()
+                numer.destroy()
+                ligne.destroy()
+                tmrs.destroy()
+                ttmenu.destroy()
+                tt.destroy()
+                OK.destroy()
+                ttprocs.destroy()
+                nbprocs.destroy()
+                ttQuantum.destroy()
+                Quantum.destroy()
+                affcase.destroy()
+                titre.destroy()
+                soustitre.destroy()
+                GO.destroy()
+                B1.destroy()
+                B2.destroy()
+                B3.destroy()
+                B4.destroy()
+                B5.destroy()
+                Chap2()
+
+            def back2():
+                tmr.destroy()
+                menu.destroy()
+                deno.destroy()
+                numer.destroy()
+                ligne.destroy()
+                tmrs.destroy()
+                ttmenu.destroy()
+                tt.destroy()
+                OK.destroy()
+                ttprocs.destroy()
+                nbprocs.destroy()
+                ttQuantum.destroy()
+                Quantum.destroy()
+                affcase.destroy()
+                titre.destroy()
+                soustitre.destroy()
+                GO.destroy()
+                B1.destroy()
+                B2.destroy()
+                B3.destroy()
+                B4.destroy()
+                B5.destroy()
+                Menu()
+
+            tmrs=Label(fenetre, text="Temps moyen de réponse", font=("Courier", 15), fg='black', bg='lightskyblue1')
+            tmrs.grid(row=8, column=6,columnspan=7,sticky='w')
 
             deno=Entry(justify='center',borderwidth=3,state='disabled')#case de saisie pour le nombre de processus
-            deno.grid(row=15,column=6,columnspan=7,sticky='s',ipady=5)
+            deno.grid(row=9,column=6,columnspan=7,sticky='n',ipady=2)
 
             numer=Entry(justify='center',borderwidth=3,state='disabled')#case de saisie pour le nombre de processus
-            numer.grid(row=17,column=6,columnspan=7,sticky='n',ipady=5)
+            numer.grid(row=7,column=6,columnspan=7,sticky='n',ipady=2)
 
-            ligne=Label(fenetre, text="___________", font=("Courier", 17), fg='black', bg='lightskyblue1')
-            ligne.grid(row=16, column=6,columnspan=7,sticky='n')
+            ligne=Label(fenetre, text="—————————", font=("cadratin", 12), fg='black', bg='lightskyblue1')
 
-            ttmenu=Label(fenetre, text="Sélectionner le type \n ordonnancement voulue", font=("Courier", 20, "italic"), fg='black', bg='lightskyblue1')
-            ttmenu.grid(row=3, column=3,columnspan=5,sticky='w')
+            ligne.grid(row=8, column=6,columnspan=7,sticky='n',ipady=1)
 
-            OK=Button(fenetre, text="Débloquer données", font=("calibri", 15, "bold",), fg='white', bg='#103985', width=17, height=0,command=lambda:debloq())
-            OK.grid(row=5, column=2,columnspan=3)
+            tmr=Button(fenetre, text="Valider\n saisie ", state='disabled',font=("calibri", 15,"bold",), fg='white', bg='steelblue', width=13, height=0,command=lambda:validerSaisie(Type,Duree,lp))
+            tmr.grid(row=6, column=11,sticky='e')
+
+            ttmenu=Label(fenetre, text="    Sélectionner le type \n   d'ordonnancement voulue", font=("Courier", 20, "italic"), fg='black', bg='lightskyblue1')
+            ttmenu.grid(row=3, column=3,columnspan=3,sticky='w')
+
+
+            tt=Label(fenetre, text="", font=("Courier", 20), fg='black', bg='lightskyblue1', width=33 ,height=7)
+            tt.grid(column=2,row=6,columnspan=5,pady=40,sticky='s')
+
+
+            if man ==2:
+                
+                OK=Button(fenetre, text="Débloquer données", font=("calibri", 15, "bold",), fg='white', bg='steelblue', width=17, height=0,command=lambda:debloq())
+                OK.grid(row=5, column=3,columnspan=3)
+            else:
+                OK=Label(fenetre, text="", font=("calibri", 15, "bold",), fg='lightskyblue1', bg='lightskyblue1', width=17, height=0)
+                OK.grid(row=5, column=3,columnspan=3)
 
             ttprocs=Label(fenetre, text="Nombre de \nprocessus", font=("Courier", 20, "italic"), fg='black', bg='lightskyblue1')#titre pour le nombre de processus
             ttprocs.grid(row=3, column=5,columnspan=6,)
 
-            nbprocs=Entry(justify='center',borderwidth=3,state='disabled')#case de saisie pour le nombre de processus
+
+            if man==2:
+                
+                nbprocs=Entry(justify='center',borderwidth=3,state='disabled')#case de saisie pour le nombre de processus   
+
+            else:
+                nbprocs=Label(fenetre, text=n, font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
+
             nbprocs.grid(row=4, column=5,columnspan=6,ipady=15,ipadx=30)
 
 
             ttQuantum=Label(fenetre, text="Quantum", font=("Courier", 20, "italic"), fg='black', bg='lightskyblue1')#titre pour le quantum
             ttQuantum.grid(row=3, column=7,columnspan=8,)
 
-            Quantum=Entry(justify='center',borderwidth=3,state='disabled')#case de saisie pour le quantum
+            if man==2:
+                
+                Quantum=Entry(justify='center',borderwidth=3,state='disabled')#case de saisie pour le quantum
+
+            else:
+
+                if Type=='Tourniquet' or Type=='Algorithmes multi files TOURNIQUET sans migration' or Type=='Algorithmes multi files TOURNIQUET avec  migration':
+
+                    Quantum=Label(fenetre, text=quantum, font=("courier", 12, "italic"), fg='black', bg='white',width=10, height=1)
+                else:
+                    Quantum=Label(fenetre, text="Données inutiles", font=("courier", 12, "italic"), fg='black', bg='white',width=10, height=1)
+
+
             Quantum.grid(row=4, column=7,columnspan=8,ipady=15,ipadx=30)
 
 
-            GO=Button(fenetre, text="GO", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=5, height=0,command=lambda:buttonGo())
-            GO.grid(row=4, column=10,columnspan=12,sticky='n')
+            GO=Button(fenetre, text="GO", font=("calibri", 18, "bold", 'underline'), fg='white', bg='steelblue', width=5, height=0,command=lambda:buttonGo(Type))
+            GO.grid(row=4, column=10,columnspan=12)
 
 
 
-            affcase=Button(fenetre, text="Afficher les cases",state='disabled', font=("calibri", 15, "bold"), fg='white', bg='#103985', width=17, height=0,command=lambda:CreaCase(Duree))
-            affcase.grid(row=17, column=2,columnspan=3)
+            affcase=Button(fenetre, text="Afficher les cases",state='disabled', font=("calibri", 15, "bold"), fg='white', bg='steelblue', width=17, height=0,command=lambda:CreaCase())
+            affcase.grid(row=8,column=3,columnspan=3)
 
 
             titre=Label(fenetre, text="Ordonnancement", font=("Courier", 40, "italic"), fg='black', bg='lightskyblue1')  
@@ -4303,25 +5067,34 @@ def Menu():
             titre.grid(row=1, column=4,columnspan=7)
             soustitre.grid(row=2, column=3,columnspan=11,sticky='w',ipady=20,ipadx=50)
 
-            B1=Button(fenetre, text="Rappel", font=("courier", 18, "bold", 'underline'), fg='white', bg='#103985',state='disabled', width=15, height=2,command=lambda:create())
+            if man==1:
+                B1=Button(fenetre, text="Rappel", font=("courier", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2,command=lambda:create())
+
+            else:
+                
+                B1=Button(fenetre, text="Rappel", font=("courier", 18, "bold", 'underline'), fg='white', bg='#103985',state='disabled', width=15, height=2,command=lambda:create())
 
             B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2)
              
-            B3=Button(fenetre, text="Valider", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:valider())
+            B3=Button(fenetre, text="Valider", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:Valider())
              
-            B4=Button(fenetre, text="Menu", font=("courier", 18, "italic"), fg='white', bg='grey', width=15, height=2)
+            B4=Button(fenetre, text="Menu", font=("courier", 18, "italic"), fg='white', bg='grey', width=15, height=2 ,command=lambda:back2())
              
-            B5=Button(fenetre, text="Quitter", font=("courier", 18), fg='white', bg='#103985', width=15, height=2,command=fenetre.destroy)
+            B5=Button(fenetre, text="Quitter", font=("courier", 18), fg='white', bg='#103985', width=15, height=2,command=lambda:back())
 
-            B1.grid(row=18, column=3)
-            B2.grid(row=18, column=5)
-            B3.grid(row=18, column=7)
-            B5.grid(row=18, column=9)
-            B4.grid(row=18, column=11)
+            B1.grid(row=18, column=3,pady=10)
+            B2.grid(row=18, column=5,pady=10)
+            B3.grid(row=18, column=7,pady=10)
+            B5.grid(row=18, column=9,pady=10)
+            B4.grid(row=18, column=11,pady=10)
 
             ##############################################################Fenetre rappel####################################################################
             def create():
-                    types=fenetre.menu.get()
+                    if man==1:
+                        types=typeAl
+                    else:    
+                        types=fenetre.menu.get()
+                        
                     rappel = Toplevel(fenetre)
                     rappel.config(background="lightskyblue1")
                  
@@ -4411,6 +5184,8 @@ def Menu():
                     btn.grid(row=12, column=1,columnspan=3,sticky='n')
 
 
+        
+
 
     #============================================================================
     #===================== Chapitre 3 ===========================================
@@ -4472,19 +5247,19 @@ def Menu():
     stMenu.grid(row=2, column=2, columnspan=3,ipady=40)
     
     Bchap1=Button(fenetre, text="Codage de l'information", font=("courier", 18, "italic"), fg='white', bg='#103985', command = Chap1)
-    Bchap1.grid(row=3, column=3,sticky='ew',ipady=10)
+    Bchap1.grid(row=4, column=3,sticky='ew',ipady=10)
 
     Bchap2=Button(fenetre, text="Ordonnancement", font=("courier", 18, "italic"), fg='white', bg='#103985', command= Chap2)#command= Chap2
-    Bchap2.grid(row=4, column=3,sticky='ew',ipady=10)
+    Bchap2.grid(row=6, column=3,sticky='ew',ipady=10)
 
     Bchap3=Button(fenetre, text="Gestion de la mémoire", font=("courier", 18, "italic"), fg='white', bg='#103985', command= Chap3)#command= Chap3
-    Bchap3.grid(row=5, column=3, sticky='ew',ipady=10)
+    Bchap3.grid(row=8, column=3, sticky='ew',ipady=10)
 
     Bchap4=Button(fenetre, text="Gestion de fichier", font=("courier", 18, "italic"), fg='white', bg='#103985', command= Chap4) #command= Chap4
-    Bchap4.grid(row=6, column=3,sticky='ew',ipady=10)
+    Bchap4.grid(row=10, column=3,sticky='ew',ipady=10)
     
     Quitter=Button(fenetre, text= "Quitter", font=("courier", 18, "italic"), fg='white', bg='#103985', command= fenetre.destroy)
-    Quitter.grid(row=8, column=3)
+    Quitter.grid(row=17, column=3)
 
 
 
