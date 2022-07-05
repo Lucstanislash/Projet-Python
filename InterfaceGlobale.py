@@ -4169,9 +4169,8 @@ def Menu():
                 somme_sej=0
                 for element in lp:
                     t_sejour += element['d']
-                    #date_fin = t_sejour+element['date_arriv']
                     somme_sej=somme_sej+ t_sejour
-                    #moysej=float(somme_sej)/nb_proc
+                   
                 p1= somme_sej
                
                 return (p1)
@@ -4338,7 +4337,7 @@ def Menu():
                 i=randrange(0,7)
                 Type=Li[i]
                 n=randrange(4,10)
-                print("Nombre de processus : ",n)
+                
                 mini=0
                 maxi=0
                 cpt=0
@@ -4371,10 +4370,11 @@ def Menu():
                     listq.append(quantum)
                       
                 for i in range(len(listp)):
+                
                     if Type=='Priorite fixes' or Type=="Algorithmes multi files TOURNIQUET sans migration" or Type=="Algorithmes multi files FIFO sans migration":
-                        lp.append({"n°":listp[i],"da":listarv[i],"d":listdur[i],"prio":listprio[i]})
+                        lp.append({"n":listp[i],"da":listarv[i],"d":listdur[i],"prio":listprio[i]})
                     else :
-                        lp.append({"n°":listp[i],"da":listarv[i],"d":listdur[i],"quantum":listq[i]})
+                        lp.append({"n":listp[i],"da":listarv[i],"d":listdur[i],"quantum":listq[i]})
 
 
             def AleaTab(lp,mode,NbProc,n):
@@ -4401,11 +4401,11 @@ def Menu():
                             i+=nbc
                             j+=1
 
-            def listintodico(liste,Type):
+            def listintodico(liste):
                 li=[]
                 i=0
                 cpt=1
-                print(liste)
+            
                 if Type=='Priorite fixes' or Type=="Algorithmes multi files TOURNIQUET sans migration" or Type=="Algorithmes multi files FIFO sans migration":
                     while i<len(liste):
                         if i+3>len(liste):
@@ -4420,7 +4420,7 @@ def Menu():
                         li.append({"n": int(cpt), "da": int(liste[i]), "d": int(liste[i+1])})
                         cpt=cpt+1
                         i=i+2
-                print(li)
+             
                 return(li)
 
             def ctrltab():
@@ -4464,7 +4464,7 @@ def Menu():
                                 ok=False
                                 return(1)
                             else:
-                               ctrl=CtrlSyntaxe(str(Ltab[j]),10,1,2,0,10)
+                               ctrl=CtrlSyntaxe(str(Ltab[j]),10,1,2,0,100)
                                
                                if ctrl==False:
                                     synerror.append(j)  
@@ -4480,7 +4480,7 @@ def Menu():
                                         message="Erreur de syntaxe ou d'intervalle ")
                         return(1)
                     
-                lp=listintodico(Ltab,Type)
+                lp=listintodico(Ltab)
                 Duree=0
                 i=0
                 while i<len(lp):
@@ -4503,7 +4503,7 @@ def Menu():
 
                 if ok!=1:
                     
-                    print(Duree)
+                    
                     frame_main = tk.Frame(fenetre, bg="lightskyblue1")
                     frame_main.grid(column=6,row=6,columnspan=9,sticky='nw',pady=40)
                     # Create a frame for the canvas with non-zero row&column weights
@@ -4656,7 +4656,6 @@ def Menu():
             def buttonGo(Type):
                 global ListTabl
                 global Frame_main
-                print(Type)
                 if man==2:
                     ok=CtrlDonnee()
                    
@@ -4683,12 +4682,12 @@ def Menu():
                         NbCaseT = NbProc*2
                         NbCaseL = 2
                     
-                    frame_main = tk.Frame(fenetre, bg="lightskyblue1")
-                    frame_main.grid(column=2,row=6,columnspan=5,pady=40)
+                    Frame_main = tk.Frame(fenetre, bg="lightskyblue1")
+                    Frame_main.grid(column=2,row=6,columnspan=5,pady=40)
                  
 
                     # Create a frame for the canvas with non-zero row&column weights
-                    frame_canvas = tk.Frame(frame_main)
+                    frame_canvas = tk.Frame(Frame_main)
                     frame_canvas.grid(row=2, column=0, pady=(5, 0), sticky='nw')
                     frame_canvas.grid_rowconfigure(0, weight=1)
                     frame_canvas.grid_columnconfigure(0, weight=1)
@@ -4823,35 +4822,34 @@ def Menu():
                         return(1)
                   
 
-            def Crepe(Type,Duree,lp):
-                print(Type)
-                print(lp)
-                print("salut",Duree)
+            def Crepe(Type,Duree):
+                for i in range(len(ListTabl)):
+                    lp=listintodico(Ltab)
+                    
                 if Type=="Tourniquet"or Type=="FIFO"or Type=="PCTER"or Type=="Priorite fixes":
                     rep0=CalculRep(Duree,lp,Type,int(quantum))
-                    print(rep0)
+                 
                     rep=dicointolist(rep0)
-                    print("Voici la rep",rep)
+                    
 
                 elif Type=="Algorithmes multi files FIFO sans migration" or Type=="Algorithmes multi files FIFO avec migration"or Type=="Algorithmes multi files TOURNIQUET sans migration" or Type=="Algorithmes multi files TOURNIQUET avec  migration":
                     rep0=CalculRepFile(Duree,lp,Type)
-                    print(rep0)
+                   
                     rep=dicointolist(rep0)
-                    print("Voici la rep",rep)
-
+                    
+                print("voici la rep",rep)
                 return(rep,Duree)                            
                 
             def validerSaisie(Duree):
 
                 rep=[] 
-                reponse=Crepe(Type,Duree,lp)
+                reponse=Crepe(Type,Duree)
                 rep=reponse[0]
-                
+                erreur=[]
 
-                print(rep)
-                 
                 controleC=CtrlCase()
-                
+
+                print("voici la rep",rep)
                 if  controleC != 1 :
                         Verif=VerifRep(rep,Lutil)
 
@@ -4873,7 +4871,7 @@ def Menu():
                         elif Verif == 0:
                        
                             for j in range(Duree):
-                                print(Duree)
+                               
                                 if rep[j]!=Lutil[j]:
                                     erreur.append(j)  
                                     ListNom[j].config(bg= "crimson")                
@@ -4900,9 +4898,9 @@ def Menu():
                     print("chiffre du bas",denominateur)
                     
                     denomi=deno.get()
-                    print("voici ton chiffre du bas",denomi)
+                    
                     numera=numer.get()
-                    print("voici ton chiffre du haut",numera)
+                    
 
                     Lrep=[str(numerateur),denominateur]
                     Lutil=[numera,denomi]
