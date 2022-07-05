@@ -4157,10 +4157,14 @@ def Menu():
             man = select
             
             Li=["Tourniquet","FIFO","PCTER","Priorite fixes","Algorithmes multi files FIFO sans migration","Algorithmes multi files FIFO avec migration","Algorithmes multi files TOURNIQUET sans migration","Algorithmes multi files TOURNIQUET avec  migration"]
-
+            global Type
+            global lp
+            global quantum
+            quantum=0
+            lp=[]
+            Type=""
             #====================================================
             def CalculMoy(lp):
-                nb_proc= 10
                 t_sejour = 0
                 somme_sej=0
                 for element in lp:
@@ -4168,10 +4172,9 @@ def Menu():
                     #date_fin = t_sejour+element['date_arriv']
                     somme_sej=somme_sej+ t_sejour
                     #moysej=float(somme_sej)/nb_proc
-                p1= "La somme des temps de réponse de chaque processus est: " +("".join(str(somme_sej)))
-                p2= "Le nombre de processus est:" +("".join(str(nb_proc)))
+                p1= somme_sej
                
-                return (p1,p2)
+                return (p1)
             #====================================================
             def CalculRep(Duree,lp,Type,Quantum):
                 cpt=0
@@ -4369,9 +4372,9 @@ def Menu():
                       
                 for i in range(len(listp)):
                     if Type=='Priorite fixes' or Type=="Algorithmes multi files TOURNIQUET sans migration" or Type=="Algorithmes multi files FIFO sans migration":
-                        lp.append({"n°":listp[i],"Arv":listarv[i],"duree":listdur[i],"prio":listprio[i]})
+                        lp.append({"n°":listp[i],"da":listarv[i],"d":listdur[i],"prio":listprio[i]})
                     else :
-                        lp.append({"n°":listp[i],"Arv":listarv[i],"duree":listdur[i],"quantum":listq[i]})
+                        lp.append({"n°":listp[i],"da":listarv[i],"d":listdur[i],"quantum":listq[i]})
 
 
             def AleaTab(lp,mode,NbProc,n):
@@ -4388,9 +4391,9 @@ def Menu():
                         if i+nbc>NbProc*nbc:
                             break
                         else:
-                            ListTabl[i].insert(0,lp[j]["Arv"])
-                            ListTabl[i+1].insert(0,lp[j]["duree"])
-                            Duree+=(lp[j]["duree"])
+                            ListTabl[i].insert(0,lp[j]["da"])
+                            ListTabl[i+1].insert(0,lp[j]["d"])
+                            Duree+=(lp[j]["d"])
                             print(Duree)
                             
                             if nbc==3:
@@ -4398,16 +4401,26 @@ def Menu():
                             i+=nbc
                             j+=1
 
-            def listintodico(liste):
+            def listintodico(liste,Type):
                 li=[]
                 i=0
-                cpt=0
-                while i<len(liste):
-                    if i+3>len(liste):
-                        break
-                    li.append({"n": int(liste[cpt]), "da": int(liste[i]), "d": int(liste[i+1]), "prio": int(liste[i+2])})
-                    cpt+=1
-                    i=i+3
+                cpt=1
+                print(liste)
+                if Type=='Priorite fixes' or Type=="Algorithmes multi files TOURNIQUET sans migration" or Type=="Algorithmes multi files FIFO sans migration":
+                    while i<len(liste):
+                        if i+3>len(liste):
+                            break
+                        li.append({"n": int(cpt), "da": int(liste[i]), "d": int(liste[i+1]), "prio": int(liste[i+2])})
+                        cpt=cpt+1
+                        i=i+3
+                else:
+                    while i<len(liste):
+                        if i+2>len(liste):
+                            break
+                        li.append({"n": int(cpt), "da": int(liste[i]), "d": int(liste[i+1])})
+                        cpt=cpt+1
+                        i=i+2
+                print(li)
                 return(li)
 
             def ctrltab():
@@ -4467,10 +4480,9 @@ def Menu():
                                         message="Erreur de syntaxe ou d'intervalle ")
                         return(1)
                     
-                for i in range(len(ListTabl)):
-                    lp=listintodico(Ltab)
-                    Duree=0
-                    i=0
+                lp=listintodico(Ltab,Type)
+                Duree=0
+                i=0
                 while i<len(lp):
                     
                     Duree+=int(lp[i]["d"])
@@ -4480,7 +4492,9 @@ def Menu():
                             
             def CreaCase():
                 global ListNom
-               
+                global mycanvas
+                global vsb
+                global frame_main
                 
                 if man==2:    
                     ok=ctrltab()
@@ -4557,16 +4571,16 @@ def Menu():
                     canvas.config(scrollregion=canvas.bbox("all"))    
 
                     tmr['state']='normal'
+                    affcase['state']='disabled'
                         
-                
             def debloq():
                     global Type
                     Type=fenetre.menu.get()
-                    print(Type)
                     nbprocs['state']='normal'
                     B1['state']='normal'
                     menu.configure(state="disabled")
                     OK['state']='disabled'
+                    GO['state']='normal'
                 
                 
                     if Type=='Tourniquet' or Type=='Algorithmes multi files TOURNIQUET sans migration' or Type=='Algorithmes multi files TOURNIQUET avec  migration':
@@ -4638,12 +4652,11 @@ def Menu():
                                     nbprocs['state']='disabled'
                                     Quantum['state']='disabled'
                                 
-                               
-                            
-
-               
+            
             def buttonGo(Type):
                 global ListTabl
+                global Frame_main
+                print(Type)
                 if man==2:
                     ok=CtrlDonnee()
                    
@@ -4809,23 +4822,33 @@ def Menu():
                                         message="Erreur de syntaxe ou d'intervalle ")
                         return(1)
                   
-                                             
-                
-            def validerSaisie(Type,Duree,lp):
 
-
-                
-                erreur=[]
-               
+            def Crepe(Type,Duree,lp):
+                print(Type)
+                print(lp)
+                print("salut",Duree)
                 if Type=="Tourniquet"or Type=="FIFO"or Type=="PCTER"or Type=="Priorite fixes":
                     rep0=CalculRep(Duree,lp,Type,int(quantum))
+                    print(rep0)
                     rep=dicointolist(rep0)
                     print("Voici la rep",rep)
 
                 elif Type=="Algorithmes multi files FIFO sans migration" or Type=="Algorithmes multi files FIFO avec migration"or Type=="Algorithmes multi files TOURNIQUET sans migration" or Type=="Algorithmes multi files TOURNIQUET avec  migration":
                     rep0=CalculRepFile(Duree,lp,Type)
+                    print(rep0)
                     rep=dicointolist(rep0)
                     print("Voici la rep",rep)
+
+                return(rep,Duree)                            
+                
+            def validerSaisie(Duree):
+
+                rep=[] 
+                reponse=Crepe(Type,Duree,lp)
+                rep=reponse[0]
+                
+
+                print(rep)
                  
                 controleC=CtrlCase()
                 
@@ -4850,6 +4873,7 @@ def Menu():
                         elif Verif == 0:
                        
                             for j in range(Duree):
+                                print(Duree)
                                 if rep[j]!=Lutil[j]:
                                     erreur.append(j)  
                                     ListNom[j].config(bg= "crimson")                
@@ -4860,40 +4884,46 @@ def Menu():
                             messagebox.showinfo(title="Information",
                                                 message="Mauvaise réponse, réessayer ")
 
+
                 
             def Valider():
+    
+                controleTemps=CtrlTmpRep()
+                Lutil=[]
+                Lrep=[]
                 
-                    controleTemps=CtrlTmpRep()
+                if controleTemps!=1:
                     
-                    if controleTemps!=1:
-                        
-                        tmp=CalculMoy(lp)
-                        numerateur=tmp[0]
-                        print(numerateur)
-                        denominateur=tmp[1]
-                        print(denominateur)
-                        
-                        denomi=deno.get()
-                        numera=numer.get()   
-                            
-                        Verif1=VerifRep(numerateur,numera)
-                        Verif2=VerifRep(denominateur,denomi)
+                    numerateur=CalculMoy(lp)
+                    print("chiffre du haut",numerateur)
+                    denominateur=nbprocessus
+                    print("chiffre du bas",denominateur)
+                    
+                    denomi=deno.get()
+                    print("voici ton chiffre du bas",denomi)
+                    numera=numer.get()
+                    print("voici ton chiffre du haut",numera)
 
-                        if Verif1 == 1 and Verif2==1:
-                            B3['state']='disabled' 
-                            B2['state']='normal'
-                            messagebox.showinfo(title="Information",
-                                            message="Bonne Réponse, Bravo !! ")
-                        elif Verif1 == -1 or Verif2==-1:
-                            B3['state']='disabled' 
-                            B2['state']='normal'  
-                            messagebox.showinfo(title="Information",
-                                                message=" Mauvaise réponse, vous avez perdu !\n \n Le résultat est: \n" +("".join(str(numerateur)))+("/".join(str(denominateur))))
-                        elif Verif1 == 0 or Verif2==0:
-                       
-                            messagebox.showinfo(title="Information",
-                                                message="Mauvaise réponse dans la fraction, réessayer ")  
-              
+                    Lrep=[str(numerateur),denominateur]
+                    Lutil=[numera,denomi]
+                    Verif=VerifRep(Lrep,Lutil)
+
+                    if Verif == 1:
+                        B3['state']='disabled' 
+                        B2['state']='normal'
+                        messagebox.showinfo(title="Information",
+                                        message="Bonne Réponse, Bravo !! ")
+                    elif Verif == -1:
+                        B3['state']='disabled' 
+                        B2['state']='normal'  
+                        messagebox.showinfo(title="Information",
+                                            message=" Mauvaise réponse, vous avez perdu !\n \n Le résultat est: \n" +("Numérateur ".join(str(numerateur)))+("  Denominateur".join(str(denominateur))))
+                    elif Verif == 0:
+                   
+                        messagebox.showinfo(title="Information",
+                                            message="Mauvaise réponse dans la fraction, réessayer ")  
+          
+
                 
             def CtrlTmpRep():
                 global numera
@@ -4924,7 +4954,37 @@ def Menu():
                                 return(1)
                                 
                             
-                  
+            def nouveau():
+                if man==2:
+                    
+                    OK['state']='normal'
+                    
+                    nbprocs['state']='normal'
+                    nbprocs.delete(0,END)
+                    nbprocs['state']='disabled'
+                    
+                    Quantum['state']='normal'
+                    Quantum.delete(0,END)
+                    Quantum['state']='disabled'
+
+                    B1['state']='disabled'
+
+                    deno['state']='normal'
+                    deno.delete(0,END)
+                    deno['state']='disabled'
+                    
+                    numer['state']='normal'
+                    numer.delete(0,END)
+                    numer['state']='disabled'
+
+                    B2['state']='disabled'
+                    B3['state']='disabled'
+                    
+                    Frame_main.destroy()
+
+                    frame_main.destroy()
+
+                    menu.configure(state="normal")     
 
 
 
@@ -5000,7 +5060,7 @@ def Menu():
 
             ligne.grid(row=8, column=6,columnspan=7,sticky='n',ipady=1)
 
-            tmr=Button(fenetre, text="Valider\n saisie ", state='disabled',font=("calibri", 15,"bold",), fg='white', bg='steelblue', width=13, height=0,command=lambda:validerSaisie(Type,Duree,lp))
+            tmr=Button(fenetre, text="Valider\n saisie ", state='disabled',font=("calibri", 15,"bold",), fg='white', bg='steelblue', width=13, height=0,command=lambda:validerSaisie(Duree))
             tmr.grid(row=6, column=11,sticky='e')
 
             ttmenu=Label(fenetre, text="    Sélectionner le type \n   d'ordonnancement voulue", font=("Courier", 20, "italic"), fg='black', bg='lightskyblue1')
@@ -5014,9 +5074,6 @@ def Menu():
             if man ==2:
                 
                 OK=Button(fenetre, text="Débloquer données", font=("calibri", 15, "bold",), fg='white', bg='steelblue', width=17, height=0,command=lambda:debloq())
-                OK.grid(row=5, column=3,columnspan=3)
-            else:
-                OK=Label(fenetre, text="", font=("calibri", 15, "bold",), fg='lightskyblue1', bg='lightskyblue1', width=17, height=0)
                 OK.grid(row=5, column=3,columnspan=3)
 
             ttprocs=Label(fenetre, text="Nombre de \nprocessus", font=("Courier", 20, "italic"), fg='black', bg='lightskyblue1')#titre pour le nombre de processus
@@ -5052,8 +5109,13 @@ def Menu():
             Quantum.grid(row=4, column=7,columnspan=8,ipady=15,ipadx=30)
 
 
-            GO=Button(fenetre, text="GO", font=("calibri", 18, "bold", 'underline'), fg='white', bg='steelblue', width=5, height=0,command=lambda:buttonGo(Type))
-            GO.grid(row=4, column=10,columnspan=12)
+            if man==2:
+                
+                GO=Button(fenetre, text="GO", font=("calibri", 18, "bold", 'underline'), fg='white', bg='steelblue',state='disabled', width=5, height=0,command=lambda:buttonGo(Type))
+                GO.grid(row=4, column=10,columnspan=12)
+            else:
+                GO=Button(fenetre, text="GO", font=("calibri", 18, "bold", 'underline'), fg='white', bg='steelblue', width=5, height=0,command=lambda:buttonGo(Type))
+                GO.grid(row=4, column=10,columnspan=12)
 
 
 
@@ -5074,13 +5136,13 @@ def Menu():
                 
                 B1=Button(fenetre, text="Rappel", font=("courier", 18, "bold", 'underline'), fg='white', bg='#103985',state='disabled', width=15, height=2,command=lambda:create())
 
-            B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2)
+            B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:nouveau())
              
             B3=Button(fenetre, text="Valider", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:Valider())
              
-            B4=Button(fenetre, text="Menu", font=("courier", 18, "italic"), fg='white', bg='grey', width=15, height=2 ,command=lambda:back2())
+            B4=Button(fenetre, text="Menu", font=("courier", 18, "italic"), fg='white', bg='grey', width=15, height=2)
              
-            B5=Button(fenetre, text="Quitter", font=("courier", 18), fg='white', bg='#103985', width=15, height=2,command=lambda:back())
+            B5=Button(fenetre, text="Quitter", font=("courier", 18), fg='white', bg='#103985', width=15, height=2,command=fenetre.destroy)
 
             B1.grid(row=18, column=3,pady=10)
             B2.grid(row=18, column=5,pady=10)
