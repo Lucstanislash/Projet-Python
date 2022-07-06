@@ -4512,6 +4512,7 @@ def Menu():
                     frame_canvas.grid_rowconfigure(0, weight=1)
                     frame_canvas.grid_columnconfigure(0, weight=1)
                     # Set grid_propagate to False to allow 5-by-5 buttons resizing later
+                    #propagate permet d'adapter la taille du tableau
                     frame_canvas.grid_propagate(False)
 
                     # Add a canvas in that frame
