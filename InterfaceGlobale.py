@@ -4156,30 +4156,30 @@ def Menu():
 
             man = select
             
-            Li=["Tourniquet","FIFO","PCTER","Priorite fixes","Algorithmes multi files FIFO sans migration","Algorithmes multi files FIFO avec migration","Algorithmes multi files TOURNIQUET sans migration","Algorithmes multi files TOURNIQUET avec  migration"]
+            Li=["Tourniquet","FIFO","PCTER","Priorite fixes","Algorithmes multi files FIFO sans migration","Algorithmes multi files FIFO avec migration","Algorithmes multi files TOURNIQUET sans migration","Algorithmes multi files TOURNIQUET avec migration"]
             global Type
             global lp
             global quantum
+            global Ltemps
             quantum=0
             lp=[]
             Type=""
             #====================================================
-            def CalculMoy(lp):
-                t_sejour = 0
-                somme_sej=0
-                for element in lp:
-                    t_sejour += element['d']
-                    somme_sej=somme_sej+ t_sejour
-                   
-                p1= somme_sej
-               
+            def CalculMoy(Ltemps):
+                trac=[]
+                for i in range(len(Ltemps)):
+                    sous=Ltemps[i][1]-Ltemps[i][2]
+                    trac.append(sous)
+                p1=sum(trac)
                 return (p1)
             #====================================================
             def CalculRep(Duree,lp,Type,Quantum):
+                global Ltemps
                 cpt=0
                 pret=[]
                 ordo=[]
                 execute=[]
+                Ltemps=[]
                 for t in range(Duree):
                     ici=len(lp)
                     for i in range(len(lp)):
@@ -4202,6 +4202,7 @@ def Menu():
                     ordo.append({"temps":t, "nump":pret[0]["n"]})
                     pret[0]["d"]-=1
                     if pret[0]["d"]<=0:
+                        Ltemps.append((pret[0]["n"],t+1,pret[0]["da"]))
                         pret=pret[1:]
                         if Type=="Tourniquet":
                             cpt=0
@@ -4213,10 +4214,11 @@ def Menu():
                                 cpt=0
                             else:
                                 cpt+=1
-                
+                print(Ltemps)
                 return(ordo)
 
             def CalculRepFile(Duree,lp,Type):
+                global Ltemps
                 pretF1=[]
                 pretF2=[]
                 pretF3=[]
@@ -4228,7 +4230,7 @@ def Menu():
                 QF3=3
                 cptF2=0
                 cptF3=0
-              
+                Ltemps=[]
                 for t in range(Duree):
                     ici=len(lp)
                     
@@ -4237,7 +4239,7 @@ def Menu():
                         if Type=="Algorithmes multi files TOURNIQUET avec migration" or Type=="Algorithmes multi files FIFO avec migration":
                             if lp[i]["da"]==t:
                                 pretF1.append(lp[i])
-                    
+                                print("pretF1",pretF1)
                             else:
                                 ici=i
                                 break
@@ -4246,7 +4248,7 @@ def Menu():
                            
                             if lp[i]["da"]==t and lp[i]["prio"]==1:
                                 pretF1.append(lp[i])
-                                
+                            
                             elif lp[i]["da"]==t and lp[i]["prio"]==2:
                                 pretF2.append(lp[i])
                                
@@ -4277,6 +4279,7 @@ def Menu():
                         pretF1[0]["d"]-=1
                         
                         if pretF1[0]["d"]==0:
+                            Ltemps.append((pretF1[0]["n"],t+1,pretF1[0]["da"]))
                             pretF1=pretF1[1:]
                         else:
                             if Type=="Algorithmes multi files TOURNIQUET sans migration" or Type=="Algorithmes multi files FIFO sans migration":
@@ -4289,6 +4292,7 @@ def Menu():
                         ordo.append({"temps":t, "nump":pretF2[0]["n"]})
                         pretF2[0]["d"]-=1
                         if pretF2[0]["d"]==0:
+                            Ltemps.append((pretF2[0]["n"],t+1,pretF2[0]["da"]))
                             pretF2=pretF2[1:]
                             cptF2=0
                         else:
@@ -4308,6 +4312,7 @@ def Menu():
                         
                         pretF3[0]["d"]-=1
                         if pretF3[0]["d"]==0:
+                            Ltemps.append((pretF3[0]["n"],t+1,pretF3[0]["da"]))
                             pretF3=pretF3[1:]
                             if Type=="Algorithmes multi files TOURNIQUET avec migration" or Type=="Algorithmes multi files TOURNIQUET sans migration":
                                 cptF3=0
@@ -4319,6 +4324,7 @@ def Menu():
                                     cptF3=0
                                 else:
                                     cptF3+=1
+                print("ordo",ordo)
                 return(ordo)
                 
 
@@ -4512,7 +4518,6 @@ def Menu():
                     frame_canvas.grid_rowconfigure(0, weight=1)
                     frame_canvas.grid_columnconfigure(0, weight=1)
                     # Set grid_propagate to False to allow 5-by-5 buttons resizing later
-                    #propagate permet d'adapter la taille du tableau
                     frame_canvas.grid_propagate(False)
 
                     # Add a canvas in that frame
@@ -4833,9 +4838,9 @@ def Menu():
                     rep=dicointolist(rep0)
                     
 
-                elif Type=="Algorithmes multi files FIFO sans migration" or Type=="Algorithmes multi files FIFO avec migration"or Type=="Algorithmes multi files TOURNIQUET sans migration" or Type=="Algorithmes multi files TOURNIQUET avec  migration":
+                elif Type=="Algorithmes multi files FIFO sans migration" or Type=="Algorithmes multi files FIFO avec migration"or Type=="Algorithmes multi files TOURNIQUET sans migration" or Type=="Algorithmes multi files TOURNIQUET avec migration":
                     rep0=CalculRepFile(Duree,lp,Type)
-                   
+                    
                     rep=dicointolist(rep0)
                     
                 print("voici la rep",rep)
@@ -4870,7 +4875,10 @@ def Menu():
                             messagebox.showinfo(title="Information",
                                                 message=" Mauvaise réponse, vous avez perdu !\n \n Le résultat est: \n" +("".join(str(rep))))
                         elif Verif == 0:
-                       
+                            print(rep)
+                            print(len(rep))
+                            print(Lutil)
+                            print(len(Lutil))
                             for j in range(Duree):
                                
                                 if rep[j]!=Lutil[j]:
@@ -4893,7 +4901,7 @@ def Menu():
                 
                 if controleTemps!=1:
                     
-                    numerateur=CalculMoy(lp)
+                    numerateur=CalculMoy(Ltemps)
                     print("chiffre du haut",numerateur)
                     denominateur=nbprocessus
                     print("chiffre du bas",denominateur)
