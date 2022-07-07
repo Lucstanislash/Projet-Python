@@ -11,7 +11,7 @@ import math
 fenetre=Tk()    ## Permet de creer une fenetre
 
 fenetre.title("Application Python")
-fenetre.geometry("1500x700")
+fenetre.geometry("1250x650")
 fenetre.minsize(500,600 )
 ##fenetre.iconbitmap("logo.ico")
 fenetre.config(background='lightskyblue1')
@@ -40,7 +40,7 @@ fenetre.columnconfigure(1, weight=1)
 fenetre.columnconfigure(2, weight=1)
 fenetre.columnconfigure(3, weight=1)
 fenetre.columnconfigure(4, weight=1)
-fenetre.columnconfigure(5, weight=1)
+fenetre.columnconfigure(5, weight=0)
 fenetre.columnconfigure(6, weight=1)
 fenetre.columnconfigure(7, weight=1)
 fenetre.columnconfigure(8, weight=1)
@@ -405,15 +405,15 @@ def Menu():
                 A7=Radiobutton(fen,text="Hexadécimal",selectcolor=dicoNb[basearr][6],state=dicoNb[basearr][2], fg='#103985', bg='Gainsboro',indicatoron=0,width=26, height=2, cursor='hand2')
                 A8=Radiobutton(fen,text="Octal",selectcolor=dicoNb[basearr][7],state=dicoNb[basearr][3], fg='#103985', bg='Gainsboro',indicatoron=0,width=26, height=2, cursor='hand2')
 
-                A1.grid(row = 8, column = 2, pady=5)
-                A2.grid(row = 9, column = 2, pady=5)
-                A3.grid(row = 10, column = 2, pady=5)
-                A4.grid(row = 11, column = 2, pady=5)
+                A1.grid(row = 5, column = 2, rowspan=2, pady=5)
+                A2.grid(row = 6, column = 2, pady=5)
+                A3.grid(row = 6, column = 2, rowspan=2, pady=5)
+                A4.grid(row = 7, column = 2, pady=5)
 
-                A5.grid(row = 8, column = 5, pady=5)
-                A6.grid(row = 9, column = 5, pady=5)
-                A7.grid(row = 10, column = 5, pady=5)
-                A8.grid(row = 11, column = 5, pady=5)
+                A5.grid(row = 5, column = 4, rowspan=2, pady=5)
+                A6.grid(row = 6, column = 4, pady=5)
+                A7.grid(row = 6, column = 4, rowspan=2, pady=5)
+                A8.grid(row = 7, column = 4, pady=5)
 
                 if basedep==2:
                     entier=AleaExAll(2,1,32)
@@ -558,13 +558,13 @@ def Menu():
             Menu()
             
         titre=Label(fen, text="Entiers non signées", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1') # 
-        titre.grid(row=1, column=3,columnspan=9,ipady=30)
+        titre.grid(row=1, column=2,columnspan=3,ipady=30)
         soustitre=Label(fen, text="Quelques indications: Base 2 : maximum 32 bits Base 8 : maximum 10 symboles\n                    Base 10 : de 1 à 10000 Base 16 : maximum 8 symboles", font=("courier", 15), fg='blue4', bg='lightskyblue1') 
-        soustitre.grid(row=2, column=3,columnspan=9,sticky='w') 
+        soustitre.grid(row=2, column=2,columnspan=4,sticky='w') 
 
         #Création de menu déroulant d'entrée
         lab1=Label(fen,text="Valeur à convertir", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-        lab1.grid(row=4, column=4,columnspan=8, rowspan=2, sticky='s')   #Créé du texte Label(text=''), spécifie la fenêtre concernée, donne une couleur de fond (bg='') et le place dans la fenêtre avec .pack()
+        lab1.grid(row=4, column=2,columnspan=3, rowspan=2, sticky='s')   #Créé du texte Label(text=''), spécifie la fenêtre concernée, donne une couleur de fond (bg='') et le place dans la fenêtre avec .pack()
         if man==2:
             global Esaisie
             global A1
@@ -577,7 +577,7 @@ def Menu():
             global A8
             #Définit une variable utilisable dans tout le programme
             Esaisie=Entry(fen)                              #Créé une entrée que l'utilisateur pourra remplir de texte et spécifie la fenêtre concernée
-            Esaisie.grid(row=6, column=4,columnspan=8, rowspan=2, ipadx=200,ipady=10,sticky='s')                       
+            Esaisie.grid(row=6, column=2,columnspan=3, rowspan=2, ipadx=200,ipady=10,sticky='s')                       
             Esaisie.focus()                                 #focus() permet ici de placer directement le curseur à l'intérieur de la zone de texte
             #Esaisie.insert(INSERT, 'Mettez la valeur à convertir en respectant les contraintes')      #Insert dans la saisie le texte entre guillemets
             Esaisie.selection_range(0, END)                 #Sélectionne le contenu entier de la saisie
@@ -597,27 +597,27 @@ def Menu():
             A7=Radiobutton(fen,text="Hexadécimal", fg='#103985', bg='Gainsboro',variable=basearrivee,value=16,indicatoron=0,width=26, height=2, cursor='hand2')
             A8=Radiobutton(fen,text="Octal", fg='#103985', bg='Gainsboro',variable=basearrivee,value=8,indicatoron=0,width=26, height=2, cursor='hand2')
 
-            A1.grid(row = 10, column = 2, columnspan= 3)
-            A2.grid(row = 11, column = 2, columnspan= 3)
-            A3.grid(row = 12, column = 2, columnspan= 3)
-            A4.grid(row = 13, column = 2, columnspan= 3)
-            A5.grid(row = 10, column = 10, columnspan= 11)
-            A6.grid(row = 11, column = 10, columnspan= 11)
-            A7.grid(row = 12, column = 10, columnspan= 11)
-            A8.grid(row = 13, column = 10, columnspan= 11)
+            A1.grid(row = 10, column = 2)
+            A2.grid(row = 11, column = 2)
+            A3.grid(row = 12, column = 2)
+            A4.grid(row = 13, column = 2)
+            A5.grid(row = 10, column = 4)
+            A6.grid(row =11, column = 4)
+            A7.grid(row = 12, column = 4)
+            A8.grid(row = 13, column = 4)
 
 
 
         lab2=Label(fen,text="Base de départ", font=("courier", 17), fg='black', bg='lightskyblue1')
-        lab2.grid(row=9, column=2, columnspan= 3)
+        lab2.grid(row=9, column=2)
 
         lab3=Label(fen,text="Base d'arrivée", font=("courier", 17), fg='black', bg='lightskyblue1')
-        lab3.grid(row = 9, column =10, columnspan= 11)
+        lab3.grid(row = 9, column =4)
 
         lab4=Label(fen,text="Résultats", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-        lab4.grid(row = 13, column = 6, pady=3, columnspan=7, rowspan=2)
+        lab4.grid(row = 13, column = 2, pady=3, columnspan=3, rowspan=2)
         Résultats=Entry(fen) # Création de la zone de résultats
-        Résultats.grid(row = 15, column = 5, columnspan=8, ipadx=200, ipady=10)
+        Résultats.grid(row = 15, column = 2, columnspan=3, ipadx=200, ipady=10)
         Résultats.selection_range(0, END)
         #====================================
         def nouveau(man):
@@ -701,17 +701,22 @@ def Menu():
             rappel.columnconfigure(3, weight=0)  
 
         B1=Button(fen, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2, command=create)
-        B1.grid(row=17, column=1)
+        #B1.grid(row=17, column=1)
         B2=Button(fen, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2, command=lambda:(nouveau(man)))
-        B2.grid(row=17, column=4)
+        #B2.grid(row=17, column=2)
         B3=Button(fen, text="Valider", font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2, command=lambda:(get(basedep,basearr,entier,man)))
-        B3.grid(row=17, column=5, columnspan=6)
-        B4=Button(fen, text="Menu", font=("courier", 18, "italic"), fg='white', bg='grey', width=15, height=2, command= back2)
-        B4.grid(row=17, column=7)
-        B5=Button(fen, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='#103985', width=15, height=2,command=back)
-        B5.grid(row=17, column=12)
+        #B3.grid(row=17, column=3)
+        B5=Button(fen, text="Menu", font=("courier", 18, "italic"), fg='white', bg='grey', width=15, height=2, command= back2)
+        #B4.grid(row=17, column=5)
+        B4=Button(fen, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='#103985', width=15, height=2,command=back)
+        #B5.grid(row=17, column=4)
 
-        
+        B1.grid(row=18, column=1)
+        B2.grid(row=18, column=2)
+        B3.grid(row=18, column=3)
+        B4.grid(row=18, column=4)
+        B5.grid(row=18, column=8)
+
         
 #===================================================================================================================================================================================
 #=========================================================================================
@@ -896,38 +901,38 @@ def Menu():
         
         
         f = fenetre
-##        f.rowconfigure(1, weight=0)
-##        f.rowconfigure(2, weight=0)
-##        f.rowconfigure(3, weight=1)
-##        f.rowconfigure(4, weight=1)
-##        f.rowconfigure(5, weight=1)
-##        f.rowconfigure(6, weight=1)
-##        f.rowconfigure(7, weight=1)
-##        f.rowconfigure(8, weight=1)
-##        f.rowconfigure(9, weight=1)
-##        f.rowconfigure(10, weight=1)
-##        f.rowconfigure(11, weight=1)
-##        f.rowconfigure(12, weight=1)
-##        f.rowconfigure(13, weight=1)
-##        f.rowconfigure(14, weight=1)
-##        f.rowconfigure(15, weight=1)
-##        f.rowconfigure(16, weight=1)
-##        f.rowconfigure(17, weight=1)
-##        f.rowconfigure(18, weight=1)
-##
-##
-##        f.columnconfigure(1, weight=1)
-##        f.columnconfigure(2, weight=1)
-##        f.columnconfigure(3, weight=1)
-##        f.columnconfigure(4, weight=1)
-##        f.columnconfigure(5, weight=0)
-##        f.columnconfigure(6, weight=1)
-##        f.columnconfigure(7, weight=1)
-##        f.columnconfigure(8, weight=1)
-##        f.columnconfigure(9, weight=1)
-##        f.columnconfigure(10, weight=1)
-##        f.columnconfigure(11, weight=1)
-##        f.columnconfigure(12, weight=1)
+        f.rowconfigure(1, weight=0)
+        f.rowconfigure(2, weight=0)
+        f.rowconfigure(3, weight=1)
+        f.rowconfigure(4, weight=1)
+        f.rowconfigure(5, weight=1)
+        f.rowconfigure(6, weight=1)
+        f.rowconfigure(7, weight=1)
+        f.rowconfigure(8, weight=1)
+        f.rowconfigure(9, weight=1)
+        f.rowconfigure(10, weight=1)
+        f.rowconfigure(11, weight=1)
+        f.rowconfigure(12, weight=1)
+        f.rowconfigure(13, weight=1)
+        f.rowconfigure(14, weight=1)
+        f.rowconfigure(15, weight=1)
+        f.rowconfigure(16, weight=1)
+        f.rowconfigure(17, weight=1)
+        f.rowconfigure(18, weight=1)
+
+
+        f.columnconfigure(1, weight=1)
+        f.columnconfigure(2, weight=1)
+        f.columnconfigure(3, weight=1)
+        f.columnconfigure(4, weight=1)
+        f.columnconfigure(5, weight=0)
+        f.columnconfigure(6, weight=1)
+        f.columnconfigure(7, weight=1)
+        f.columnconfigure(8, weight=1)
+        f.columnconfigure(9, weight=1)
+        f.columnconfigure(10, weight=1)
+        f.columnconfigure(11, weight=1)
+        f.columnconfigure(12, weight=1)
         
         global saisieB1
         global saisieB2
@@ -984,7 +989,8 @@ def Menu():
         st.grid(row=2, column=1,columnspan=4,ipady=50,ipadx=50)
             
         txt1=Label(f, text="Nombre Binaire 1 : ", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
-        txt1.grid(row=3,column=1,columnspan=2,sticky='nsew',ipady=10)
+        txt1.grid(row=4,column=1,columnspan=2,sticky='nsew',ipady=10)
+        
 
         if saisie==2:
             
@@ -992,10 +998,10 @@ def Menu():
         else:
             saisieB1=Label(f, text="", font=("courier",15, "italic"), fg='black', bg='white',width=10, height=1)
             
-        saisieB1.grid(row=3, column=3,ipadx=200,columnspan=4,ipady=10)
+        saisieB1.grid(row=4, column=3,ipadx=200,columnspan=4,ipady=10)
 
         txt2=Label(f, text="Choix d'opération : \n(+,- ou x) ", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
-        txt2.grid(row=4, column=1,columnspan=2,sticky='nsew',ipady=10)
+        txt2.grid(row=6, column=1,columnspan=2,sticky='nsew',ipady=10)
 
         if saisie==2:
             
@@ -1003,23 +1009,25 @@ def Menu():
         else:
             saisieOper=Label(f, text="", font=("courier",15, "italic"), fg='black', bg='white',width=10, height=1)
 
-        saisieOper.grid(row=4, column=3,ipadx=200,columnspan=4,ipady=10)
+        saisieOper.grid(row=6, column=3,ipadx=200,columnspan=4,ipady=10)
 
         txt3=Label(f, text="Nombre binaire 2 : ", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
-        txt3.grid(row=5, column=1,columnspan=2,sticky='nsew',ipady=10)
+        txt3.grid(row=8, column=1,columnspan=2,sticky='nsew',ipady=10)
+                      
+    
         
         if saisie==2:
             saisieB2=Entry(f)
         else:
             saisieB2=Label(f, text="", font=("courier",15, "italic"), fg='black', bg='white',width=10, height=1)
 
-        saisieB2.grid(row=5, column=3,ipadx=200,columnspan=4,ipady=10)
+        saisieB2.grid(row=8, column=3,ipadx=200,columnspan=4,ipady=10)
 
         txt4=Label(f, text="Résultat:          ", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
-        txt4.grid(row=6,column=1,columnspan=2,sticky='nsew',ipady=10)
+        txt4.grid(row=10,column=1,columnspan=2,sticky='nsew',ipady=10)
         
         saisieRep=Entry(f)
-        saisieRep.grid(row=6, column=3,ipadx=200,columnspan=4,ipady=10)
+        saisieRep.grid(row=10, column=3,ipadx=200,columnspan=4,ipady=10)
         
 
         if saisie == 1:
@@ -1033,15 +1041,15 @@ def Menu():
         x=10
 
         B1=Button(f, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2, command=lambda:create(f))
-        B1.grid(row=9, column=1)
+        B1.grid(row=18, column=1)
         B2=Button(f, text="Nouveau", state='disabled', font=("bold", 18, "italic"), fg='white', bg='#103985',width=15, height=2, command=lambda:Nouveau(saisie,fenetre))
-        B2.grid(row=9, column=2)
+        B2.grid(row=18, column=2)
         B3=Button(f, text="Valider", font=("courier", 18, "bold"), fg='white', bg='#103985',width=15, height=2, command=lambda:Valide(saisie, sa))
-        B3.grid(row=9, column=3)
+        B3.grid(row=18, column=3)
         B5=Button(f, text="Menu", font=("courier", 18, "bold"), fg='white', bg='grey',width=15, height=2, command=back2)
         B4=Button(f, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='#103985',  width=15, height=2, command=back)
-        B4.grid(row=9, column=4)
-        B5.grid(row=9, column=5)
+        B4.grid(row=18, column=4)
+        B5.grid(row=18, column=5)
 
 
 
@@ -1116,38 +1124,38 @@ def Menu():
     def Exercice3(f):
         fenetre=f
         fenetre.config(background='lightskyblue1')
-##        fenetre.rowconfigure(1, weight=0)
-##        fenetre.rowconfigure(2, weight=0)
-##        fenetre.rowconfigure(3, weight=1)
-##        fenetre.rowconfigure(4, weight=1)
-##        fenetre.rowconfigure(5, weight=1)
-##        fenetre.rowconfigure(6, weight=1)
-##        fenetre.rowconfigure(7, weight=1)
-##        fenetre.rowconfigure(8, weight=1)
-##        fenetre.rowconfigure(9, weight=1)
-##        fenetre.rowconfigure(10, weight=1)
-##        fenetre.rowconfigure(11, weight=1)
-##        fenetre.rowconfigure(12, weight=1)
-##        fenetre.rowconfigure(13, weight=1)
-##        fenetre.rowconfigure(14, weight=1)
-##        fenetre.rowconfigure(15, weight=1)
-##        fenetre.rowconfigure(16, weight=1)
-##        fenetre.rowconfigure(17, weight=1)
-##        fenetre.rowconfigure(18, weight=1)
-##
-##
-##        fenetre.columnconfigure(1, weight=1)
-##        fenetre.columnconfigure(2, weight=1)
-##        fenetre.columnconfigure(3, weight=1)
-##        fenetre.columnconfigure(4, weight=1)
-##        fenetre.columnconfigure(5, weight=0)
-##        fenetre.columnconfigure(6, weight=1)
-##        fenetre.columnconfigure(7, weight=1)
-##        fenetre.columnconfigure(8, weight=1)
-##        fenetre.columnconfigure(9, weight=1)
-##        fenetre.columnconfigure(10, weight=1)
-##        fenetre.columnconfigure(11, weight=1)
-##        fenetre.columnconfigure(12, weight=1)
+        fenetre.rowconfigure(1, weight=0)
+        fenetre.rowconfigure(2, weight=0)
+        fenetre.rowconfigure(3, weight=1)
+        fenetre.rowconfigure(4, weight=1)
+        fenetre.rowconfigure(5, weight=1)
+        fenetre.rowconfigure(6, weight=1)
+        fenetre.rowconfigure(7, weight=1)
+        fenetre.rowconfigure(8, weight=1)
+        fenetre.rowconfigure(9, weight=1)
+        fenetre.rowconfigure(10, weight=1)
+        fenetre.rowconfigure(11, weight=1)
+        fenetre.rowconfigure(12, weight=1)
+        fenetre.rowconfigure(13, weight=1)
+        fenetre.rowconfigure(14, weight=1)
+        fenetre.rowconfigure(15, weight=1)
+        fenetre.rowconfigure(16, weight=1)
+        fenetre.rowconfigure(17, weight=1)
+        fenetre.rowconfigure(18, weight=1)
+
+
+        fenetre.columnconfigure(1, weight=1)
+        fenetre.columnconfigure(2, weight=1)
+        fenetre.columnconfigure(3, weight=1)
+        fenetre.columnconfigure(4, weight=1)
+        fenetre.columnconfigure(5, weight=0)
+        fenetre.columnconfigure(6, weight=1)
+        fenetre.columnconfigure(7, weight=1)
+        fenetre.columnconfigure(8, weight=1)
+        fenetre.columnconfigure(9, weight=1)
+        fenetre.columnconfigure(10, weight=1)
+        fenetre.columnconfigure(11, weight=1)
+        fenetre.columnconfigure(12, weight=1)
         
         #===================================================================================================================
         #=======================================FONCTIONS D'EXERCICE 3
@@ -1411,38 +1419,38 @@ def Menu():
         fenetre.config(background='lightskyblue1')
 
 
-##        fenetre.rowconfigure(1, weight=0)
-##        fenetre.rowconfigure(2, weight=0)
-##        fenetre.rowconfigure(3, weight=1)
-##        fenetre.rowconfigure(4, weight=1)
-##        fenetre.rowconfigure(5, weight=1)
-##        fenetre.rowconfigure(6, weight=1)
-##        fenetre.rowconfigure(7, weight=1)
-##        fenetre.rowconfigure(8, weight=1)
-##        fenetre.rowconfigure(9, weight=1)
-##        fenetre.rowconfigure(10, weight=1)
-##        fenetre.rowconfigure(11, weight=1)
-##        fenetre.rowconfigure(12, weight=1)
-##        fenetre.rowconfigure(13, weight=1)
-##        fenetre.rowconfigure(14, weight=1)
-##        fenetre.rowconfigure(15, weight=1)
-##        fenetre.rowconfigure(16, weight=1)
-##        fenetre.rowconfigure(17, weight=1)
-##        fenetre.rowconfigure(18, weight=1)
-##
-##
-##        fenetre.columnconfigure(1, weight=1)
-##        fenetre.columnconfigure(2, weight=1)
-##        fenetre.columnconfigure(3, weight=1)
-##        fenetre.columnconfigure(4, weight=1)
-##        fenetre.columnconfigure(5, weight=0)
-##        fenetre.columnconfigure(6, weight=1)
-##        fenetre.columnconfigure(7, weight=1)
-##        fenetre.columnconfigure(8, weight=1)
-##        fenetre.columnconfigure(9, weight=1)
-##        fenetre.columnconfigure(10, weight=1)
-##        fenetre.columnconfigure(11, weight=1)
-##        fenetre.columnconfigure(12, weight=1)
+        fenetre.rowconfigure(1, weight=0)
+        fenetre.rowconfigure(2, weight=0)
+        fenetre.rowconfigure(3, weight=1)
+        fenetre.rowconfigure(4, weight=1)
+        fenetre.rowconfigure(5, weight=1)
+        fenetre.rowconfigure(6, weight=1)
+        fenetre.rowconfigure(7, weight=1)
+        fenetre.rowconfigure(8, weight=1)
+        fenetre.rowconfigure(9, weight=1)
+        fenetre.rowconfigure(10, weight=1)
+        fenetre.rowconfigure(11, weight=1)
+        fenetre.rowconfigure(12, weight=1)
+        fenetre.rowconfigure(13, weight=1)
+        fenetre.rowconfigure(14, weight=1)
+        fenetre.rowconfigure(15, weight=1)
+        fenetre.rowconfigure(16, weight=1)
+        fenetre.rowconfigure(17, weight=1)
+        fenetre.rowconfigure(18, weight=1)
+
+
+        fenetre.columnconfigure(1, weight=1)
+        fenetre.columnconfigure(2, weight=1)
+        fenetre.columnconfigure(3, weight=1)
+        fenetre.columnconfigure(4, weight=1)
+        fenetre.columnconfigure(5, weight=0)
+        fenetre.columnconfigure(6, weight=1)
+        fenetre.columnconfigure(7, weight=1)
+        fenetre.columnconfigure(8, weight=1)
+        fenetre.columnconfigure(9, weight=1)
+        fenetre.columnconfigure(10, weight=1)
+        fenetre.columnconfigure(11, weight=1)
+        fenetre.columnconfigure(12, weight=1)
 
         
 
@@ -1553,16 +1561,17 @@ def Menu():
                     
      
             
-            txt1=Label(fenetre, text="Type d'opération", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-            oper=Label(fenetre, text=donnee[2], font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
+            txt1=Label(fenetre, text="   Type d'opération", font=("courier", 22, "italic"), fg='black', bg='lightskyblue1')
+            oper=Entry(fenetre) 
 
-            txt2=Label(fenetre, text="Nombre Binaire ", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-            nbbin=Label(fenetre, text=donnee[0], font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
+            txt2=Label(fenetre, text="   Nombre Binaire ", font=("courier", 22, "italic"), fg='black', bg='lightskyblue1')
+            nbbin=Entry(fenetre) 
 
-            txt3=Label(fenetre, text="Puissance en base de 2 ", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-            puis=Label(fenetre, text=donnee[1], font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
-            txt4=Label(fenetre, text="Résultat", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-            res=Entry(fenetre) 
+            txt3=Label(fenetre, text="   Puissance en base de 2 ", font=("courier", 22, "italic"), fg='black', bg='lightskyblue1')
+            puis=Entry(fenetre) 
+
+            txt4=Label(fenetre, text="   Résultat", font=("courier", 22, "italic"), fg='black', bg='lightskyblue1')
+            res=Entry(fenetre)  
 
         #==============================================================================================================
         #=====================================Manuel===================================================================
@@ -1619,16 +1628,16 @@ def Menu():
             
             #===================================cadre2
             #puissance
-            txt1=Label(fenetre, text="   Type d'opération", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+            txt1=Label(fenetre, text="   Type d'opération", font=("courier", 22, "italic"), fg='black', bg='lightskyblue1')
             oper=Entry(fenetre) 
 
-            txt2=Label(fenetre, text="   Nombre Binaire ", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+            txt2=Label(fenetre, text="   Nombre Binaire ", font=("courier", 22, "italic"), fg='black', bg='lightskyblue1')
             nbbin=Entry(fenetre) 
 
-            txt3=Label(fenetre, text="   Puissance en base de 2 ", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+            txt3=Label(fenetre, text="   Puissance en base de 2 ", font=("courier", 22, "italic"), fg='black', bg='lightskyblue1')
             puis=Entry(fenetre) 
 
-            txt4=Label(fenetre, text="   Résultat", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+            txt4=Label(fenetre, text="   Résultat", font=("courier", 22, "italic"), fg='black', bg='lightskyblue1')
             res=Entry(fenetre) 
         #===========================================================
         #========= Contrôle =========================================
@@ -1768,17 +1777,17 @@ def Menu():
         soustitre=Label(fenetre, text="Quelques indications :Base 2 => maximum 16 bits en entrée Base 10 => entre 2 et 256 en puissance de 2\nDivision =>Le nombre en base 2 doit se terminer par au moins autant de 0 que l’exposant de la puissance de 2", font=("Courier", 15, "italic"), fg='blue4', bg='lightskyblue1')
         soustitre.grid(row=2, column=1,columnspan=5,ipady=30) 
 
-        txt1.grid(row=4, column=1,columnspan=2,sticky='w',ipady=30)
-        oper.grid(row=4,column=2,ipadx=200,columnspan=4,ipady=10) # Placement de la zone de saisie
+        txt1.grid(row=5, column=1,columnspan=2,sticky='w',ipady=30)
+        oper.grid(row=5,column=2,ipadx=200,columnspan=4,ipady=10) # Placement de la zone de saisie
         
-        txt2.grid(row=5, column=1,columnspan=2,sticky='w')
-        nbbin.grid(row=5, column=2,ipadx=200,columnspan=4,ipady=10)
+        txt2.grid(row=7, column=1,columnspan=2,sticky='w')
+        nbbin.grid(row=7, column=2,ipadx=200,columnspan=4,ipady=10)
         
-        txt3.grid(row=6, column=1,columnspan=2,sticky='w',ipady=30)
-        puis.grid(row=6, column=2,ipadx=200,columnspan=4,ipady=10)
+        txt3.grid(row=9, column=1,columnspan=2,sticky='w',ipady=30)
+        puis.grid(row=9, column=2,ipadx=200,columnspan=4,ipady=10)
         
-        txt4.grid(row=7,column=1,columnspan=2,sticky='w',ipady=30)
-        res.grid(row=7, column=2,ipadx=200,columnspan=4,ipady=10)
+        txt4.grid(row=11,column=1,columnspan=2,sticky='w',ipady=30)
+        res.grid(row=11, column=2,ipadx=200,columnspan=4,ipady=10)
 
             
         B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2,command=lambda:create())
@@ -1788,11 +1797,11 @@ def Menu():
         B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='#103985', width=15, height=2,command=back)
          
 
-        B1.grid(row=9, column=1)
-        B2.grid(row=9, column=2)
-        B3.grid(row=9, column=3)
-        B4.grid(row=9, column=5)
-        B5.grid(row=9, column=4)
+        B1.grid(row=18, column=1)
+        B2.grid(row=18, column=2)
+        B3.grid(row=18, column=3)
+        B4.grid(row=18, column=5)
+        B5.grid(row=18, column=4)
 
 #===================================================================================================================================================================================
 #=========================================================================================
@@ -1828,38 +1837,38 @@ def Menu():
         fenetre.config(background="lightskyblue1")
         ##fenetre.attributes('-fullscreen', True)
 
-##        fenetre.rowconfigure(1, weight=0)
-##        fenetre.rowconfigure(2, weight=0)
-##        fenetre.rowconfigure(3, weight=1)
-##        fenetre.rowconfigure(4, weight=1)
-##        fenetre.rowconfigure(5, weight=1)
-##        fenetre.rowconfigure(6, weight=1)
-##        fenetre.rowconfigure(7, weight=1)
-##        fenetre.rowconfigure(8, weight=1)
-##        fenetre.rowconfigure(9, weight=1)
-##        fenetre.rowconfigure(10, weight=1)
-##        fenetre.rowconfigure(11, weight=1)
-##        fenetre.rowconfigure(12, weight=1)
-##        fenetre.rowconfigure(13, weight=1)
-##        fenetre.rowconfigure(14, weight=1)
-##        fenetre.rowconfigure(15, weight=1)
-##        fenetre.rowconfigure(16, weight=1)
-##        fenetre.rowconfigure(17, weight=1)
-##        fenetre.rowconfigure(18, weight=1)
-##
-##
-##        fenetre.columnconfigure(1, weight=1)
-##        fenetre.columnconfigure(2, weight=1)
-##        fenetre.columnconfigure(3, weight=1)
-##        fenetre.columnconfigure(4, weight=1)
-##        fenetre.columnconfigure(5, weight=0)
-##        fenetre.columnconfigure(6, weight=1)
-##        fenetre.columnconfigure(7, weight=1)
-##        fenetre.columnconfigure(8, weight=1)
-##        fenetre.columnconfigure(9, weight=1)
-##        fenetre.columnconfigure(10, weight=1)
-##        fenetre.columnconfigure(11, weight=1)
-##        fenetre.columnconfigure(12, weight=1)
+        fenetre.rowconfigure(1, weight=0)
+        fenetre.rowconfigure(2, weight=0)
+        fenetre.rowconfigure(3, weight=1)
+        fenetre.rowconfigure(4, weight=1)
+        fenetre.rowconfigure(5, weight=1)
+        fenetre.rowconfigure(6, weight=1)
+        fenetre.rowconfigure(7, weight=1)
+        fenetre.rowconfigure(8, weight=1)
+        fenetre.rowconfigure(9, weight=1)
+        fenetre.rowconfigure(10, weight=1)
+        fenetre.rowconfigure(11, weight=1)
+        fenetre.rowconfigure(12, weight=1)
+        fenetre.rowconfigure(13, weight=1)
+        fenetre.rowconfigure(14, weight=1)
+        fenetre.rowconfigure(15, weight=1)
+        fenetre.rowconfigure(16, weight=1)
+        fenetre.rowconfigure(17, weight=1)
+        fenetre.rowconfigure(18, weight=1)
+
+
+        fenetre.columnconfigure(1, weight=1)
+        fenetre.columnconfigure(2, weight=1)
+        fenetre.columnconfigure(3, weight=1)
+        fenetre.columnconfigure(4, weight=1)
+        fenetre.columnconfigure(5, weight=0)
+        fenetre.columnconfigure(6, weight=1)
+        fenetre.columnconfigure(7, weight=1)
+        fenetre.columnconfigure(8, weight=1)
+        fenetre.columnconfigure(9, weight=1)
+        fenetre.columnconfigure(10, weight=1)
+        fenetre.columnconfigure(11, weight=1)
+        fenetre.columnconfigure(12, weight=1)
 
         formats=AleaFormat5(lis)
         entier=AleaEnt5()
@@ -2175,38 +2184,38 @@ def Menu():
         fenetre=f
         fenetre.config(background="lightskyblue1")
 
-##        fenetre.rowconfigure(1, weight=0)
-##        fenetre.rowconfigure(2, weight=0)
-##        fenetre.rowconfigure(3, weight=1)
-##        fenetre.rowconfigure(4, weight=1)
-##        fenetre.rowconfigure(5, weight=1)
-##        fenetre.rowconfigure(6, weight=1)
-##        fenetre.rowconfigure(7, weight=1)
-##        fenetre.rowconfigure(8, weight=1)
-##        fenetre.rowconfigure(9, weight=1)
-##        fenetre.rowconfigure(10, weight=1)
-##        fenetre.rowconfigure(11, weight=1)
-##        fenetre.rowconfigure(12, weight=1)
-##        fenetre.rowconfigure(13, weight=1)
-##        fenetre.rowconfigure(14, weight=1)
-##        fenetre.rowconfigure(15, weight=1)
-##        fenetre.rowconfigure(16, weight=1)
-##        fenetre.rowconfigure(17, weight=1)
-##        fenetre.rowconfigure(18, weight=1)
-##
-##
-##        fenetre.columnconfigure(1, weight=1)
-##        fenetre.columnconfigure(2, weight=1)
-##        fenetre.columnconfigure(3, weight=1)
-##        fenetre.columnconfigure(4, weight=1)
-##        fenetre.columnconfigure(5, weight=0)
-##        fenetre.columnconfigure(6, weight=1)
-##        fenetre.columnconfigure(7, weight=1)
-##        fenetre.columnconfigure(8, weight=1)
-##        fenetre.columnconfigure(9, weight=1)
-##        fenetre.columnconfigure(10, weight=1)
-##        fenetre.columnconfigure(11, weight=1)
-##        fenetre.columnconfigure(12, weight=1)
+        fenetre.rowconfigure(1, weight=0)
+        fenetre.rowconfigure(2, weight=0)
+        fenetre.rowconfigure(3, weight=1)
+        fenetre.rowconfigure(4, weight=1)
+        fenetre.rowconfigure(5, weight=1)
+        fenetre.rowconfigure(6, weight=1)
+        fenetre.rowconfigure(7, weight=1)
+        fenetre.rowconfigure(8, weight=1)
+        fenetre.rowconfigure(9, weight=1)
+        fenetre.rowconfigure(10, weight=1)
+        fenetre.rowconfigure(11, weight=1)
+        fenetre.rowconfigure(12, weight=1)
+        fenetre.rowconfigure(13, weight=1)
+        fenetre.rowconfigure(14, weight=1)
+        fenetre.rowconfigure(15, weight=1)
+        fenetre.rowconfigure(16, weight=1)
+        fenetre.rowconfigure(17, weight=1)
+        fenetre.rowconfigure(18, weight=1)
+
+
+        fenetre.columnconfigure(1, weight=1)
+        fenetre.columnconfigure(2, weight=1)
+        fenetre.columnconfigure(3, weight=1)
+        fenetre.columnconfigure(4, weight=1)
+        fenetre.columnconfigure(5, weight=0)
+        fenetre.columnconfigure(6, weight=1)
+        fenetre.columnconfigure(7, weight=1)
+        fenetre.columnconfigure(8, weight=1)
+        fenetre.columnconfigure(9, weight=1)
+        fenetre.columnconfigure(10, weight=1)
+        fenetre.columnconfigure(11, weight=1)
+        fenetre.columnconfigure(12, weight=1)
 
         man=select
 
@@ -2834,38 +2843,38 @@ def Menu():
         fenetre=f
         fenetre.config(background="lightskyblue1")
 
-##        fenetre.rowconfigure(1, weight=0)
-##        fenetre.rowconfigure(2, weight=0)
-##        fenetre.rowconfigure(3, weight=1)
-##        fenetre.rowconfigure(4, weight=1)
-##        fenetre.rowconfigure(5, weight=1)
-##        fenetre.rowconfigure(6, weight=1)
-##        fenetre.rowconfigure(7, weight=1)
-##        fenetre.rowconfigure(8, weight=1)
-##        fenetre.rowconfigure(9, weight=1)
-##        fenetre.rowconfigure(10, weight=1)
-##        fenetre.rowconfigure(11, weight=1)
-##        fenetre.rowconfigure(12, weight=1)
-##        fenetre.rowconfigure(13, weight=1)
-##        fenetre.rowconfigure(14, weight=1)
-##        fenetre.rowconfigure(15, weight=1)
-##        fenetre.rowconfigure(16, weight=1)
-##        fenetre.rowconfigure(17, weight=1)
-##        fenetre.rowconfigure(18, weight=1)
-##
-##
-##        fenetre.columnconfigure(1, weight=1)
-##        fenetre.columnconfigure(2, weight=1)
-##        fenetre.columnconfigure(3, weight=1)
-##        fenetre.columnconfigure(4, weight=1)
-##        fenetre.columnconfigure(5, weight=0)
-##        fenetre.columnconfigure(6, weight=1)
-##        fenetre.columnconfigure(7, weight=1)
-##        fenetre.columnconfigure(8, weight=1)
-##        fenetre.columnconfigure(9, weight=1)
-##        fenetre.columnconfigure(10, weight=1)
-##        fenetre.columnconfigure(11, weight=1)
-##        fenetre.columnconfigure(12, weight=1)
+        fenetre.rowconfigure(1, weight=0)
+        fenetre.rowconfigure(2, weight=0)
+        fenetre.rowconfigure(3, weight=1)
+        fenetre.rowconfigure(4, weight=1)
+        fenetre.rowconfigure(5, weight=1)
+        fenetre.rowconfigure(6, weight=1)
+        fenetre.rowconfigure(7, weight=1)
+        fenetre.rowconfigure(8, weight=1)
+        fenetre.rowconfigure(9, weight=1)
+        fenetre.rowconfigure(10, weight=1)
+        fenetre.rowconfigure(11, weight=1)
+        fenetre.rowconfigure(12, weight=1)
+        fenetre.rowconfigure(13, weight=1)
+        fenetre.rowconfigure(14, weight=1)
+        fenetre.rowconfigure(15, weight=1)
+        fenetre.rowconfigure(16, weight=1)
+        fenetre.rowconfigure(17, weight=1)
+        fenetre.rowconfigure(18, weight=1)
+
+
+        fenetre.columnconfigure(1, weight=1)
+        fenetre.columnconfigure(2, weight=1)
+        fenetre.columnconfigure(3, weight=1)
+        fenetre.columnconfigure(4, weight=1)
+        fenetre.columnconfigure(5, weight=0)
+        fenetre.columnconfigure(6, weight=1)
+        fenetre.columnconfigure(7, weight=1)
+        fenetre.columnconfigure(8, weight=1)
+        fenetre.columnconfigure(9, weight=1)
+        fenetre.columnconfigure(10, weight=1)
+        fenetre.columnconfigure(11, weight=1)
+        fenetre.columnconfigure(12, weight=1)
 
         man=select
 
@@ -3055,16 +3064,16 @@ def Menu():
 
         titre=Label(fenetre, text="Les Décimaux", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')  # Placement de l'invite
 
-        soustitre=Label(fenetre, text="Quelques Indications: Base de départ 10 valeur --> 0 et 10 000, entre 1 et 6 bits après la virgule \n              Base de départ 2 --> max 5 bits après la virgule , valeur max 32 bits", font=("courier", 15), fg='darkblue', bg='lightskyblue1') 
+        soustitre=Label(fenetre, text="Quelques Indications: Base de départ 10 valeur --> 0 et 10 000, entre 1 et 6 bits après la virgule \n              Base de départ 2 --> max 5 bits après la virgule , valeur max 32 bits", font=("courier", 13), fg='darkblue', bg='lightskyblue1') 
 
         if man==1:
             if ordre=='10':    
-                txt1=Label(fenetre, text="  Binaire à convertir", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+                txt1=Label(fenetre, text="  Binaire à convertir", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
             else:
-                txt1=Label(fenetre, text="  Décimal à convertir", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+                txt1=Label(fenetre, text="  Décimal à convertir", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
             
         else:
-                txt1=Label(fenetre, text="  Valeur à convertir", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+                txt1=Label(fenetre, text="  Valeur à convertir", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
                
            
         if man==2:
@@ -3074,7 +3083,7 @@ def Menu():
             saisieVal=Label(fenetre, text=valeur, font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
 
 
-        txt2=Label(fenetre, text="  Convertir au format", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+        txt2=Label(fenetre, text="  Convertir au format", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
 
         ##val.set(OptionsExo6[0]) # default value
         ##w1 = ttk.OptionMenu(fenetre,fenetre.option_var,OptionsExo6[0], *OptionsExo6)
@@ -3087,11 +3096,11 @@ def Menu():
 
         if man==1:
             if ordre=='10':
-                txt3=Label(fenetre, text="  Nombres après la virgule", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+                txt3=Label(fenetre, text="  Nombres après la virgule", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
             else:
-                txt3=Label(fenetre, text="  Bits après la virgule", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+                txt3=Label(fenetre, text="  Bits après la virgule", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
         else:
-                txt3=Label(fenetre, text="  Nombres après la virgule", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+                txt3=Label(fenetre, text="  Nombres après la virgule", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
 
             
         if man == 2 :
@@ -3101,7 +3110,7 @@ def Menu():
             saisieVirg = Label(fenetre, text=virgule, font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
 
 
-        txt4=Label(fenetre, text="  Résultat", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
+        txt4=Label(fenetre, text="  Résultat", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
         Resultats=Entry(fenetre) #width= largeur, height= hauteur) # Création de la zone de résultats
 
         #======================================================================================================================#
@@ -3183,28 +3192,30 @@ def Menu():
          
         B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='#103985', width=15, height=2,command=back)
 
-        titre.grid(row=1, column=2,columnspan=3,ipady=10)
-        soustitre.grid(row=2, column=1,columnspan=4,ipady=10)
-        txt1.grid(row=4, column=1,columnspan=2,sticky='w',ipady=10)
+        titre.grid(row=1, column = 2, columnspan=3)
+        soustitre.grid(row=2, column=1,columnspan=4,ipady=50,ipadx=50)
+        txt1.grid(row=4,column=1,columnspan=2,sticky='w',ipady=10)
+        
         saisieVal.grid(row=4, column=2,ipadx=200,columnspan=4,ipady=10)
 
-        txt2.grid(row=5, column=1,columnspan=2,sticky='w')
-        w1.grid(row=5, column=2,ipadx=235,columnspan=4,ipady=10)
 
-        txt3.grid(row=6, column=1,columnspan=2,sticky='w',ipady=10)
-        saisieVirg.grid(row=6, column=2,ipadx=200,columnspan=4,ipady=10)
+        txt2.grid(row=6, column=1,columnspan=2,sticky='w',ipady=10)
+        w1.grid(row=6, column=2,ipadx=235,columnspan=4,ipady=10)
 
-        txt4.grid(row=7, column=1,columnspan=2,sticky='w',ipady=10)
-        Resultats.grid(row=7, column=2,ipadx=200,columnspan=4,ipady=10)
+        txt3.grid(row=8, column=1,columnspan=2,sticky='w',ipady=10)
+        saisieVirg.grid(row=8, column=2,ipadx=200,columnspan=4,ipady=10)
+
+        txt4.grid(row=10,column=1,columnspan=2,sticky='w',ipady=10)
+        Resultats.grid(row=10, column=2,ipadx=200,columnspan=4,ipady=10)
 
 
 
         #bouton#
-        B1.grid(row=9, column=1)
-        B2.grid(row=9, column=2)
-        B3.grid(row=9, column=3)
-        B4.grid(row=9, column=5)
-        B5.grid(row=9, column=4)
+        B1.grid(row=18, column=1)
+        B2.grid(row=18, column=2)
+        B3.grid(row=18, column=3)
+        B4.grid(row=18, column=5)
+        B5.grid(row=18, column=4)
 
 
         
@@ -3322,38 +3333,38 @@ def Menu():
         fenetre=f
 
 
-##        fenetre.rowconfigure(1, weight=0)
-##        fenetre.rowconfigure(2, weight=0)
-##        fenetre.rowconfigure(3, weight=1)
-##        fenetre.rowconfigure(4, weight=1)
-##        fenetre.rowconfigure(5, weight=1)
-##        fenetre.rowconfigure(6, weight=1)
-##        fenetre.rowconfigure(7, weight=1)
-##        fenetre.rowconfigure(8, weight=1)
-##        fenetre.rowconfigure(9, weight=1)
-##        fenetre.rowconfigure(10, weight=1)
-##        fenetre.rowconfigure(11, weight=1)
-##        fenetre.rowconfigure(12, weight=1)
-##        fenetre.rowconfigure(13, weight=1)
-##        fenetre.rowconfigure(14, weight=1)
-##        fenetre.rowconfigure(15, weight=1)
-##        fenetre.rowconfigure(16, weight=1)
-##        fenetre.rowconfigure(17, weight=1)
-##        fenetre.rowconfigure(18, weight=1)
-##
-##
-##        fenetre.columnconfigure(1, weight=1)
-##        fenetre.columnconfigure(2, weight=1)
-##        fenetre.columnconfigure(3, weight=1)
-##        fenetre.columnconfigure(4, weight=1)
-##        fenetre.columnconfigure(5, weight=0)
-##        fenetre.columnconfigure(6, weight=1)
-##        fenetre.columnconfigure(7, weight=1)
-##        fenetre.columnconfigure(8, weight=1)
-##        fenetre.columnconfigure(9, weight=1)
-##        fenetre.columnconfigure(10, weight=1)
-##        fenetre.columnconfigure(11, weight=1)
-##        fenetre.columnconfigure(12, weight=1)
+        fenetre.rowconfigure(1, weight=0)
+        fenetre.rowconfigure(2, weight=0)
+        fenetre.rowconfigure(3, weight=1)
+        fenetre.rowconfigure(4, weight=1)
+        fenetre.rowconfigure(5, weight=1)
+        fenetre.rowconfigure(6, weight=1)
+        fenetre.rowconfigure(7, weight=1)
+        fenetre.rowconfigure(8, weight=1)
+        fenetre.rowconfigure(9, weight=1)
+        fenetre.rowconfigure(10, weight=1)
+        fenetre.rowconfigure(11, weight=1)
+        fenetre.rowconfigure(12, weight=1)
+        fenetre.rowconfigure(13, weight=1)
+        fenetre.rowconfigure(14, weight=1)
+        fenetre.rowconfigure(15, weight=1)
+        fenetre.rowconfigure(16, weight=1)
+        fenetre.rowconfigure(17, weight=1)
+        fenetre.rowconfigure(18, weight=1)
+
+
+        fenetre.columnconfigure(1, weight=1)
+        fenetre.columnconfigure(2, weight=1)
+        fenetre.columnconfigure(3, weight=1)
+        fenetre.columnconfigure(4, weight=1)
+        fenetre.columnconfigure(5, weight=0)
+        fenetre.columnconfigure(6, weight=1)
+        fenetre.columnconfigure(7, weight=1)
+        fenetre.columnconfigure(8, weight=1)
+        fenetre.columnconfigure(9, weight=1)
+        fenetre.columnconfigure(10, weight=1)
+        fenetre.columnconfigure(11, weight=1)
+        fenetre.columnconfigure(12, weight=1)
 
         man=select # variable qui va définir si c'est manuel ou aléatoire
         
@@ -3586,38 +3597,38 @@ def Menu():
         fenetre.config(background="lightskyblue1")
         #fenetre.attributes('-fullscreen', True)
 
-##        fenetre.rowconfigure(1, weight=0)
-##        fenetre.rowconfigure(2, weight=0)
-##        fenetre.rowconfigure(3, weight=1)
-##        fenetre.rowconfigure(4, weight=1)
-##        fenetre.rowconfigure(5, weight=1)
-##        fenetre.rowconfigure(6, weight=1)
-##        fenetre.rowconfigure(7, weight=1)
-##        fenetre.rowconfigure(8, weight=1)
-##        fenetre.rowconfigure(9, weight=1)
-##        fenetre.rowconfigure(10, weight=1)
-##        fenetre.rowconfigure(11, weight=1)
-##        fenetre.rowconfigure(12, weight=1)
-##        fenetre.rowconfigure(13, weight=1)
-##        fenetre.rowconfigure(14, weight=1)
-##        fenetre.rowconfigure(15, weight=1)
-##        fenetre.rowconfigure(16, weight=1)
-##        fenetre.rowconfigure(17, weight=1)
-##        fenetre.rowconfigure(18, weight=1)
-##
-##
-##        fenetre.columnconfigure(1, weight=1)
-##        fenetre.columnconfigure(2, weight=1)
-##        fenetre.columnconfigure(3, weight=1)
-##        fenetre.columnconfigure(4, weight=1)
-##        fenetre.columnconfigure(5, weight=0)
-##        fenetre.columnconfigure(6, weight=1)
-##        fenetre.columnconfigure(7, weight=1)
-##        fenetre.columnconfigure(8, weight=1)
-##        fenetre.columnconfigure(9, weight=1)
-##        fenetre.columnconfigure(10, weight=1)
-##        fenetre.columnconfigure(11, weight=1)
-##        fenetre.columnconfigure(12, weight=1)
+        fenetre.rowconfigure(1, weight=0)
+        fenetre.rowconfigure(2, weight=0)
+        fenetre.rowconfigure(3, weight=1)
+        fenetre.rowconfigure(4, weight=1)
+        fenetre.rowconfigure(5, weight=1)
+        fenetre.rowconfigure(6, weight=1)
+        fenetre.rowconfigure(7, weight=1)
+        fenetre.rowconfigure(8, weight=1)
+        fenetre.rowconfigure(9, weight=1)
+        fenetre.rowconfigure(10, weight=1)
+        fenetre.rowconfigure(11, weight=1)
+        fenetre.rowconfigure(12, weight=1)
+        fenetre.rowconfigure(13, weight=1)
+        fenetre.rowconfigure(14, weight=1)
+        fenetre.rowconfigure(15, weight=1)
+        fenetre.rowconfigure(16, weight=1)
+        fenetre.rowconfigure(17, weight=1)
+        fenetre.rowconfigure(18, weight=1)
+
+
+        fenetre.columnconfigure(1, weight=1)
+        fenetre.columnconfigure(2, weight=1)
+        fenetre.columnconfigure(3, weight=1)
+        fenetre.columnconfigure(4, weight=1)
+        fenetre.columnconfigure(5, weight=0)
+        fenetre.columnconfigure(6, weight=1)
+        fenetre.columnconfigure(7, weight=1)
+        fenetre.columnconfigure(8, weight=1)
+        fenetre.columnconfigure(9, weight=1)
+        fenetre.columnconfigure(10, weight=1)
+        fenetre.columnconfigure(11, weight=1)
+        fenetre.columnconfigure(12, weight=1)
 
 
         Raiponce={}
@@ -4004,59 +4015,59 @@ def Menu():
          
         B3=Button(fenetre, text="Valider", state='disabled',font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:get(donne))
          
-        B4=Button(fenetre, text="Menu", font=("courier", 18, "italic"), fg='white', bg='grey', width=15, height=2,command=back2)
+        B4=Button(fenetre, text="Menu", font=("calibri", 18, "italic"), fg='white', bg='grey', width=15, height=2,command=back2)
          
         B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='#103985', width=15, height=2,command=back)
 
-        B6=Button(fenetre, text="Go!", font=("calibri", 18, "bold"), fg='white', bg='#103985', width=16, height=0,command=lambda:control(donne,ko,taille,TailleC,Adresse))
+        B6=Button(fenetre, text="Go!", font=("calibri", 18, "bold"), fg='white', bg='#103985', width=14, height=0,command=lambda:control(donne,ko,taille,TailleC,Adresse))
 
         titre.grid(row=1, column=2,columnspan=3)
         soustitre.grid(row=2, column=1,columnspan=5,sticky='w')
 
-        txt1.grid(row=3, column=1,columnspan=2,sticky='w')
-        TailleTab.grid(row=3, column=2,ipady=10)
+        txt1.grid(row=5, column=1,columnspan=2,sticky='w')
+        TailleTab.grid(row=5, column=2,ipady=10)
 
-        txt1a.grid(row=3, column=1,sticky='s')
+        txt1a.grid(row=6, column=1,sticky='n')
 
-        txt2.grid(row=3, column=3,columnspan=4,sticky='w')
-        TailleCase.grid(row=3,column=4,ipady=10)
+        txt2.grid(row=5, column=3,columnspan=4,sticky='w')
+        TailleCase.grid(row=5,column=4,ipady=10)
 
-        txt2a.grid(row=3, column=3,sticky='s')
+        txt2a.grid(row=6, column=3,sticky='n')
 
     
 
-        txt3.grid(row=4, column=1,columnspan=2,sticky='w',ipady=30)
-        AdPMTab.grid(row=4, column=2,ipady=10)
+        txt3.grid(row=7, column=1,columnspan=2,sticky='w',ipady=30)
+        AdPMTab.grid(row=7, column=2,ipady=10)
 
-        txt4.grid(row=4,column=3,columnspan=4,sticky='w',ipady=30)
-        NumCase.grid(row=4, column=4,ipady=10,ipadx=20)
+        txt4.grid(row=7,column=3,columnspan=4,sticky='w',ipady=30)
+        NumCase.grid(row=7, column=4,ipady=10,ipadx=20)
 
-        txtQ10.grid(row=5, column=2,columnspan=3,sticky='w')
-        NbCTab.grid(row=5, column=4,columnspan=5,ipadx=100,ipady=10,sticky='w')
+        txtQ10.grid(row=9, column=2,columnspan=3,sticky='w')
+        NbCTab.grid(row=9, column=4,columnspan=5,ipadx=100,ipady=10,sticky='w')
 
-        txtQu1.grid(row=5, column=1,sticky='w')
+        txtQu1.grid(row=9, column=1,sticky='w')
 
-        txtQ11.grid(row=6, column=2,columnspan=3,sticky='w')
-        NumPTab.grid(row=6, column=4,columnspan=5,ipadx=100,ipady=10,sticky='w')
+        txtQ11.grid(row=11, column=2,columnspan=3,sticky='w')
+        NumPTab.grid(row=11, column=4,columnspan=5,ipadx=100,ipady=10,sticky='w')
 
-        txtQ12.grid(row=7, column=2,columnspan=3,sticky='w')
-        NumDTab.grid(row=7, column=4,columnspan=5,ipadx=100,ipady=10,sticky='w')
+        txtQ12.grid(row=13, column=2,columnspan=3,sticky='w')
+        NumDTab.grid(row=13, column=4,columnspan=5,ipadx=100,ipady=10,sticky='w')
 
 
-        txtQ2.grid(row=8, column=2,columnspan=3,sticky='w')
-        MotCase.grid(row=8,column=4,columnspan=5,ipadx=100,ipady=10,sticky='w')
+        txtQ2.grid(row=11, column=2,columnspan=3,sticky='w')
+        MotCase.grid(row=11,column=4,columnspan=5,ipadx=100,ipady=10,sticky='w')
 
-        txtQu2.grid(row=8, column=1,sticky='w')
+        txtQu2.grid(row=11, column=1,sticky='w')
 
 
 
         #bouton#
-        B1.grid(row=9, column=1)
-        B2.grid(row=9, column=2)
-        B3.grid(row=9, column=3)
-        B4.grid(row=9, column=5)
-        B5.grid(row=9, column=4)
-        B6.grid(row=4, column=5,sticky='nw')
+        B1.grid(row=18, column=1)
+        B2.grid(row=18, column=2)
+        B3.grid(row=18, column=3)
+        B4.grid(row=18, column=5)
+        B5.grid(row=18, column=4)
+        B6.grid(row=6, column=5,sticky='nw')
     #============================================================================
     #===================== Chapitre 2 ===========================================
     #============================================================================
@@ -4120,39 +4131,39 @@ def Menu():
             fenetre.config(background="lightskyblue1")
             ##fenetre.attributes('-fullscreen', True)
 
-##            fenetre.rowconfigure(1, weight=0)
-##            fenetre.rowconfigure(2, weight=0)
-##            fenetre.rowconfigure(3, weight=1)
-##            fenetre.rowconfigure(4, weight=1)
-##            fenetre.rowconfigure(5, weight=1)
-##            fenetre.rowconfigure(6, weight=1)
-##            fenetre.rowconfigure(7, weight=1)
-##            fenetre.rowconfigure(8, weight=1)
-##            fenetre.rowconfigure(9, weight=1)
-##            fenetre.rowconfigure(10, weight=1)
-##            fenetre.rowconfigure(11, weight=1)
-##            fenetre.rowconfigure(12, weight=1)
-##            fenetre.rowconfigure(13, weight=1)
-##            fenetre.rowconfigure(14, weight=1)
-##            fenetre.rowconfigure(15, weight=1)
-##            fenetre.rowconfigure(16, weight=1)
-##            fenetre.rowconfigure(17, weight=1)
-##            fenetre.rowconfigure(18, weight=1)
-##
-##
-##
-##            fenetre.columnconfigure(1, weight=1)
-##            fenetre.columnconfigure(2, weight=1)
-##            fenetre.columnconfigure(3, weight=1)
-##            fenetre.columnconfigure(4, weight=1)
-##            fenetre.columnconfigure(5, weight=1)
-##            fenetre.columnconfigure(6, weight=1)
-##            fenetre.columnconfigure(7, weight=1)
-##            fenetre.columnconfigure(8, weight=1)
-##            fenetre.columnconfigure(9, weight=1)
-##            fenetre.columnconfigure(10, weight=1)
-##            fenetre.columnconfigure(11, weight=1)
-##            fenetre.columnconfigure(12, weight=1)
+            fenetre.rowconfigure(1, weight=0)
+            fenetre.rowconfigure(2, weight=0)
+            fenetre.rowconfigure(3, weight=1)
+            fenetre.rowconfigure(4, weight=1)
+            fenetre.rowconfigure(5, weight=1)
+            fenetre.rowconfigure(6, weight=1)
+            fenetre.rowconfigure(7, weight=1)
+            fenetre.rowconfigure(8, weight=1)
+            fenetre.rowconfigure(9, weight=1)
+            fenetre.rowconfigure(10, weight=1)
+            fenetre.rowconfigure(11, weight=1)
+            fenetre.rowconfigure(12, weight=1)
+            fenetre.rowconfigure(13, weight=1)
+            fenetre.rowconfigure(14, weight=1)
+            fenetre.rowconfigure(15, weight=1)
+            fenetre.rowconfigure(16, weight=1)
+            fenetre.rowconfigure(17, weight=1)
+            fenetre.rowconfigure(18, weight=1)
+
+
+
+            fenetre.columnconfigure(1, weight=1)
+            fenetre.columnconfigure(2, weight=1)
+            fenetre.columnconfigure(3, weight=1)
+            fenetre.columnconfigure(4, weight=1)
+            fenetre.columnconfigure(5, weight=1)
+            fenetre.columnconfigure(6, weight=1)
+            fenetre.columnconfigure(7, weight=1)
+            fenetre.columnconfigure(8, weight=1)
+            fenetre.columnconfigure(9, weight=1)
+            fenetre.columnconfigure(10, weight=1)
+            fenetre.columnconfigure(11, weight=1)
+            fenetre.columnconfigure(12, weight=1)
 
             man = select
             
@@ -4161,6 +4172,10 @@ def Menu():
             global lp
             global quantum
             global Ltemps
+            global vis
+            global visi
+            vis=0
+            visi=0
             quantum=0
             lp=[]
             Type=""
@@ -4337,11 +4352,12 @@ def Menu():
                 return(liste)   
 
 
+            def Al():
+                global prio
+            
+                
+                Type=fenetre.menu.get()
 
-            if man==1:
-               
-                i=randrange(0,7)
-                Type=Li[i]
                 n=randrange(4,10)
                 
                 mini=0
@@ -4371,7 +4387,7 @@ def Menu():
                     listprio.append(prio)
                     
                     maxi=maxi+duree
-                    q=randrange(1,4)
+                    q=randrange(1,3)
                     quantum=q
                     listq.append(quantum)
                       
@@ -4380,8 +4396,11 @@ def Menu():
                     if Type=='Priorite fixes' or Type=="Algorithmes multi files TOURNIQUET sans migration" or Type=="Algorithmes multi files FIFO sans migration":
                         lp.append({"n":listp[i],"da":listarv[i],"d":listdur[i],"prio":listprio[i]})
                     else :
-                        lp.append({"n":listp[i],"da":listarv[i],"d":listdur[i],"quantum":listq[i]})
-
+                        lp.append({"n":listp[i],"da":listarv[i],"d":listdur[i],"quantum":listq[i]})        
+                return(Type,n,lp,quantum)
+            
+            
+              
 
             def AleaTab(lp,mode,NbProc,n):
                 if man==1:
@@ -4501,23 +4520,23 @@ def Menu():
                 global mycanvas
                 global vsb
                 global frame_main
+                global visi
                 
-                if man==2:    
-                    ok=ctrltab()
-                else:
-                    ok=0
-
+                 
+                ok=ctrltab()
+                
                 if ok!=1:
                     
-                    
+                    visi=1
                     frame_main = tk.Frame(fenetre, bg="lightskyblue1")
-                    frame_main.grid(column=6,row=6,columnspan=9,sticky='nw',pady=40)
+                    frame_main.grid(column=7,row=6,columnspan=11,sticky='nw')
                     # Create a frame for the canvas with non-zero row&column weights
                     frame_canvas = tk.Frame(frame_main)
                     frame_canvas.grid(row=2, column=0, pady=(5, 0), sticky='nw')
                     frame_canvas.grid_rowconfigure(0, weight=1)
                     frame_canvas.grid_columnconfigure(0, weight=1)
                     # Set grid_propagate to False to allow 5-by-5 buttons resizing later
+                    #propagate permet d'adapter la taille du tableau
                     frame_canvas.grid_propagate(False)
 
                     # Add a canvas in that frame
@@ -4538,7 +4557,7 @@ def Menu():
                     columns = 10
 
                     colmin=0
-                    colmax=9
+                    colmax=6
                     lignemin=0
                     col=0
                     ligne=0
@@ -4571,7 +4590,7 @@ def Menu():
                         c=Duree
                     first5columns_width = sum([ListNom[j].winfo_width() for j in range(0, c)])
                     first5rows_height = sum([ListNom[i].winfo_height() for i in range(0, 1)])
-                    frame_canvas.config(width=first5columns_width + vsb.winfo_width(),
+                    frame_canvas.config(width=first5columns_width +vsb.winfo_width() - 190,
                                         height=first5rows_height+200)
                     # Set the canvas scrolling region
                     canvas.config(scrollregion=canvas.bbox("all"))    
@@ -4581,21 +4600,49 @@ def Menu():
                         
             def debloq():
                     global Type
+                    global n
+                    global lp
+                    global quantum
+                    
+                    
+                    if man==1:
+
+                      Alea=Al()
+                      n=Alea[1]
+                      lp=Alea[2]
+                      quantum=Alea[3]
+
                     Type=fenetre.menu.get()
-                    nbprocs['state']='normal'
+                   
+                    
                     B1['state']='normal'
                     menu.configure(state="disabled")
                     OK['state']='disabled'
                     GO['state']='normal'
-                
-                
-                    if Type=='Tourniquet' or Type=='Algorithmes multi files TOURNIQUET sans migration' or Type=='Algorithmes multi files TOURNIQUET avec  migration':
 
-                        Quantum['state']='normal'
-                    else:
-                        Quantum['state']='normal'
-                        Quantum.insert(0,"Donnée non utile")
-                        Quantum['state']='disabled'
+                    if man==2:
+                        
+                        nbprocs['state']='normal'
+                    
+                    
+                        if Type=='Tourniquet' or Type=='Algorithmes multi files TOURNIQUET sans migration' or Type=='Algorithmes multi files TOURNIQUET avec migration':
+
+                            Quantum['state']='normal'
+                        else:
+                            Quantum['state']='normal'
+                            Quantum.insert(0,"Donnée non utile")
+                            Quantum['state']='disabled'
+
+                    if man==1:
+                        
+                    
+                        nbprocs.config(text=n)
+
+                        if Type=='Tourniquet':
+                            Quantum.config(text=quantum)
+
+                        else : 
+                            Quantum.config(text="Données inutiles")
 
                     
             def CtrlDonnee():
@@ -4662,6 +4709,8 @@ def Menu():
             def buttonGo(Type):
                 global ListTabl
                 global Frame_main
+                global vis
+                
                 if man==2:
                     ok=CtrlDonnee()
                    
@@ -4669,6 +4718,7 @@ def Menu():
                     ok=0
                   
                 if ok!=1:
+                    vis=1
                     affcase['state']='normal'
                     GO['state']='disabled'   
                     
@@ -4689,7 +4739,7 @@ def Menu():
                         NbCaseL = 2
                     
                     Frame_main = tk.Frame(fenetre, bg="lightskyblue1")
-                    Frame_main.grid(column=2,row=6,columnspan=5,pady=40)
+                   
                  
 
                     # Create a frame for the canvas with non-zero row&column weights
@@ -4766,7 +4816,13 @@ def Menu():
                             col+=1
                             
 
-                    frame_canvas.config(width=520,height=250)
+                    if NbProc <= 5:
+                        
+                        Frame_main.grid(column=2,row=6,rowspan=7,columnspan=5)
+                        frame_canvas.config(width=520,height=150)
+                    else:
+                        Frame_main.grid(column=2,row=6,columnspan=5)
+                        frame_canvas.config(width=520,height=250)
              
                     canvas.config(scrollregion=canvas.bbox("all"))
                     
@@ -4875,10 +4931,7 @@ def Menu():
                             messagebox.showinfo(title="Information",
                                                 message=" Mauvaise réponse, vous avez perdu !\n \n Le résultat est: \n" +("".join(str(rep))))
                         elif Verif == 0:
-                            print(rep)
-                            print(len(rep))
-                            print(Lutil)
-                            print(len(Lutil))
+                            
                             for j in range(Duree):
                                
                                 if rep[j]!=Lutil[j]:
@@ -4898,22 +4951,35 @@ def Menu():
                 controleTemps=CtrlTmpRep()
                 Lutil=[]
                 Lrep=[]
-                
+                if man==1:
+                    nbprocessus=nbprocs.cget("text")
+                        
+                   
+                if man==2:
+                    
+                    nbprocessus=nbprocs.get()
+                    
                 if controleTemps!=1:
                     
                     numerateur=CalculMoy(Ltemps)
+                   
+                    denominateur= nbprocessus
+                    
                     print("chiffre du haut",numerateur)
-                    denominateur=nbprocessus
                     print("chiffre du bas",denominateur)
                     
                     denomi=deno.get()
-                    
+                   
                     numera=numer.get()
                     
 
-                    Lrep=[str(numerateur),denominateur]
-                    Lutil=[numera,denomi]
+                    Lrep=[str(numerateur),str(denominateur)]
+                    Lutil=[str(numera),str(denomi)]
                     Verif=VerifRep(Lrep,Lutil)
+
+                    print(Lrep)
+                    print(Lutil)
+                  
 
                     if Verif == 1:
                         B3['state']='disabled' 
@@ -4966,9 +5032,29 @@ def Menu():
                                 
                             
             def nouveau():
+
+                deno['state']='normal'
+                deno.delete(0,END)
+                deno['state']='disabled'
+                
+                numer['state']='normal'
+                numer.delete(0,END)
+                numer['state']='disabled'
+
+                B1['state']='disabled'
+                B2['state']='disabled'
+                B3['state']='disabled'
+
+                Frame_main.destroy()
+
+                frame_main.destroy()
+                
+                menu.configure(state="normal")
+                OK['state']='normal'
+                
                 if man==2:
                     
-                    OK['state']='normal'
+                    
                     
                     nbprocs['state']='normal'
                     nbprocs.delete(0,END)
@@ -4976,39 +5062,27 @@ def Menu():
                     
                     Quantum['state']='normal'
                     Quantum.delete(0,END)
-                    Quantum['state']='disabled'
+                    Quantum['state']='disabled'  
+                   
 
-                    B1['state']='disabled'
+                if man==1:
 
-                    deno['state']='normal'
-                    deno.delete(0,END)
-                    deno['state']='disabled'
                     
-                    numer['state']='normal'
-                    numer.delete(0,END)
-                    numer['state']='disabled'
-
-                    B2['state']='disabled'
-                    B3['state']='disabled'
+                    nbprocs.config(text="")
                     
-                    Frame_main.destroy()
+                    Quantum.config(text="")
 
-                    frame_main.destroy()
-
-                    menu.configure(state="normal")     
+                    
 
 
-
-            if man==2:
-                  
-                fenetre.menu= tk.StringVar(fenetre)
-                menu= ttk.OptionMenu(fenetre,fenetre.menu,Li[6], *Li)
-            else:
-                menu=Label(fenetre, text=Type, font=("courier", 11), fg='black', bg='white',width=10, height=1)
-
-            menu.grid(row=4, column=3,columnspan=3,sticky='nsew',pady=40,padx=20)
+                              
+            fenetre.menu= tk.StringVar(fenetre)
+            menu= ttk.OptionMenu(fenetre,fenetre.menu,Li[6], *Li)
+            menu.grid(row=4, column=3,columnspan=3,sticky='nsew',pady=10,padx=20,ipady=9
+                      )
 
             def back():
+
                 tmr.destroy()
                 menu.destroy()
                 deno.destroy()
@@ -5017,7 +5091,9 @@ def Menu():
                 tmrs.destroy()
                 ttmenu.destroy()
                 tt.destroy()
+               
                 OK.destroy()
+                    
                 ttprocs.destroy()
                 nbprocs.destroy()
                 ttQuantum.destroy()
@@ -5031,9 +5107,16 @@ def Menu():
                 B3.destroy()
                 B4.destroy()
                 B5.destroy()
+               
+                if vis==1:
+                    Frame_main.destroy()
+                if visi==1:
+                    frame_main.destroy()
+                
                 Chap2()
 
             def back2():
+
                 tmr.destroy()
                 menu.destroy()
                 deno.destroy()
@@ -5042,6 +5125,7 @@ def Menu():
                 tmrs.destroy()
                 ttmenu.destroy()
                 tt.destroy()
+                
                 OK.destroy()
                 ttprocs.destroy()
                 nbprocs.destroy()
@@ -5056,16 +5140,23 @@ def Menu():
                 B3.destroy()
                 B4.destroy()
                 B5.destroy()
+                
+                if vis==1:
+                    Frame_main.destroy()
+                    
+                if visi==1:
+                    frame_main.destroy()
+                
                 Menu()
 
-            tmrs=Label(fenetre, text="Temps moyen de réponse", font=("Courier", 15), fg='black', bg='lightskyblue1')
+            tmrs=Label(fenetre, text="Temps moyen de réponse", font=("Courier", 12), fg='black', bg='lightskyblue1')
             tmrs.grid(row=8, column=6,columnspan=7,sticky='w')
 
             deno=Entry(justify='center',borderwidth=3,state='disabled')#case de saisie pour le nombre de processus
-            deno.grid(row=9,column=6,columnspan=7,sticky='n',ipady=2)
+            deno.grid(row=9,column=6,columnspan=7,sticky='n',ipady=7)
 
             numer=Entry(justify='center',borderwidth=3,state='disabled')#case de saisie pour le nombre de processus
-            numer.grid(row=7,column=6,columnspan=7,sticky='n',ipady=2)
+            numer.grid(row=7,column=6,columnspan=7,sticky='n',ipady=7)
 
             ligne=Label(fenetre, text="—————————", font=("cadratin", 12), fg='black', bg='lightskyblue1')
 
@@ -5074,20 +5165,20 @@ def Menu():
             tmr=Button(fenetre, text="Valider\n saisie ", state='disabled',font=("calibri", 15,"bold",), fg='white', bg='steelblue', width=13, height=0,command=lambda:validerSaisie(Duree))
             tmr.grid(row=6, column=11,sticky='e')
 
-            ttmenu=Label(fenetre, text="    Sélectionner le type \n   d'ordonnancement voulue", font=("Courier", 20, "italic"), fg='black', bg='lightskyblue1')
+            ttmenu=Label(fenetre, text="    Sélectionner le type d'ordonnancement \n     voulue", font=("Courier", 15, "italic"), fg='black', bg='lightskyblue1')
             ttmenu.grid(row=3, column=3,columnspan=3,sticky='w')
 
 
             tt=Label(fenetre, text="", font=("Courier", 20), fg='black', bg='lightskyblue1', width=33 ,height=7)
-            tt.grid(column=2,row=6,columnspan=5,pady=40,sticky='s')
+            tt.grid(column=2,row=6,columnspan=5,sticky='s')
 
 
-            if man ==2:
+            ##if man ==2:
                 
-                OK=Button(fenetre, text="Débloquer données", font=("calibri", 15, "bold",), fg='white', bg='steelblue', width=17, height=0,command=lambda:debloq())
-                OK.grid(row=5, column=3,columnspan=3)
+            OK=Button(fenetre, text="Débloquer données", font=("calibri", 15, "bold",), fg='white', bg='steelblue', width=17, height=0,command=lambda:debloq())
+            OK.grid(row=5, column=3,columnspan=3)
 
-            ttprocs=Label(fenetre, text="Nombre de \nprocessus", font=("Courier", 20, "italic"), fg='black', bg='lightskyblue1')#titre pour le nombre de processus
+            ttprocs=Label(fenetre, text="Nombre de \nprocessus", font=("Courier", 15, "italic"), fg='black', bg='lightskyblue1')#titre pour le nombre de processus
             ttprocs.grid(row=3, column=5,columnspan=6,)
 
 
@@ -5096,12 +5187,13 @@ def Menu():
                 nbprocs=Entry(justify='center',borderwidth=3,state='disabled')#case de saisie pour le nombre de processus   
 
             else:
-                nbprocs=Label(fenetre, text=n, font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
+                nbprocs=Label(fenetre, text="", font=("courier", 15, "italic"), fg='black', bg='white',width=10, height=1)
+               
 
             nbprocs.grid(row=4, column=5,columnspan=6,ipady=15,ipadx=30)
 
 
-            ttQuantum=Label(fenetre, text="Quantum", font=("Courier", 20, "italic"), fg='black', bg='lightskyblue1')#titre pour le quantum
+            ttQuantum=Label(fenetre, text="Quantum", font=("Courier", 15, "italic"), fg='black', bg='lightskyblue1')#titre pour le quantum
             ttQuantum.grid(row=3, column=7,columnspan=8,)
 
             if man==2:
@@ -5109,25 +5201,18 @@ def Menu():
                 Quantum=Entry(justify='center',borderwidth=3,state='disabled')#case de saisie pour le quantum
 
             else:
-
-                if Type=='Tourniquet' or Type=='Algorithmes multi files TOURNIQUET sans migration' or Type=='Algorithmes multi files TOURNIQUET avec  migration':
-
-                    Quantum=Label(fenetre, text=quantum, font=("courier", 12, "italic"), fg='black', bg='white',width=10, height=1)
-                else:
-                    Quantum=Label(fenetre, text="Données inutiles", font=("courier", 12, "italic"), fg='black', bg='white',width=10, height=1)
+                
+                Quantum=Label(fenetre, text="", font=("courier", 12, "italic"),fg='black', bg='white',width=10, height=1)
 
 
             Quantum.grid(row=4, column=7,columnspan=8,ipady=15,ipadx=30)
 
-
-            if man==2:
+        
+        
                 
-                GO=Button(fenetre, text="GO", font=("calibri", 18, "bold", 'underline'), fg='white', bg='steelblue',state='disabled', width=5, height=0,command=lambda:buttonGo(Type))
-                GO.grid(row=4, column=10,columnspan=12)
-            else:
-                GO=Button(fenetre, text="GO", font=("calibri", 18, "bold", 'underline'), fg='white', bg='steelblue', width=5, height=0,command=lambda:buttonGo(Type))
-                GO.grid(row=4, column=10,columnspan=12)
-
+            GO=Button(fenetre, text="GO", font=("calibri", 18, "bold", 'underline'), fg='white', bg='steelblue',state='disabled', width=5, height=0,command=lambda:buttonGo(Type))
+            GO.grid(row=4, column=10,columnspan=12)
+         
 
 
             affcase=Button(fenetre, text="Afficher les cases",state='disabled', font=("calibri", 15, "bold"), fg='white', bg='steelblue', width=17, height=0,command=lambda:CreaCase())
@@ -5135,25 +5220,20 @@ def Menu():
 
 
             titre=Label(fenetre, text="Ordonnancement", font=("Courier", 40, "italic"), fg='black', bg='lightskyblue1')  
-            soustitre=Label(fenetre, text="Quelques Indications: Nombres de processus compris entre 4-10\n                             Durée d’un processus entre 1-10, Quantum max 4", font=("courier", 17), fg='darkblue', bg='lightskyblue1')
+            soustitre=Label(fenetre, text="Quelques Indications: Nombres de processus compris entre 4-10\n                             Durée d’un processus entre 1-10, Quantum max 4", font=("courier", 15), fg='darkblue', bg='lightskyblue1')
 
             titre.grid(row=1, column=4,columnspan=7)
             soustitre.grid(row=2, column=3,columnspan=11,sticky='w',ipady=20,ipadx=50)
 
-            if man==1:
-                B1=Button(fenetre, text="Rappel", font=("courier", 18, "bold", 'underline'), fg='white', bg='#103985', width=15, height=2,command=lambda:create())
-
-            else:
-                
-                B1=Button(fenetre, text="Rappel", font=("courier", 18, "bold", 'underline'), fg='white', bg='#103985',state='disabled', width=15, height=2,command=lambda:create())
+            B1=Button(fenetre, text="Rappel", font=("courier", 18, "bold", 'underline'), fg='white', bg='#103985',state='disabled', width=15, height=2,command=lambda:create())
 
             B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:nouveau())
              
             B3=Button(fenetre, text="Valider", state='disabled', font=("courier", 18, "italic"), fg='white', bg='#103985', width=15, height=2,command=lambda:Valider())
              
-            B4=Button(fenetre, text="Menu", font=("courier", 18, "italic"), fg='white', bg='grey', width=15, height=2)
+            B4=Button(fenetre, text="Menu", font=("courier", 18, "italic"), fg='white', bg='grey', width=15, height=2,command=lambda:back2())
              
-            B5=Button(fenetre, text="Quitter", font=("courier", 18), fg='white', bg='#103985', width=15, height=2,command=fenetre.destroy)
+            B5=Button(fenetre, text="Quitter", font=("courier", 18), fg='white', bg='#103985', width=15, height=2,command=lambda:back())
 
             B1.grid(row=18, column=3,pady=10)
             B2.grid(row=18, column=5,pady=10)
@@ -5163,10 +5243,8 @@ def Menu():
 
             ##############################################################Fenetre rappel####################################################################
             def create():
-                    if man==1:
-                        types=typeAl
-                    else:    
-                        types=fenetre.menu.get()
+                      
+                    types=fenetre.menu.get()
                         
                     rappel = Toplevel(fenetre)
                     rappel.config(background="lightskyblue1")
@@ -5314,7 +5392,7 @@ def Menu():
 
         
     #============Création des chapitres de la 1ere fenetre    
-    tMenu=Label(fenetre, text= "Bienvenue sur l'application d'entrainement", font=("Courier", 40, "italic"), fg='blue4', bg='lightskyblue1')
+    tMenu=Label(fenetre, text= "Bienvenue sur l'application d'entrainement", font=("Courier", 35, "italic"), fg='blue4', bg='lightskyblue1')
     tMenu.grid(row=1, column=2, columnspan=3,ipady=40)
     stMenu=Label(fenetre, text= "Séléctionner le module que vous souhaitez travailler", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
     stMenu.grid(row=2, column=2, columnspan=3,ipady=40)
