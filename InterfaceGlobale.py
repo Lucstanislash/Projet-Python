@@ -405,15 +405,14 @@ def Menu():
                 A7=Radiobutton(fen,text="Hexadécimal",selectcolor=dicoNb[basearr][6],state=dicoNb[basearr][2], fg='#103985', bg='Gainsboro',indicatoron=0,width=26, height=2, cursor='hand2')
                 A8=Radiobutton(fen,text="Octal",selectcolor=dicoNb[basearr][7],state=dicoNb[basearr][3], fg='#103985', bg='Gainsboro',indicatoron=0,width=26, height=2, cursor='hand2')
 
-                A1.grid(row = 5, column = 2, rowspan=2, pady=5)
-                A2.grid(row = 6, column = 2, pady=5)
-                A3.grid(row = 6, column = 2, rowspan=2, pady=5)
-                A4.grid(row = 7, column = 2, pady=5)
-
-                A5.grid(row = 5, column = 4, rowspan=2, pady=5)
-                A6.grid(row = 6, column = 4, pady=5)
-                A7.grid(row = 6, column = 4, rowspan=2, pady=5)
-                A8.grid(row = 7, column = 4, pady=5)
+                A1.grid(row = 10, column = 2)
+                A2.grid(row = 11, column = 2)
+                A3.grid(row = 12, column = 2)
+                A4.grid(row = 13, column = 2)
+                A5.grid(row = 10, column = 4)
+                A6.grid(row =11, column = 4)
+                A7.grid(row = 12, column = 4)
+                A8.grid(row = 13, column = 4)
 
                 if basedep==2:
                     entier=AleaExAll(2,1,32)
@@ -426,7 +425,7 @@ def Menu():
                 if ko==1:
                     Esaisie.destroy()
                 Esaisie=Label(fen, text=entier , font=("courier", 14, "italic"), fg='black', bg='white',borderwidth=3, relief="sunken",width=10)
-                Esaisie.grid(row=3, column=2,columnspan=3, rowspan=2, ipadx=200,ipady=10,sticky='s')
+                Esaisie.grid(row=4, column=2,columnspan=3, rowspan=5, ipadx=200,ipady=10,sticky='s')
                 return(basedep,basearr,entier)
             else:
                 return(0,0,'')
@@ -564,7 +563,11 @@ def Menu():
 
         #Création de menu déroulant d'entrée
         lab1=Label(fen,text="Valeur à convertir", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
-        lab1.grid(row=4, column=2,columnspan=3, rowspan=2, sticky='s')   #Créé du texte Label(text=''), spécifie la fenêtre concernée, donne une couleur de fond (bg='') et le place dans la fenêtre avec .pack()
+        if man==2:
+            lab1.grid(row=4, column=2,columnspan=3, rowspan=2, sticky='s')   #Créé du texte Label(text=''), spécifie la fenêtre concernée, donne une couleur de fond (bg='') et le place dans la fenêtre avec .pack()
+        elif man==1:
+            lab1.grid(row=3, column=2,columnspan=3, sticky='s')
+
         if man==2:
             global Esaisie
             global A1
@@ -1406,11 +1409,11 @@ def Menu():
         B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='#103985', width=15, height=2, command= back)
          
 
-        B1.grid(row=9, column=1)
-        B2.grid(row=9, column=2)
-        B3.grid(row=9, column=3)
-        B4.grid(row=9, column=5)
-        B5.grid(row=9, column=4)
+        B1.grid(row=18, column=1)
+        B2.grid(row=18, column=2)
+        B3.grid(row=18, column=3)
+        B4.grid(row=18, column=8)
+        B5.grid(row=18, column=4)
 #===================================================================================================================================================================================
 #=========================================================================================
 #===================== Chapitre 1 - Exercice 4 ===========================================
@@ -1925,7 +1928,7 @@ def Menu():
         choix=IntVar()
 
         signe=Label(fenetre, text="   Signe de\n  l'entier", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
-        positif=tk.Radiobutton(fenetre, text="Positif",font=("courier", 25), variable=choix, value=1,fg='black', bg='lightskyblue1',activebackground="lightskyblue1",width=30,)
+        positif=tk.Radiobutton(fenetre, text="Positif",font=("courier", 25), variable=choix, value=1,fg='black', bg='lightskyblue1',activebackground="lightskyblue1")
         negatif=tk.Radiobutton(fenetre, text="Négatif", font=("courier",25),variable=choix, value=2,fg='black', bg='lightskyblue1',activebackground="lightskyblue1")
 
         def nouveau():
@@ -2018,28 +2021,28 @@ def Menu():
          
         B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='white', bg='#103985', width=15, height=2,command=back)
 
-        titre.grid(row=1, column=2,columnspan=3,ipady=40)
-        soustitre.grid(row=2, column=1,columnspan=5,sticky='w',ipady=40)
+        titre.grid(row=1, column=2, columnspan=3, ipady=40)
+        soustitre.grid(row=2, column=1, columnspan=5, ipady=40)
 
-        txt1.grid(row=3, column=1,ipady=40)
-        formatsAl.grid(row=3, column=2,ipadx=200,columnspan=4,ipady=10)
+        txt1.grid(row=3, column=1,ipady=40, columnspan=2)
+        formatsAl.grid(row=3, column=3, ipadx=200, columnspan=5, ipady=10)
 
-        txt2.grid(row=4, column=1)
-        val.grid(row=4, column=2,ipadx=250,columnspan=4,ipady=10)
+        txt2.grid(row=4, column=1, columnspan=2)
+        val.grid(row=4, column=3, ipadx=250, columnspan=5, ipady=10)
 
-        signe.grid(row=5, column=1,ipady=40)
-        positif.grid(row=5, column=2,columnspan=3,sticky='w',ipadx=20, ipady=40)
-        negatif.grid(row=5, column=4,columnspan=5,sticky='w',ipadx=50)
+        signe.grid(row=5, column=1, ipady=40, columnspan=2)
+        positif.grid(row=5, column=2,columnspan=3)
+        negatif.grid(row=5, column=4,columnspan=5)
 
 
 
 
         #bouton#
-        B1.grid(row=9, column=1)
-        B2.grid(row=9, column=2)
-        B3.grid(row=9, column=3)
-        B4.grid(row=9, column=5)
-        B5.grid(row=9, column=4)
+        B1.grid(row=18, column=1)
+        B2.grid(row=18, column=2)
+        B3.grid(row=18, column=3)
+        B4.grid(row=18, column=7)
+        B5.grid(row=18, column=4)
 
 #===================================================================================================================================================================================
 #=========================================================================================
@@ -2559,7 +2562,7 @@ def Menu():
 
         soustitre=Label(fenetre, text="Quelques Indications: valeur 1000000000 impossible à convertir\n Pour la base 10 uniquement des entiers                         \n    La valeur absolue doit être comprise entre 1-2^(n-1) et 2^(n-1)-1.", font=("courier", 20), fg='darkblue', bg='lightskyblue1') 
 
-        txt1=Label(fenetre, text="   Format de départ", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
+        txt1=Label(fenetre, text="   Format de départ", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1')
         if man==2:
            
             fenetre.menud= tk.StringVar(fenetre)
@@ -2571,7 +2574,7 @@ def Menu():
             menuD.configure(state="readonly")
 
 
-        txt2=Label(fenetre, text="   Format d'arrivée", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
+        txt2=Label(fenetre, text="   Format d'arrivée", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1')
         if man==2:
            
             fenetre.menua= tk.StringVar(fenetre)
@@ -2583,14 +2586,14 @@ def Menu():
 
 
 
-        txt3=Label(fenetre, text="   Nombre de bits\n  (entre 4 et 16)", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
+        txt3=Label(fenetre, text="   Nombre de bits\n  (entre 4 et 16)", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1')
 
 
-        txt4=Label(fenetre, text="   Valeur de départ", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
+        txt4=Label(fenetre, text="   Valeur de départ", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1')
 
 
 
-        txt5=Label(fenetre, text="   Résultats", font=("courier", 27, "italic"), fg='black', bg='lightskyblue1')
+        txt5=Label(fenetre, text="   Résultats", font=("courier", 20, "italic"), fg='black', bg='lightskyblue1')
 
         Resultats=Entry(fenetre,justify='center',borderwidth=3)
 
@@ -2705,7 +2708,7 @@ def Menu():
 
 
         GO=Button(fenetre, text="Go!", font=("calibri", 18, "bold"), fg='white', bg='#103985', width=10, height=0,command=lambda:go())        
-        GO.grid(row=4, column=5,sticky='n')
+        GO.grid(row=4, column=5,sticky='n',columnspan=6)
 
         titre.grid(row=1, column=2,columnspan=3)
         soustitre.grid(row=2, column=1,columnspan=5,sticky='w',ipady=40)
@@ -2730,11 +2733,11 @@ def Menu():
 
 
         #bouton#
-        B1.grid(row=9, column=1)
-        B2.grid(row=9, column=2)
-        B3.grid(row=9, column=3)
-        B4.grid(row=9, column=5)
-        B5.grid(row=9, column=4)
+        B1.grid(row=18, column=1)
+        B2.grid(row=18, column=2)
+        B3.grid(row=18, column=3)
+        B4.grid(row=18, column=6)
+        B5.grid(row=18, column=4)
 
 
 #===================================================================================================================================================================================
