@@ -100,13 +100,13 @@ def ChapChoix():
     soustitre=Label(fenetre, text= "Choisissez votre exercice", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
     soustitre.grid(row=4, column=4, columnspan=5,sticky='s')
             
-    signe=Button(fenetre, text="Déterminer \n le signe", font=("courier", 18, "italic"), fg='black', bg='blue4',command=partial(CommandExo,'Signe'))
+    signe=Button(fenetre, text="Déterminer \n le signe", font=("courier", 18, "italic"), fg='black', bg='white',command=partial(CommandExo,'Signe'))
     signe.grid(row=10, column=6, ipady=16, ipadx=140,sticky='nesw')
 
-    conversion=Button(fenetre, text="Conversion", font=("courier", 18, "italic"), fg='black', bg='blue4',command=partial(CommandExo,'Conversion'))
+    conversion=Button(fenetre, text="Conversion", font=("courier", 18, "italic"), fg='black', bg='white',command=partial(CommandExo,'Conversion'))
     conversion.grid(row=10, column=8, ipady=16,ipadx=140,sticky='nesw')
 
-    RetourM=Button(fenetre, text="Retour", font=("courier", 18, "italic"), fg='black', bg='blue4', command=lambda:back(1))
+    RetourM=Button(fenetre, text="Retour", font=("courier", 18, "italic"), fg='black', bg='white', command=lambda:back(1))
     RetourM.grid(row=17, column=4,columnspan=6,ipady= 15,ipadx=70)
 
 
@@ -195,13 +195,13 @@ def PageChoix(NomExercice): #======== Fenêtre de demande aléatoire ou manuel =
     txt3=Label(fenetre, text= "Souhaitez vous une saisie Manuelle ou Aléatoire", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
     txt3.grid(row=4, column=4, columnspan=5,sticky='s')
             
-    bManuelle=Button(fenetre, text="Manuel", font=("courier", 18, "italic"), fg='black', bg='blue4', command=partial(CommandExo,'Manuel'))
+    bManuelle=Button(fenetre, text="Manuel", font=("courier", 18, "italic"), fg='black', bg='white', command=partial(CommandExo,'Manuel'))
     bManuelle.grid(row=10, column=6, ipady=30, ipadx=140,sticky='nesw')
 
-    bAléa=Button(fenetre, text="Aléatoire", font=("courier", 18, "italic"), fg='black', bg='blue4',command=partial(CommandExo,'Aléa'))
+    bAléa=Button(fenetre, text="Aléatoire", font=("courier", 18, "italic"), fg='black', bg='white',command=partial(CommandExo,'Aléa'))
     bAléa.grid(row=10, column=8, ipady=30,ipadx=140,sticky='nesw')
 
-    bRetour=Button(fenetre, text="Retour", font=("courier", 18, "italic"), fg='black', bg='blue4', command=partial(back,2))
+    bRetour=Button(fenetre, text="Retour", font=("courier", 18, "italic"), fg='black', bg='white', command=partial(back,2))
     bRetour.grid(row=17, column=4,columnspan=6,ipady= 15,ipadx=70)
 
 def ChoixExo():
@@ -279,31 +279,31 @@ def Menu():
         tExoChap1.grid(row=1, column=4,columnspan=6,ipady=40)
         
                     
-        Bexo1=Button(fenetre, text="Entiers non signés", font=("courier", 18, "italic"), fg='black', bg='blue4', width=largeur, height=hauteur ,command= partial(PageChoix,"Entiers non signés")) #, command= PageChoix("Entiers non signées")
+        Bexo1=Button(fenetre, text="Entiers non signés", font=("courier", 18, "italic"), fg='black', bg='white', width=largeur, height=hauteur ,command= partial(PageChoix,"Entiers non signés")) #, command= PageChoix("Entiers non signées")
         Bexo1.grid(ipady=25, row=3, column=2,columnspan=3,ipadx=50,sticky='e')
 
-        Bexo2=Button(fenetre, text="Opérations en binaire", font=("courier", 18, "italic"), fg='black', bg='blue4', width=largeur, height=hauteur ,command= partial(PageChoix,"Opérations en binaire"))
+        Bexo2=Button(fenetre, text="Opérations en binaire", font=("courier", 18, "italic"), fg='black', bg='white', width=largeur, height=hauteur ,command= partial(PageChoix,"Opérations en binaire"))
         Bexo2.grid(ipady=25,  row=4, column=2,columnspan=3,ipadx=50,sticky='e')
 
-        Bexo3=Button(fenetre, text="Multiplications en binaire", font=("courier", 18, "italic"), fg='black', bg='blue4', width=largeur, height=hauteur ,command= ChoixExo)
+        Bexo3=Button(fenetre, text="Multiplications en binaire", font=("courier", 18, "italic"), fg='black', bg='white', width=largeur, height=hauteur ,command= ChoixExo)
         Bexo3.grid(ipady=25,  row=5, column=2,columnspan=3,ipadx=50,sticky='e')
 
-        Bexo4=Button(fenetre, text="Opérations sans calcul", font=("courier", 18, "italic"), fg='black', bg='blue4',width=largeur, height=hauteur , command= partial(PageChoix,"Opérations sans calcul"))#command=affich3)
+        Bexo4=Button(fenetre, text="Opérations sans calcul", font=("courier", 18, "italic"), fg='black', bg='white',width=largeur, height=hauteur , command= partial(PageChoix,"Opérations sans calcul"))#command=affich3)
         Bexo4.grid(ipady=25,row=6, column=2,columnspan=3,ipadx=50,sticky='e')
 
-        Bexo5=Button(fenetre, text="Entiers signés", font=("courier", 18, "italic"), fg='black', bg='blue4', width=largeur, height=hauteur ,command= partial(PageChoix,"Entiers signés"))
+        Bexo5=Button(fenetre, text="Entiers signés", font=("courier", 18, "italic"), fg='black', bg='white', width=largeur, height=hauteur ,command= partial(PageChoix,"Entiers signés"))
         Bexo5.grid(ipady=25,  row=3, column=5,columnspan=7,ipadx=50)
 
-        Bexo6=Button(fenetre, text="Les Réels", font=("courier", 18, "italic"), fg='black', bg='blue4', width=largeur, height=hauteur ,command= partial(PageChoix,"Les Réels"))
+        Bexo6=Button(fenetre, text="Les Réels", font=("courier", 18, "italic"), fg='black', bg='white', width=largeur, height=hauteur ,command= partial(PageChoix,"Les Réels"))
         Bexo6.grid(ipady=25,   row=4, column=5,columnspan=7,ipadx=50)
 
-        Bexo7=Button(fenetre, text="Les Décimaux", font=("courier", 18, "italic"), fg='black', bg='blue4', width=largeur, height=hauteur ,command= partial(PageChoix,"Les Décimaux"))#command=affich3)
+        Bexo7=Button(fenetre, text="Les Décimaux", font=("courier", 18, "italic"), fg='black', bg='white', width=largeur, height=hauteur ,command= partial(PageChoix,"Les Décimaux"))#command=affich3)
         Bexo7.grid(ipady=25,  row=5,column=5,columnspan=7,ipadx=50)
 
-        Bexo8=Button(fenetre, text="Les Tableaux", font=("courier", 18, "italic"), fg='black', bg='blue4', width=largeur, height=hauteur ,command= partial(PageChoix,"Les Tableaux"))
+        Bexo8=Button(fenetre, text="Les Tableaux", font=("courier", 18, "italic"), fg='black', bg='white', width=largeur, height=hauteur ,command= partial(PageChoix,"Les Tableaux"))
         Bexo8.grid(ipady=25,row=6, column=5,columnspan=7,ipadx=50)
 
-        Retour=Button(fenetre, text= "Retour", font=("courier", 18, "italic"), fg='black', bg='blue4', width=largeur, height=hauteur ,command= back)
+        Retour=Button(fenetre, text= "Retour", font=("courier", 18, "italic"), fg='black', bg='white', width=largeur, height=hauteur ,command= back)
         Retour.grid(row=17, column=4,columnspan=5,ipadx=5)
 #===================================================================================================================================================================================
 #=========================================================================================
@@ -685,7 +685,7 @@ def Menu():
                 rappel.destroy()
                 rappel.update()
 
-            btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='black', bg='blue4', width=15, height=2)
+            btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='black', bg='white', width=15, height=2)
             btn.grid(row=12, column=1,columnspan=3,sticky='n')
             
             rappel.rowconfigure(1, weight=1)
@@ -705,15 +705,15 @@ def Menu():
             rappel.columnconfigure(2, weight=1)
             rappel.columnconfigure(3, weight=0)  
 
-        B1=Button(fen, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='black', bg='blue4', width=15, height=2, command=create)
+        B1=Button(fen, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='black', bg='white', width=15, height=2, command=create)
         #B1.grid(row=17, column=1)
-        B2=Button(fen, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='black', bg='blue4', width=15, height=2, command=lambda:(nouveau(man)))
+        B2=Button(fen, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='black', bg='white', width=15, height=2, command=lambda:(nouveau(man)))
         #B2.grid(row=17, column=2)
-        B3=Button(fen, text="Valider", font=("courier", 18, "italic"), fg='black', bg='blue4', width=15, height=2, command=lambda:(get(basedep,basearr,entier,man)))
+        B3=Button(fen, text="Valider", font=("courier", 18, "italic"), fg='black', bg='white', width=15, height=2, command=lambda:(get(basedep,basearr,entier,man)))
         #B3.grid(row=17, column=3)
         B5=Button(fen, text="Menu", font=("courier", 18, "italic"), fg='black', bg='grey', width=15, height=2, command= back2)
         #B4.grid(row=17, column=5)
-        B4=Button(fen, text="Quitter", font=("calibri", 18, "bold"), fg='black', bg='blue4', width=15, height=2,command=back)
+        B4=Button(fen, text="Quitter", font=("calibri", 18, "bold"), fg='black', bg='white', width=15, height=2,command=back)
         #B5.grid(row=17, column=4)
 
         B1.grid(row=18, column=1)
@@ -1045,14 +1045,14 @@ def Menu():
         y=3
         x=10
 
-        B1=Button(f, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='black', bg='blue4', width=15, height=2, command=lambda:create(f))
+        B1=Button(f, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='black', bg='white', width=15, height=2, command=lambda:create(f))
         B1.grid(row=18, column=1)
-        B2=Button(f, text="Nouveau", state='disabled', font=("bold", 18, "italic"), fg='black', bg='blue4',width=15, height=2, command=lambda:Nouveau(saisie,fenetre))
+        B2=Button(f, text="Nouveau", state='disabled', font=("bold", 18, "italic"), fg='black', bg='white',width=15, height=2, command=lambda:Nouveau(saisie,fenetre))
         B2.grid(row=18, column=2)
-        B3=Button(f, text="Valider", font=("courier", 18, "bold"), fg='black', bg='blue4',width=15, height=2, command=lambda:Valide(saisie, sa))
+        B3=Button(f, text="Valider", font=("courier", 18, "bold"), fg='black', bg='white',width=15, height=2, command=lambda:Valide(saisie, sa))
         B3.grid(row=18, column=3)
         B5=Button(f, text="Menu", font=("courier", 18, "bold"), fg='black', bg='grey',width=15, height=2, command=back2)
-        B4=Button(f, text="Quitter", font=("calibri", 18, "bold"), fg='black', bg='blue4',  width=15, height=2, command=back)
+        B4=Button(f, text="Quitter", font=("calibri", 18, "bold"), fg='black', bg='white',  width=15, height=2, command=back)
         B4.grid(row=18, column=4)
         B5.grid(row=18, column=6)
 
@@ -1118,7 +1118,7 @@ def Menu():
             rappel.destroy()
             rappel.update()
 
-        btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='black', bg='blue4', width=15, height=2)
+        btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='black', bg='white', width=15, height=2)
         btn.grid(row=6, column=2,columnspan=3,sticky='n')
 
     
@@ -1294,7 +1294,7 @@ def Menu():
                 rappel.destroy()
                 rappel.update()
 
-            btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='black', bg='blue4', width=15, height=2)
+            btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='black', bg='white', width=15, height=2)
             btn.grid(row=6, column=2,columnspan=3,sticky='n')
         #========================================================
         #======== Back ==========================================
@@ -1403,11 +1403,11 @@ def Menu():
             
             
         #======================Cadre 3
-        B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='black', bg='blue4', width=15, height=2,command=lambda:create())
-        B2=Button(fenetre, text="Nouveau",state="disabled",font=("courier", 18, "italic"), fg='black', bg='blue4', width=15, height=2,command=lambda:Nouveau())
-        B3=Button(fenetre, text="Valider",command=Valid, font=("courier", 18, "italic"), fg='black', bg='blue4', width=15, height=2)
+        B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='black', bg='white', width=15, height=2,command=lambda:create())
+        B2=Button(fenetre, text="Nouveau",state="disabled",font=("courier", 18, "italic"), fg='black', bg='white', width=15, height=2,command=lambda:Nouveau())
+        B3=Button(fenetre, text="Valider",command=Valid, font=("courier", 18, "italic"), fg='black', bg='white', width=15, height=2)
         B4=Button(fenetre, text="Menu", font=("courier", 18, "italic"), fg='black', bg='grey', width=15, height=2, command=back2)
-        B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='black', bg='blue4', width=15, height=2, command= back)
+        B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='black', bg='white', width=15, height=2, command= back)
          
 
         B1.grid(row=18, column=1)
@@ -1734,7 +1734,7 @@ def Menu():
                 rappel.destroy()
                 rappel.update()
 
-            btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='black', bg='blue4', width=15, height=2)
+            btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='black', bg='white', width=15, height=2)
             btn.grid(row=6, column=2,columnspan=3,sticky='n')
 
         #======================================================================
@@ -1794,11 +1794,11 @@ def Menu():
         res.grid(row=11, column=2,ipadx=200,columnspan=4,ipady=10)
 
             
-        B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='black', bg='blue4', width=15, height=2,command=lambda:create())
-        B2=Button(fenetre, text="Nouveau",font=("courier", 18, "italic"), fg='black', bg='blue4', width=15, height=2,command=lambda:Nouveau(), state='disabled')
-        B3=Button(fenetre, text="Valider", font=("courier", 18, "italic"), fg='black', bg='blue4', width=15, height=2,command=lambda:Exo4())
+        B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='black', bg='white', width=15, height=2,command=lambda:create())
+        B2=Button(fenetre, text="Nouveau",font=("courier", 18, "italic"), fg='black', bg='white', width=15, height=2,command=lambda:Nouveau(), state='disabled')
+        B3=Button(fenetre, text="Valider", font=("courier", 18, "italic"), fg='black', bg='white', width=15, height=2,command=lambda:Exo4())
         B4=Button(fenetre, text="Menu", font=("courier", 18, "italic"), fg='black', bg='grey', width=15, height=2, command= back2)
-        B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='black', bg='blue4', width=15, height=2,command=back)
+        B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='black', bg='white', width=15, height=2,command=back)
          
 
         B1.grid(row=18, column=1)
@@ -2007,20 +2007,20 @@ def Menu():
                 rappel.destroy()
                 rappel.update()
 
-            btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='black', bg='blue4', width=15, height=2)
+            btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='black', bg='white', width=15, height=2)
             btn.grid(row=6, column=2,columnspan=3,sticky='n')
 
 
                 
-        B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='black', bg='blue4', width=15, height=2,command=lambda:create())
+        B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='black', bg='white', width=15, height=2,command=lambda:create())
 
-        B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='black', bg='blue4', width=15, height=2,command=lambda:nouveau())
+        B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='black', bg='white', width=15, height=2,command=lambda:nouveau())
          
-        B3=Button(fenetre, text="Valider", font=("courier", 18, "italic"), fg='black', bg='blue4', width=15, height=2,command=lambda : RepUtil())
+        B3=Button(fenetre, text="Valider", font=("courier", 18, "italic"), fg='black', bg='white', width=15, height=2,command=lambda : RepUtil())
          
         B4=Button(fenetre, text="Menu", font=("courier", 18, "italic"), fg='black', bg='grey', width=15, height=2,command=back2)
          
-        B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='black', bg='blue4', width=15, height=2,command=back)
+        B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='black', bg='white', width=15, height=2,command=back)
 
         titre.grid(row=1, column=2, columnspan=3, ipady=40)
         soustitre.grid(row=2, column=1, columnspan=5, ipady=40)
@@ -2652,7 +2652,7 @@ def Menu():
                 rappel.destroy()
                 rappel.update()
 
-            btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='black', bg='blue4', width=15, height=2)
+            btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='black', bg='white', width=15, height=2)
             btn.grid(row=10, column=2,columnspan=3,sticky='n')
 
         def back():
@@ -2697,18 +2697,18 @@ def Menu():
             Menu()
 
                 
-        B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='black', bg='blue4', width=15, height=2,command=lambda:create())
+        B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='black', bg='white', width=15, height=2,command=lambda:create())
 
-        B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='black', bg='blue4', width=15, height=2,command=lambda:nouveau())
+        B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='black', bg='white', width=15, height=2,command=lambda:nouveau())
          
-        B3=Button(fenetre, text="Valider", font=("courier", 18, "italic"), fg='black', bg='blue4', width=15, height=2,command=lambda:Validation())
+        B3=Button(fenetre, text="Valider", font=("courier", 18, "italic"), fg='black', bg='white', width=15, height=2,command=lambda:Validation())
          
         B4=Button(fenetre, text="Menu", font=("courier", 18, "italic"), fg='black', bg='grey', width=15, height=2, command=back2)
          
-        B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='black', bg='blue4', width=15, height=2,command=back)
+        B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='black', bg='white', width=15, height=2,command=back)
 
 
-        GO=Button(fenetre, text="Go!", font=("calibri", 18, "bold"), fg='black', bg='blue4', width=10, height=0,command=lambda:go())        
+        GO=Button(fenetre, text="Go!", font=("calibri", 18, "bold"), fg='black', bg='white', width=10, height=0,command=lambda:go())        
         GO.grid(row=4, column=5,sticky='n',columnspan=6)
 
         titre.grid(row=1, column=2,columnspan=3)
@@ -3137,7 +3137,7 @@ def Menu():
                 rappel.destroy()
                 rappel.update()
 
-            btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='black', bg='blue4', width=15, height=2)
+            btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='black', bg='white', width=15, height=2)
             btn.grid(row=6, column=2,columnspan=3,sticky='n')
 
         #================================================================================================================================================#
@@ -3177,15 +3177,15 @@ def Menu():
             B5.destroy()
             Menu()
         
-        B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='black', bg='blue4', width=15, height=2,command=lambda:create())
+        B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='black', bg='white', width=15, height=2,command=lambda:create())
 
-        B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='black', bg='blue4', width=15, height=2,command=lambda:nouveau())
+        B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='black', bg='white', width=15, height=2,command=lambda:nouveau())
          
-        B3=Button(fenetre, text="Valider", font=("courier", 18, "italic"), fg='black', bg='blue4', width=15, height=2,command=lambda:get())
+        B3=Button(fenetre, text="Valider", font=("courier", 18, "italic"), fg='black', bg='white', width=15, height=2,command=lambda:get())
          
         B4=Button(fenetre, text="Menu", font=("courier", 18, "italic"), fg='black', bg='grey', width=15, height=2, command=back2)
          
-        B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='black', bg='blue4', width=15, height=2,command=back)
+        B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='black', bg='white', width=15, height=2,command=back)
 
         titre.grid(row=1, column = 2, columnspan=3)
         soustitre.grid(row=2, column=1,columnspan=4,ipady=50,ipadx=50)
@@ -3555,15 +3555,15 @@ def Menu():
             B5.destroy()
             Menu()
                 
-        B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='black', bg='blue4', width=15, height=2,command=lambda:create())
+        B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='black', bg='white', width=15, height=2,command=lambda:create())
 
-        B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "bold"), fg='black', bg='blue4', width=15, height=2,command=lambda:nouveau())
+        B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "bold"), fg='black', bg='white', width=15, height=2,command=lambda:nouveau())
          
-        B3=Button(fenetre, text="Valider", font=("courier", 18, "bold"), fg='black', bg='blue4', width=15, height=2,command=lambda:get(formats))
+        B3=Button(fenetre, text="Valider", font=("courier", 18, "bold"), fg='black', bg='white', width=15, height=2,command=lambda:get(formats))
          
         B4=Button(fenetre, text="Menu", font=("calibri", 18, "bold"), fg='black', bg='grey', width=15, height=2,command=back2)
          
-        B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='black', bg='blue4', width=15, height=2,command=back)
+        B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='black', bg='white', width=15, height=2,command=back)
 
         titre.grid(row=1, column=2,columnspan=3,ipady=20)
         soustitre.grid(row=2, column=1,columnspan=5,sticky='w',ipady=20)
@@ -3898,7 +3898,7 @@ def Menu():
                 rappel.destroy()
                 rappel.update()
 
-            btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='black', bg='blue4', width=15, height=2)
+            btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='black', bg='white', width=15, height=2)
             btn.grid(row=6, column=2,columnspan=3,sticky='n')
 
         def nouveau():
@@ -4004,17 +4004,17 @@ def Menu():
             Menu()
 
                 
-        B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='black', bg='blue4', width=15, height=2,command=lambda:create())
+        B1=Button(fenetre, text="Rappel", font=("calibri", 18, "bold", 'underline'), fg='black', bg='white', width=15, height=2,command=lambda:create())
 
-        B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='black', bg='blue4', width=15, height=2,command=lambda:nouveau())
+        B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='black', bg='white', width=15, height=2,command=lambda:nouveau())
          
-        B3=Button(fenetre, text="Valider", state='disabled',font=("courier", 18, "italic"), fg='black', bg='blue4', width=15, height=2,command=lambda:get(donne))
+        B3=Button(fenetre, text="Valider", state='disabled',font=("courier", 18, "italic"), fg='black', bg='white', width=15, height=2,command=lambda:get(donne))
          
         B4=Button(fenetre, text="Menu", font=("calibri", 18, "italic"), fg='black', bg='grey', width=15, height=2,command=back2)
          
-        B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='black', bg='blue4', width=15, height=2,command=back)
+        B5=Button(fenetre, text="Quitter", font=("calibri", 18, "bold"), fg='black', bg='white', width=15, height=2,command=back)
 
-        B6=Button(fenetre, text="Go!", font=("calibri", 18, "bold"), fg='black', bg='blue4', width=14, height=0,command=lambda:control(donne,ko,taille,TailleC,Adresse))
+        B6=Button(fenetre, text="Go!", font=("calibri", 18, "bold"), fg='black', bg='white', width=14, height=0,command=lambda:control(donne,ko,taille,TailleC,Adresse))
 
         titre.grid(row=1, column=2,columnspan=3)
         soustitre.grid(row=2, column=1,columnspan=5,sticky='w')
@@ -4110,13 +4110,13 @@ def Menu():
         txt=Label(fenetre, text= "Souhaitez vous une saisie Manuelle ou Aléatoire", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
         txt.grid(row=4, column=4, columnspan=5,sticky='s')
                 
-        Manuelle2=Button(fenetre, text="Manuel", font=("courier", 18, "italic"), fg='black', bg='blue4', command=partial(CommandExo,'Manuel'))
+        Manuelle2=Button(fenetre, text="Manuel", font=("courier", 18, "italic"), fg='black', bg='white', command=partial(CommandExo,'Manuel'))
         Manuelle2.grid(row=10, column=6, ipady=30, ipadx=140,sticky='nesw')
 
-        Aléa2=Button(fenetre, text="Aléatoire", font=("courier", 18, "italic"), fg='black', bg='blue4',command=partial(CommandExo,'Aléa'))
+        Aléa2=Button(fenetre, text="Aléatoire", font=("courier", 18, "italic"), fg='black', bg='white',command=partial(CommandExo,'Aléa'))
         Aléa2.grid(row=10, column=8, ipady=30,ipadx=140,sticky='nesw')
 
-        Retour2=Button(fenetre, text="Retour", font=("courier", 18, "italic"), fg='black', bg='blue4', command=lambda:(back(2)))
+        Retour2=Button(fenetre, text="Retour", font=("courier", 18, "italic"), fg='black', bg='white', command=lambda:(back(2)))
         Retour2.grid(row=17, column=4,columnspan=6,ipady= 15,ipadx=70)
 
 
@@ -4749,7 +4749,8 @@ def Menu():
                     canvas = tk.Canvas(frame_canvas, bg="white")
                     canvas.grid(row=0, column=0, sticky="news")
 
-                    canvas.configure(highlightcolor='lightskyblue1',highlightbackground='lightskyblue1')
+                    canvas.configure(highlightcolor='lightskyblue1',highlightbackground='blue4')
+                    
 
                     # Create a frame to contain the buttons
                     frame_buttons = tk.Frame(canvas, bg="white")
@@ -4817,7 +4818,7 @@ def Menu():
                         frame_canvas.config(width=520,height=150)
                     else:
                         Frame_main.grid(column=2,row=6,columnspan=5)
-                        frame_canvas.config(width=520,height=250)
+                        frame_canvas.config(width=520,height=350)
              
                     canvas.config(scrollregion=canvas.bbox("all"))
                     
@@ -5221,15 +5222,15 @@ def Menu():
             titre.grid(row=1, column=4,columnspan=7)
             soustitre.grid(row=2, column=3,columnspan=11,sticky='w',ipady=20,ipadx=50)
 
-            B1=Button(fenetre, text="Rappel", font=("courier", 18, "bold", 'underline'), fg='black', bg='blue4',state='disabled', width=15, height=2,command=lambda:create())
+            B1=Button(fenetre, text="Rappel", font=("courier", 18, "bold", 'underline'), fg='black', bg='white',state='disabled', width=15, height=2,command=lambda:create())
 
-            B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='black', bg='blue4', width=15, height=2,command=lambda:nouveau())
+            B2=Button(fenetre, text="Nouveau", state='disabled', font=("courier", 18, "italic"), fg='black', bg='white', width=15, height=2,command=lambda:nouveau())
              
-            B3=Button(fenetre, text="Valider", state='disabled', font=("courier", 18, "italic"), fg='black', bg='blue4', width=15, height=2,command=lambda:Valider())
+            B3=Button(fenetre, text="Valider", state='disabled', font=("courier", 18, "italic"), fg='black', bg='white', width=15, height=2,command=lambda:Valider())
              
             B4=Button(fenetre, text="Menu", font=("courier", 18, "italic"), fg='black', bg='grey', width=15, height=2,command=lambda:back2())
              
-            B5=Button(fenetre, text="Quitter", font=("courier", 18), fg='black', bg='blue4', width=15, height=2,command=lambda:back())
+            B5=Button(fenetre, text="Quitter", font=("courier", 18), fg='black', bg='white', width=15, height=2,command=lambda:back())
 
             B1.grid(row=18, column=3,pady=10)
             B2.grid(row=18, column=5,pady=10)
@@ -5327,7 +5328,7 @@ def Menu():
                         rappel.destroy()
                         rappel.update()
 
-                    btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='black', bg='blue4', width=15, height=2)
+                    btn = Button(rappel,text='Quitter',command=exit_btn,font=("calibri", 18, "bold"), fg='black', bg='white', width=15, height=2)
                     btn.grid(row=12, column=1,columnspan=3,sticky='n')
 
 
@@ -5357,7 +5358,7 @@ def Menu():
         st = Label(fenetre, text= "Partie en cours de création", font=("Courier", 28, "italic"), fg='blue4', bg='lightskyblue1')
         st.grid(row=2, column=1,columnspan=4)
 
-        Retour=Button(fenetre, text= "Retour", font=("courier", 18, "italic"), fg='black', bg='blue4', command= back)
+        Retour=Button(fenetre, text= "Retour", font=("courier", 18, "italic"), fg='black', bg='white', command= back)
         Retour.grid(row=6, column=2,columnspan=3)
 
     #============================================================================
@@ -5383,7 +5384,7 @@ def Menu():
         st = Label(fenetre, text= "Partie en cours de création", font=("Courier", 28, "italic"), fg='blue4', bg='lightskyblue1')
         st.grid(row=2, column=1,columnspan=4)
 
-        Retour=Button(fenetre, text= "Retour", font=("courier", 18, "italic"), fg='black', bg='blue4', command= back)
+        Retour=Button(fenetre, text= "Retour", font=("courier", 18, "italic"), fg='black', bg='white', command= back)
         Retour.grid(row=6, column=2,columnspan=3)
 
         
@@ -5393,19 +5394,19 @@ def Menu():
     stMenu=Label(fenetre, text= "     Séléctionner le module que vous souhaitez travailler", font=("courier", 25, "italic"), fg='black', bg='lightskyblue1')
     stMenu.grid(row=2, column=2, columnspan=3,ipady=40)
     
-    Bchap1=Button(fenetre, text="   Codage de l'information", font=("courier", 18, "italic"), fg='black', bg='blue4', command = Chap1)
+    Bchap1=Button(fenetre, text="   Codage de l'information", font=("courier", 18, "italic"), fg='black', bg='white', command = Chap1)
     Bchap1.grid(row=4, column=3,sticky='e',ipady=10,ipadx=231)
 
-    Bchap2=Button(fenetre, text="Ordonnancement", font=("courier", 18, "italic"), fg='black', bg='blue4', command= Chap2)#command= Chap2
+    Bchap2=Button(fenetre, text="Ordonnancement", font=("courier", 18, "italic"), fg='black', bg='white', command= Chap2)#command= Chap2
     Bchap2.grid(row=6, column=3,sticky='e',ipady=10,ipadx=315)
 
-    Bchap3=Button(fenetre, text="Gestion de la mémoire", font=("courier", 18, "italic"), fg='black', bg='blue4', command= Chap3)#command= Chap3
+    Bchap3=Button(fenetre, text="Gestion de la mémoire", font=("courier", 18, "italic"), fg='black', bg='white', command= Chap3)#command= Chap3
     Bchap3.grid(row=8, column=3, sticky='e',ipady=10,ipadx=266)
 
-    Bchap4=Button(fenetre, text="Gestion de fichier", font=("courier", 18, "italic"), fg='black', bg='blue4', command= Chap4) #command= Chap4
+    Bchap4=Button(fenetre, text="Gestion de fichier", font=("courier", 18, "italic"), fg='black', bg='white', command= Chap4) #command= Chap4
     Bchap4.grid(row=10, column=3,sticky='e',ipady=10,ipadx=287)
     
-    Quitter=Button(fenetre, text= "Quitter", font=("courier", 18, "italic"), fg='black', bg='blue4', command= fenetre.destroy)
+    Quitter=Button(fenetre, text= "Quitter", font=("courier", 18, "italic"), fg='black', bg='white', command= fenetre.destroy)
     Quitter.grid(row=17, column=3,columnspan=4,ipadx=20)
 
 
