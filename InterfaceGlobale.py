@@ -441,7 +441,7 @@ def Menu():
             dico[8]='o'
             dico[16]='x'
             if donne[0] == 10:
-                print(dico[donne[1]])
+            
                 rep=format(int(donne[2]),dico[donne[1]])
                 rep=rep.upper()
             elif donne[1] == 10:
@@ -4579,14 +4579,14 @@ def Menu():
                     # Update buttons frames idle tasks to let tkinter calculate buttons sizes       
                     frame_buttons.update_idletasks()
                     # Resize the canvas frame to show exactly 5-by-5 buttons and the scrollbar
-                    if Duree>7:
-                        c=7
+                    if Duree>8:
+                        c=8
                     else:
                         c=Duree
                     first5columns_width = sum([ListNom[j].winfo_width() for j in range(0, c)])
                     first5rows_height = sum([ListNom[i].winfo_height() for i in range(0, 1)])
-                    frame_canvas.config(width=first5columns_width +vsb.winfo_width(),
-                                        height=first5rows_height+200)
+                    frame_canvas.config(width=first5columns_width +vsb.winfo_width()+5,
+                                        height=first5rows_height+210)
                     # Set the canvas scrolling region
                     canvas.config(scrollregion=canvas.bbox("all"))    
 
